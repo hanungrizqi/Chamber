@@ -1,0 +1,98 @@
+﻿@{
+    ViewBag.Title = "Login";
+    Layout = null;
+}
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>CFM</title>
+    <meta name="description" content="Codebase - Bootstrap 5 Admin Template &amp; UI Framework created by pixelcave and published on Themeforest">
+    <meta name="author" content="pixelcave">
+    <meta name="robots" content="noindex, nofollow">
+
+    <!-- Open Graph Meta -->
+    <meta property="og:title" content="Codebase - Bootstrap 5 Admin Template &amp; UI Framework">
+    <meta property="og:site_name" content="Codebase">
+    <meta property="og:description" content="Codebase - Bootstrap 5 Admin Template &amp; UI Framework created by pixelcave and published on Themeforest">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="">
+    <meta property="og:image" content="">
+
+    <!-- Icons -->
+    <link rel="shortcut icon" href="~/Content/assets/media/photos/Logo CFM1.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="~/Content/assets/media/photos/Logo CFM1.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="~/Content/assets/media/photos/Logo CFM1.png">
+    <!-- END Icons -->
+    <link rel="stylesheet" href="~/Content/assets/js/plugins/select2/css/select2.min.css">
+    <link rel="stylesheet" href="~/Content/assets/js/plugins/sweetalert2/sweetalert2.min.css">
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800&display=swap">
+    <link rel="stylesheet" id="css-main" href="~/Content/assets/css/codebase.min.css">
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    <!-- END Stylesheets -->
+
+    <script src="~/Content/assets/js/lib/jquery.min.js"></script>
+
+</head>
+<body>
+    <input type="text" id="web_link" value="@Session["Web_Link"]" hidden />
+
+    <div id="overlay">
+        <div class="cv-spinner">
+            <span class="spinner"></span>
+        </div>
+    </div>
+
+    <div id="page-container" class="main-content-boxed">
+        <main id="main-container">
+            <div class="bg-image">
+                <div class="row mx-0 bg-black-50">
+                    <div class="hero-static col-md-6 col-xl-4 d-flex align-items-center bg-body-extra-light">
+                        <div class="content content-full">
+                            <div class="px-4 py-2 mb-4">
+                                <div class="d-flex align-items-center mb-3">
+                                    <img src="~/Content/assets/media/photos/logo.png" style="max-width:220px" @*style="margin-right: 10px;"*@>
+                                </div>
+                                <label class="mb-0" style="font-family: Poppins, sans-serif; font-size: 30px; font-weight: 100; text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); ">Selamat Datang di</label>
+                                <label style="font-family: Poppins, sans-serif; margin-bottom: 0; font-size: 30px; font-weight: 100; text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); "><i>Chamber Fatigue</i></label>
+                                <label style="font-family: Poppins, sans-serif; margin-bottom: 0; font-size: 30px; font-weight: 100; text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); "><i>Management</i></label>
+                            </div>
+                            <form class="px-4" method="POST">
+                                <div class="form-floating mb-4">
+                                    <input type="text" class="form-control" id="val-username" name="val-username" placeholder="Enter your NRP">
+                                    <label class="form-label" for="val-username">NRP</label>
+                                </div>
+                                <div class="form-floating mb-4">
+                                    <input type="password" class="form-control" id="val-password" name="val-password" placeholder="Enter your password">
+                                    <label class="form-label" for="val-password">Password</label>
+                                </div>
+                                <div class="d-grid gap-2">
+                                    <button type="button" onclick="PostLogin()" class="btn btn-success" style="background-color: #164A41;">
+                                        Sign In
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="hero-static col-md-6 col-xl-8 d-none d-md-flex align-items-md-end" style="background-image: url('../../Content/assets/media/photos/BGPPT 4.png'); background-size: cover;">
+                        <div class="p-4">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="~/Content/assets/js/codebase.app.min.js"></script>
+    <script src="~/Content/assets/js/plugins/sweetalert2/sweetalert2.min.js"></script>
+    <script src="~/Content/assets/js/plugins/jquery-validation/jquery.validate.min.js"></script>
+    <script src="~/Content/assets/js/plugins/jquery-validation/additional-methods.js"></script>
+    <script src="~/Content/assets/js/pages/be_forms_validation.min.js"></script>
+    <script>
+        Codebase.helpersOnLoad(['jq-select2']);
+    </script>
+    <script src="~/Scripts/Page/login.js"></script>
+</body>
+</html>

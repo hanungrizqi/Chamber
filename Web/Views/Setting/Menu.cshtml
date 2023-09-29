@@ -1,0 +1,72 @@
+﻿
+@{
+    ViewBag.Title = "Setting Profile";
+    ViewBag.JS = "/Scripts/Page/SettingMenu.js";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h3>Setting Profile</h3>
+<div class="col-12 mb-2">
+    <span style="font-size: 10px;">Berikut detail data setiap chamber yang tersedia di <b>@Session["Site"].ToString()</b>.</span>
+</div>
+
+<div class="row mb-3">
+    <div class="col">
+        <label><input type="search" class="form-control form-control-sm" placeholder="Search" id="search" aria-controls="tbl_menu"></label>
+    </div>
+    <div class="col text-end">
+        <span style="font-size: 10px;">@ViewBag.Count person need approval found &nbsp; &nbsp;</span>
+        <i class="nav-main-link-icon fa fa-arrow-down-wide-short" style="font-size: 10px;"></i>
+        <span style="font-size: 10px;">filter &nbsp; &nbsp;</span>
+        <i class="nav-main-link-icon fa fa-download" style="font-size: 10px;"></i>
+        <span style="font-size: 10px;">Download</span>
+    </div>
+</div>
+
+<div class="col-sm-12 col-md-6">
+    <div class="dropdown" style="position: absolute; top: 0; right: 0%;">
+        <label style="font-size: 12px;">7 person need approval found</label>
+        <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" style="font-size: 11px;">
+            <i class="nav-main-link-icon fa fa-filter"></i> <span style="font-size: 12px;">filter</span>
+        </button>
+        <div class="dropdown-menu">
+            <a class="dropdown-item" href="#">Status</a>
+            <a class="dropdown-item" href="#">Date</a>
+        </div>
+        <i class="nav-main-link-icon fa fa-download" style="font-size: 11px;"></i>
+        <span style="font-size: 12px;">Download</span>
+    </div>
+</div>
+
+<div class="block">
+    <div class="block-header block-header-default">
+        <label class="col-sm-1 col-form-label" for="txt_group">Group :</label>
+        <div class="col-sm-11">
+            <select class="form-control form-control-sm" id="txt_group">
+                @foreach (var item in ViewBag.Group)
+                {
+                    if (item.ID == 1)
+                    {
+                        <option value="@item.ID" selected="selected">@item.RoleName</option>
+                    }
+                    else
+                    {
+                        <option value="@item.ID">@item.RoleName</option>
+                    }
+                }
+            </select>
+        </div>
+    </div>
+    <div class="block-content block-content-full">
+        <table class="table table-bordered table-striped table-vcenter js-dataTable-responsive w-100" id="tbl_menu">
+            <thead class="text-center">
+                <tr>
+                    <th class="w-25">Is Allow</th>
+                    <th>Menu</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+</div>

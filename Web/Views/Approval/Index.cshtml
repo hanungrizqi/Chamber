@@ -1,0 +1,65 @@
+﻿
+@{
+    ViewBag.Title = "Work Approval";
+    ViewBag.JS = "/Scripts/Page/WorkApproval.js";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Navlink = "approvalindex";
+}
+
+<h3>Work Approval</h3>
+<div class="col-12 mb-2">
+    <span style="font-size: 10px;">Berikut detail data setiap chamber yang tersedia di <b>@Session["Site"].ToString()</b>.</span>
+</div>
+
+<div class="row mb-3">
+    <div class="col">
+        <label><input type="search" class="form-control form-control-sm" placeholder="Search" id="search" aria-controls="tbl_approval"></label>
+    </div>
+    <div class="col text-end">
+        <span style="font-size: 10px;">@ViewBag.Count person need approval found &nbsp; &nbsp;</span>
+        <i class="nav-main-link-icon fa fa-arrow-down-wide-short" style="font-size: 10px;"></i>
+        <span style="font-size: 10px;">filter &nbsp; &nbsp;</span>
+        <i class="nav-main-link-icon fa fa-download" style="font-size: 10px;"></i>
+        <span style="font-size: 10px;">Download</span>
+    </div>
+</div>
+
+<div class="col-sm-12 col-md-6">
+    <div class="dropdown" style="position: absolute; top: 0; right: 0%;">
+        <label style="font-size: 12px;">7 person need approval found</label>
+        <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" style="font-size: 11px;">
+            <i class="nav-main-link-icon fa fa-filter"></i> <span style="font-size: 12px;">filter</span>
+        </button>
+        <div class="dropdown-menu">
+            <a class="dropdown-item" href="#">Status</a>
+            <a class="dropdown-item" href="#">Date</a>
+        </div>
+        <i class="nav-main-link-icon fa fa-download" style="font-size: 11px;"></i>
+        <span style="font-size: 12px;">Download</span>
+    </div>
+</div>
+
+<div class="block">
+    <div class="block-content block-content-full">
+        <table class="js-table-checkable table table-hover table-vcenter" style="background-color: white; border-radius: 10px;" id="tbl_approval">
+            <thead>
+                <tr>
+                    <th class="text-center" style="width: 40px;">
+                        <div class="form-check d-inline-block">
+                            <input class="form-check-input" type="checkbox" value="" id="checkAll" name="checkAll">
+                            <label class="form-check-label" for="checkAll"></label>
+                        </div>
+                    </th>
+                    <th class="d-none d-sm-table-cell" style="width: 40%; font-size: 12px; color: gray">NAME</th>
+                    <th class="d-none d-sm-table-cell" style="width: 20%; font-size: 12px; color: gray ">JOB TITLE</th>
+                    <th class="d-none d-sm-table-cell" style="width: 15%; font-size: 12px; color: gray ">STATUS</th>
+                    <th class="d-none d-sm-table-cell" style="width: 20%; font-size: 12px; color: gray ">CREATED ON</th>
+                    <th class="d-none d-sm-table-cell" style="width: 20%; font-size: 12px; color: gray ">CHAMBER</th>
+                    <th style="width: 20%; font-size: 12px; color: gray; align-items: center;">ACTION</th>
+                </tr>
+            </thead>
+            <tbody style="font-size: 14px; font-weight: 500;">
+            </tbody>
+        </table>
+    </div>
+</div>
