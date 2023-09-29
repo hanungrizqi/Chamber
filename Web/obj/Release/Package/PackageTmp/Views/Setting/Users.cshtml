@@ -1,0 +1,114 @@
+﻿
+@{
+    ViewBag.Title = "Setting User";
+    ViewBag.JS = "/Scripts/Page/SettingUser.js";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h3>Setting User</h3>
+<div class="col-12 mb-2">
+    <span style="font-size: 10px;">Berikut detail data setiap chamber yang tersedia di <b>@Session["Site"].ToString()</b>.</span>
+</div>
+
+<div class="row mb-3">
+    <div class="col">
+        <button type="button" class="btn rounded-0 btn-secondary" data-bs-toggle="modal" data-bs-target="#modal-insert" style="font-size: 11px;">+ &nbsp;Add New User</button>
+        <label><input type="search" class="form-control form-control-sm" placeholder="Search" id="search" aria-controls="tbl_user"></label>
+    </div>
+    <div class="col text-end">
+        <span style="font-size: 10px;">@ViewBag.Count person need approval found &nbsp; &nbsp;</span>
+        <i class="nav-main-link-icon fa fa-arrow-down-wide-short" style="font-size: 10px;"></i>
+        <span style="font-size: 10px;">filter &nbsp; &nbsp;</span>
+        <i class="nav-main-link-icon fa fa-download" style="font-size: 10px;"></i>
+        <span style="font-size: 10px;">Download</span>
+    </div>
+</div>
+
+<div class="col-sm-12 col-md-6">
+    <div class="dropdown" style="position: absolute; top: 0; right: 0%;">
+        <label style="font-size: 12px;">7 person need approval found</label>
+        <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" style="font-size: 11px;">
+            <i class="nav-main-link-icon fa fa-filter"></i> <span style="font-size: 12px;">filter</span>
+        </button>
+        <div class="dropdown-menu">
+            <a class="dropdown-item" href="#">Status</a>
+            <a class="dropdown-item" href="#">Date</a>
+        </div>
+        <i class="nav-main-link-icon fa fa-download" style="font-size: 11px;"></i>
+        <span style="font-size: 12px;">Download</span>
+    </div>
+</div>
+
+<div class="block">
+    <div class="block-content block-content-full">
+        <table class="js-table-checkable table table-hover table-vcenter" style="background-color: white; border-radius: 10px;" id="tbl_user">
+            <thead>
+                <tr>
+                    <th class="d-none d-sm-table-cell" style="width: 20%; font-size: 12px; color: gray">NRP</th>
+                    <th class="d-none d-sm-table-cell" style="width: 40%; font-size: 12px; color: gray ">NAMA</th>
+                    <th class="d-none d-sm-table-cell" style="width: 15%; font-size: 12px; color: gray ">DISTRICT</th>
+                    <th class="d-none d-sm-table-cell" style="width: 20%; font-size: 12px; color: gray ">GROUP</th>
+                    <th class="d-none d-sm-table-cell" style="width: 20%; font-size: 12px; color: gray ">EMAIL</th>
+                    <th style="width: 20%; font-size: 12px; color: gray; align-items: center;">ACTION</th>
+                </tr>
+            </thead>
+            <tbody style="font-size: 14px; font-weight: 500;">
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="modal" id="modal-insert" tabindex="-1" aria-labelledby="modal-normal" aria-modal="true" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="block shadow-none mb-0">
+                <div class="block-header block-header-default">
+                    <h3 class="block-title">Register User's Group</h3>
+                    <div class="block-options">
+                        <button type="button" class="btn-block-option" data-bs-dismiss="modal" aria-label="Close">
+                            <i class="fa fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="block-content fs-sm">
+                    <div class="mb-4">
+                        <label class="form-label" for="txt_nrp">Username</label>
+                        <select class="js-select2 form-select select2-modal" id="txt_nrp" name="txt_nrp" style="width: 100%;">
+                            <option></option>
+                            @foreach (var item in ViewBag.Emp)
+                            {
+                                <option value="@item.EMPLOYEE_ID">@item.EMPLOYEE_ID - @item.NAME</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="mb-4">
+                        <label class="form-label" for="txt_group">Group</label>
+                        <select class="js-select2 form-select select2-modal" id="txt_group" name="txt_group" style="width: 100%;">
+                            <option></option>
+                            @foreach (var item in ViewBag.Group)
+                            {
+                                <option value="@item.ID">@item.RoleName</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="mb-4">
+                        <label class="form-label" for="txt_district">District</label>
+                        <input type="text" class="form-control" id="txt_district" name="txt_district" readonly>
+                    </div>
+                    <div class="mb-4">
+                        <label class="form-label" for="txt_email">Email</label>
+                        <input type="email" class="form-control" id="txt_email" name="txt_email" readonly>
+                    </div>
+                </div>
+                <div class="block-content block-content-full block-content-sm text-end border-top">
+                    <button type="button" class="btn rounded-0 btn-alt-secondary" data-bs-dismiss="modal">
+                        Cancel
+                    </button>
+                    <button type="button" class="btn btn-secondary" onclick="insertUser()">
+                        Insert
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

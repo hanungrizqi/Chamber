@@ -4,7 +4,9 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
 -->
 <Project>
   <PropertyGroup>
-    <_PublishTargetUrl>D:\Publish Project\CFM\Development\20230926\Web</_PublishTargetUrl>
+    <_PublishTargetUrl>D:\Publish Project\CFM\Development\20230929\Web</_PublishTargetUrl>
+    <History>True|2023-09-29T02:38:53.9722222Z;True|2023-09-29T09:37:25.3386475+07:00;</History>
+    <LastFailureDetails />
   </PropertyGroup>
   <ItemGroup>
     <File Include="bin/Antlr3.Runtime.dll">
@@ -203,10 +205,10 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>05/27/2022 23:42:50</publishTime>
     </File>
     <File Include="bin/Web.dll">
-      <publishTime>09/26/2023 09:08:15</publishTime>
+      <publishTime>09/29/2023 09:38:48</publishTime>
     </File>
     <File Include="bin/Web.pdb">
-      <publishTime>09/26/2023 09:08:15</publishTime>
+      <publishTime>09/29/2023 09:38:48</publishTime>
     </File>
     <File Include="bin/WebGrease.dll">
       <publishTime>01/23/2014 13:57:34</publishTime>
@@ -215,7 +217,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>09/20/2023 13:39:02</publishTime>
     </File>
     <File Include="Content/assets/css/codebase.min.css">
-      <publishTime>09/21/2023 09:51:10</publishTime>
+      <publishTime>09/27/2023 13:54:25</publishTime>
     </File>
     <File Include="Content/assets/css/themes/corporate.css">
       <publishTime>09/20/2023 13:39:02</publishTime>
@@ -12812,34 +12814,58 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>09/20/2023 10:46:04</publishTime>
     </File>
     <File Include="Models/Cfm.dbml">
-      <publishTime>09/20/2023 14:48:13</publishTime>
+      <publishTime>09/27/2023 14:40:03</publishTime>
     </File>
     <File Include="Scripts/moment.min.js">
       <publishTime>09/20/2023 14:14:30</publishTime>
     </File>
+    <File Include="Scripts/Page/CfmManagement.js">
+      <publishTime>09/26/2023 15:20:52</publishTime>
+    </File>
+    <File Include="Scripts/Page/EmpRecord.js">
+      <publishTime>09/26/2023 15:23:18</publishTime>
+    </File>
     <File Include="Scripts/Page/login.js">
-      <publishTime>09/22/2023 10:07:38</publishTime>
+      <publishTime>09/27/2023 16:41:12</publishTime>
+    </File>
+    <File Include="Scripts/Page/SettingMenu.js">
+      <publishTime>09/27/2023 10:45:49</publishTime>
+    </File>
+    <File Include="Scripts/Page/SettingUser.js">
+      <publishTime>09/27/2023 10:34:02</publishTime>
     </File>
     <File Include="Scripts/Page/WorkApproval.js">
-      <publishTime>09/25/2023 17:23:29</publishTime>
+      <publishTime>09/26/2023 15:57:12</publishTime>
     </File>
     <File Include="Views/Approval/Index.cshtml">
-      <publishTime>09/25/2023 11:44:56</publishTime>
+      <publishTime>09/27/2023 11:28:20</publishTime>
+    </File>
+    <File Include="Views/CfmManagement/Index.cshtml">
+      <publishTime>09/27/2023 09:49:41</publishTime>
+    </File>
+    <File Include="Views/EmpRecord/Index.cshtml">
+      <publishTime>09/27/2023 11:28:20</publishTime>
     </File>
     <File Include="Views/Home/Index.cshtml">
-      <publishTime>09/20/2023 10:46:04</publishTime>
+      <publishTime>09/27/2023 09:46:46</publishTime>
     </File>
     <File Include="Views/Login/Index.cshtml">
-      <publishTime>09/22/2023 10:17:58</publishTime>
+      <publishTime>09/27/2023 16:54:05</publishTime>
+    </File>
+    <File Include="Views/Setting/Menu.cshtml">
+      <publishTime>09/27/2023 10:52:57</publishTime>
+    </File>
+    <File Include="Views/Setting/Users.cshtml">
+      <publishTime>09/27/2023 10:44:26</publishTime>
     </File>
     <File Include="Views/Shared/Error.cshtml">
       <publishTime>09/20/2023 10:46:04</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>09/25/2023 09:28:55</publishTime>
+      <publishTime>09/27/2023 15:17:25</publishTime>
     </File>
     <File Include="Views/Shared/_Sidebar.cshtml">
-      <publishTime>09/21/2023 14:55:37</publishTime>
+      <publishTime>09/27/2023 13:23:24</publishTime>
     </File>
     <File Include="Views/Web.config">
       <publishTime>09/20/2023 10:46:04</publishTime>
@@ -12848,7 +12874,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>09/20/2023 10:46:04</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>09/26/2023 09:08:16</publishTime>
+      <publishTime>09/29/2023 09:37:20</publishTime>
     </File>
   </ItemGroup>
 </Project>

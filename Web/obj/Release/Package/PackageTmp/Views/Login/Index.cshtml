@@ -8,7 +8,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <title>CFM</title>
+    <title>CFM - KPP Mining | Login</title>
     <meta name="description" content="Codebase - Bootstrap 5 Admin Template &amp; UI Framework created by pixelcave and published on Themeforest">
     <meta name="author" content="pixelcave">
     <meta name="robots" content="noindex, nofollow">
@@ -33,6 +33,21 @@
     <link rel="stylesheet" id="css-main" href="~/Content/assets/css/codebase.min.css">
     <link href="~/Content/Site.css" rel="stylesheet" />
     <!-- END Stylesheets -->
+
+    <style>
+        #signInButton {
+            position: absolute;
+            top: 10%;
+            left: 16.7%;
+            transform: translate(-50%, -50%);
+            display: none;
+            width: 360px;
+        }
+
+        #val-password:blank + #signInButton {
+            display: block; /* Tampilkan tombol jika input password kosong */
+        }
+    </style>
 
     <script src="~/Content/assets/js/lib/jquery.min.js"></script>
 
@@ -63,14 +78,25 @@
                             <form class="px-4" method="POST">
                                 <div class="form-floating mb-4">
                                     <input type="text" class="form-control" id="val-username" name="val-username" placeholder="Enter your NRP">
-                                    <label class="form-label" for="val-username">NRP</label>
+                                    <label class="form-label" for="val-username">kNRP</label>
                                 </div>
                                 <div class="form-floating mb-4">
                                     <input type="password" class="form-control" id="val-password" name="val-password" placeholder="Enter your password">
                                     <label class="form-label" for="val-password">Password</label>
                                 </div>
+                                <!--<div class="d-grid gap-2">-->
+                                    @*<button type="button" onclick="PostLogin()" class="btn btn-success" style="background-color: #164A41;">
+                                        Sign In
+                                    </button>*@
+                                    <!--<button type="button" onclick="PostLogin()" class="btn btn-success" style="background-color: #164A41;">
+                                        Sign In
+                                    </button>
+                                </div>-->
                                 <div class="d-grid gap-2">
                                     <button type="button" onclick="PostLogin()" class="btn btn-success" style="background-color: #164A41;">
+                                        Sign In
+                                    </button>
+                                    <button type="button" id="signInButton" onclick="PostLogin2()" class="btn btn-success" style="background-color: #164A41;">
                                         Sign In
                                     </button>
                                 </div>

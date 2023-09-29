@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <title>CFM - KPP Mining</title>
+    <title>CFM - KPP Mining | @ViewBag.Title</title>
 
     <!-- The following icons can be replaced with your own, they are used by desktop and mobile browsers -->
     <link rel="shortcut icon" href="~/Content/assets/media/photos/Logo CFM1.png">
@@ -32,6 +32,10 @@
 
         .tombol {
             font-size: small;
+        }
+
+        .piraww {
+            color: black;
         }
     </style>
     <script src="~/Content/assets/js/lib/jquery.min.js"></script>
@@ -100,10 +104,10 @@
                     <!-- Side Main Navigation -->
                     <div class="content-side content-side-full">
                         <!--
-                        Mobile navigation, desktop navigation can be found in #page-header
+                    Mobile navigation, desktop navigation can be found in #page-header
 
-                        If you would like to use the same navigation in both mobiles and desktops, you can use exactly the same markup inside sidebar and header navigation ul lists
-                        -->
+                    If you would like to use the same navigation in both mobiles and desktops, you can use exactly the same markup inside sidebar and header navigation ul lists
+                    -->
                         <ul class="nav-main">
                             <li class="nav-main-item">
                                 <a class="nav-main-link active" href="db_social.html">
@@ -139,14 +143,6 @@
                 <div class="row g-0 align-items-center w-100">
                     <div class="col-4 text-start">
                         <img src="~/Content/assets/media/photos/logo.png" style="max-width:120px">
-                        <!-- Logo -->
-                        @*<a class="link-fx fw-bold" href="#">
-                                <i class="fa fa-fire text-primary"></i>
-                                <span class="d-none d-md-inline-block">
-                                    <span class="fs-4 text-dual">code</span><span class="fs-4 text-primary">base</span>
-                                </span>
-                            </a>*@
-                        <!-- END Logo -->
                     </div>
                     <div class="col-6 text-end" style="border-right: 1px solid #C7C7C7;">
                         @Html.Action("Menu", "Menu")
@@ -154,7 +150,6 @@
 
                     <div class="col-2 text-start">
                         <button type="button" class="btn btn-sm" id="page-header-notifications" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            @*<i class="fa fa-bell"></i>*@
                             <img src="~/Content/assets/media/photos/awan.png" style="max-width:34px">
                             <br />
                             <span class="d-none d-md-inline-block">
@@ -174,23 +169,23 @@
                                             <i class="fa fa-fw fa-check text-success"></i>
                                         </div>
                                         <div class="flex-grow-1 pe-2">
-                                            <p class="fw-medium mb-1">You’ve upgraded to a VIP account successfully!</p>
-                                            <div class="text-muted">15 min ago</div>
+                                            <p class="fw-medium mb-1">You’ve added @Session["LastaddUser"].ToString() account successfully!</p>
+                                            <div class="text-muted">@Session["LastaddUserDate"].ToString()</div>
                                         </div>
                                     </a>
                                 </li>
                                 <li>
-                                    <a class="text-dark d-flex py-2" href="javascript:void(0)">
+                                    <a class="text-dark d-flex py-2" href="/Approval/Index">
                                         <div class="flex-shrink-0 me-2 ms-3">
                                             <i class="fa fa-fw fa-exclamation-triangle text-warning"></i>
                                         </div>
                                         <div class="flex-grow-1 pe-2">
-                                            <p class="fw-medium mb-1">Please check your payment info since we can’t validate them!</p>
-                                            <div class="text-muted">50 min ago</div>
+                                            <p class="fw-medium mb-1">@Session["Counted"].ToString() Approval from all site found. Check at Work Approval menu!</p>
+                                            <div class="text-muted">@Session["LastCFC"].ToString()</div>
                                         </div>
                                     </a>
                                 </li>
-                                <li>
+                                @*<li>
                                     <a class="text-dark d-flex py-2" href="javascript:void(0)">
                                         <div class="flex-shrink-0 me-2 ms-3">
                                             <i class="fa fa-fw fa-times text-danger"></i>
@@ -222,7 +217,7 @@
                                             <div class="text-muted">1 day ago</div>
                                         </div>
                                     </a>
-                                </li>
+                                </li>*@
                             </ul>
                             <div class="p-2 bg-body-light rounded-bottom">
                                 <a class="dropdown-item text-center mb-0" href="javascript:void(0)">
@@ -232,27 +227,23 @@
                         </div>
                         <!-- END Open Search Section -->
                         <!-- Compose -->
-                        @*<button type="button" class="btn btn-sm btn-alt-success ms-1">
-                                <i class="far fa-edit opacity-50"></i>
-                                <span class="d-none d-sm-inline">Compose</span>
-                            </button>*@
                         <button type="button" class="btn rounded-pill btn-outline-secondary ms-1 tombol" id="page-header-user-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fab fa-creative-commons-by opacity-100"></i>
                             <span class="d-none d-sm-inline">@Session["Name"].ToString()</span>
                             <i class="fa fa-ellipsis-vertical opacity-50 naraw"></i>
                         </button>
                         <div class="dropdown-menu dropdown-menu-md dropdown-menu-end p-0" aria-labelledby="page-header-user-dropdown">
                             <div class="p-2">
-                                <a class="dropdown-item d-flex align-items-center justify-content-between space-x-1" href="#">
-                                    <span>@Session["Role"].ToString()</span>
+                                <a class="dropdown-item d-flex align-items-center justify-content-between space-x-1" href="javascript:void(0)">
+                                    <i class="fab fa-fw fa-jenkins opacity-70"></i>
+                                    <span>&nbsp; @Session["Role"].ToString()</span>
+                                </a>
+                                <a class="dropdown-item d-flex align-items-center justify-content-between space-x-1" href="/Setting/Users">
+                                    <i class="fa fa-fw fab fa-whmcs opacity-25"></i>
+                                    <span>&nbsp; User Setting</span>
                                 </a>
                                 <a class="dropdown-item d-flex align-items-center justify-content-between space-x-1" href="/Login/logout">
                                     <i class="fa fa-fw fa-sign-out-alt opacity-25"></i>
-                                    <span>Sign Out</span>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center justify-content-between space-x-1" href="/Login/logout">
-                                    <i class="fa fa-fw fab fa-whmcs opacity-25"></i>
-                                    <span>User Setting</span>
+                                    <span>&nbsp; Sign Out</span>
                                 </a>
                             </div>
                         </div>
@@ -296,11 +287,31 @@
         <main id="main-container">
             <!-- Page Content -->
             <div class="content">
+                <div class="col-lg-8">
+                    <nav class="breadcrumb push">
+                        <a class="breadcrumb-item piraww" style="display: flex; align-items: center; text-decoration: underline;">
+                            <i class="nav-main-link-icon fa fa-home" style="margin-right: 5px;"></i> <!-- Ikonya -->
+                            Home
+                        </a>
+                        <span class="breadcrumb-item active" id="alamat">Work Approval</span>
+                    </nav>
+                </div>
                 @RenderBody()
             </div>
             <!-- END Page Content -->
         </main>
         <!-- END Main Container -->
+        <footer id="page-footer">
+            <div class="content py-3">
+                <div class="row fs-sm">
+                    <div class="col-sm-6 order-sm-1 py-1 text-center text-sm-start">
+                        PT. Kalimantan Prima Persada &copy; <span data-toggle="year-copy"></span>
+                        <br />
+                        Performed by <i class="fab fa-google-plus-g"></i>
+                    </div>
+                </div>
+            </div>
+        </footer>
     </div>
     <!-- END Page Container -->
     <!--
@@ -317,13 +328,31 @@
     <script src="~/Content/assets/js/plugins/ckeditor5-classic/build/ckeditor.js"></script>
     <script src="~/Content/assets/js/plugins/bootstrap-notify/bootstrap-notify.min.js"></script>
     <script src="~/Content/assets/js/plugins/jquery-validation/jquery.validate.min.js"></script>
-    <script src="~/Content/assets/js/plugins/jquery-validation/additional-methods.js"></script>
-    <script src="~/Content/assets/js/pages/be_forms_validation.min.js"></script>
 
-    <script>
+    @*<script>
         Codebase.helpersOnLoad(['cb-table-tools-checkable', 'cb-table-tools-sections']);
-    </script>
+    </script>*@
 
     <script src="@Html.Raw(ViewBag.JS)"></script>
+    <script>
+        var path = window.location.pathname;
+
+        var labelText = "";
+        if (path === "/Approval/Index") {
+            labelText = "Work Approval";
+        } else if (path === "/Home/Index") {
+            labelText = "Dashboard";
+        } else if (path === "/CfmManagement/Index") {
+            labelText = "CFM Management";
+        } else if (path === "/EmpRecord/Index") {
+            labelText = "Employee Record"
+        } else if (path === "/Setting/Users") {
+            labelText = "Setting User"
+        } else if (path === "/Setting/Menu") {
+            labelText = "Setting Profile"
+        }
+
+        document.getElementById("alamat").textContent = labelText;
+    </script>
 </body>
 </html>

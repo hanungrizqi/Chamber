@@ -1,12 +1,11 @@
 ﻿
 @{
-    ViewBag.Title = "Work Approval";
-    ViewBag.JS = "/Scripts/Page/WorkApproval.js";
+    ViewBag.Title = "Employee Record";
+    ViewBag.JS = "/Scripts/Page/EmpRecord.js";
     Layout = "~/Views/Shared/_Layout.cshtml";
-    ViewBag.Navlink = "approvalindex";
 }
 
-<h3>Work Approval</h3>
+<h3>Employee Record</h3>
 <div class="col-12 mb-2">
     <span style="font-size: 10px;">Berikut detail data setiap chamber yang tersedia di <b>@Session["Site"].ToString()</b>.</span>
 </div>
@@ -38,10 +37,9 @@
         <span style="font-size: 12px;">Download</span>
     </div>
 </div>
-
 <div class="block">
     <div class="block-content block-content-full">
-        <table class="js-table-checkable table table-hover table-vcenter" style="background-color: white; border-radius: 10px;" id="tbl_approval">
+        <table class="js-table-checkable table table-hover table-vcenter" style="background-color: white; border-radius: 10px;" id="tbl_empr">
             <thead>
                 <tr>
                     <th class="text-center" style="width: 40px;">
@@ -52,8 +50,8 @@
                     </th>
                     <th class="d-none d-sm-table-cell" style="width: 40%; font-size: 12px; color: gray">NAME</th>
                     <th class="d-none d-sm-table-cell" style="width: 20%; font-size: 12px; color: gray ">JOB TITLE</th>
-                    <th class="d-none d-sm-table-cell" style="width: 15%; font-size: 12px; color: gray ">STATUS</th>
-                    <th class="d-none d-sm-table-cell" style="width: 20%; font-size: 12px; color: gray ">CREATED ON</th>
+                    <th class="d-none d-sm-table-cell" style="width: 15%; font-size: 12px; color: gray ">LAST STATUS</th>
+                    <th class="d-none d-sm-table-cell" style="width: 20%; font-size: 12px; color: gray ">LAST ABSENT</th>
                     <th class="d-none d-sm-table-cell" style="width: 20%; font-size: 12px; color: gray ">CHAMBER</th>
                     <th style="width: 20%; font-size: 12px; color: gray; align-items: center;">ACTION</th>
                 </tr>
