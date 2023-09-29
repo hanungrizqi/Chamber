@@ -4358,10 +4358,12 @@
     <Content Include="Scripts\moment.min.js" />
     <Content Include="Scripts\Page\CfmManagement.js" />
     <Content Include="Scripts\Page\EmpRecord.js" />
+    <Content Include="Scripts\Page\EmpRecordDetail.js" />
     <Content Include="Scripts\Page\login.js" />
     <Content Include="Scripts\Page\SettingMenu.js" />
     <Content Include="Scripts\Page\SettingUser.js" />
     <Content Include="Scripts\Page\WorkApproval.js" />
+    <Content Include="Scripts\Page\WorkApprovalDetail.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -4381,6 +4383,8 @@
     <Content Include="Views\EmpRecord\Index.cshtml" />
     <Content Include="Views\Setting\Users.cshtml" />
     <Content Include="Views\Setting\Menu.cshtml" />
+    <Content Include="Views\Approval\Detail.cshtml" />
+    <Content Include="Views\EmpRecord\Detail_ERecord.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

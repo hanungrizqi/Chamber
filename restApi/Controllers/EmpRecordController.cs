@@ -20,7 +20,7 @@ namespace restApi.Controllers
             try
             {
                 db.CommandTimeout = 120;
-                var data = db.VW_T_APPROVALs.Where(a => a.APPROVER != "" || a.APPROVER != null).OrderBy(a => a.APPROVAL_ID).ToList();
+                var data = db.VW_T_APPROVALs.Where(a => a.APPROVER != "" || a.APPROVER != null || a.ID_STATUS == 1).OrderBy(a => a.APPROVAL_ID).ToList();
 
                 return Ok(new { Data = data });
             }
@@ -31,8 +31,8 @@ namespace restApi.Controllers
         }
 
         [HttpPost]
-        [Route("Actions")]
-        public IHttpActionResult Actions(TBL_T_APPROVAL chambers)
+        [Route("QuickActions")]
+        public IHttpActionResult QuickActions(TBL_T_APPROVAL chambers)
         {
             try
             {
@@ -56,6 +56,23 @@ namespace restApi.Controllers
             catch (Exception e)
             {
                 return Ok(new { Remarks = false, Message = e });
+            }
+        }
+
+        [HttpGet]
+        [Route("Detail/{id}")]
+        public IHttpActionResult Get_PPEDetail(int id)
+        {
+            try
+            {
+                db.CommandTimeout = 120;
+                var data = db.VW_T_APPROVALs.Where(a => a.APPROVAL_ID == id).FirstOrDefault();
+
+                return Ok(new { Data = data });
+            }
+            catch (Exception)
+            {
+                return BadRequest();
             }
         }
     }

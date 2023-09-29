@@ -5,13 +5,14 @@ $(document).on('click', '.action-link', function (e) {
     var approvalId = $(this).data('approvalid');
     var action = $(this).data('action');
 
-    if (action === 'Approve') {
+    if (action === 'Unfit') {
         debugger
-        Approve(approvalId);
-    } else if (action === 'NeedRetest') {
-        NeedRetest(approvalId);
-    } else if (action === 'Unfit') {
         Unfit(approvalId);
+    } else if (action === 'FitndRestTime') {
+        debugger
+        FitndRestTime(approvalId);
+    } else if (action === 'UnfitBParamedis') {
+        UnfitBParamedis(approvalId);
     }
 });
 
@@ -20,23 +21,17 @@ var table = $("#tbl_approval").DataTable({
         url: $("#web_link").val() + "/api/Approval/Get_ListApproval",
         dataSrc: "Data",
     },
-    //dom: 'Bfrtip',
-    //buttons: [
-    //    {
-    //        extend: "pdfHtml5",
-    //        title: "Work Approval",
-    //        exportOptions: {
-    //            columns: [1, 2, 3, 4, 5]
-    //        },
-    //        customize: function (doc) {
-    //            doc.content[1].margin = [0, 0, 0, 0]
-    //        },
-    //        orientation: 'landscape'
-    //    },
-    //],
     "searching": true,
     "columnDefs": [
-        { "className": "dt-nowrap", "targets": '_all' }
+        { "className": "dt-nowrap", "targets": '_all' },
+        {
+            "targets": '_all',
+            "createdCell": function (td, cellData, rowData, row, col) {
+                if (col === 0) {
+                    $(td).parent().attr("id", "row_" + rowData.APPROVAL_ID);
+                }
+            }
+        },
     ],
     scrollX: true,
     columns: [
@@ -70,10 +65,12 @@ var table = $("#tbl_approval").DataTable({
                     text = `<span class="badge" style="background-color: #E3E3FF; color: #927FB3; font-size: 12px; font-family: Poppins; font-weight: 500; word-wrap: break-word;"><i class="fa fa-circle" style="font-size: 6px; vertical-align: middle; margin-top: -2px;"></i> ${data}</span>`;
                 } else if (data == "Fit Need Rest Time") {
                     text = `<span class="badge" style="background-color: #defeff; color: #4fecfe; font-size: 12px; font-family: Poppins; font-weight: 500; word-wrap: break-word;"><i class="fa fa-circle" style="font-size: 6px; vertical-align: middle; margin-top: -2px;"></i> ${data}</span>`;
-                } else if (data == "Unfit, Wait for GL Other Instruction") {
+                } else if (data == "Unfit Butuh Paramedis") {
                     text = `<span class="badge" style="background-color: #ffdef3; color: #fe4f4f; font-size: 12px; font-family: Poppins; font-weight: 500; word-wrap: break-word;"><i class="fa fa-circle" style="font-size: 6px; vertical-align: middle; margin-top: -2px;"></i> ${data}</span>`;
                 } else if (data == "Istirahat") {
                     text = `<span class="badge" style="background-color: #fff0de; color: #feb24f; font-size: 12px; font-family: Poppins; font-weight: 500; word-wrap: break-word;"><i class="fa fa-circle" style="font-size: 6px; vertical-align: middle; margin-top: -2px;"></i> ${data}</span>`;
+                } else if (data == "Berhenti Bekerja") {
+                    text = `<span class="badge" style="background-color: #ff9999; color: #ff1c1c; font-size: 12px; font-family: Poppins; font-weight: 500; word-wrap: break-word;"><i class="fa fa-circle" style="font-size: 6px; vertical-align: middle; margin-top: -2px;"></i> ${data}</span>`;
                 } else {
                     text = `<span class="badge bg-info">${data}</span>`;
                 }
@@ -88,23 +85,6 @@ var table = $("#tbl_approval").DataTable({
             }
         },
         { data: 'ID_CHAMBER' },
-        //{
-        //    data: 'APPROVAL_ID',
-        //    targets: 'no-sort',
-        //    orderable: false,
-        //    render: function (data, type, row) {
-        //        debugger
-        //        var actions = '<div class="btn-group">';
-        //        actions += '<button class="btn btn-sm" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-ellipsis-vertical"></i></button>';
-        //        actions += '<ul class="dropdown-menu">';
-        //        actions += '<li><a class="dropdown-item" href="lempar ke function Approve">Approve</a></li>';
-        //        actions += '<li><a class="dropdown-item" href="lempar ke function Need Retest">Need Retest</a></li>';
-        //        actions += '<li><a class="dropdown-item" href="lempar ke function Unfit">Unfit</a></li>';
-        //        actions += '</ul>';
-        //        actions += '</div>';
-        //        return actions;
-        //    }
-        //},
         {
             data: 'APPROVAL_ID',
             targets: 'no-sort',
@@ -113,9 +93,9 @@ var table = $("#tbl_approval").DataTable({
                 var actions = '<div class="btn-group">';
                 actions += '<button class="btn btn-sm" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-ellipsis-vertical"></i></button>';
                 actions += '<ul class="dropdown-menu">';
-                actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Approve" href="#">Approve</a></li>';
-                actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="NeedRetest" href="#">Need Retest</a></li>';
                 actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Unfit" href="#">Unfit</a></li>';
+                actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="FitndRestTime" href="#">Fit Need Rest Time</a></li>';
+                actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="UnfitBParamedis" href="#">Unfit Butuh Paramedis</a></li>';
                 actions += '</ul>';
                 actions += '</div>';
                 return actions;
@@ -155,6 +135,35 @@ var table = $("#tbl_approval").DataTable({
     },
 });
 
+// Add this code to handle row clicks
+//$('#tbl_approval tbody').on('click', 'tr', function () {
+//    debugger
+//    var rowId = this.id; // Get the unique row ID
+//    var approvalId = rowId.split('_')[1]; // Extract the APPROVAL_ID
+//    // Construct the URL with the parameter
+//    var url = '/Approval/Detail?id=' + approvalId;
+//    // Redirect to the detail approval page
+//    window.location.href = url;
+//});
+
+$('#tbl_approval tbody').on('click', 'tr', function (e) {
+    debugger
+    // Get the index of the clicked cell (td) within the row
+    var columnIndex = $(e.target).closest('td').index();
+    debugger
+
+    // Check if the clicked column is allowed to redirect to detail
+    if (columnIndex === 1 || columnIndex === 2 || columnIndex === 3 || columnIndex === 4 || columnIndex === 5) {
+        debugger
+        var rowId = this.id; // Get the unique row ID
+        var approvalId = rowId.split('_')[1]; // Extract the APPROVAL_ID
+        // Construct the URL with the parameter
+        var url = '/Approval/Detail?id=' + approvalId;
+        // Redirect to the detail approval page
+        window.location.href = url;
+    }
+});
+
 table.on('draw', function () {
     var visibleCheckboxes = document.querySelectorAll('#tbl_approval tbody .row-checkbox:checked');
 
@@ -164,18 +173,18 @@ table.on('draw', function () {
 });
 
 // Fungsi untuk menangani tindakan "Approve" dengan parameter "APPROVAL_ID"
-function Approve(approvalId) {
+function Unfit(approvalId) {
     debugger
     console.log('Approve', approvalId);
 
     debugger
     let dataCFM = new Object();
     dataCFM.APPROVAL_ID = approvalId;
-    dataCFM.ID_STATUS = 1;
+    dataCFM.ID_STATUS = 2;
     dataCFM.APPROVER = $("#hd_nrp").val();
 
     $.ajax({
-        url: $("#web_link").val() + "/api/Approval/Approve",
+        url: $("#web_link").val() + "/api/Approval/QuickApprove",
         data: JSON.stringify(dataCFM),
         dataType: "json",
         type: "POST",
@@ -213,17 +222,17 @@ function Approve(approvalId) {
     });
 }
 
-function NeedRetest(approvalId) {
+function FitndRestTime(approvalId) {
     console.log('Need Retest', approvalId);
     debugger
 
     let dataCFM = new Object();
     dataCFM.APPROVAL_ID = approvalId;
-    dataCFM.ID_STATUS = 5;
+    dataCFM.ID_STATUS = 3;
     dataCFM.APPROVER = $("#hd_nrp").val();
 
     $.ajax({
-        url: $("#web_link").val() + "/api/Approval/Approve",
+        url: $("#web_link").val() + "/api/Approval/QuickApprove",
         data: JSON.stringify(dataCFM),
         dataType: "json",
         type: "POST",
@@ -261,17 +270,17 @@ function NeedRetest(approvalId) {
     });
 }
 
-function Unfit(approvalId) {
+function UnfitBParamedis(approvalId) {
     console.log('Unfit', approvalId);
     debugger
 
     let dataCFM = new Object();
     dataCFM.APPROVAL_ID = approvalId;
-    dataCFM.ID_STATUS = 2;
+    dataCFM.ID_STATUS = 4;
     dataCFM.APPROVER = $("#hd_nrp").val();
 
     $.ajax({
-        url: $("#web_link").val() + "/api/Approval/Approve",
+        url: $("#web_link").val() + "/api/Approval/QuickApprove",
         data: JSON.stringify(dataCFM),
         dataType: "json",
         type: "POST",

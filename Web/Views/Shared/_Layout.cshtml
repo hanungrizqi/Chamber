@@ -350,6 +350,8 @@
             labelText = "Setting User"
         } else if (path === "/Setting/Menu") {
             labelText = "Setting Profile"
+        } else if (path.startsWith("/Approval/Detail")) {
+            labelText = "Detail Approval";
         }
 
         document.getElementById("alamat").textContent = labelText;

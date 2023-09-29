@@ -42,15 +42,15 @@ namespace restApi.Models
     partial void InsertTBL_R_SUB_MENU(TBL_R_SUB_MENU instance);
     partial void UpdateTBL_R_SUB_MENU(TBL_R_SUB_MENU instance);
     partial void DeleteTBL_R_SUB_MENU(TBL_R_SUB_MENU instance);
-    partial void InsertTBL_T_APPROVAL(TBL_T_APPROVAL instance);
-    partial void UpdateTBL_T_APPROVAL(TBL_T_APPROVAL instance);
-    partial void DeleteTBL_T_APPROVAL(TBL_T_APPROVAL instance);
     partial void InsertTBL_M_CHAMBER(TBL_M_CHAMBER instance);
     partial void UpdateTBL_M_CHAMBER(TBL_M_CHAMBER instance);
     partial void DeleteTBL_M_CHAMBER(TBL_M_CHAMBER instance);
     partial void InsertTBL_M_USER(TBL_M_USER instance);
     partial void UpdateTBL_M_USER(TBL_M_USER instance);
     partial void DeleteTBL_M_USER(TBL_M_USER instance);
+    partial void InsertTBL_T_APPROVAL(TBL_T_APPROVAL instance);
+    partial void UpdateTBL_T_APPROVAL(TBL_T_APPROVAL instance);
+    partial void DeleteTBL_T_APPROVAL(TBL_T_APPROVAL instance);
     #endregion
 		
 		public CFMDataContext() : 
@@ -203,14 +203,6 @@ namespace restApi.Models
 			}
 		}
 		
-		public System.Data.Linq.Table<TBL_T_APPROVAL> TBL_T_APPROVALs
-		{
-			get
-			{
-				return this.GetTable<TBL_T_APPROVAL>();
-			}
-		}
-		
 		public System.Data.Linq.Table<TBL_M_CHAMBER> TBL_M_CHAMBERs
 		{
 			get
@@ -240,6 +232,14 @@ namespace restApi.Models
 			get
 			{
 				return this.GetTable<VW_T_APPROVAL>();
+			}
+		}
+		
+		public System.Data.Linq.Table<TBL_T_APPROVAL> TBL_T_APPROVALs
+		{
+			get
+			{
+				return this.GetTable<TBL_T_APPROVAL>();
 			}
 		}
 	}
@@ -2847,236 +2847,6 @@ namespace restApi.Models
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.TBL_T_APPROVAL")]
-	public partial class TBL_T_APPROVAL : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _APPROVAL_ID;
-		
-		private System.Nullable<int> _ID_CFC;
-		
-		private System.Nullable<int> _ID_STATUS;
-		
-		private string _NRP;
-		
-		private System.Nullable<System.DateTime> _DATE_FROM_CFC;
-		
-		private System.Nullable<int> _JUMLAH_APPROVAL_PERHARI;
-		
-		private string _APPROVER;
-		
-		private System.Nullable<System.DateTime> _WAKTU_APPROVAL;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnAPPROVAL_IDChanging(int value);
-    partial void OnAPPROVAL_IDChanged();
-    partial void OnID_CFCChanging(System.Nullable<int> value);
-    partial void OnID_CFCChanged();
-    partial void OnID_STATUSChanging(System.Nullable<int> value);
-    partial void OnID_STATUSChanged();
-    partial void OnNRPChanging(string value);
-    partial void OnNRPChanged();
-    partial void OnDATE_FROM_CFCChanging(System.Nullable<System.DateTime> value);
-    partial void OnDATE_FROM_CFCChanged();
-    partial void OnJUMLAH_APPROVAL_PERHARIChanging(System.Nullable<int> value);
-    partial void OnJUMLAH_APPROVAL_PERHARIChanged();
-    partial void OnAPPROVERChanging(string value);
-    partial void OnAPPROVERChanged();
-    partial void OnWAKTU_APPROVALChanging(System.Nullable<System.DateTime> value);
-    partial void OnWAKTU_APPROVALChanged();
-    #endregion
-		
-		public TBL_T_APPROVAL()
-		{
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_APPROVAL_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int APPROVAL_ID
-		{
-			get
-			{
-				return this._APPROVAL_ID;
-			}
-			set
-			{
-				if ((this._APPROVAL_ID != value))
-				{
-					this.OnAPPROVAL_IDChanging(value);
-					this.SendPropertyChanging();
-					this._APPROVAL_ID = value;
-					this.SendPropertyChanged("APPROVAL_ID");
-					this.OnAPPROVAL_IDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID_CFC", DbType="Int")]
-		public System.Nullable<int> ID_CFC
-		{
-			get
-			{
-				return this._ID_CFC;
-			}
-			set
-			{
-				if ((this._ID_CFC != value))
-				{
-					this.OnID_CFCChanging(value);
-					this.SendPropertyChanging();
-					this._ID_CFC = value;
-					this.SendPropertyChanged("ID_CFC");
-					this.OnID_CFCChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID_STATUS", DbType="Int")]
-		public System.Nullable<int> ID_STATUS
-		{
-			get
-			{
-				return this._ID_STATUS;
-			}
-			set
-			{
-				if ((this._ID_STATUS != value))
-				{
-					this.OnID_STATUSChanging(value);
-					this.SendPropertyChanging();
-					this._ID_STATUS = value;
-					this.SendPropertyChanged("ID_STATUS");
-					this.OnID_STATUSChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NRP", DbType="VarChar(50)")]
-		public string NRP
-		{
-			get
-			{
-				return this._NRP;
-			}
-			set
-			{
-				if ((this._NRP != value))
-				{
-					this.OnNRPChanging(value);
-					this.SendPropertyChanging();
-					this._NRP = value;
-					this.SendPropertyChanged("NRP");
-					this.OnNRPChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DATE_FROM_CFC", DbType="Date")]
-		public System.Nullable<System.DateTime> DATE_FROM_CFC
-		{
-			get
-			{
-				return this._DATE_FROM_CFC;
-			}
-			set
-			{
-				if ((this._DATE_FROM_CFC != value))
-				{
-					this.OnDATE_FROM_CFCChanging(value);
-					this.SendPropertyChanging();
-					this._DATE_FROM_CFC = value;
-					this.SendPropertyChanged("DATE_FROM_CFC");
-					this.OnDATE_FROM_CFCChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_JUMLAH_APPROVAL_PERHARI", DbType="Int")]
-		public System.Nullable<int> JUMLAH_APPROVAL_PERHARI
-		{
-			get
-			{
-				return this._JUMLAH_APPROVAL_PERHARI;
-			}
-			set
-			{
-				if ((this._JUMLAH_APPROVAL_PERHARI != value))
-				{
-					this.OnJUMLAH_APPROVAL_PERHARIChanging(value);
-					this.SendPropertyChanging();
-					this._JUMLAH_APPROVAL_PERHARI = value;
-					this.SendPropertyChanged("JUMLAH_APPROVAL_PERHARI");
-					this.OnJUMLAH_APPROVAL_PERHARIChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_APPROVER", DbType="VarChar(50)")]
-		public string APPROVER
-		{
-			get
-			{
-				return this._APPROVER;
-			}
-			set
-			{
-				if ((this._APPROVER != value))
-				{
-					this.OnAPPROVERChanging(value);
-					this.SendPropertyChanging();
-					this._APPROVER = value;
-					this.SendPropertyChanged("APPROVER");
-					this.OnAPPROVERChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_WAKTU_APPROVAL", DbType="DateTime")]
-		public System.Nullable<System.DateTime> WAKTU_APPROVAL
-		{
-			get
-			{
-				return this._WAKTU_APPROVAL;
-			}
-			set
-			{
-				if ((this._WAKTU_APPROVAL != value))
-				{
-					this.OnWAKTU_APPROVALChanging(value);
-					this.SendPropertyChanging();
-					this._WAKTU_APPROVAL = value;
-					this.SendPropertyChanged("WAKTU_APPROVAL");
-					this.OnWAKTU_APPROVALChanged();
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.TBL_M_CHAMBER")]
 	public partial class TBL_M_CHAMBER : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -3432,6 +3202,22 @@ namespace restApi.Models
 		
 		private System.Nullable<System.DateTime> _WAKTU_ABSEN;
 		
+		private System.Nullable<double> _OXYGEN_SATURATION;
+		
+		private System.Nullable<double> _HEART_RATE;
+		
+		private System.Nullable<double> _SYSTOLIC;
+		
+		private System.Nullable<double> _DIASTOLIC;
+		
+		private System.Nullable<double> _TEMPRATURE;
+		
+		private string _FACE_PICTURE_URL;
+		
+		private string _NOTE;
+		
+		private string _ATTENDANCE_NOTE;
+		
 		public VW_T_APPROVAL()
 		{
 		}
@@ -3689,6 +3475,388 @@ namespace restApi.Models
 				{
 					this._WAKTU_ABSEN = value;
 				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OXYGEN_SATURATION", DbType="Float")]
+		public System.Nullable<double> OXYGEN_SATURATION
+		{
+			get
+			{
+				return this._OXYGEN_SATURATION;
+			}
+			set
+			{
+				if ((this._OXYGEN_SATURATION != value))
+				{
+					this._OXYGEN_SATURATION = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_HEART_RATE", DbType="Float")]
+		public System.Nullable<double> HEART_RATE
+		{
+			get
+			{
+				return this._HEART_RATE;
+			}
+			set
+			{
+				if ((this._HEART_RATE != value))
+				{
+					this._HEART_RATE = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SYSTOLIC", DbType="Float")]
+		public System.Nullable<double> SYSTOLIC
+		{
+			get
+			{
+				return this._SYSTOLIC;
+			}
+			set
+			{
+				if ((this._SYSTOLIC != value))
+				{
+					this._SYSTOLIC = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DIASTOLIC", DbType="Float")]
+		public System.Nullable<double> DIASTOLIC
+		{
+			get
+			{
+				return this._DIASTOLIC;
+			}
+			set
+			{
+				if ((this._DIASTOLIC != value))
+				{
+					this._DIASTOLIC = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TEMPRATURE", DbType="Float")]
+		public System.Nullable<double> TEMPRATURE
+		{
+			get
+			{
+				return this._TEMPRATURE;
+			}
+			set
+			{
+				if ((this._TEMPRATURE != value))
+				{
+					this._TEMPRATURE = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FACE_PICTURE_URL", DbType="VarChar(128)")]
+		public string FACE_PICTURE_URL
+		{
+			get
+			{
+				return this._FACE_PICTURE_URL;
+			}
+			set
+			{
+				if ((this._FACE_PICTURE_URL != value))
+				{
+					this._FACE_PICTURE_URL = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NOTE", DbType="VarChar(128)")]
+		public string NOTE
+		{
+			get
+			{
+				return this._NOTE;
+			}
+			set
+			{
+				if ((this._NOTE != value))
+				{
+					this._NOTE = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ATTENDANCE_NOTE", DbType="VarChar(128)")]
+		public string ATTENDANCE_NOTE
+		{
+			get
+			{
+				return this._ATTENDANCE_NOTE;
+			}
+			set
+			{
+				if ((this._ATTENDANCE_NOTE != value))
+				{
+					this._ATTENDANCE_NOTE = value;
+				}
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.TBL_T_APPROVAL")]
+	public partial class TBL_T_APPROVAL : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _APPROVAL_ID;
+		
+		private System.Nullable<int> _ID_CFC;
+		
+		private System.Nullable<int> _ID_STATUS;
+		
+		private string _NRP;
+		
+		private System.Nullable<System.DateTime> _DATE_FROM_CFC;
+		
+		private System.Nullable<int> _JUMLAH_APPROVAL_PERHARI;
+		
+		private string _APPROVER;
+		
+		private System.Nullable<System.DateTime> _WAKTU_APPROVAL;
+		
+		private string _NOTED;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnAPPROVAL_IDChanging(int value);
+    partial void OnAPPROVAL_IDChanged();
+    partial void OnID_CFCChanging(System.Nullable<int> value);
+    partial void OnID_CFCChanged();
+    partial void OnID_STATUSChanging(System.Nullable<int> value);
+    partial void OnID_STATUSChanged();
+    partial void OnNRPChanging(string value);
+    partial void OnNRPChanged();
+    partial void OnDATE_FROM_CFCChanging(System.Nullable<System.DateTime> value);
+    partial void OnDATE_FROM_CFCChanged();
+    partial void OnJUMLAH_APPROVAL_PERHARIChanging(System.Nullable<int> value);
+    partial void OnJUMLAH_APPROVAL_PERHARIChanged();
+    partial void OnAPPROVERChanging(string value);
+    partial void OnAPPROVERChanged();
+    partial void OnWAKTU_APPROVALChanging(System.Nullable<System.DateTime> value);
+    partial void OnWAKTU_APPROVALChanged();
+    partial void OnNOTEDChanging(string value);
+    partial void OnNOTEDChanged();
+    #endregion
+		
+		public TBL_T_APPROVAL()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_APPROVAL_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int APPROVAL_ID
+		{
+			get
+			{
+				return this._APPROVAL_ID;
+			}
+			set
+			{
+				if ((this._APPROVAL_ID != value))
+				{
+					this.OnAPPROVAL_IDChanging(value);
+					this.SendPropertyChanging();
+					this._APPROVAL_ID = value;
+					this.SendPropertyChanged("APPROVAL_ID");
+					this.OnAPPROVAL_IDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID_CFC", DbType="Int")]
+		public System.Nullable<int> ID_CFC
+		{
+			get
+			{
+				return this._ID_CFC;
+			}
+			set
+			{
+				if ((this._ID_CFC != value))
+				{
+					this.OnID_CFCChanging(value);
+					this.SendPropertyChanging();
+					this._ID_CFC = value;
+					this.SendPropertyChanged("ID_CFC");
+					this.OnID_CFCChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID_STATUS", DbType="Int")]
+		public System.Nullable<int> ID_STATUS
+		{
+			get
+			{
+				return this._ID_STATUS;
+			}
+			set
+			{
+				if ((this._ID_STATUS != value))
+				{
+					this.OnID_STATUSChanging(value);
+					this.SendPropertyChanging();
+					this._ID_STATUS = value;
+					this.SendPropertyChanged("ID_STATUS");
+					this.OnID_STATUSChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NRP", DbType="VarChar(50)")]
+		public string NRP
+		{
+			get
+			{
+				return this._NRP;
+			}
+			set
+			{
+				if ((this._NRP != value))
+				{
+					this.OnNRPChanging(value);
+					this.SendPropertyChanging();
+					this._NRP = value;
+					this.SendPropertyChanged("NRP");
+					this.OnNRPChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DATE_FROM_CFC", DbType="Date")]
+		public System.Nullable<System.DateTime> DATE_FROM_CFC
+		{
+			get
+			{
+				return this._DATE_FROM_CFC;
+			}
+			set
+			{
+				if ((this._DATE_FROM_CFC != value))
+				{
+					this.OnDATE_FROM_CFCChanging(value);
+					this.SendPropertyChanging();
+					this._DATE_FROM_CFC = value;
+					this.SendPropertyChanged("DATE_FROM_CFC");
+					this.OnDATE_FROM_CFCChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_JUMLAH_APPROVAL_PERHARI", DbType="Int")]
+		public System.Nullable<int> JUMLAH_APPROVAL_PERHARI
+		{
+			get
+			{
+				return this._JUMLAH_APPROVAL_PERHARI;
+			}
+			set
+			{
+				if ((this._JUMLAH_APPROVAL_PERHARI != value))
+				{
+					this.OnJUMLAH_APPROVAL_PERHARIChanging(value);
+					this.SendPropertyChanging();
+					this._JUMLAH_APPROVAL_PERHARI = value;
+					this.SendPropertyChanged("JUMLAH_APPROVAL_PERHARI");
+					this.OnJUMLAH_APPROVAL_PERHARIChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_APPROVER", DbType="VarChar(50)")]
+		public string APPROVER
+		{
+			get
+			{
+				return this._APPROVER;
+			}
+			set
+			{
+				if ((this._APPROVER != value))
+				{
+					this.OnAPPROVERChanging(value);
+					this.SendPropertyChanging();
+					this._APPROVER = value;
+					this.SendPropertyChanged("APPROVER");
+					this.OnAPPROVERChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_WAKTU_APPROVAL", DbType="DateTime")]
+		public System.Nullable<System.DateTime> WAKTU_APPROVAL
+		{
+			get
+			{
+				return this._WAKTU_APPROVAL;
+			}
+			set
+			{
+				if ((this._WAKTU_APPROVAL != value))
+				{
+					this.OnWAKTU_APPROVALChanging(value);
+					this.SendPropertyChanging();
+					this._WAKTU_APPROVAL = value;
+					this.SendPropertyChanged("WAKTU_APPROVAL");
+					this.OnWAKTU_APPROVALChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NOTED", DbType="VarChar(MAX)")]
+		public string NOTED
+		{
+			get
+			{
+				return this._NOTED;
+			}
+			set
+			{
+				if ((this._NOTED != value))
+				{
+					this.OnNOTEDChanging(value);
+					this.SendPropertyChanging();
+					this._NOTED = value;
+					this.SendPropertyChanged("NOTED");
+					this.OnNOTEDChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
 		}
 	}

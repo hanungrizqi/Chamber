@@ -95,5 +95,21 @@ namespace restApi.Controllers
             }
 
         }
+
+        [HttpGet]
+        [Route("Status")]
+        public IHttpActionResult Status()
+        {
+            try
+            {
+                var data = db.TBL_M_STATUS_CFMs.ToList();
+
+                return Ok(new { Data = data });
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
+        }
     }
 }

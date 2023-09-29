@@ -185,18 +185,6 @@
       <Column Name="ATTENDANCE_NOTE" Type="System.String" DbType="VarChar(128)" CanBeNull="true" />
     </Type>
   </Table>
-  <Table Name="dbo.TBL_T_APPROVAL" Member="TBL_T_APPROVALs">
-    <Type Name="TBL_T_APPROVAL">
-      <Column Name="APPROVAL_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="ID_CFC" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="ID_STATUS" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="NRP" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="DATE_FROM_CFC" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="JUMLAH_APPROVAL_PERHARI" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="APPROVER" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="WAKTU_APPROVAL" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.TBL_M_CHAMBER" Member="TBL_M_CHAMBERs">
     <Type Name="TBL_M_CHAMBER">
       <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -238,6 +226,27 @@
       <Column Name="APPROVER" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="WAKTU_APPROVAL" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="WAKTU_ABSEN" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="OXYGEN_SATURATION" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="HEART_RATE" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="SYSTOLIC" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="DIASTOLIC" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="TEMPRATURE" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="FACE_PICTURE_URL" Type="System.String" DbType="VarChar(128)" CanBeNull="true" />
+      <Column Name="NOTE" Type="System.String" DbType="VarChar(128)" CanBeNull="true" />
+      <Column Name="ATTENDANCE_NOTE" Type="System.String" DbType="VarChar(128)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TBL_T_APPROVAL" Member="TBL_T_APPROVALs">
+    <Type Name="TBL_T_APPROVAL">
+      <Column Name="APPROVAL_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ID_CFC" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ID_STATUS" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NRP" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="DATE_FROM_CFC" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="JUMLAH_APPROVAL_PERHARI" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="APPROVER" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="WAKTU_APPROVAL" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="NOTED" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
     </Type>
   </Table>
 </Database>

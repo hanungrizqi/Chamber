@@ -20,7 +20,7 @@ namespace restApi.Controllers
             try
             {
                 db.CommandTimeout = 120;
-                var data = db.VW_T_APPROVALs.Where(a => a.APPROVER == "" || a.APPROVER == null).OrderBy(a => a.APPROVAL_ID).ToList();
+                var data = db.VW_T_APPROVALs.Where(a => a.APPROVER == "" || a.APPROVER == null && a.ID_STATUS != 1).OrderBy(a => a.APPROVAL_ID).ToList();
 
                 return Ok(new { Data = data });
             }
@@ -29,10 +29,10 @@ namespace restApi.Controllers
                 return BadRequest();
             }
         }
-        
+
         [HttpPost]
-        [Route("Approve")]
-        public IHttpActionResult Approve(TBL_T_APPROVAL chambers)
+        [Route("QuickApprove")]
+        public IHttpActionResult QuickApprove(TBL_T_APPROVAL chambers)
         {
             try
             {
@@ -56,6 +56,53 @@ namespace restApi.Controllers
             catch (Exception e)
             {
                 return Ok(new { Remarks = false, Message = e });
+            }
+        }
+
+        [HttpPost]
+        [Route("Approve")]
+        public IHttpActionResult Approve(TBL_T_APPROVAL chambers)
+        {
+            try
+            {
+                var cek = db.TBL_T_APPROVALs.FirstOrDefault(a => a.APPROVAL_ID == chambers.APPROVAL_ID);
+
+                if (cek != null)
+                {
+                    cek.ID_STATUS = chambers.ID_STATUS;
+                    cek.APPROVER = chambers.APPROVER;
+                    cek.WAKTU_APPROVAL = DateTime.UtcNow.ToLocalTime();
+                    cek.NOTED = chambers.NOTED;
+
+                    db.SubmitChanges();
+
+                    return Ok(new { Remarks = true });
+                }
+                else
+                {
+                    return Ok(new { Remarks = false, Message = "No matching record found." });
+                }
+            }
+            catch (Exception e)
+            {
+                return Ok(new { Remarks = false, Message = e });
+            }
+        }
+
+        [HttpGet]
+        [Route("Detail/{id}")]
+        public IHttpActionResult Get_PPEDetail(int id)
+        {
+            try
+            {
+                db.CommandTimeout = 120;
+                var data = db.VW_T_APPROVALs.Where(a => a.APPROVAL_ID == id).FirstOrDefault();
+
+                return Ok(new { Data = data });
+            }
+            catch (Exception)
+            {
+                return BadRequest();
             }
         }
     }

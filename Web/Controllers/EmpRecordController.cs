@@ -22,5 +22,17 @@ namespace Web.Controllers
             ViewBag.Count = countss;
             return View();
         }
+
+        public ActionResult Detail_ERecord(int id)
+        {
+            if (Session["nrp"] == null)
+            {
+                return RedirectToAction("index", "login");
+            }
+            int countss = db.VW_T_APPROVALs.Count(a => a.APPROVER == null);
+            ViewBag.Count = countss;
+            ViewBag.id = id;
+            return View();
+        }
     }
 }
