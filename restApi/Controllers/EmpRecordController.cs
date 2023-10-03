@@ -47,7 +47,7 @@ namespace restApi.Controllers
                 return BadRequest();
             }
         }
-
+        
         [HttpGet]
         [Route("Get_ListEmprecord_Daterange/{posid}/{startDate}/{endDate}")]
         public IHttpActionResult Get_ListEmprecord_Daterange(string posid, string startDate = null, string endDate = null)
