@@ -2,30 +2,277 @@
     ViewBag.Title = "Home Page";
     ViewBag.Navlink = "homeindex";
 }
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+
+<!-- Data Karyawan Fit -->
+<h4>Data Karyawan Fit</h4>
+<div class="row">
+    <!-- Row #1 -->
+    <div class="col-md-6 col-xl-4">
+        <a class="block block-link-pop" href="javascript:void(0)">
+            <div class="block-content block-content-full d-flex align-items-center justify-content-between">
+                <div class="p-3">
+                    <i class="fa fa-2x fa-user-group text-secondary"></i>
+                </div>
+                <div class="ms-1 text-start">
+                    <p class="fs-sm text-uppercase fw-semibold text-muted mb-0">
+                        Total Karyawan Masuk
+                    </p>
+                    <p class="fs-lg fw-semibold mb-0">
+                        @Session["KaryawanMasuk"].ToString()
+                    </p>
+                    <p class="fw-normal mb-0" style="font-size:small">
+                        Update Terakhir @Session["UpdateTerakhirMasuk"].ToString()
+                    </p>
+                </div>
+            </div>
+        </a>
+    </div>
+    <div class="col-md-6 col-xl-4">
+        <a class="block block-link-pop" href="javascript:void(0)">
+            <div class="block-content block-content-full d-flex align-items-center justify-content-between">
+                <div class="p-3">
+                    <i class="fa fa-2x fa-user-group text-info"></i>
+                </div>
+                <div class="ms-1 text-start">
+                    <p class="fs-sm text-uppercase fw-semibold text-muted mb-0">
+                        Total Karyawan Fit
+                    </p>
+                    <p class="fs-lg fw-semibold mb-0">
+                        @Session["KaryawanFit"].ToString()
+                    </p>
+                    <p class="fw-normal mb-0" style="font-size:small">
+                        Update Terakhir @Session["UpdateTerakhirFit"].ToString()
+                    </p>
+                </div>
+            </div>
+        </a>
+    </div>
+    <div class="col-xl-4">
+        <a class="block block-link-pop" href="javascript:void(0)">
+            <div class="block-content block-content-full d-flex align-items-center justify-content-between">
+                <div class="p-3">
+                    <i class="fa fa-2x fa-user-group text-danger"></i>
+                </div>
+                <div class="ms-1 text-start">
+                    <p class="fs-sm text-uppercase fw-semibold text-muted mb-0">
+                        Total Karyawan Unfit
+                    </p>
+                    <p class="fs-lg fw-semibold mb-0">
+                        @Session["KaryawanUnfit"].ToString()
+                    </p>
+                    <p class="fw-normal mb-0" style="font-size:small">
+                        Update Terakhir @Session["UpdateTerakhirUnfit"].ToString()
+                    </p>
+                </div>
+            </div>
+        </a>
+    </div>
+    <!-- END Row #1 -->
 </div>
 
+<!-- Progress Fatigue Check -->
+<div class="col-12 mb-2">
+    <span style="font-size: 18px; font-weight:600">Progress <i>Fatigue</i> Check</span><br />
+    <span style="font-size: 10px;">Berikut persentase dari fatigue check chamber</span>
+</div>
+<div class="row g-sm">
+    <div class="col-6 col-md-4 col-xl-4">
+        <div class="block block-link-pop text-center" href="javascript:void(0)">
+            <div class="block-content">
+                <div class="ms-1 text-start">
+                    <p class="fs-sm text-uppercase fw-semibold text-muted mb-0">
+                        Prosentase Fatigue
+                    </p>
+                    <p class="fs-lg fw-semibold mb-0">
+                        16
+                    </p>
+                    <p class="fw-normal mb-0" style="font-size: small">
+                        Update Terakhir
+                    </p>
+                </div>
+                <br />
+                <a class="btn rounded-0 btn-secondary mb-3 w-100" href="/EmpRecord/Index">
+                    Lihat Detail
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="col-6 col-md-4 col-xl-2">
+        <div class="block block-link-pop text-center" href="javascript:void(0)">
+            <div class="block-content">
+                <div class="ms-1 text-start">
+                    <p class="fs-sm text-uppercase fw-semibold text-muted mb-0">
+                        Sudah Approved
+                    </p>
+                    <p class="fs-lg fw-semibold mb-0">
+                        5605
+                    </p>
+                    <p class="fw-normal mb-0" style="font-size: small">
+                        Update Terakhir
+                    </p>
+                </div>
+                <br />
+                <a class="btn rounded-0 btn-secondary mb-3 w-100" href="/EmpRecord/Index">
+                    Lihat Detail
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="col-6 col-md-4 col-xl-2">
+        <div class="block block-link-pop text-center" href="javascript:void(0)">
+            <div class="block-content">
+                <div class="ms-1 text-start">
+                    <p class="fs-sm text-uppercase fw-semibold text-muted mb-0">
+                        Butuh Approval
+                    </p>
+                    <p class="fs-lg fw-semibold mb-0">
+                        44
+                    </p>
+                    <p class="fw-normal mb-0" style="font-size: small">
+                        Update Terakhir
+                    </p>
+                </div>
+                <br />
+                <a class="btn rounded-0 btn-danger mb-3 w-100" href="/Approval/Index">
+                    Approve
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="col-6 col-md-4 col-xl-2">
+        <div class="block block-link-pop text-center" href="javascript:void(0)">
+            <div class="block-content">
+                <div class="ms-1 text-start">
+                    <p class="fs-sm text-uppercase fw-semibold text-muted mb-0">
+                        Akan Re-test
+                    </p>
+                    <p class="fs-lg fw-semibold mb-0">
+                        100
+                    </p>
+                    <p class="fw-normal mb-0" style="font-size: small">
+                        Update Terakhir
+                    </p>
+                </div>
+                <br />
+                <a class="btn rounded-0 btn-secondary mb-3 w-100" href="/EmpRecord/Index">
+                    Lihat Detail
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="col-6 col-md-4 col-xl-2">
+        <div class="block block-link-pop text-center" href="javascript:void(0)">
+            <div class="block-content">
+                <div class="ms-1 text-start">
+                    <p class="fs-sm text-uppercase fw-semibold text-muted mb-0">
+                        Tidak Dapat Bekerja
+                    </p>
+                    <p class="fs-lg fw-semibold mb-0">
+                        @Session["TidakDptBekerja"].ToString()
+                    </p>
+                    <p class="fw-normal mb-0" style="font-size: small">
+                        Update Terakhir @Session["UpdateTerakhirTdkdptBekerja"].ToString()
+                    </p>
+                </div>
+                <br />
+                <a class="btn rounded-0 btn-secondary mb-3 w-100" href="/EmpRecord/Index">
+                    Lihat Detail
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- CFC Utilization -->
+<div class="col-12 mb-2 mt-3">
+    <span style="font-size: 18px; font-weight:600">CFC Utilization</span><br />
+    <span style="font-size: 10px;">Berikut data setiap chamber yang tersedia di @Session["Site"].ToString(). Klik disini untuk melihat detail setiap chamber <a href="/CfmManagement/Index" style="color: red; text-decoration: none;">See more</a></span>
+</div>
 <div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+    <!-- Row #1 -->
+    <div class="col-md-6 col-xl-3">
+        <div class="block block-link-pop">
+            <div class="block-content block-content-full d-flex flex-column align-items-center">
+                <div class="ms-1 text-start">
+                    <p class="fs-sm text-uppercase fw-semibold text-muted mb-0">
+                        Chamber 01
+                    </p>
+                    <p class="fs-lg fw-semibold mb-0">
+                        @Session["Cham001"].ToString()
+                    </p>
+                    <p class="fw-normal mb-0" style="font-size: small">
+                        Update Terakhir @Session["UpdateTerakhirCham1"].ToString()
+                    </p>
+                </div>
+                <br />
+                <a class="btn rounded-0 btn-outline-secondary mb-2 w-100" href="/CfmManagement/Index">
+                    <i class="fa fa-inbox opacity-50 me-1"></i> Lihat Detail
+                </a>
+            </div>
+        </div>
     </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+    <div class="col-md-6 col-xl-3">
+        <div class="block block-link-pop">
+            <div class="block-content block-content-full d-flex flex-column align-items-center">
+                <div class="ms-1 text-start">
+                    <p class="fs-sm text-uppercase fw-semibold text-muted mb-0">
+                        Chamber 02
+                    </p>
+                    <p class="fs-lg fw-semibold mb-0">
+                        @Session["Cham002"].ToString()
+                    </p>
+                    <p class="fw-normal mb-0" style="font-size: small">
+                        Update Terakhir @Session["UpdateTerakhirCham2"].ToString()
+                    </p>
+                </div>
+                <br />
+                <a class="btn rounded-0 btn-outline-secondary mb-2 w-100" href="/CfmManagement/Index">
+                    <i class="fa fa-inbox opacity-50 me-1"></i> Lihat Detail
+                </a>
+            </div>
+        </div>
     </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+    <div class="col-md-6 col-xl-3">
+        <div class="block block-link-pop">
+            <div class="block-content block-content-full d-flex flex-column align-items-center">
+                <div class="ms-1 text-start">
+                    <p class="fs-sm text-uppercase fw-semibold text-muted mb-0">
+                        Chamber 03
+                    </p>
+                    <p class="fs-lg fw-semibold mb-0">
+                        @Session["Cham003"].ToString()
+                    </p>
+                    <p class="fw-normal mb-0" style="font-size: small">
+                        Update Terakhir @Session["UpdateTerakhirCham3"].ToString()
+                    </p>
+                </div>
+                <br />
+                <a class="btn rounded-0 btn-outline-secondary mb-2 w-100" href="/CfmManagement/Index">
+                    <i class="fa fa-inbox opacity-50 me-1"></i> Lihat Detail
+                </a>
+            </div>
+        </div>
     </div>
+    <div class="col-md-6 col-xl-3">
+        <div class="block block-link-pop">
+            <div class="block-content block-content-full d-flex flex-column align-items-center">
+                <div class="ms-1 text-start">
+                    <p class="fs-sm text-uppercase fw-semibold text-muted mb-0">
+                        Chamber 04
+                    </p>
+                    <p class="fs-lg fw-semibold mb-0">
+                        @Session["Cham004"].ToString()
+                    </p>
+                    <p class="fw-normal mb-0" style="font-size: small">
+                        Update Terakhir @Session["UpdateTerakhirCham4"].ToString()
+                    </p>
+                </div>
+                <br />
+                <a class="btn rounded-0 btn-outline-secondary mb-2 w-100" href="/CfmManagement/Index">
+                    <i class="fa fa-inbox opacity-50 me-1"></i> Lihat Detail
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- END Row #1 -->
 </div>

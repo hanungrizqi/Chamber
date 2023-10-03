@@ -46,7 +46,8 @@ namespace restApi.Controllers
         {
             try
             {
-                var data = db.VW_T_CFCs.Select(a => new
+                var data = db.VW_T_CFCs.OrderByDescending(a => a.WAKTU_ABSEN)
+                .Select(a => new
                 {
                     nama = a.NAME,
                     umur = a.AGE,
@@ -57,9 +58,9 @@ namespace restApi.Controllers
                     spo = a.OXYGEN_SATURATION,
                     heart = a.HEART_RATE,
                     nrp = a.NRP
-                }).Where(a => a.nrp == nrp).ToList();
+                }).Where(a => a.nrp == nrp).FirstOrDefault();
 
-                return Ok(new { Data = data, Total = data.Count() });
+                return Ok(new { Data = data });
             }
             catch (Exception)
             {

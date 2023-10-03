@@ -1,4 +1,25 @@
-﻿Codebase.helpersOnLoad(['cb-table-tools-checkable', 'cb-table-tools-sections']);
+﻿Codebase.helpersOnLoad(['cb-table-tools-checkable', 'cb-table-tools-sections', 'js-flatpickr', 'jq-datepicker', 'jq-colorpicker', 'jq-maxlength', 'jq-select2', 'jq-rangeslider', 'jq-masked-inputs', 'jq-pw-strength']);
+
+$("document").ready(function () {
+    $("#example-flatpickr-range").flatpickr({
+        mode: "range",
+        onChange: function (selectedDates, dateStr, instance) {
+            if (selectedDates.length === 2) {
+                debugger
+                var startDate = selectedDates[0];
+                var endDate = selectedDates[1];
+
+                // Konversi ke format "YYYY-MM-DD"
+                var startDateLocal = startDate.toLocaleDateString('en-CA'); // Gunakan locale yang sesuai dengan format yang diinginkan
+                var endDateLocal = endDate.toLocaleDateString('en-CA'); // Gunakan locale yang sesuai dengan format yang diinginkan
+
+                // Update the table data source with the selected date range filter
+                table.ajax.url($("#web_link").val() + "/api/Approval/Get_ListApproval_Daterange/" + $("#hd_positid").val() + "/" + startDateLocal + "/" + endDateLocal).load();
+
+            }
+        },
+    });
+})
 
 $(document).on('click', '.action-link', function (e) {
     e.preventDefault();
@@ -13,12 +34,21 @@ $(document).on('click', '.action-link', function (e) {
         FitndRestTime(approvalId);
     } else if (action === 'UnfitBParamedis') {
         UnfitBParamedis(approvalId);
+    } else if (action === 'Retest') {
+        Retest(approvalId);
+    } else if (action === 'BerhentiBekerja') {
+        BerhentiBekerja(approvalId);
+    } else if (action === 'Fit') {
+        Fits(approvalId);
+    } else if (action === 'Istirahat') {
+        Istirahats(approvalId);
     }
 });
 
 var table = $("#tbl_approval").DataTable({
     ajax: {
-        url: $("#web_link").val() + "/api/Approval/Get_ListApproval",
+        //url: $("#web_link").val() + "/api/Approval/Get_ListApproval",
+        url: $("#web_link").val() + "/api/Approval/Get_ListApproval/" + $("#hd_positid").val(),
         dataSrc: "Data",
     },
     "searching": true,
@@ -45,8 +75,52 @@ var table = $("#tbl_approval").DataTable({
             data: 'NAME',
             render: function (data, type, row) {
                 var email = row.EMAIL;
-                if (email) {
-                    return data + '<p class="fs-sm text-muted mb-0">' + email + '</p>';
+                var oxy = row.OXYGEN_SATURATION;
+                var heart = row.HEART_RATE;
+                var systo = row.SYSTOLIC;
+                var diasto = row.DIASTOLIC;
+                var tempra = row.TEMPRATURE;
+                //if (oxy/*email*/) {
+                //    //return data + '<p class="fs-sm text-muted mb-0">' + email + '</p>';
+                //    //return data + '<p class="fs-sm text-muted mb-0">OXYGEN : ' + oxy + '</p>';
+                //    var text = 'OXYGEN = ' + oxy + ', HEART RATE = ' + heart + ', SYSTOLIC = ' + systo + ', DIASTOLIC = ' + diasto + ', TEMPERATURE = ' + tempra;
+                //    return data + '<p class="fs-sm text-muted mb-0">' + text + '</p>';
+                //} else {
+                //    return data;
+                //}
+
+                var note = row.NOTE;
+                var text = '';
+                var noteValues = note.split(',');
+                for (var i = 0; i < noteValues.length; i++) {
+                    //debugger
+                    var noteValue = noteValues[i].trim();
+                    switch (noteValue) {
+                        case 'heart_rate':
+                            text += 'HEART = ' + heart;
+                            break;
+                        case 'systolic':
+                            text += 'SYSTOLIC = ' + systo;
+                            break;
+                        case 'diastolic':
+                            text += 'DIASTOLIC = ' + diasto;
+                            break;
+                        case 'temprature':
+                            text += 'TEMPERATURE = ' + tempra;
+                            break;
+                        case 'oxygen_saturation':
+                            text += 'OXYGEN = ' + oxy;
+                            break;
+                        default:
+                            //do nothing
+                    }
+                    if (i < noteValues.length - 1) {
+                        text += ', ';
+                    }
+                }
+
+                if (text) {
+                    return data + '<p class="fs-sm text-muted mb-0">' + text + '</p>';
                 } else {
                     return data;
                 }
@@ -92,11 +166,28 @@ var table = $("#tbl_approval").DataTable({
             render: function (data, type, row) {
                 var actions = '<div class="btn-group">';
                 actions += '<button class="btn btn-sm" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-ellipsis-vertical"></i></button>';
-                actions += '<ul class="dropdown-menu">';
-                actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Unfit" href="#">Unfit</a></li>';
-                actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="FitndRestTime" href="#">Fit Need Rest Time</a></li>';
-                actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="UnfitBParamedis" href="#">Unfit Butuh Paramedis</a></li>';
-                actions += '</ul>';
+                if (row.STATUS === 'Unfit') {
+                    actions += '<ul class="dropdown-menu">';
+                    actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="UnfitBParamedis" href="#">Unfit Butuh Paramedis</a></li>';
+                    actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Retest" href="#">Retest</a></li>';
+                    actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="BerhentiBekerja" href="#">Berhenti Bekerja</a></li>';
+                    actions += '</ul>';
+                } else if (row.STATUS === 'Fit Need Rest Time') {
+                    actions += '<ul class="dropdown-menu">';
+                    actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Fit" href="#">Fit</a></li>';
+                    actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Istirahat" href="#">Istirahat</a></li>';
+                    actions += '</ul>';
+                } else if (row.STATUS === 'Unfit Butuh Paramedis') {
+                    actions += '<ul class="dropdown-menu">';
+                    actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Fit" href="#">Fit</a></li>';
+                    actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="BerhentiBekerja" href="#">Berhenti Bekerja</a></li>';
+                    actions += '</ul>';
+                }
+                //actions += '<ul class="dropdown-menu">';
+                //actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Unfit" href="#">Unfit</a></li>';
+                //actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="FitndRestTime" href="#">Fit Need Rest Time</a></li>';
+                //actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="UnfitBParamedis" href="#">Unfit Butuh Paramedis</a></li>';
+                //actions += '</ul>';
                 actions += '</div>';
                 return actions;
             }
@@ -172,10 +263,12 @@ table.on('draw', function () {
     });
 });
 
+
+
 // Fungsi untuk menangani tindakan "Approve" dengan parameter "APPROVAL_ID"
 function Unfit(approvalId) {
     debugger
-    console.log('Approve', approvalId);
+    console.log('Unfit', approvalId);
 
     debugger
     let dataCFM = new Object();
@@ -223,7 +316,7 @@ function Unfit(approvalId) {
 }
 
 function FitndRestTime(approvalId) {
-    console.log('Need Retest', approvalId);
+    console.log('Fit Need Resttime', approvalId);
     debugger
 
     let dataCFM = new Object();
@@ -271,12 +364,204 @@ function FitndRestTime(approvalId) {
 }
 
 function UnfitBParamedis(approvalId) {
-    console.log('Unfit', approvalId);
+    console.log('Unfit Butuh Paramedis', approvalId);
     debugger
 
     let dataCFM = new Object();
     dataCFM.APPROVAL_ID = approvalId;
     dataCFM.ID_STATUS = 4;
+    dataCFM.APPROVER = $("#hd_nrp").val();
+
+    $.ajax({
+        url: $("#web_link").val() + "/api/Approval/QuickApprove",
+        data: JSON.stringify(dataCFM),
+        dataType: "json",
+        type: "POST",
+        contentType: "application/json; charset=utf-8",
+        beforeSend: function () {
+            $("#overlay").show();
+        },
+        success: function (data) {
+            if (data.Remarks) {
+                Swal.fire({
+                    title: 'Saved',
+                    text: "Data has been Saved.",
+                    icon: 'success',
+                    confirmButtonColor: '#3085d6',
+                    confirmButtonText: 'OK',
+                    allowOutsideClick: false,
+                    allowEscapeKey: false
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = "/Approval/Index";
+                    }
+                });
+            } else {
+                Swal.fire(
+                    'Error!',
+                    'Message: ' + data.Message,
+                    'error'
+                );
+            }
+        },
+        error: function (xhr) {
+            alert(xhr.responseText);
+            $("#overlay").hide();
+        }
+    });
+}
+
+function Retest(approvalId) {
+    console.log('Retest', approvalId);
+    debugger
+
+    let dataCFM = new Object();
+    dataCFM.APPROVAL_ID = approvalId;
+    dataCFM.ID_STATUS = 5;
+    dataCFM.APPROVER = $("#hd_nrp").val();
+
+    $.ajax({
+        url: $("#web_link").val() + "/api/Approval/QuickApprove",
+        data: JSON.stringify(dataCFM),
+        dataType: "json",
+        type: "POST",
+        contentType: "application/json; charset=utf-8",
+        beforeSend: function () {
+            $("#overlay").show();
+        },
+        success: function (data) {
+            if (data.Remarks) {
+                Swal.fire({
+                    title: 'Saved',
+                    text: "Data has been Saved.",
+                    icon: 'success',
+                    confirmButtonColor: '#3085d6',
+                    confirmButtonText: 'OK',
+                    allowOutsideClick: false,
+                    allowEscapeKey: false
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = "/Approval/Index";
+                    }
+                });
+            } else {
+                Swal.fire(
+                    'Error!',
+                    'Message: ' + data.Message,
+                    'error'
+                );
+            }
+        },
+        error: function (xhr) {
+            alert(xhr.responseText);
+            $("#overlay").hide();
+        }
+    });
+}
+
+function BerhentiBekerja(approvalId) {
+    console.log('Berhenti Bekerja', approvalId);
+    debugger
+
+    let dataCFM = new Object();
+    dataCFM.APPROVAL_ID = approvalId;
+    dataCFM.ID_STATUS = 7;
+    dataCFM.APPROVER = $("#hd_nrp").val();
+
+    $.ajax({
+        url: $("#web_link").val() + "/api/Approval/QuickApprove",
+        data: JSON.stringify(dataCFM),
+        dataType: "json",
+        type: "POST",
+        contentType: "application/json; charset=utf-8",
+        beforeSend: function () {
+            $("#overlay").show();
+        },
+        success: function (data) {
+            if (data.Remarks) {
+                Swal.fire({
+                    title: 'Saved',
+                    text: "Data has been Saved.",
+                    icon: 'success',
+                    confirmButtonColor: '#3085d6',
+                    confirmButtonText: 'OK',
+                    allowOutsideClick: false,
+                    allowEscapeKey: false
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = "/Approval/Index";
+                    }
+                });
+            } else {
+                Swal.fire(
+                    'Error!',
+                    'Message: ' + data.Message,
+                    'error'
+                );
+            }
+        },
+        error: function (xhr) {
+            alert(xhr.responseText);
+            $("#overlay").hide();
+        }
+    });
+}
+
+function Fits(approvalId) {
+    console.log('Fit', approvalId);
+    debugger
+
+    let dataCFM = new Object();
+    dataCFM.APPROVAL_ID = approvalId;
+    dataCFM.ID_STATUS = 1;
+    dataCFM.APPROVER = $("#hd_nrp").val();
+
+    $.ajax({
+        url: $("#web_link").val() + "/api/Approval/QuickApprove",
+        data: JSON.stringify(dataCFM),
+        dataType: "json",
+        type: "POST",
+        contentType: "application/json; charset=utf-8",
+        beforeSend: function () {
+            $("#overlay").show();
+        },
+        success: function (data) {
+            if (data.Remarks) {
+                Swal.fire({
+                    title: 'Saved',
+                    text: "Data has been Saved.",
+                    icon: 'success',
+                    confirmButtonColor: '#3085d6',
+                    confirmButtonText: 'OK',
+                    allowOutsideClick: false,
+                    allowEscapeKey: false
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = "/Approval/Index";
+                    }
+                });
+            } else {
+                Swal.fire(
+                    'Error!',
+                    'Message: ' + data.Message,
+                    'error'
+                );
+            }
+        },
+        error: function (xhr) {
+            alert(xhr.responseText);
+            $("#overlay").hide();
+        }
+    });
+}
+
+function Istirahats(approvalId) {
+    console.log('Istirahat', approvalId);
+    debugger
+
+    let dataCFM = new Object();
+    dataCFM.APPROVAL_ID = approvalId;
+    dataCFM.ID_STATUS = 6;
     dataCFM.APPROVER = $("#hd_nrp").val();
 
     $.ajax({

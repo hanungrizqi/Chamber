@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="~/Content/assets/js/plugins/datatables-bs5/css/dataTables.bootstrap5.min.css">
     <link rel="stylesheet" href="~/Content/assets/js/plugins/datatables-buttons-bs5/css/buttons.bootstrap5.min.css">
     <link rel="stylesheet" href="~/Content/assets/js/plugins/datatables-responsive-bs5/css/responsive.bootstrap5.min.css">
+    <link rel="stylesheet" href="~/Content/assets/js/plugins/flatpickr/flatpickr.min.css">
     <!-- END Icons -->
     <!-- Stylesheets -->
     <!-- Fonts and Codebase framework -->
@@ -58,6 +59,8 @@
 <body>
     <input type="text" id="hd_nrp" value="@Session["Nrp"].ToString()" hidden />
     <input type="text" id="hd_site" value="@Session["Site"].ToString()" hidden />
+    <input type="text" id="hd_positid" value="@Session["PositionID"].ToString()" hidden />
+    <input type="text" id="hd_idroles" value="@Session["ID_Role"].ToString()" hidden />
     <input type="text" id="web_link" value="@Session["Web_Link"].ToString()" hidden />
 
     <div id="overlay">
@@ -104,10 +107,10 @@
                     <!-- Side Main Navigation -->
                     <div class="content-side content-side-full">
                         <!--
-                    Mobile navigation, desktop navigation can be found in #page-header
+                        Mobile navigation, desktop navigation can be found in #page-header
 
-                    If you would like to use the same navigation in both mobiles and desktops, you can use exactly the same markup inside sidebar and header navigation ul lists
-                    -->
+                        If you would like to use the same navigation in both mobiles and desktops, you can use exactly the same markup inside sidebar and header navigation ul lists
+                        -->
                         <ul class="nav-main">
                             <li class="nav-main-item">
                                 <a class="nav-main-link active" href="db_social.html">
@@ -186,38 +189,38 @@
                                     </a>
                                 </li>
                                 @*<li>
-                                    <a class="text-dark d-flex py-2" href="javascript:void(0)">
-                                        <div class="flex-shrink-0 me-2 ms-3">
-                                            <i class="fa fa-fw fa-times text-danger"></i>
-                                        </div>
-                                        <div class="flex-grow-1 pe-2">
-                                            <p class="fw-medium mb-1">Web server stopped responding and it was automatically restarted!</p>
-                                            <div class="text-muted">4 hours ago</div>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="text-dark d-flex py-2" href="javascript:void(0)">
-                                        <div class="flex-shrink-0 me-2 ms-3">
-                                            <i class="fa fa-fw fa-exclamation-triangle text-warning"></i>
-                                        </div>
-                                        <div class="flex-grow-1 pe-2">
-                                            <p class="fw-medium mb-1">Please consider upgrading your plan. You are running out of space.</p>
-                                            <div class="text-muted">16 hours ago</div>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="text-dark d-flex py-2" href="javascript:void(0)">
-                                        <div class="flex-shrink-0 me-2 ms-3">
-                                            <i class="fa fa-fw fa-plus text-primary"></i>
-                                        </div>
-                                        <div class="flex-grow-1 pe-2">
-                                            <p class="fw-medium mb-1">New purchases! +$250</p>
-                                            <div class="text-muted">1 day ago</div>
-                                        </div>
-                                    </a>
-                                </li>*@
+                                        <a class="text-dark d-flex py-2" href="javascript:void(0)">
+                                            <div class="flex-shrink-0 me-2 ms-3">
+                                                <i class="fa fa-fw fa-times text-danger"></i>
+                                            </div>
+                                            <div class="flex-grow-1 pe-2">
+                                                <p class="fw-medium mb-1">Web server stopped responding and it was automatically restarted!</p>
+                                                <div class="text-muted">4 hours ago</div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="text-dark d-flex py-2" href="javascript:void(0)">
+                                            <div class="flex-shrink-0 me-2 ms-3">
+                                                <i class="fa fa-fw fa-exclamation-triangle text-warning"></i>
+                                            </div>
+                                            <div class="flex-grow-1 pe-2">
+                                                <p class="fw-medium mb-1">Please consider upgrading your plan. You are running out of space.</p>
+                                                <div class="text-muted">16 hours ago</div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="text-dark d-flex py-2" href="javascript:void(0)">
+                                            <div class="flex-shrink-0 me-2 ms-3">
+                                                <i class="fa fa-fw fa-plus text-primary"></i>
+                                            </div>
+                                            <div class="flex-grow-1 pe-2">
+                                                <p class="fw-medium mb-1">New purchases! +$250</p>
+                                                <div class="text-muted">1 day ago</div>
+                                            </div>
+                                        </a>
+                                    </li>*@
                             </ul>
                             <div class="p-2 bg-body-light rounded-bottom">
                                 <a class="dropdown-item text-center mb-0" href="javascript:void(0)">
@@ -328,10 +331,18 @@
     <script src="~/Content/assets/js/plugins/ckeditor5-classic/build/ckeditor.js"></script>
     <script src="~/Content/assets/js/plugins/bootstrap-notify/bootstrap-notify.min.js"></script>
     <script src="~/Content/assets/js/plugins/jquery-validation/jquery.validate.min.js"></script>
+    <script src="~/Content/assets/js/plugins/pwstrength-bootstrap/pwstrength-bootstrap.min.js"></script>
+    <script src="~/Content/assets/js/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
+    <script src="~/Content/assets/js/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js"></script>
+    <script src="~/Content/assets/js/plugins/bootstrap-maxlength/bootstrap-maxlength.min.js"></script>
+    <script src="~/Content/assets/js/plugins/masked-inputs/jquery.maskedinput.min.js"></script>
+    <script src="~/Content/assets/js/plugins/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
+    <script src="~/Content/assets/js/plugins/dropzone/min/dropzone.min.js"></script>
+    <script src="~/Content/assets/js/plugins/flatpickr/flatpickr.min.js"></script>
 
     @*<script>
-        Codebase.helpersOnLoad(['cb-table-tools-checkable', 'cb-table-tools-sections']);
-    </script>*@
+            Codebase.helpersOnLoad(['cb-table-tools-checkable', 'cb-table-tools-sections']);
+        </script>*@
 
     <script src="@Html.Raw(ViewBag.JS)"></script>
     <script>

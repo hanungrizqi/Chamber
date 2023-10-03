@@ -112,14 +112,6 @@ namespace Web.Models
 			}
 		}
 		
-		public System.Data.Linq.Table<VW_User> VW_Users
-		{
-			get
-			{
-				return this.GetTable<VW_User>();
-			}
-		}
-		
 		public System.Data.Linq.Table<VW_R_MENU> VW_R_MENUs
 		{
 			get
@@ -189,6 +181,22 @@ namespace Web.Models
 			get
 			{
 				return this.GetTable<TBL_M_STATUS_CFM>();
+			}
+		}
+		
+		public System.Data.Linq.Table<VW_User> VW_Users
+		{
+			get
+			{
+				return this.GetTable<VW_User>();
+			}
+		}
+		
+		public System.Data.Linq.Table<VW_R_CFM_MANAGEMENT> VW_R_CFM_MANAGEMENTs
+		{
+			get
+			{
+				return this.GetTable<VW_R_CFM_MANAGEMENT>();
 			}
 		}
 	}
@@ -1326,123 +1334,6 @@ namespace Web.Models
 				if ((this._ACTIVE_STATUS != value))
 				{
 					this._ACTIVE_STATUS = value;
-				}
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.VW_User")]
-	public partial class VW_User
-	{
-		
-		private int _ID_Role;
-		
-		private string _Username;
-		
-		private string _NAME;
-		
-		private string _EMAIL;
-		
-		private string _DSTRCT_CODE;
-		
-		private string _RoleName;
-		
-		public VW_User()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID_Role", DbType="Int NOT NULL")]
-		public int ID_Role
-		{
-			get
-			{
-				return this._ID_Role;
-			}
-			set
-			{
-				if ((this._ID_Role != value))
-				{
-					this._ID_Role = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Username", DbType="VarChar(150) NOT NULL", CanBeNull=false)]
-		public string Username
-		{
-			get
-			{
-				return this._Username;
-			}
-			set
-			{
-				if ((this._Username != value))
-				{
-					this._Username = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NAME", DbType="VarChar(61)")]
-		public string NAME
-		{
-			get
-			{
-				return this._NAME;
-			}
-			set
-			{
-				if ((this._NAME != value))
-				{
-					this._NAME = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EMAIL", DbType="NVarChar(4000)")]
-		public string EMAIL
-		{
-			get
-			{
-				return this._EMAIL;
-			}
-			set
-			{
-				if ((this._EMAIL != value))
-				{
-					this._EMAIL = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DSTRCT_CODE", DbType="VarChar(50)")]
-		public string DSTRCT_CODE
-		{
-			get
-			{
-				return this._DSTRCT_CODE;
-			}
-			set
-			{
-				if ((this._DSTRCT_CODE != value))
-				{
-					this._DSTRCT_CODE = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RoleName", DbType="NVarChar(150)")]
-		public string RoleName
-		{
-			get
-			{
-				return this._RoleName;
-			}
-			set
-			{
-				if ((this._RoleName != value))
-				{
-					this._RoleName = value;
 				}
 			}
 		}
@@ -2979,6 +2870,240 @@ namespace Web.Models
 			if ((this.PropertyChanged != null))
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.VW_User")]
+	public partial class VW_User
+	{
+		
+		private int _ID_Role;
+		
+		private string _Username;
+		
+		private string _NAME;
+		
+		private string _EMAIL;
+		
+		private string _DSTRCT_CODE;
+		
+		private string _RoleName;
+		
+		private string _POSITION_ID;
+		
+		public VW_User()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID_Role", DbType="Int NOT NULL")]
+		public int ID_Role
+		{
+			get
+			{
+				return this._ID_Role;
+			}
+			set
+			{
+				if ((this._ID_Role != value))
+				{
+					this._ID_Role = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Username", DbType="VarChar(150) NOT NULL", CanBeNull=false)]
+		public string Username
+		{
+			get
+			{
+				return this._Username;
+			}
+			set
+			{
+				if ((this._Username != value))
+				{
+					this._Username = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NAME", DbType="VarChar(61)")]
+		public string NAME
+		{
+			get
+			{
+				return this._NAME;
+			}
+			set
+			{
+				if ((this._NAME != value))
+				{
+					this._NAME = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EMAIL", DbType="NVarChar(4000)")]
+		public string EMAIL
+		{
+			get
+			{
+				return this._EMAIL;
+			}
+			set
+			{
+				if ((this._EMAIL != value))
+				{
+					this._EMAIL = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DSTRCT_CODE", DbType="VarChar(50)")]
+		public string DSTRCT_CODE
+		{
+			get
+			{
+				return this._DSTRCT_CODE;
+			}
+			set
+			{
+				if ((this._DSTRCT_CODE != value))
+				{
+					this._DSTRCT_CODE = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RoleName", DbType="NVarChar(150)")]
+		public string RoleName
+		{
+			get
+			{
+				return this._RoleName;
+			}
+			set
+			{
+				if ((this._RoleName != value))
+				{
+					this._RoleName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_POSITION_ID", DbType="Char(10)")]
+		public string POSITION_ID
+		{
+			get
+			{
+				return this._POSITION_ID;
+			}
+			set
+			{
+				if ((this._POSITION_ID != value))
+				{
+					this._POSITION_ID = value;
+				}
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.VW_R_CFM_MANAGEMENT")]
+	public partial class VW_R_CFM_MANAGEMENT
+	{
+		
+		private int _ID;
+		
+		private string _ID_CHAMBER;
+		
+		private string _LOKASI;
+		
+		private System.Nullable<int> _USDTDY;
+		
+		private System.Nullable<System.DateTime> _LSTUSD;
+		
+		public VW_R_CFM_MANAGEMENT()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", DbType="Int NOT NULL")]
+		public int ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this._ID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID_CHAMBER", DbType="VarChar(10)")]
+		public string ID_CHAMBER
+		{
+			get
+			{
+				return this._ID_CHAMBER;
+			}
+			set
+			{
+				if ((this._ID_CHAMBER != value))
+				{
+					this._ID_CHAMBER = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LOKASI", DbType="VarChar(255)")]
+		public string LOKASI
+		{
+			get
+			{
+				return this._LOKASI;
+			}
+			set
+			{
+				if ((this._LOKASI != value))
+				{
+					this._LOKASI = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_USDTDY", DbType="Int")]
+		public System.Nullable<int> USDTDY
+		{
+			get
+			{
+				return this._USDTDY;
+			}
+			set
+			{
+				if ((this._USDTDY != value))
+				{
+					this._USDTDY = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LSTUSD", DbType="DateTime")]
+		public System.Nullable<System.DateTime> LSTUSD
+		{
+			get
+			{
+				return this._LSTUSD;
+			}
+			set
+			{
+				if ((this._LSTUSD != value))
+				{
+					this._LSTUSD = value;
+				}
 			}
 		}
 	}

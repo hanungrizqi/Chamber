@@ -1,11 +1,20 @@
 ﻿Codebase.helpersOnLoad(['jq-select2']);
 
 $("document").ready(function () {
-    Detail();
-    Status()
+    Detail(function () {
+        Status();
+    });
+    var idProfile = $("#hd_idroles").val();
+    if (idProfile == 3) {
+        $("#tombolApprove").hide();
+    } else {
+        $("#tombolApprove").show();
+    }
+
 })
 
-function Detail() {
+var data2;
+function Detail(callback) {
     $.ajax({
         url: $("#web_link").val() + "/api/EmpRecord/Detail/" + $("#idapprv").val(), //URI,
         type: "GET",
@@ -26,6 +35,10 @@ function Detail() {
             $("#txt_diastolic").val(data.DIASTOLIC);
             $("#txt_temp").val(data.TEMPRATURE);
             $("#txt_note").val(data.NOTE);
+            data2 = data.STATUS;
+            if (typeof callback === "function") {
+                callback();
+            }
         }
     });
 }
@@ -36,13 +49,15 @@ function Status() {
         type: "GET",
         cache: false,
         success: function (result) {
+            debugger
             $('#txt_status').empty();
             text = '<option></option>';
+            var dataStatus = data2;
             $.each(result.Data, function (key, val) {
-                if (val.STATUS == $("#txt_status").val()) {
-                    text += '<option selected value="' + val.STATUS + '">' + val.STATUS + '</option>';
+                if (val.STATUS == dataStatus) {
+                    text += '<option selected value="' + val.ID_STATUS + '">' + val.STATUS + '</option>';
                 } else {
-                    text += '<option value="' + val.STATUS + '">' + val.STATUS + '</option>';
+                    text += '<option value="' + val.ID_STATUS + '">' + val.STATUS + '</option>';
                 }
             });
             $("#txt_status").append(text);
@@ -50,17 +65,17 @@ function Status() {
     });
 }
 
-function Unfits() {
+function Approves() {
 
     let dataCFM = new Object();
     dataCFM.APPROVAL_ID = $("#idapprv").val();
-    dataCFM.ID_STATUS = 2;
+    dataCFM.ID_STATUS = $("#txt_status").val();
     dataCFM.APPROVER = $("#hd_nrp").val();
     dataCFM.NOTED = $("#txt_note").val();
     debugger
 
     $.ajax({
-        url: $("#web_link").val() + "/api/Approval/Approve",
+        url: $("#web_link").val() + "/api/EmpRecord/Approve",
         data: JSON.stringify(dataCFM),
         dataType: "json",
         type: "POST",
@@ -80,7 +95,55 @@ function Unfits() {
                     allowEscapeKey: false
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        window.location.href = "/Approval/Index";
+                        window.location.href = "/EmpRecord/Index";
+                    }
+                });
+            } else {
+                Swal.fire(
+                    'Error!',
+                    'Message: ' + data.Message,
+                    'error'
+                );
+            }
+        },
+        error: function (xhr) {
+            alert(xhr.responseText);
+            $("#overlay").hide();
+        }
+    });
+}
+
+function Unfits() {
+
+    let dataCFM = new Object();
+    dataCFM.APPROVAL_ID = $("#idapprv").val();
+    dataCFM.ID_STATUS = 2;
+    dataCFM.APPROVER = $("#hd_nrp").val();
+    dataCFM.NOTED = $("#txt_note").val();
+    debugger
+
+    $.ajax({
+        url: $("#web_link").val() + "/api/EmpRecord/Approve",
+        data: JSON.stringify(dataCFM),
+        dataType: "json",
+        type: "POST",
+        contentType: "application/json; charset=utf-8",
+        beforeSend: function () {
+            $("#overlay").show();
+        },
+        success: function (data) {
+            if (data.Remarks) {
+                Swal.fire({
+                    title: 'Saved',
+                    text: "Data has been Saved.",
+                    icon: 'success',
+                    confirmButtonColor: '#3085d6',
+                    confirmButtonText: 'OK',
+                    allowOutsideClick: false,
+                    allowEscapeKey: false
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = "/EmpRecord/Index";
                     }
                 });
             } else {
@@ -108,7 +171,7 @@ function FNRestime() {
     debugger
 
     $.ajax({
-        url: $("#web_link").val() + "/api/Approval/Approve",
+        url: $("#web_link").val() + "/api/EmpRecord/Approve",
         data: JSON.stringify(dataCFM),
         dataType: "json",
         type: "POST",
@@ -128,7 +191,7 @@ function FNRestime() {
                     allowEscapeKey: false
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        window.location.href = "/Approval/Index";
+                        window.location.href = "/EmpRecord/Index";
                     }
                 });
             } else {
@@ -156,7 +219,7 @@ function UBParamedis() {
     debugger
 
     $.ajax({
-        url: $("#web_link").val() + "/api/Approval/Approve",
+        url: $("#web_link").val() + "/api/EmpRecord/Approve",
         data: JSON.stringify(dataCFM),
         dataType: "json",
         type: "POST",
@@ -176,7 +239,151 @@ function UBParamedis() {
                     allowEscapeKey: false
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        window.location.href = "/Approval/Index";
+                        window.location.href = "/EmpRecord/Index";
+                    }
+                });
+            } else {
+                Swal.fire(
+                    'Error!',
+                    'Message: ' + data.Message,
+                    'error'
+                );
+            }
+        },
+        error: function (xhr) {
+            alert(xhr.responseText);
+            $("#overlay").hide();
+        }
+    });
+}
+
+function RTest() {
+
+    let dataCFM = new Object();
+    dataCFM.APPROVAL_ID = $("#idapprv").val();
+    dataCFM.ID_STATUS = 5;
+    dataCFM.APPROVER = $("#hd_nrp").val();
+    dataCFM.NOTED = $("#txt_note").val();
+    debugger
+
+    $.ajax({
+        url: $("#web_link").val() + "/api/EmpRecord/Approve",
+        data: JSON.stringify(dataCFM),
+        dataType: "json",
+        type: "POST",
+        contentType: "application/json; charset=utf-8",
+        beforeSend: function () {
+            $("#overlay").show();
+        },
+        success: function (data) {
+            if (data.Remarks) {
+                Swal.fire({
+                    title: 'Saved',
+                    text: "Data has been Saved.",
+                    icon: 'success',
+                    confirmButtonColor: '#3085d6',
+                    confirmButtonText: 'OK',
+                    allowOutsideClick: false,
+                    allowEscapeKey: false
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = "/EmpRecord/Index";
+                    }
+                });
+            } else {
+                Swal.fire(
+                    'Error!',
+                    'Message: ' + data.Message,
+                    'error'
+                );
+            }
+        },
+        error: function (xhr) {
+            alert(xhr.responseText);
+            $("#overlay").hide();
+        }
+    });
+}
+
+function Istirahat() {
+
+    let dataCFM = new Object();
+    dataCFM.APPROVAL_ID = $("#idapprv").val();
+    dataCFM.ID_STATUS = 6;
+    dataCFM.APPROVER = $("#hd_nrp").val();
+    dataCFM.NOTED = $("#txt_note").val();
+    debugger
+
+    $.ajax({
+        url: $("#web_link").val() + "/api/EmpRecord/Approve",
+        data: JSON.stringify(dataCFM),
+        dataType: "json",
+        type: "POST",
+        contentType: "application/json; charset=utf-8",
+        beforeSend: function () {
+            $("#overlay").show();
+        },
+        success: function (data) {
+            if (data.Remarks) {
+                Swal.fire({
+                    title: 'Saved',
+                    text: "Data has been Saved.",
+                    icon: 'success',
+                    confirmButtonColor: '#3085d6',
+                    confirmButtonText: 'OK',
+                    allowOutsideClick: false,
+                    allowEscapeKey: false
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = "/EmpRecord/Index";
+                    }
+                });
+            } else {
+                Swal.fire(
+                    'Error!',
+                    'Message: ' + data.Message,
+                    'error'
+                );
+            }
+        },
+        error: function (xhr) {
+            alert(xhr.responseText);
+            $("#overlay").hide();
+        }
+    });
+}
+
+function BKerja() {
+
+    let dataCFM = new Object();
+    dataCFM.APPROVAL_ID = $("#idapprv").val();
+    dataCFM.ID_STATUS = 7;
+    dataCFM.APPROVER = $("#hd_nrp").val();
+    dataCFM.NOTED = $("#txt_note").val();
+    debugger
+
+    $.ajax({
+        url: $("#web_link").val() + "/api/EmpRecord/Approve",
+        data: JSON.stringify(dataCFM),
+        dataType: "json",
+        type: "POST",
+        contentType: "application/json; charset=utf-8",
+        beforeSend: function () {
+            $("#overlay").show();
+        },
+        success: function (data) {
+            if (data.Remarks) {
+                Swal.fire({
+                    title: 'Saved',
+                    text: "Data has been Saved.",
+                    icon: 'success',
+                    confirmButtonColor: '#3085d6',
+                    confirmButtonText: 'OK',
+                    allowOutsideClick: false,
+                    allowEscapeKey: false
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = "/EmpRecord/Index";
                     }
                 });
             } else {

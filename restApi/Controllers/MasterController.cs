@@ -46,14 +46,24 @@ namespace restApi.Controllers
         }
 
         [HttpGet]
-        [Route("Get_Roled")]
-        public IHttpActionResult Get_Roled()
+        [Route("Get_Roled/{nrp}")]
+        public IHttpActionResult Get_Roled(string nrp)
         {
             try
             {
-                var data = db.TBL_M_ROLEs.ToList();
+                string nrps;
+                if (nrp.Count() > 7)
+                {
+                    nrps = nrp.Substring(nrp.Length - 7);
+                }
+                else
+                {
+                    nrps = nrp;
+                }
 
-                return Ok(new { Data = data, Total = data.Count() });
+                var data = db.VW_Users.Where(a => a.Username == nrps).FirstOrDefault();
+
+                return Ok(new { Remarks = true, Data = data });
             }
             catch (Exception)
             {

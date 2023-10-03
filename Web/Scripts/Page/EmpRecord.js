@@ -1,4 +1,25 @@
-﻿Codebase.helpersOnLoad(['cb-table-tools-checkable', 'cb-table-tools-sections']);
+﻿Codebase.helpersOnLoad(['cb-table-tools-checkable', 'cb-table-tools-sections', 'js-flatpickr']);
+
+$("document").ready(function () {
+    $("#example-flatpickr-range").flatpickr({
+        mode: "range",
+        onChange: function (selectedDates, dateStr, instance) {
+            if (selectedDates.length === 2) {
+                debugger
+                var startDate = selectedDates[0];
+                var endDate = selectedDates[1];
+
+                // Konversi ke format "YYYY-MM-DD"
+                var startDateLocal = startDate.toLocaleDateString('en-CA'); // Gunakan locale yang sesuai dengan format yang diinginkan
+                var endDateLocal = endDate.toLocaleDateString('en-CA'); // Gunakan locale yang sesuai dengan format yang diinginkan
+
+                // Update the table data source with the selected date range filter
+                table.ajax.url($("#web_link").val() + "/api/Emprecord/Get_ListEmprecord_Daterange/" + $("#hd_positid").val() + "/" + startDateLocal + "/" + endDateLocal).load();
+
+            }
+        },
+    });
+})
 
 $(document).on('click', '.action-link', function (e) {
     e.preventDefault();
@@ -22,7 +43,8 @@ $(document).on('click', '.action-link', function (e) {
 
 var table = $("#tbl_empr").DataTable({
     ajax: {
-        url: $("#web_link").val() + "/api/Emprecord/Get_ListEmprecord",
+        //url: $("#web_link").val() + "/api/Emprecord/Get_ListEmprecord",
+        url: $("#web_link").val() + "/api/Emprecord/Get_ListEmprecord/" + $("#hd_positid").val(),
         dataSrc: "Data",
     },
     fixedHeader: {
@@ -52,8 +74,50 @@ var table = $("#tbl_empr").DataTable({
             data: 'NAME',
             render: function (data, type, row) {
                 var email = row.EMAIL;
-                if (email) {
-                    return data + '<p class="fs-sm text-muted mb-0">' + email + '</p>';
+                var oxy = row.OXYGEN_SATURATION;
+                var heart = row.HEART_RATE;
+                var systo = row.SYSTOLIC;
+                var diasto = row.DIASTOLIC;
+                var tempra = row.TEMPRATURE;
+                //if (oxy/*email*/) {
+                //    //return data + '<p class="fs-sm text-muted mb-0">' + email + '</p>';
+                //    var text = 'OXYGEN = ' + oxy + ', HEART RATE = ' + heart + ', SYSTOLIC = ' + systo + ', DIASTOLIC = ' + diasto + ', TEMPERATURE = ' + tempra;
+                //    return data + '<p class="fs-sm text-muted mb-0">' + text + '</p>';
+                //} else {
+                //    return data;
+                //}
+                var note = row.NOTE;
+                var text = '';
+                var noteValues = note.split(',');
+                for (var i = 0; i < noteValues.length; i++) {
+                    //debugger
+                    var noteValue = noteValues[i].trim();
+                    switch (noteValue) {
+                        case 'heart_rate':
+                            text += 'HEART = ' + heart;
+                            break;
+                        case 'systolic':
+                            text += 'SYSTOLIC = ' + systo;
+                            break;
+                        case 'diastolic':
+                            text += 'DIASTOLIC = ' + diasto;
+                            break;
+                        case 'temprature':
+                            text += 'TEMPERATURE = ' + tempra;
+                            break;
+                        case 'oxygen_saturation':
+                            text += 'OXYGEN = ' + oxy;
+                            break;
+                        default:
+                        //do nothing
+                    }
+                    if (i < noteValues.length - 1) {
+                        text += ', ';
+                    }
+                }
+
+                if (text) {
+                    return data + '<p class="fs-sm text-muted mb-0">' + text + '</p>';
                 } else {
                     return data;
                 }
@@ -99,14 +163,16 @@ var table = $("#tbl_empr").DataTable({
             render: function (data, type, row) {
                 var actions = '<div class="btn-group">';
                 actions += '<button class="btn btn-sm" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-ellipsis-vertical"></i></button>';
-                actions += '<ul class="dropdown-menu dropdown-menu-right">';
-                actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Unfit" href="#">Unfit</a></li>';
-                actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Fit Need Rest Time" href="#">Fit Need Rest Time</a></li>';
-                actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Unfit Butuh Paramedis" href="#">Unfit Butuh Paramedis</a></li>';
-                actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Retest" href="#">Retest</a></li>';
-                actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Istirahat" href="#">Istirahat</a></li>';
-                actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Berhenti Bekerja" href="#">Berhenti Bekerja</a></li>';
-                actions += '</ul>';
+                if ($("#hd_idroles").val() != 3) {
+                    actions += '<ul class="dropdown-menu dropdown-menu-right">';
+                    actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Unfit" href="#">Unfit</a></li>';
+                    actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Fit Need Rest Time" href="#">Fit Need Rest Time</a></li>';
+                    actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Unfit Butuh Paramedis" href="#">Unfit Butuh Paramedis</a></li>';
+                    actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Retest" href="#">Retest</a></li>';
+                    actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Istirahat" href="#">Istirahat</a></li>';
+                    actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Berhenti Bekerja" href="#">Berhenti Bekerja</a></li>';
+                    actions += '</ul>';
+                }
                 actions += '</div>';
                 return actions;
             }

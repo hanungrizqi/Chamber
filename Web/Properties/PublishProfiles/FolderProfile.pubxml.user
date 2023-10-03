@@ -4,7 +4,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
 -->
 <Project>
   <PropertyGroup>
-    <_PublishTargetUrl>D:\Publish Project\CFM\Development\20230929\Web</_PublishTargetUrl>
+    <_PublishTargetUrl>D:\Publish Project\CFM\Development\20231003\Web</_PublishTargetUrl>
     <History>True|2023-09-29T02:38:53.9722222Z;True|2023-09-29T09:37:25.3386475+07:00;</History>
     <LastFailureDetails />
   </PropertyGroup>
@@ -205,10 +205,10 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>05/27/2022 23:42:50</publishTime>
     </File>
     <File Include="bin/Web.dll">
-      <publishTime>09/29/2023 09:38:48</publishTime>
+      <publishTime>10/03/2023 09:27:36</publishTime>
     </File>
     <File Include="bin/Web.pdb">
-      <publishTime>09/29/2023 09:38:48</publishTime>
+      <publishTime>10/03/2023 09:27:36</publishTime>
     </File>
     <File Include="bin/WebGrease.dll">
       <publishTime>01/23/2014 13:57:34</publishTime>
@@ -12814,7 +12814,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>09/20/2023 10:46:04</publishTime>
     </File>
     <File Include="Models/Cfm.dbml">
-      <publishTime>09/27/2023 14:40:03</publishTime>
+      <publishTime>10/02/2023 15:50:22</publishTime>
     </File>
     <File Include="Scripts/moment.min.js">
       <publishTime>09/20/2023 14:14:30</publishTime>
@@ -12823,7 +12823,10 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>09/26/2023 15:20:52</publishTime>
     </File>
     <File Include="Scripts/Page/EmpRecord.js">
-      <publishTime>09/26/2023 15:23:18</publishTime>
+      <publishTime>10/02/2023 11:25:31</publishTime>
+    </File>
+    <File Include="Scripts/Page/EmpRecordDetail.js">
+      <publishTime>10/02/2023 13:31:34</publishTime>
     </File>
     <File Include="Scripts/Page/login.js">
       <publishTime>09/27/2023 16:41:12</publishTime>
@@ -12835,22 +12838,31 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>09/27/2023 10:34:02</publishTime>
     </File>
     <File Include="Scripts/Page/WorkApproval.js">
-      <publishTime>09/26/2023 15:57:12</publishTime>
+      <publishTime>10/02/2023 11:11:11</publishTime>
+    </File>
+    <File Include="Scripts/Page/WorkApprovalDetail.js">
+      <publishTime>09/29/2023 14:40:29</publishTime>
+    </File>
+    <File Include="Views/Approval/Detail.cshtml">
+      <publishTime>10/02/2023 13:20:16</publishTime>
     </File>
     <File Include="Views/Approval/Index.cshtml">
-      <publishTime>09/27/2023 11:28:20</publishTime>
+      <publishTime>09/29/2023 11:25:37</publishTime>
     </File>
     <File Include="Views/CfmManagement/Index.cshtml">
       <publishTime>09/27/2023 09:49:41</publishTime>
     </File>
+    <File Include="Views/EmpRecord/Detail_ERecord.cshtml">
+      <publishTime>10/02/2023 13:28:40</publishTime>
+    </File>
     <File Include="Views/EmpRecord/Index.cshtml">
-      <publishTime>09/27/2023 11:28:20</publishTime>
+      <publishTime>10/02/2023 09:52:24</publishTime>
     </File>
     <File Include="Views/Home/Index.cshtml">
-      <publishTime>09/27/2023 09:46:46</publishTime>
+      <publishTime>10/03/2023 09:16:38</publishTime>
     </File>
     <File Include="Views/Login/Index.cshtml">
-      <publishTime>09/27/2023 16:54:05</publishTime>
+      <publishTime>09/29/2023 10:06:58</publishTime>
     </File>
     <File Include="Views/Setting/Menu.cshtml">
       <publishTime>09/27/2023 10:52:57</publishTime>
@@ -12862,7 +12874,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>09/20/2023 10:46:04</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>09/27/2023 15:17:25</publishTime>
+      <publishTime>10/02/2023 11:04:38</publishTime>
     </File>
     <File Include="Views/Shared/_Sidebar.cshtml">
       <publishTime>09/27/2023 13:23:24</publishTime>
@@ -12874,7 +12886,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>09/20/2023 10:46:04</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>09/29/2023 09:37:20</publishTime>
+      <publishTime>10/03/2023 09:27:37</publishTime>
     </File>
   </ItemGroup>
 </Project>

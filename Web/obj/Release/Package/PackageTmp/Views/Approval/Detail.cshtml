@@ -1,0 +1,162 @@
+﻿
+@{
+    ViewBag.Title = "Detail Approval";
+    ViewBag.JS = "/Scripts/Page/WorkApprovalDetail.js";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h3>Detail Approval</h3>
+<div class="col-12 mb-2">
+    <span style="font-size: 10px;">Berikut detail data setiap chamber yang tersedia di <b>@Session["Site"].ToString()</b>.</span>
+</div>
+
+<div class="row mb-3">
+    <div class="col">
+        <label><input type="search" class="form-control form-control-sm" placeholder="Search" id="search" aria-controls="tbl_approval" readonly></label>
+    </div>
+    <div class="col text-end">
+        <span style="font-size: 10px;">@ViewBag.Count person need approval found &nbsp; &nbsp;</span>
+        <i class="nav-main-link-icon fa fa-arrow-down-wide-short" style="font-size: 10px;"></i>
+        <span style="font-size: 10px;">filter &nbsp; &nbsp;</span>
+        <i class="nav-main-link-icon fa fa-download" style="font-size: 10px;"></i>
+        <span style="font-size: 10px;">Download</span>
+    </div>
+</div>
+
+<div class="col-sm-12 col-md-6">
+    <div class="dropdown" style="position: absolute; top: 0; right: 0%;">
+        <label style="font-size: 12px;">7 person need approval found</label>
+        <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" style="font-size: 11px;">
+            <i class="nav-main-link-icon fa fa-filter"></i> <span style="font-size: 12px;">filter</span>
+        </button>
+        <div class="dropdown-menu">
+            <a class="dropdown-item" href="#">Status</a>
+            <a class="dropdown-item" href="#">Date</a>
+        </div>
+        <i class="nav-main-link-icon fa fa-download" style="font-size: 11px;"></i>
+        <span style="font-size: 12px;">Download</span>
+    </div>
+</div>
+
+<div class="block block-link-shadow">
+    <div class="block-header block-header-default">
+        <h3 class="block-title">Detail Approval</h3>
+    </div>
+    <div class="block-content">
+        <div class="row justify-content-center">
+            <div class="col-sm-6 col-md-6">
+                <div class="row mb-3">
+                    <label class="col-sm-4 col-form-label" for="txt_nrp">NRP</label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control form-control-sm " id="idapprv" name="idapprv" value="@ViewBag.id" hidden>
+                        <input type="text" class="form-control form-control-sm " id="txt_nrp" name="txt_nrp" @*value="@ViewBag.noPpe"*@ readonly>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label class="col-sm-4 col-form-label" for="txt_name">Nama</label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control form-control-sm " id="txt_name" name="txt_name" readonly>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label class="col-sm-4 col-form-label" for="txt_chamber">Chamber</label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control form-control-sm " id="txt_chamber" name="txt_chamber" readonly>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label class="col-sm-4 col-form-label" for="txt_postitle">Job Title</label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control form-control-sm " id="txt_postitle" name="txt_postitle" readonly>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label class="col-sm-4 col-form-label" for="txt_atasan">Atasan</label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control form-control-sm " id="txt_atasan" name="txt_atasan" readonly>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label class="col-sm-4 col-form-label" for="txt_status">Status</label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control form-control-sm " id="txt_status" name="txt_status" readonly>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-6 col-md-6">
+                <div class="row mb-3">
+                    <label class="col-sm-4 col-form-label" for="txt_date">Waktu Absen</label>
+                    <div class="col-sm-8">
+                        <input type="date" class="form-control form-control-sm " id="txt_date" name="txt_date" readonly>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label class="col-sm-4 col-form-label" for="txt_oxygen">Oxygen</label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control form-control-sm " id="txt_oxygen" name="txt_oxygen" readonly>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label class="col-sm-4 col-form-label" for="txt_heartrate">Heart Rate</label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control form-control-sm " id="txt_heartrate" name="txt_heartrate" readonly>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label class="col-sm-4 col-form-label" for="txt_sys">Systolic</label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control form-control-sm " id="txt_sys" name="txt_sys" readonly>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label class="col-sm-4 col-form-label" for="txt_diastolic">Diastolic</label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control form-control-sm " id="txt_diastolic" name="txt_diastolic" readonly>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label class="col-sm-4 col-form-label" for="txt_temp">Temperature</label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control form-control-sm " id="txt_temp" name="txt_temp" readonly>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="block block-link-shadow">
+    <div class="block-header">
+        <h3 class="block-title">Note's</h3>
+    </div>
+    <div class="block-content">
+        <div class="mb-3">
+            <textarea class="form-control form-control-sm" id="txt_note" name="txt_note"></textarea>
+        </div>
+    </div>
+    <div class="block-content block-content-full block-content-sm bg-body-light fs-sm">
+        <div class="block-options justify-content-center">
+            <div class="row text-center">
+                <div class="col-md-12">
+                    <a href="/Approval/Index" class="btn rounded-0 btn-alt-secondary" style="font-size: 14px;"><i class="fa fa-backward opacity-50 me-1"></i>Back</a>
+                    <button type="button" class="btn rounded-0 btn-secondary dropdown-toggle" id="btnGroupVerticalDrop1" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-size: 14px;">
+                        <i class="fa fa-check-circle opacity-50 me-1"></i> Approve
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="btnGroupVerticalDrop1">
+                        <a class="dropdown-item" onclick="Unfits()">
+                            <i class="fa fa-fw fa-user-slash opacity-50 me-1"></i>Unfit
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" onclick="FNRestime()">
+                            <i class="far fa-fw fa-clock opacity-50 me-1"></i>Fit Need Rest Time
+                        </a>
+                        <a class="dropdown-item" onclick="UBParamedis()">
+                            <i class="far fa-fw fa-copy opacity-50 me-1"></i>Unfit Butuh Paramedis
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

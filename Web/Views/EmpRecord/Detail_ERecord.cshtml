@@ -140,22 +140,34 @@
         <div class="block-options justify-content-center">
             <div class="row text-center">
                 <div class="col-md-12">
-                    <a href="/EmpRecord/Index" class="btn btn-sm btn-info"><i class="fa fa-backward opacity-50 me-1"></i>Back</a>
-                    <button type="button" class="btn btn-sm btn-success dropdown-toggle" id="btnGroupVerticalDrop1" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a href="/EmpRecord/Index" class="btn rounded-0 btn-alt-secondary" style="font-size: 14px;"><i class="fa fa-backward opacity-50 me-1"></i>Back</a>
+                    <button type="submit" id="tombolApprove" class="btn rounded-0 btn-secondary" onclick="Approves()"  style="font-size: 14px;">
+                        <i class="fa fa-check-circle opacity-50 me-1"></i> Approve
+                    </button>
+                    @*<button type="button" class="btn rounded-0 btn-secondary dropdown-toggle" id="btnGroupVerticalDrop1" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-size: 14px;">
                         <i class="fa fa-check-circle opacity-50 me-1"></i> Approve
                     </button>
                     <div class="dropdown-menu" aria-labelledby="btnGroupVerticalDrop1">
                         <a class="dropdown-item" onclick="Unfits()">
-                            <i class="fa fa-fw fa-bell opacity-50 me-1"></i>Unfit
-                        </a>
-                        <a class="dropdown-item" onclick="FNRestime()">
-                            <i class="fa fa-fw fa-envelope opacity-50 me-1"></i>Fit Need Rest Time
+                            <i class="fa fa-fw fa-user-slash opacity-50 me-1"></i>Unfit
                         </a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" onclick="UBParamedis()">
-                            <i class="fa fa-fw fa-pencil-alt opacity-50 me-1"></i>Unfit Butuh Paramedis
+                        <a class="dropdown-item" onclick="FNRestime()">
+                            <i class="far fa-fw fa-clock opacity-50 me-1"></i>Fit Need Rest Time
                         </a>
-                    </div>
+                        <a class="dropdown-item" onclick="UBParamedis()">
+                            <i class="far fa-fw fa-copy opacity-50 me-1"></i>Unfit Butuh Paramedis
+                        </a>
+                        <a class="dropdown-item" onclick="RTest()">
+                            <i class="fa fa-fw fa-pencil opacity-50 me-1"></i>Retest
+                        </a>
+                        <a class="dropdown-item" onclick="Istirahat()">
+                            <i class="fa fa-fw fa-person-booth opacity-50 me-1"></i>Istirahat
+                        </a>
+                        <a class="dropdown-item" onclick="BKerja()">
+                            <i class="fa fa-fw fa-plane-slash opacity-50 me-1"></i>Berhenti Bekerja
+                        </a>
+                    </div>*@
                 </div>
             </div>
         </div>

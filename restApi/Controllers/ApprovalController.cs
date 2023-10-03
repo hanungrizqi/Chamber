@@ -1,6 +1,7 @@
 ﻿using restApi.Models;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -14,14 +15,67 @@ namespace restApi.Controllers
         CFMDataContext db = new CFMDataContext();
 
         [HttpGet]
-        [Route("Get_ListApproval")]
-        public IHttpActionResult Get_ListApproval()
+        [Route("Get_ListApproval/{posid}")]
+        public IHttpActionResult Get_ListApproval(string posid)
         {
             try
             {
                 db.CommandTimeout = 120;
-                var data = db.VW_T_APPROVALs.Where(a => a.APPROVER == "" || a.APPROVER == null && a.ID_STATUS != 1).OrderBy(a => a.APPROVAL_ID).ToList();
+                //var data = db.VW_T_APPROVALs.Where(a => a.APPROVER == "" || a.APPROVER == null && a.ID_STATUS != 1).OrderBy(a => a.APPROVAL_ID).ToList();
 
+                var isAdminorNot = db.VW_Users.Where(c => c.POSITION_ID == posid).FirstOrDefault();
+                var excludedStatuses = new[] { 1, 5, 6, 7 };
+                if (isAdminorNot.ID_Role == 1)
+                {
+                    var data = db.VW_T_APPROVALs.Where(a => a.APPROVER == null && !excludedStatuses.Contains(a.ID_STATUS.Value)).OrderBy(a => a.APPROVAL_ID).ToList();
+
+                    return Ok(new { Data = data });
+                }
+                else
+                {
+                    var data = db.VW_T_APPROVALs.Where(a => a.APPROVER == null && !excludedStatuses.Contains(a.ID_STATUS.Value) && a.ATASAN == posid).OrderBy(a => a.APPROVAL_ID).ToList();
+
+                    return Ok(new { Data = data });
+                }
+
+                //return Ok(new { Data = data });
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
+        }
+
+        [HttpGet]
+        [Route("Get_ListApproval_Daterange/{posid}/{startDate}/{endDate}")]
+        public IHttpActionResult Get_ListApproval_Daterange(string posid, string startDate, string endDate)
+        {
+            try
+            {
+                db.CommandTimeout = 120;
+                var isAdminorNot = db.VW_Users.Where(c => c.POSITION_ID == posid).FirstOrDefault();
+                var excludedStatuses = new[] { 1, 5, 6, 7 };
+                IQueryable<VW_T_APPROVAL> query = null;
+
+                if (isAdminorNot.ID_Role == 1)
+                {
+                    query = db.VW_T_APPROVALs.Where(a => a.APPROVER == null && !excludedStatuses.Contains(a.ID_STATUS.Value));
+                }
+                else
+                {
+                    query = db.VW_T_APPROVALs.Where(a => a.APPROVER == null && !excludedStatuses.Contains(a.ID_STATUS.Value) && a.ATASAN == posid);
+                }
+
+                // Parse startDate and endDate to DateTime
+                DateTime parsedStartDate, parsedEndDate;
+                if (DateTime.TryParseExact(startDate, "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out parsedStartDate) &&
+                    DateTime.TryParseExact(endDate, "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out parsedEndDate))
+                {
+                    // Filter data by date range
+                    query = query.Where(a => a.DATE_FROM_CFC >= parsedStartDate && a.DATE_FROM_CFC <= parsedEndDate);
+                }
+
+                var data = query.OrderBy(a => a.APPROVAL_ID).ToList();
                 return Ok(new { Data = data });
             }
             catch (Exception)
