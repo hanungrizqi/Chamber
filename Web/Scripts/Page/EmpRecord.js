@@ -211,6 +211,18 @@ var table = $("#tbl_empr").DataTable({
     },
 });
 
+$("#downloadButton").on("click", function () {
+    debugger
+    generatePDF();
+});
+
+function generatePDF() {
+    debugger
+    var doc = new jsPDF();
+    doc.autoTable({ html: '#tbl_empr' });
+    doc.save('EmployeeRecord.pdf');
+}
+
 $('#tbl_empr tbody').on('click', 'tr', function (e) {
     debugger
     // Get the index of the clicked cell (td) within the row

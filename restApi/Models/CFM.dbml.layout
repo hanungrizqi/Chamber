@@ -122,5 +122,11 @@
         <elementListCompartment Id="9086e2f1-5313-462f-aa2c-0cb60d449610" absoluteBounds="6.89, 3.96, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
+    <classShape Id="2170fe2d-9c13-40c5-afd7-8a7a1d70c106" isExpanded="false" absoluteBounds="6.875, 5.5, 2, 0.45">
+      <DataClassMoniker Name="/CFMDataContext/VW_R_MOBILE" />
+      <nestedChildShapes>
+        <elementListCompartment Id="bb348af9-6fe5-495a-87e8-f06db84732d9" absoluteBounds="6.89, 5.96, 1.9700000000000002, 5.0569254557291661" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
   </nestedChildShapes>
 </ordesignerObjectsDiagram>

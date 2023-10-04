@@ -38,6 +38,50 @@
         .piraww {
             color: black;
         }
+
+        /* Add this CSS to remove the button's border */
+        #downloadButton {
+            background: none;
+            border: none;
+            font-size: 12px;
+            text-decoration: none;
+            color: #000;
+            cursor: pointer;
+            outline: none; /* Remove the focus outline */
+        }
+
+        /* Style the button on hover (optional) */
+        #downloadButton:hover {
+            text-decoration: underline;
+        }
+        #downloadButton2 {
+            background: none;
+            border: none;
+            font-size: 12px;
+            text-decoration: none;
+            color: #000;
+            cursor: pointer;
+            outline: none; /* Remove the focus outline */
+        }
+
+        /* Style the button on hover (optional) */
+        #downloadButton2:hover {
+            text-decoration: underline;
+        }
+        #filterbuton {
+            background: none;
+            border: none;
+            font-size: 12px;
+            text-decoration: none;
+            color: #000;
+            cursor: pointer;
+            outline: none; /* Remove the focus outline */
+        }
+
+        /* Style the button on hover (optional) */
+        #filterbuton:hover {
+            text-decoration: underline;
+        }
     </style>
     <script src="~/Content/assets/js/lib/jquery.min.js"></script>
 
@@ -53,6 +97,8 @@
     <script src="~/Content/assets/js/plugins/datatables-buttons-pdfmake/vfs_fonts.js"></script>
     <script src="~/Content/assets/js/plugins/datatables-buttons/buttons.print.min.js"></script>
     <script src="~/Content/assets/js/plugins/datatables-buttons/buttons.html5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.6/jspdf.plugin.autotable.min.js"></script>
     <script src="~/Scripts/moment.min.js"></script>
 
 </head>
@@ -339,6 +385,9 @@
     <script src="~/Content/assets/js/plugins/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
     <script src="~/Content/assets/js/plugins/dropzone/min/dropzone.min.js"></script>
     <script src="~/Content/assets/js/plugins/flatpickr/flatpickr.min.js"></script>
+    <!-- Include jsPDF library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.6/jspdf.plugin.autotable.min.js"></script>
 
     @*<script>
             Codebase.helpersOnLoad(['cb-table-tools-checkable', 'cb-table-tools-sections']);

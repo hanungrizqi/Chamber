@@ -242,6 +242,14 @@ namespace restApi.Models
 				return this.GetTable<VW_User>();
 			}
 		}
+		
+		public System.Data.Linq.Table<VW_R_MOBILE> VW_R_MOBILEs
+		{
+			get
+			{
+				return this.GetTable<VW_R_MOBILE>();
+			}
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.TBL_M_AKSES")]
@@ -3874,6 +3882,465 @@ namespace restApi.Models
 				if ((this._POSITION_ID != value))
 				{
 					this._POSITION_ID = value;
+				}
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.VW_R_MOBILE")]
+	public partial class VW_R_MOBILE
+	{
+		
+		private int _APPROVAL_ID;
+		
+		private System.Nullable<int> _ID_CFC;
+		
+		private System.Nullable<int> _ID_STATUS;
+		
+		private string _ID_CHAMBER;
+		
+		private string _NRP;
+		
+		private string _NAME;
+		
+		private string _POSITION_ID;
+		
+		private string _POS_TITLE;
+		
+		private string _ATASAN;
+		
+		private string _AGE;
+		
+		private System.Nullable<System.DateTime> _DATE_FROM_CFC;
+		
+		private System.Nullable<int> _JUMLAH_APPROVAL_PERHARI;
+		
+		private string _EMAIL;
+		
+		private string _STATUS;
+		
+		private string _APPROVER;
+		
+		private System.Nullable<System.DateTime> _WAKTU_APPROVAL;
+		
+		private System.Nullable<System.DateTime> _WAKTU_ABSEN;
+		
+		private System.Nullable<double> _OXYGEN_SATURATION;
+		
+		private System.Nullable<double> _HEART_RATE;
+		
+		private System.Nullable<double> _SYSTOLIC;
+		
+		private System.Nullable<double> _DIASTOLIC;
+		
+		private System.Nullable<double> _TEMPRATURE;
+		
+		private string _FACE_PICTURE_URL;
+		
+		private string _NOTE;
+		
+		private string _ATTENDANCE_NOTE;
+		
+		public VW_R_MOBILE()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_APPROVAL_ID", DbType="Int NOT NULL")]
+		public int APPROVAL_ID
+		{
+			get
+			{
+				return this._APPROVAL_ID;
+			}
+			set
+			{
+				if ((this._APPROVAL_ID != value))
+				{
+					this._APPROVAL_ID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID_CFC", DbType="Int")]
+		public System.Nullable<int> ID_CFC
+		{
+			get
+			{
+				return this._ID_CFC;
+			}
+			set
+			{
+				if ((this._ID_CFC != value))
+				{
+					this._ID_CFC = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID_STATUS", DbType="Int")]
+		public System.Nullable<int> ID_STATUS
+		{
+			get
+			{
+				return this._ID_STATUS;
+			}
+			set
+			{
+				if ((this._ID_STATUS != value))
+				{
+					this._ID_STATUS = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID_CHAMBER", DbType="VarChar(32)")]
+		public string ID_CHAMBER
+		{
+			get
+			{
+				return this._ID_CHAMBER;
+			}
+			set
+			{
+				if ((this._ID_CHAMBER != value))
+				{
+					this._ID_CHAMBER = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NRP", DbType="VarChar(50)")]
+		public string NRP
+		{
+			get
+			{
+				return this._NRP;
+			}
+			set
+			{
+				if ((this._NRP != value))
+				{
+					this._NRP = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NAME", DbType="VarChar(61)")]
+		public string NAME
+		{
+			get
+			{
+				return this._NAME;
+			}
+			set
+			{
+				if ((this._NAME != value))
+				{
+					this._NAME = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_POSITION_ID", DbType="Char(10)")]
+		public string POSITION_ID
+		{
+			get
+			{
+				return this._POSITION_ID;
+			}
+			set
+			{
+				if ((this._POSITION_ID != value))
+				{
+					this._POSITION_ID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_POS_TITLE", DbType="VarChar(40)")]
+		public string POS_TITLE
+		{
+			get
+			{
+				return this._POS_TITLE;
+			}
+			set
+			{
+				if ((this._POS_TITLE != value))
+				{
+					this._POS_TITLE = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ATASAN", DbType="VarChar(100)")]
+		public string ATASAN
+		{
+			get
+			{
+				return this._ATASAN;
+			}
+			set
+			{
+				if ((this._ATASAN != value))
+				{
+					this._ATASAN = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AGE", DbType="VarChar(100)")]
+		public string AGE
+		{
+			get
+			{
+				return this._AGE;
+			}
+			set
+			{
+				if ((this._AGE != value))
+				{
+					this._AGE = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DATE_FROM_CFC", DbType="Date")]
+		public System.Nullable<System.DateTime> DATE_FROM_CFC
+		{
+			get
+			{
+				return this._DATE_FROM_CFC;
+			}
+			set
+			{
+				if ((this._DATE_FROM_CFC != value))
+				{
+					this._DATE_FROM_CFC = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_JUMLAH_APPROVAL_PERHARI", DbType="Int")]
+		public System.Nullable<int> JUMLAH_APPROVAL_PERHARI
+		{
+			get
+			{
+				return this._JUMLAH_APPROVAL_PERHARI;
+			}
+			set
+			{
+				if ((this._JUMLAH_APPROVAL_PERHARI != value))
+				{
+					this._JUMLAH_APPROVAL_PERHARI = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EMAIL", DbType="NVarChar(4000)")]
+		public string EMAIL
+		{
+			get
+			{
+				return this._EMAIL;
+			}
+			set
+			{
+				if ((this._EMAIL != value))
+				{
+					this._EMAIL = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_STATUS", DbType="VarChar(255)")]
+		public string STATUS
+		{
+			get
+			{
+				return this._STATUS;
+			}
+			set
+			{
+				if ((this._STATUS != value))
+				{
+					this._STATUS = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_APPROVER", DbType="VarChar(50)")]
+		public string APPROVER
+		{
+			get
+			{
+				return this._APPROVER;
+			}
+			set
+			{
+				if ((this._APPROVER != value))
+				{
+					this._APPROVER = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_WAKTU_APPROVAL", DbType="DateTime")]
+		public System.Nullable<System.DateTime> WAKTU_APPROVAL
+		{
+			get
+			{
+				return this._WAKTU_APPROVAL;
+			}
+			set
+			{
+				if ((this._WAKTU_APPROVAL != value))
+				{
+					this._WAKTU_APPROVAL = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_WAKTU_ABSEN", DbType="DateTime")]
+		public System.Nullable<System.DateTime> WAKTU_ABSEN
+		{
+			get
+			{
+				return this._WAKTU_ABSEN;
+			}
+			set
+			{
+				if ((this._WAKTU_ABSEN != value))
+				{
+					this._WAKTU_ABSEN = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OXYGEN_SATURATION", DbType="Float")]
+		public System.Nullable<double> OXYGEN_SATURATION
+		{
+			get
+			{
+				return this._OXYGEN_SATURATION;
+			}
+			set
+			{
+				if ((this._OXYGEN_SATURATION != value))
+				{
+					this._OXYGEN_SATURATION = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_HEART_RATE", DbType="Float")]
+		public System.Nullable<double> HEART_RATE
+		{
+			get
+			{
+				return this._HEART_RATE;
+			}
+			set
+			{
+				if ((this._HEART_RATE != value))
+				{
+					this._HEART_RATE = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SYSTOLIC", DbType="Float")]
+		public System.Nullable<double> SYSTOLIC
+		{
+			get
+			{
+				return this._SYSTOLIC;
+			}
+			set
+			{
+				if ((this._SYSTOLIC != value))
+				{
+					this._SYSTOLIC = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DIASTOLIC", DbType="Float")]
+		public System.Nullable<double> DIASTOLIC
+		{
+			get
+			{
+				return this._DIASTOLIC;
+			}
+			set
+			{
+				if ((this._DIASTOLIC != value))
+				{
+					this._DIASTOLIC = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TEMPRATURE", DbType="Float")]
+		public System.Nullable<double> TEMPRATURE
+		{
+			get
+			{
+				return this._TEMPRATURE;
+			}
+			set
+			{
+				if ((this._TEMPRATURE != value))
+				{
+					this._TEMPRATURE = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FACE_PICTURE_URL", DbType="VarChar(128)")]
+		public string FACE_PICTURE_URL
+		{
+			get
+			{
+				return this._FACE_PICTURE_URL;
+			}
+			set
+			{
+				if ((this._FACE_PICTURE_URL != value))
+				{
+					this._FACE_PICTURE_URL = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NOTE", DbType="VarChar(128)")]
+		public string NOTE
+		{
+			get
+			{
+				return this._NOTE;
+			}
+			set
+			{
+				if ((this._NOTE != value))
+				{
+					this._NOTE = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ATTENDANCE_NOTE", DbType="VarChar(128)")]
+		public string ATTENDANCE_NOTE
+		{
+			get
+			{
+				return this._ATTENDANCE_NOTE;
+			}
+			set
+			{
+				if ((this._ATTENDANCE_NOTE != value))
+				{
+					this._ATTENDANCE_NOTE = value;
 				}
 			}
 		}

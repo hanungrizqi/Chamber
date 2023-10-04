@@ -164,6 +164,8 @@
     <Content Include="Content\assets\css\themes\pulse.css" />
     <Content Include="Content\assets\css\themes\pulse.min.css" />
     <Content Include="Content\assets\fonts\simple-line-icons\Simple-Line-Icons.svg" />
+    <Content Include="Content\assets\jspdf\jspdf.plugin.autotable.js" />
+    <Content Include="Content\assets\jspdf\jspdf.plugin.autotable.min.js" />
     <Content Include="Content\assets\js\codebase.app.min.js" />
     <Content Include="Content\assets\js\codebase.app.min.txt" />
     <Content Include="Content\assets\js\lib\jquery.min.js" />
@@ -4352,6 +4354,7 @@
       <LastGenOutput>Cfm.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Content\assets\jspdf\jspdf.plugin.autotable.mjs" />
     <None Include="Models\Cfm.dbml.layout">
       <DependentUpon>Cfm.dbml</DependentUpon>
     </None>
@@ -4398,6 +4401,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="Content\assets\jspdf\index.d.ts" />
     <TypeScriptCompile Include="Content\assets\js\plugins\flatpickr\l10n\ar.d.ts" />
     <TypeScriptCompile Include="Content\assets\js\plugins\flatpickr\l10n\at.d.ts" />
     <TypeScriptCompile Include="Content\assets\js\plugins\flatpickr\l10n\az.d.ts" />

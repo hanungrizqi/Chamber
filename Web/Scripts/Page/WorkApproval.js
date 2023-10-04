@@ -9,13 +9,10 @@ $("document").ready(function () {
                 var startDate = selectedDates[0];
                 var endDate = selectedDates[1];
 
-                // Konversi ke format "YYYY-MM-DD"
-                var startDateLocal = startDate.toLocaleDateString('en-CA'); // Gunakan locale yang sesuai dengan format yang diinginkan
-                var endDateLocal = endDate.toLocaleDateString('en-CA'); // Gunakan locale yang sesuai dengan format yang diinginkan
+                var startDateLocal = startDate.toLocaleDateString('en-CA');
+                var endDateLocal = endDate.toLocaleDateString('en-CA');
 
-                // Update the table data source with the selected date range filter
                 table.ajax.url($("#web_link").val() + "/api/Approval/Get_ListApproval_Daterange/" + $("#hd_positid").val() + "/" + startDateLocal + "/" + endDateLocal).load();
-
             }
         },
     });
@@ -44,6 +41,37 @@ $(document).on('click', '.action-link', function (e) {
         Istirahats(approvalId);
     }
 });
+
+//// Add a click event handler for the "Download Report" button
+//$(document).on('click', '#downloadButton', function () {
+//    debugger
+//    var doc = new jsPDF();
+//    // Get the table body by ID
+//    var tableBody = document.getElementById('table-body');
+
+//    // Define the columns and rows from the table
+//    var columns = ['Name', 'Job Title', 'Status', 'Created On', 'Chamber'];
+//    var rows = [];
+
+//    // Iterate through table rows and extract data
+//    $('#tbl_approval tbody tr').each(function () {
+//        var rowData = [];
+//        $(this).find('td').each(function () {
+//            rowData.push($(this).text().trim());
+//        });
+//        rows.push(rowData);
+//    });
+
+//    // Add data to the PDF
+//    doc.autoTable({
+//        head: [columns],
+//        body: rows,
+//        styles: { fontSize: 12 },
+//    });
+
+//    // Save the PDF as "report.pdf" or any desired name
+//    doc.save('report.pdf');
+//});
 
 var table = $("#tbl_approval").DataTable({
     ajax: {
@@ -80,15 +108,6 @@ var table = $("#tbl_approval").DataTable({
                 var systo = row.SYSTOLIC;
                 var diasto = row.DIASTOLIC;
                 var tempra = row.TEMPRATURE;
-                //if (oxy/*email*/) {
-                //    //return data + '<p class="fs-sm text-muted mb-0">' + email + '</p>';
-                //    //return data + '<p class="fs-sm text-muted mb-0">OXYGEN : ' + oxy + '</p>';
-                //    var text = 'OXYGEN = ' + oxy + ', HEART RATE = ' + heart + ', SYSTOLIC = ' + systo + ', DIASTOLIC = ' + diasto + ', TEMPERATURE = ' + tempra;
-                //    return data + '<p class="fs-sm text-muted mb-0">' + text + '</p>';
-                //} else {
-                //    return data;
-                //}
-
                 var note = row.NOTE;
                 var text = '';
                 var noteValues = note.split(',');
@@ -183,11 +202,6 @@ var table = $("#tbl_approval").DataTable({
                     actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="BerhentiBekerja" href="#">Berhenti Bekerja</a></li>';
                     actions += '</ul>';
                 }
-                //actions += '<ul class="dropdown-menu">';
-                //actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Unfit" href="#">Unfit</a></li>';
-                //actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="FitndRestTime" href="#">Fit Need Rest Time</a></li>';
-                //actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="UnfitBParamedis" href="#">Unfit Butuh Paramedis</a></li>';
-                //actions += '</ul>';
                 actions += '</div>';
                 return actions;
             }
@@ -202,14 +216,18 @@ var table = $("#tbl_approval").DataTable({
                 rowCheckboxes[i].checked = isChecked;
             }
         });
+        var filterButton = document.getElementById('filterbuton');
+        debugger
+        var self = this;
         this.api()
-            .columns(5)
+            .columns(3)
             .every(function () {
                 var column = this;
-                var select = $('<select class="form-control form-control-sm" style="width:200px; display:inline-block; margin-left: 10px;"><option value="">-- CHAMBER --</option></select>')
+                var select = $('<select class="form-control form-control-sm" style="width:200px; display:inline-block; margin-left: 10px;"><option value="">-- STATUS --</option></select>')
                     .appendTo($("#tbl_approval_filter.dataTables_filter"))
                     .on('change', function () {
                         var val = $.fn.dataTable.util.escapeRegex($(this).val());
+                        console.log('Selected value:',val);
                         column.search(val ? '^' + val + '$' : '', true, false).draw();
                     });
                 column
@@ -223,34 +241,57 @@ var table = $("#tbl_approval").DataTable({
         $("#search").on("keyup", function () {
             table.search(this.value).draw();
         });
+        filterButton.addEventListener('click', function () {
+            // Memanggil fungsi yang menampilkan isi filter
+            self.api()
+                .columns(3)
+                .every(function () {
+                    var column = this;
+                    var select = $('<select class="form-control form-control-sm" style="width:200px; display:inline-block; margin-left: 10px;"><option value="">-- STATUS --</option></select>')
+                        .appendTo($("#tbl_approval_filter.dataTables_filter"))
+                        .on('change', function () {
+                            var val = $.fn.dataTable.util.escapeRegex($(this).val());
+                            console.log('Selected value:', val);
+                            column.search(val ? '^' + val + '$' : '', true, false).draw();
+                        });
+                    column
+                        .data()
+                        .unique()
+                        .sort()
+                        .each(function (d, j) {
+                            select.append('<option value="' + d + '">' + d + '</option>');
+                        });
+                });
+        });
     },
 });
 
-// Add this code to handle row clicks
-//$('#tbl_approval tbody').on('click', 'tr', function () {
-//    debugger
-//    var rowId = this.id; // Get the unique row ID
-//    var approvalId = rowId.split('_')[1]; // Extract the APPROVAL_ID
-//    // Construct the URL with the parameter
-//    var url = '/Approval/Detail?id=' + approvalId;
-//    // Redirect to the detail approval page
-//    window.location.href = url;
-//});
+$("#downloadButton").on("click", function () {
+    debugger
+    generatePDF();
+});
+
+$("#downloadButton2").on("click", function () {
+    debugger
+    generatePDF();
+});
+
+function generatePDF() {
+    debugger
+    var doc = new jsPDF();
+    doc.autoTable({ html: '#tbl_approval' });
+    doc.save('Approval.pdf');
+}
 
 $('#tbl_approval tbody').on('click', 'tr', function (e) {
     debugger
-    // Get the index of the clicked cell (td) within the row
     var columnIndex = $(e.target).closest('td').index();
     debugger
-
-    // Check if the clicked column is allowed to redirect to detail
     if (columnIndex === 1 || columnIndex === 2 || columnIndex === 3 || columnIndex === 4 || columnIndex === 5) {
         debugger
-        var rowId = this.id; // Get the unique row ID
-        var approvalId = rowId.split('_')[1]; // Extract the APPROVAL_ID
-        // Construct the URL with the parameter
+        var rowId = this.id;
+        var approvalId = rowId.split('_')[1];
         var url = '/Approval/Detail?id=' + approvalId;
-        // Redirect to the detail approval page
         window.location.href = url;
     }
 });
@@ -264,8 +305,6 @@ table.on('draw', function () {
 });
 
 
-
-// Fungsi untuk menangani tindakan "Approve" dengan parameter "APPROVAL_ID"
 function Unfit(approvalId) {
     debugger
     console.log('Unfit', approvalId);
