@@ -28,7 +28,8 @@ function PostLogin() {
         },
         success: function (data) {
             if (data.Remarks == true) {
-                MakeSession(obj.Username);
+                //MakeSession(obj.Username);
+                SearchRole(obj.Username);
             }
             else {
                 swal.fire({
@@ -74,7 +75,8 @@ function PostLogin2() {
         },
         success: function (data) {
             if (data.Remarks == true) {
-                MakeSession(obj.Username);
+                //MakeSession(obj.Username);
+                SearchRole(obj.Username);
             }
             else {
                 swal.fire({
@@ -96,8 +98,27 @@ function PostLogin2() {
     })
 }
 
-function MakeSession(nrp) {
-    //debugger
+var rol;
+function SearchRole(nrp) {
+    debugger
+    var obj = new Object();
+    obj.Username = $("#val-username").val();
+    obj.Password = $("#val-password").val();
+
+    $.ajax({
+        url: $("#web_link").val() + "/api/Master/Get_Roled/" + nrp, //URI,
+        type: "GET",
+        cache: false,
+        success: function (result) {
+            debugger
+            rol = result.Data.ID_Role;
+            MakeSession(obj.Username, rol)
+        }
+    });
+}
+
+function MakeSession(nrp, rol) {
+    debugger
     var obj = {
         NRP: nrp,
     };
@@ -110,7 +131,16 @@ function MakeSession(nrp) {
         contentType: "application/json; charset=utf-8",
         success: function (data) {
             if (data.Remarks == true) {
-                window.location.href = "/Home/Index";
+                debugger
+                if (rol != 3) {
+                    window.location.href = "/Home/Index";
+                }
+                else if (rol == 3) {
+                    window.location.href = "/EmpRecord/Index";
+                }
+                else {
+                    window.location.href = "/Home/Index";
+                }
             }
             else {
                 swal.fire({

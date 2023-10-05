@@ -42,12 +42,12 @@ namespace Web.Models
     partial void InsertTBL_M_USER(TBL_M_USER instance);
     partial void UpdateTBL_M_USER(TBL_M_USER instance);
     partial void DeleteTBL_M_USER(TBL_M_USER instance);
-    partial void InsertTBL_T_APPROVAL(TBL_T_APPROVAL instance);
-    partial void UpdateTBL_T_APPROVAL(TBL_T_APPROVAL instance);
-    partial void DeleteTBL_T_APPROVAL(TBL_T_APPROVAL instance);
     partial void InsertTBL_M_STATUS_CFM(TBL_M_STATUS_CFM instance);
     partial void UpdateTBL_M_STATUS_CFM(TBL_M_STATUS_CFM instance);
     partial void DeleteTBL_M_STATUS_CFM(TBL_M_STATUS_CFM instance);
+    partial void InsertTBL_T_APPROVAL(TBL_T_APPROVAL instance);
+    partial void UpdateTBL_T_APPROVAL(TBL_T_APPROVAL instance);
+    partial void DeleteTBL_T_APPROVAL(TBL_T_APPROVAL instance);
     #endregion
 		
 		public CfmDataContext() : 
@@ -160,22 +160,6 @@ namespace Web.Models
 			}
 		}
 		
-		public System.Data.Linq.Table<VW_T_APPROVAL> VW_T_APPROVALs
-		{
-			get
-			{
-				return this.GetTable<VW_T_APPROVAL>();
-			}
-		}
-		
-		public System.Data.Linq.Table<TBL_T_APPROVAL> TBL_T_APPROVALs
-		{
-			get
-			{
-				return this.GetTable<TBL_T_APPROVAL>();
-			}
-		}
-		
 		public System.Data.Linq.Table<TBL_M_STATUS_CFM> TBL_M_STATUS_CFMs
 		{
 			get
@@ -197,6 +181,22 @@ namespace Web.Models
 			get
 			{
 				return this.GetTable<VW_R_CFM_MANAGEMENT>();
+			}
+		}
+		
+		public System.Data.Linq.Table<TBL_T_APPROVAL> TBL_T_APPROVALs
+		{
+			get
+			{
+				return this.GetTable<TBL_T_APPROVAL>();
+			}
+		}
+		
+		public System.Data.Linq.Table<VW_T_APPROVAL> VW_T_APPROVALs
+		{
+			get
+			{
+				return this.GetTable<VW_T_APPROVAL>();
 			}
 		}
 	}
@@ -2093,6 +2093,604 @@ namespace Web.Models
 		}
 	}
 	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.TBL_M_STATUS_CFM")]
+	public partial class TBL_M_STATUS_CFM : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _ID_STATUS;
+		
+		private string _STATUS;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnID_STATUSChanging(int value);
+    partial void OnID_STATUSChanged();
+    partial void OnSTATUSChanging(string value);
+    partial void OnSTATUSChanged();
+    #endregion
+		
+		public TBL_M_STATUS_CFM()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID_STATUS", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int ID_STATUS
+		{
+			get
+			{
+				return this._ID_STATUS;
+			}
+			set
+			{
+				if ((this._ID_STATUS != value))
+				{
+					this.OnID_STATUSChanging(value);
+					this.SendPropertyChanging();
+					this._ID_STATUS = value;
+					this.SendPropertyChanged("ID_STATUS");
+					this.OnID_STATUSChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_STATUS", DbType="VarChar(255)")]
+		public string STATUS
+		{
+			get
+			{
+				return this._STATUS;
+			}
+			set
+			{
+				if ((this._STATUS != value))
+				{
+					this.OnSTATUSChanging(value);
+					this.SendPropertyChanging();
+					this._STATUS = value;
+					this.SendPropertyChanged("STATUS");
+					this.OnSTATUSChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.VW_User")]
+	public partial class VW_User
+	{
+		
+		private int _ID_Role;
+		
+		private string _Username;
+		
+		private string _NAME;
+		
+		private string _EMAIL;
+		
+		private string _DSTRCT_CODE;
+		
+		private string _RoleName;
+		
+		private string _POSITION_ID;
+		
+		public VW_User()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID_Role", DbType="Int NOT NULL")]
+		public int ID_Role
+		{
+			get
+			{
+				return this._ID_Role;
+			}
+			set
+			{
+				if ((this._ID_Role != value))
+				{
+					this._ID_Role = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Username", DbType="VarChar(150) NOT NULL", CanBeNull=false)]
+		public string Username
+		{
+			get
+			{
+				return this._Username;
+			}
+			set
+			{
+				if ((this._Username != value))
+				{
+					this._Username = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NAME", DbType="VarChar(61)")]
+		public string NAME
+		{
+			get
+			{
+				return this._NAME;
+			}
+			set
+			{
+				if ((this._NAME != value))
+				{
+					this._NAME = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EMAIL", DbType="NVarChar(4000)")]
+		public string EMAIL
+		{
+			get
+			{
+				return this._EMAIL;
+			}
+			set
+			{
+				if ((this._EMAIL != value))
+				{
+					this._EMAIL = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DSTRCT_CODE", DbType="VarChar(50)")]
+		public string DSTRCT_CODE
+		{
+			get
+			{
+				return this._DSTRCT_CODE;
+			}
+			set
+			{
+				if ((this._DSTRCT_CODE != value))
+				{
+					this._DSTRCT_CODE = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RoleName", DbType="NVarChar(150)")]
+		public string RoleName
+		{
+			get
+			{
+				return this._RoleName;
+			}
+			set
+			{
+				if ((this._RoleName != value))
+				{
+					this._RoleName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_POSITION_ID", DbType="Char(10)")]
+		public string POSITION_ID
+		{
+			get
+			{
+				return this._POSITION_ID;
+			}
+			set
+			{
+				if ((this._POSITION_ID != value))
+				{
+					this._POSITION_ID = value;
+				}
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.VW_R_CFM_MANAGEMENT")]
+	public partial class VW_R_CFM_MANAGEMENT
+	{
+		
+		private int _ID;
+		
+		private string _ID_CHAMBER;
+		
+		private string _LOKASI;
+		
+		private System.Nullable<int> _USDTDY;
+		
+		private System.Nullable<System.DateTime> _LSTUSD;
+		
+		public VW_R_CFM_MANAGEMENT()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", DbType="Int NOT NULL")]
+		public int ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this._ID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID_CHAMBER", DbType="VarChar(10)")]
+		public string ID_CHAMBER
+		{
+			get
+			{
+				return this._ID_CHAMBER;
+			}
+			set
+			{
+				if ((this._ID_CHAMBER != value))
+				{
+					this._ID_CHAMBER = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LOKASI", DbType="VarChar(255)")]
+		public string LOKASI
+		{
+			get
+			{
+				return this._LOKASI;
+			}
+			set
+			{
+				if ((this._LOKASI != value))
+				{
+					this._LOKASI = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_USDTDY", DbType="Int")]
+		public System.Nullable<int> USDTDY
+		{
+			get
+			{
+				return this._USDTDY;
+			}
+			set
+			{
+				if ((this._USDTDY != value))
+				{
+					this._USDTDY = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LSTUSD", DbType="DateTime")]
+		public System.Nullable<System.DateTime> LSTUSD
+		{
+			get
+			{
+				return this._LSTUSD;
+			}
+			set
+			{
+				if ((this._LSTUSD != value))
+				{
+					this._LSTUSD = value;
+				}
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.TBL_T_APPROVAL")]
+	public partial class TBL_T_APPROVAL : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _APPROVAL_ID;
+		
+		private System.Nullable<int> _ID_CFC;
+		
+		private System.Nullable<int> _ID_STATUS;
+		
+		private string _NRP;
+		
+		private System.Nullable<System.DateTime> _DATE_FROM_CFC;
+		
+		private System.Nullable<int> _JUMLAH_APPROVAL_PERHARI;
+		
+		private string _APPROVER;
+		
+		private System.Nullable<System.DateTime> _WAKTU_APPROVAL;
+		
+		private string _NOTED;
+		
+		private System.Nullable<int> _FLAG;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnAPPROVAL_IDChanging(int value);
+    partial void OnAPPROVAL_IDChanged();
+    partial void OnID_CFCChanging(System.Nullable<int> value);
+    partial void OnID_CFCChanged();
+    partial void OnID_STATUSChanging(System.Nullable<int> value);
+    partial void OnID_STATUSChanged();
+    partial void OnNRPChanging(string value);
+    partial void OnNRPChanged();
+    partial void OnDATE_FROM_CFCChanging(System.Nullable<System.DateTime> value);
+    partial void OnDATE_FROM_CFCChanged();
+    partial void OnJUMLAH_APPROVAL_PERHARIChanging(System.Nullable<int> value);
+    partial void OnJUMLAH_APPROVAL_PERHARIChanged();
+    partial void OnAPPROVERChanging(string value);
+    partial void OnAPPROVERChanged();
+    partial void OnWAKTU_APPROVALChanging(System.Nullable<System.DateTime> value);
+    partial void OnWAKTU_APPROVALChanged();
+    partial void OnNOTEDChanging(string value);
+    partial void OnNOTEDChanged();
+    partial void OnFLAGChanging(System.Nullable<int> value);
+    partial void OnFLAGChanged();
+    #endregion
+		
+		public TBL_T_APPROVAL()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_APPROVAL_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int APPROVAL_ID
+		{
+			get
+			{
+				return this._APPROVAL_ID;
+			}
+			set
+			{
+				if ((this._APPROVAL_ID != value))
+				{
+					this.OnAPPROVAL_IDChanging(value);
+					this.SendPropertyChanging();
+					this._APPROVAL_ID = value;
+					this.SendPropertyChanged("APPROVAL_ID");
+					this.OnAPPROVAL_IDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID_CFC", DbType="Int")]
+		public System.Nullable<int> ID_CFC
+		{
+			get
+			{
+				return this._ID_CFC;
+			}
+			set
+			{
+				if ((this._ID_CFC != value))
+				{
+					this.OnID_CFCChanging(value);
+					this.SendPropertyChanging();
+					this._ID_CFC = value;
+					this.SendPropertyChanged("ID_CFC");
+					this.OnID_CFCChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID_STATUS", DbType="Int")]
+		public System.Nullable<int> ID_STATUS
+		{
+			get
+			{
+				return this._ID_STATUS;
+			}
+			set
+			{
+				if ((this._ID_STATUS != value))
+				{
+					this.OnID_STATUSChanging(value);
+					this.SendPropertyChanging();
+					this._ID_STATUS = value;
+					this.SendPropertyChanged("ID_STATUS");
+					this.OnID_STATUSChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NRP", DbType="VarChar(50)")]
+		public string NRP
+		{
+			get
+			{
+				return this._NRP;
+			}
+			set
+			{
+				if ((this._NRP != value))
+				{
+					this.OnNRPChanging(value);
+					this.SendPropertyChanging();
+					this._NRP = value;
+					this.SendPropertyChanged("NRP");
+					this.OnNRPChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DATE_FROM_CFC", DbType="Date")]
+		public System.Nullable<System.DateTime> DATE_FROM_CFC
+		{
+			get
+			{
+				return this._DATE_FROM_CFC;
+			}
+			set
+			{
+				if ((this._DATE_FROM_CFC != value))
+				{
+					this.OnDATE_FROM_CFCChanging(value);
+					this.SendPropertyChanging();
+					this._DATE_FROM_CFC = value;
+					this.SendPropertyChanged("DATE_FROM_CFC");
+					this.OnDATE_FROM_CFCChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_JUMLAH_APPROVAL_PERHARI", DbType="Int")]
+		public System.Nullable<int> JUMLAH_APPROVAL_PERHARI
+		{
+			get
+			{
+				return this._JUMLAH_APPROVAL_PERHARI;
+			}
+			set
+			{
+				if ((this._JUMLAH_APPROVAL_PERHARI != value))
+				{
+					this.OnJUMLAH_APPROVAL_PERHARIChanging(value);
+					this.SendPropertyChanging();
+					this._JUMLAH_APPROVAL_PERHARI = value;
+					this.SendPropertyChanged("JUMLAH_APPROVAL_PERHARI");
+					this.OnJUMLAH_APPROVAL_PERHARIChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_APPROVER", DbType="VarChar(50)")]
+		public string APPROVER
+		{
+			get
+			{
+				return this._APPROVER;
+			}
+			set
+			{
+				if ((this._APPROVER != value))
+				{
+					this.OnAPPROVERChanging(value);
+					this.SendPropertyChanging();
+					this._APPROVER = value;
+					this.SendPropertyChanged("APPROVER");
+					this.OnAPPROVERChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_WAKTU_APPROVAL", DbType="DateTime")]
+		public System.Nullable<System.DateTime> WAKTU_APPROVAL
+		{
+			get
+			{
+				return this._WAKTU_APPROVAL;
+			}
+			set
+			{
+				if ((this._WAKTU_APPROVAL != value))
+				{
+					this.OnWAKTU_APPROVALChanging(value);
+					this.SendPropertyChanging();
+					this._WAKTU_APPROVAL = value;
+					this.SendPropertyChanged("WAKTU_APPROVAL");
+					this.OnWAKTU_APPROVALChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NOTED", DbType="VarChar(MAX)")]
+		public string NOTED
+		{
+			get
+			{
+				return this._NOTED;
+			}
+			set
+			{
+				if ((this._NOTED != value))
+				{
+					this.OnNOTEDChanging(value);
+					this.SendPropertyChanging();
+					this._NOTED = value;
+					this.SendPropertyChanged("NOTED");
+					this.OnNOTEDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FLAG", DbType="Int")]
+		public System.Nullable<int> FLAG
+		{
+			get
+			{
+				return this._FLAG;
+			}
+			set
+			{
+				if ((this._FLAG != value))
+				{
+					this.OnFLAGChanging(value);
+					this.SendPropertyChanging();
+					this._FLAG = value;
+					this.SendPropertyChanged("FLAG");
+					this.OnFLAGChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.VW_T_APPROVAL")]
 	public partial class VW_T_APPROVAL
 	{
@@ -2144,6 +2742,8 @@ namespace Web.Models
 		private string _NOTE;
 		
 		private string _ATTENDANCE_NOTE;
+		
+		private System.Nullable<int> _FLAG;
 		
 		public VW_T_APPROVAL()
 		{
@@ -2532,577 +3132,19 @@ namespace Web.Models
 				}
 			}
 		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.TBL_T_APPROVAL")]
-	public partial class TBL_T_APPROVAL : INotifyPropertyChanging, INotifyPropertyChanged
-	{
 		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _APPROVAL_ID;
-		
-		private System.Nullable<int> _ID_CFC;
-		
-		private System.Nullable<int> _ID_STATUS;
-		
-		private string _NRP;
-		
-		private System.Nullable<System.DateTime> _DATE_FROM_CFC;
-		
-		private System.Nullable<int> _JUMLAH_APPROVAL_PERHARI;
-		
-		private string _APPROVER;
-		
-		private System.Nullable<System.DateTime> _WAKTU_APPROVAL;
-		
-		private string _NOTED;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnAPPROVAL_IDChanging(int value);
-    partial void OnAPPROVAL_IDChanged();
-    partial void OnID_CFCChanging(System.Nullable<int> value);
-    partial void OnID_CFCChanged();
-    partial void OnID_STATUSChanging(System.Nullable<int> value);
-    partial void OnID_STATUSChanged();
-    partial void OnNRPChanging(string value);
-    partial void OnNRPChanged();
-    partial void OnDATE_FROM_CFCChanging(System.Nullable<System.DateTime> value);
-    partial void OnDATE_FROM_CFCChanged();
-    partial void OnJUMLAH_APPROVAL_PERHARIChanging(System.Nullable<int> value);
-    partial void OnJUMLAH_APPROVAL_PERHARIChanged();
-    partial void OnAPPROVERChanging(string value);
-    partial void OnAPPROVERChanged();
-    partial void OnWAKTU_APPROVALChanging(System.Nullable<System.DateTime> value);
-    partial void OnWAKTU_APPROVALChanged();
-    partial void OnNOTEDChanging(string value);
-    partial void OnNOTEDChanged();
-    #endregion
-		
-		public TBL_T_APPROVAL()
-		{
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_APPROVAL_ID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int APPROVAL_ID
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FLAG", DbType="Int")]
+		public System.Nullable<int> FLAG
 		{
 			get
 			{
-				return this._APPROVAL_ID;
+				return this._FLAG;
 			}
 			set
 			{
-				if ((this._APPROVAL_ID != value))
+				if ((this._FLAG != value))
 				{
-					this.OnAPPROVAL_IDChanging(value);
-					this.SendPropertyChanging();
-					this._APPROVAL_ID = value;
-					this.SendPropertyChanged("APPROVAL_ID");
-					this.OnAPPROVAL_IDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID_CFC", DbType="Int")]
-		public System.Nullable<int> ID_CFC
-		{
-			get
-			{
-				return this._ID_CFC;
-			}
-			set
-			{
-				if ((this._ID_CFC != value))
-				{
-					this.OnID_CFCChanging(value);
-					this.SendPropertyChanging();
-					this._ID_CFC = value;
-					this.SendPropertyChanged("ID_CFC");
-					this.OnID_CFCChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID_STATUS", DbType="Int")]
-		public System.Nullable<int> ID_STATUS
-		{
-			get
-			{
-				return this._ID_STATUS;
-			}
-			set
-			{
-				if ((this._ID_STATUS != value))
-				{
-					this.OnID_STATUSChanging(value);
-					this.SendPropertyChanging();
-					this._ID_STATUS = value;
-					this.SendPropertyChanged("ID_STATUS");
-					this.OnID_STATUSChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NRP", DbType="VarChar(50)")]
-		public string NRP
-		{
-			get
-			{
-				return this._NRP;
-			}
-			set
-			{
-				if ((this._NRP != value))
-				{
-					this.OnNRPChanging(value);
-					this.SendPropertyChanging();
-					this._NRP = value;
-					this.SendPropertyChanged("NRP");
-					this.OnNRPChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DATE_FROM_CFC", DbType="Date")]
-		public System.Nullable<System.DateTime> DATE_FROM_CFC
-		{
-			get
-			{
-				return this._DATE_FROM_CFC;
-			}
-			set
-			{
-				if ((this._DATE_FROM_CFC != value))
-				{
-					this.OnDATE_FROM_CFCChanging(value);
-					this.SendPropertyChanging();
-					this._DATE_FROM_CFC = value;
-					this.SendPropertyChanged("DATE_FROM_CFC");
-					this.OnDATE_FROM_CFCChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_JUMLAH_APPROVAL_PERHARI", DbType="Int")]
-		public System.Nullable<int> JUMLAH_APPROVAL_PERHARI
-		{
-			get
-			{
-				return this._JUMLAH_APPROVAL_PERHARI;
-			}
-			set
-			{
-				if ((this._JUMLAH_APPROVAL_PERHARI != value))
-				{
-					this.OnJUMLAH_APPROVAL_PERHARIChanging(value);
-					this.SendPropertyChanging();
-					this._JUMLAH_APPROVAL_PERHARI = value;
-					this.SendPropertyChanged("JUMLAH_APPROVAL_PERHARI");
-					this.OnJUMLAH_APPROVAL_PERHARIChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_APPROVER", DbType="VarChar(50)")]
-		public string APPROVER
-		{
-			get
-			{
-				return this._APPROVER;
-			}
-			set
-			{
-				if ((this._APPROVER != value))
-				{
-					this.OnAPPROVERChanging(value);
-					this.SendPropertyChanging();
-					this._APPROVER = value;
-					this.SendPropertyChanged("APPROVER");
-					this.OnAPPROVERChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_WAKTU_APPROVAL", DbType="DateTime")]
-		public System.Nullable<System.DateTime> WAKTU_APPROVAL
-		{
-			get
-			{
-				return this._WAKTU_APPROVAL;
-			}
-			set
-			{
-				if ((this._WAKTU_APPROVAL != value))
-				{
-					this.OnWAKTU_APPROVALChanging(value);
-					this.SendPropertyChanging();
-					this._WAKTU_APPROVAL = value;
-					this.SendPropertyChanged("WAKTU_APPROVAL");
-					this.OnWAKTU_APPROVALChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NOTED", DbType="VarChar(MAX)")]
-		public string NOTED
-		{
-			get
-			{
-				return this._NOTED;
-			}
-			set
-			{
-				if ((this._NOTED != value))
-				{
-					this.OnNOTEDChanging(value);
-					this.SendPropertyChanging();
-					this._NOTED = value;
-					this.SendPropertyChanged("NOTED");
-					this.OnNOTEDChanged();
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.TBL_M_STATUS_CFM")]
-	public partial class TBL_M_STATUS_CFM : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _ID_STATUS;
-		
-		private string _STATUS;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnID_STATUSChanging(int value);
-    partial void OnID_STATUSChanged();
-    partial void OnSTATUSChanging(string value);
-    partial void OnSTATUSChanged();
-    #endregion
-		
-		public TBL_M_STATUS_CFM()
-		{
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID_STATUS", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int ID_STATUS
-		{
-			get
-			{
-				return this._ID_STATUS;
-			}
-			set
-			{
-				if ((this._ID_STATUS != value))
-				{
-					this.OnID_STATUSChanging(value);
-					this.SendPropertyChanging();
-					this._ID_STATUS = value;
-					this.SendPropertyChanged("ID_STATUS");
-					this.OnID_STATUSChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_STATUS", DbType="VarChar(255)")]
-		public string STATUS
-		{
-			get
-			{
-				return this._STATUS;
-			}
-			set
-			{
-				if ((this._STATUS != value))
-				{
-					this.OnSTATUSChanging(value);
-					this.SendPropertyChanging();
-					this._STATUS = value;
-					this.SendPropertyChanged("STATUS");
-					this.OnSTATUSChanged();
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.VW_User")]
-	public partial class VW_User
-	{
-		
-		private int _ID_Role;
-		
-		private string _Username;
-		
-		private string _NAME;
-		
-		private string _EMAIL;
-		
-		private string _DSTRCT_CODE;
-		
-		private string _RoleName;
-		
-		private string _POSITION_ID;
-		
-		public VW_User()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID_Role", DbType="Int NOT NULL")]
-		public int ID_Role
-		{
-			get
-			{
-				return this._ID_Role;
-			}
-			set
-			{
-				if ((this._ID_Role != value))
-				{
-					this._ID_Role = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Username", DbType="VarChar(150) NOT NULL", CanBeNull=false)]
-		public string Username
-		{
-			get
-			{
-				return this._Username;
-			}
-			set
-			{
-				if ((this._Username != value))
-				{
-					this._Username = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NAME", DbType="VarChar(61)")]
-		public string NAME
-		{
-			get
-			{
-				return this._NAME;
-			}
-			set
-			{
-				if ((this._NAME != value))
-				{
-					this._NAME = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EMAIL", DbType="NVarChar(4000)")]
-		public string EMAIL
-		{
-			get
-			{
-				return this._EMAIL;
-			}
-			set
-			{
-				if ((this._EMAIL != value))
-				{
-					this._EMAIL = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DSTRCT_CODE", DbType="VarChar(50)")]
-		public string DSTRCT_CODE
-		{
-			get
-			{
-				return this._DSTRCT_CODE;
-			}
-			set
-			{
-				if ((this._DSTRCT_CODE != value))
-				{
-					this._DSTRCT_CODE = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RoleName", DbType="NVarChar(150)")]
-		public string RoleName
-		{
-			get
-			{
-				return this._RoleName;
-			}
-			set
-			{
-				if ((this._RoleName != value))
-				{
-					this._RoleName = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_POSITION_ID", DbType="Char(10)")]
-		public string POSITION_ID
-		{
-			get
-			{
-				return this._POSITION_ID;
-			}
-			set
-			{
-				if ((this._POSITION_ID != value))
-				{
-					this._POSITION_ID = value;
-				}
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.VW_R_CFM_MANAGEMENT")]
-	public partial class VW_R_CFM_MANAGEMENT
-	{
-		
-		private int _ID;
-		
-		private string _ID_CHAMBER;
-		
-		private string _LOKASI;
-		
-		private System.Nullable<int> _USDTDY;
-		
-		private System.Nullable<System.DateTime> _LSTUSD;
-		
-		public VW_R_CFM_MANAGEMENT()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", DbType="Int NOT NULL")]
-		public int ID
-		{
-			get
-			{
-				return this._ID;
-			}
-			set
-			{
-				if ((this._ID != value))
-				{
-					this._ID = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID_CHAMBER", DbType="VarChar(10)")]
-		public string ID_CHAMBER
-		{
-			get
-			{
-				return this._ID_CHAMBER;
-			}
-			set
-			{
-				if ((this._ID_CHAMBER != value))
-				{
-					this._ID_CHAMBER = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LOKASI", DbType="VarChar(255)")]
-		public string LOKASI
-		{
-			get
-			{
-				return this._LOKASI;
-			}
-			set
-			{
-				if ((this._LOKASI != value))
-				{
-					this._LOKASI = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_USDTDY", DbType="Int")]
-		public System.Nullable<int> USDTDY
-		{
-			get
-			{
-				return this._USDTDY;
-			}
-			set
-			{
-				if ((this._USDTDY != value))
-				{
-					this._USDTDY = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LSTUSD", DbType="DateTime")]
-		public System.Nullable<System.DateTime> LSTUSD
-		{
-			get
-			{
-				return this._LSTUSD;
-			}
-			set
-			{
-				if ((this._LSTUSD != value))
-				{
-					this._LSTUSD = value;
+					this._FLAG = value;
 				}
 			}
 		}

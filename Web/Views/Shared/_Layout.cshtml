@@ -212,61 +212,47 @@
                                 </h5>
                             </div>
                             <ul class="nav-items my-2 fs-sm">
-                                <li>
-                                    <a class="text-dark d-flex py-2" href="javascript:void(0)">
-                                        <div class="flex-shrink-0 me-2 ms-3">
-                                            <i class="fa fa-fw fa-check text-success"></i>
-                                        </div>
-                                        <div class="flex-grow-1 pe-2">
-                                            <p class="fw-medium mb-1">You’ve added @Session["LastaddUser"].ToString() account successfully!</p>
-                                            <div class="text-muted">@Session["LastaddUserDate"].ToString()</div>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="text-dark d-flex py-2" href="/Approval/Index">
-                                        <div class="flex-shrink-0 me-2 ms-3">
-                                            <i class="fa fa-fw fa-exclamation-triangle text-warning"></i>
-                                        </div>
-                                        <div class="flex-grow-1 pe-2">
-                                            <p class="fw-medium mb-1">@Session["Counted"].ToString() Approval from all site found. Check at Work Approval menu!</p>
-                                            <div class="text-muted">@Session["LastCFC"].ToString()</div>
-                                        </div>
-                                    </a>
-                                </li>
-                                @*<li>
-                                        <a class="text-dark d-flex py-2" href="javascript:void(0)">
-                                            <div class="flex-shrink-0 me-2 ms-3">
-                                                <i class="fa fa-fw fa-times text-danger"></i>
-                                            </div>
-                                            <div class="flex-grow-1 pe-2">
-                                                <p class="fw-medium mb-1">Web server stopped responding and it was automatically restarted!</p>
-                                                <div class="text-muted">4 hours ago</div>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a class="text-dark d-flex py-2" href="javascript:void(0)">
-                                            <div class="flex-shrink-0 me-2 ms-3">
-                                                <i class="fa fa-fw fa-exclamation-triangle text-warning"></i>
-                                            </div>
-                                            <div class="flex-grow-1 pe-2">
-                                                <p class="fw-medium mb-1">Please consider upgrading your plan. You are running out of space.</p>
-                                                <div class="text-muted">16 hours ago</div>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a class="text-dark d-flex py-2" href="javascript:void(0)">
-                                            <div class="flex-shrink-0 me-2 ms-3">
-                                                <i class="fa fa-fw fa-plus text-primary"></i>
-                                            </div>
-                                            <div class="flex-grow-1 pe-2">
-                                                <p class="fw-medium mb-1">New purchases! +$250</p>
-                                                <div class="text-muted">1 day ago</div>
-                                            </div>
-                                        </a>
-                                    </li>*@
+                                @if (Session["ID_Role"] != null) {
+                                    if (Session["ID_Role"].ToString() == "1") 
+                                    {
+                                        <li>
+                                            <a class="text-dark d-flex py-2" href="javascript:void(0)">
+                                                <div class="flex-shrink-0 me-2 ms-3">
+                                                    <i class="fa fa-fw fa-check text-success"></i>
+                                                </div>
+                                                <div class="flex-grow-1 pe-2">
+                                                    <p class="fw-medium mb-1">You’ve added @Session["LastaddUser"].ToString() account successfully!</p>
+                                                    <div class="text-muted">@Session["LastaddUserDate"].ToString()</div>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a class="text-dark d-flex py-2" href="/Approval/Index">
+                                                <div class="flex-shrink-0 me-2 ms-3">
+                                                    <i class="fa fa-fw fa-exclamation-triangle text-warning"></i>
+                                                </div>
+                                                <div class="flex-grow-1 pe-2">
+                                                    <p class="fw-medium mb-1">@Session["Counted"].ToString() Approval from all site found. Check at Work Approval menu!</p>
+                                                    <div class="text-muted">@Session["LastCFC"].ToString()</div>
+                                                </div>
+                                            </a>
+                                        </li>
+                                    }
+                                    else 
+                                    { 
+                                        <li>
+                                            <a class="text-dark d-flex py-2" href="/Approval/Index">
+                                                <div class="flex-shrink-0 me-2 ms-3">
+                                                    <i class="fa fa-fw fa-exclamation-triangle text-warning"></i>
+                                                </div>
+                                                <div class="flex-grow-1 pe-2">
+                                                    <p class="fw-medium mb-1">@Session["Counted"].ToString() Approval from all site found. Check at Work Approval menu!</p>
+                                                    <div class="text-muted">@Session["LastCFC"].ToString()</div>
+                                                </div>
+                                            </a>
+                                        </li>
+                                    }
+                                }
                             </ul>
                             <div class="p-2 bg-body-light rounded-bottom">
                                 <a class="dropdown-item text-center mb-0" href="javascript:void(0)">

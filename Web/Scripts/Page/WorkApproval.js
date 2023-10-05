@@ -42,37 +42,6 @@ $(document).on('click', '.action-link', function (e) {
     }
 });
 
-//// Add a click event handler for the "Download Report" button
-//$(document).on('click', '#downloadButton', function () {
-//    debugger
-//    var doc = new jsPDF();
-//    // Get the table body by ID
-//    var tableBody = document.getElementById('table-body');
-
-//    // Define the columns and rows from the table
-//    var columns = ['Name', 'Job Title', 'Status', 'Created On', 'Chamber'];
-//    var rows = [];
-
-//    // Iterate through table rows and extract data
-//    $('#tbl_approval tbody tr').each(function () {
-//        var rowData = [];
-//        $(this).find('td').each(function () {
-//            rowData.push($(this).text().trim());
-//        });
-//        rows.push(rowData);
-//    });
-
-//    // Add data to the PDF
-//    doc.autoTable({
-//        head: [columns],
-//        body: rows,
-//        styles: { fontSize: 12 },
-//    });
-
-//    // Save the PDF as "report.pdf" or any desired name
-//    doc.save('report.pdf');
-//});
-
 var table = $("#tbl_approval").DataTable({
     ajax: {
         //url: $("#web_link").val() + "/api/Approval/Get_ListApproval",
@@ -151,19 +120,19 @@ var table = $("#tbl_approval").DataTable({
             render: function (data, type, row) {
                 let text = '';
                 if (data == "Fit") {
-                    text = `<span class="badge" style="background-color: #dfffde; color: #4ffe55; font-size: 12px; font-family: Poppins; font-weight: 500; word-wrap: break-word;"><i class="fa fa-circle" style="font-size: 6px; vertical-align: middle; margin-top: -2px;"></i> ${data}</span>`;
+                    text = `<span class="badge" style="background-color: #dfffde; color: #4ffe55; font-size: 12px; font-family: Poppins; font-weight: 500; word-wrap: break-word;"><i class="fa fa-circle" style="font-size: 6px; vertical-align: middle; margin-top: -2px; margin-right: 4px;"></i>${data}</span>`;
                 } else if (data == "Unfit") {
-                    text = `<span class="badge" style="background-color: #ffdede; color: #fe4f4f; font-size: 12px; font-family: Poppins; font-weight: 500; word-wrap: break-word;"><i class="fa fa-circle" style="font-size: 6px; vertical-align: middle; margin-top: -2px;"></i> ${data}</span>`;
+                    text = `<span class="badge" style="background-color: #ffdede; color: #fe4f4f; font-size: 12px; font-family: Poppins; font-weight: 500; word-wrap: break-word;"><i class="fa fa-circle" style="font-size: 6px; vertical-align: middle; margin-top: -2px; margin-right: 4px;"></i>${data}</span>`;
                 } else if (data == "Retest") {
-                    text = `<span class="badge" style="background-color: #E3E3FF; color: #927FB3; font-size: 12px; font-family: Poppins; font-weight: 500; word-wrap: break-word;"><i class="fa fa-circle" style="font-size: 6px; vertical-align: middle; margin-top: -2px;"></i> ${data}</span>`;
+                    text = `<span class="badge" style="background-color: #E3E3FF; color: #927FB3; font-size: 12px; font-family: Poppins; font-weight: 500; word-wrap: break-word;"><i class="fa fa-circle" style="font-size: 6px; vertical-align: middle; margin-top: -2px; margin-right: 4px;"></i>${data}</span>`;
                 } else if (data == "Fit Need Rest Time") {
-                    text = `<span class="badge" style="background-color: #defeff; color: #4fecfe; font-size: 12px; font-family: Poppins; font-weight: 500; word-wrap: break-word;"><i class="fa fa-circle" style="font-size: 6px; vertical-align: middle; margin-top: -2px;"></i> ${data}</span>`;
+                    text = `<span class="badge" style="background-color: #defeff; color: #4fecfe; font-size: 12px; font-family: Poppins; font-weight: 500; word-wrap: break-word;"><i class="fa fa-circle" style="font-size: 6px; vertical-align: middle; margin-top: -2px; margin-right: 4px;"></i>${data}</span>`;
                 } else if (data == "Unfit Butuh Paramedis") {
-                    text = `<span class="badge" style="background-color: #ffdef3; color: #fe4f4f; font-size: 12px; font-family: Poppins; font-weight: 500; word-wrap: break-word;"><i class="fa fa-circle" style="font-size: 6px; vertical-align: middle; margin-top: -2px;"></i> ${data}</span>`;
+                    text = `<span class="badge" style="background-color: #ffdef3; color: #fe4f4f; font-size: 12px; font-family: Poppins; font-weight: 500; word-wrap: break-word;"><i class="fa fa-circle" style="font-size: 6px; vertical-align: middle; margin-top: -2px; margin-right: 4px;"></i>${data}</span>`;
                 } else if (data == "Istirahat") {
-                    text = `<span class="badge" style="background-color: #fff0de; color: #feb24f; font-size: 12px; font-family: Poppins; font-weight: 500; word-wrap: break-word;"><i class="fa fa-circle" style="font-size: 6px; vertical-align: middle; margin-top: -2px;"></i> ${data}</span>`;
+                    text = `<span class="badge" style="background-color: #fff0de; color: #feb24f; font-size: 12px; font-family: Poppins; font-weight: 500; word-wrap: break-word;"><i class="fa fa-circle" style="font-size: 6px; vertical-align: middle; margin-top: -2px; margin-right: 4px;"></i>${data}</span>`;
                 } else if (data == "Berhenti Bekerja") {
-                    text = `<span class="badge" style="background-color: #ff9999; color: #ff1c1c; font-size: 12px; font-family: Poppins; font-weight: 500; word-wrap: break-word;"><i class="fa fa-circle" style="font-size: 6px; vertical-align: middle; margin-top: -2px;"></i> ${data}</span>`;
+                    text = `<span class="badge" style="background-color: #ff9999; color: #ff1c1c; font-size: 12px; font-family: Poppins; font-weight: 500; word-wrap: break-word;"><i class="fa fa-circle" style="font-size: 6px; vertical-align: middle; margin-top: -2px; margin-right: 4px;"></i>${data}</span>`;
                 } else {
                     text = `<span class="badge bg-info">${data}</span>`;
                 }
@@ -216,9 +185,9 @@ var table = $("#tbl_approval").DataTable({
                 rowCheckboxes[i].checked = isChecked;
             }
         });
-        var filterButton = document.getElementById('filterbuton');
-        debugger
-        var self = this;
+        //var filterButton = document.getElementById('filterbuton');
+        //debugger
+        //var self = this;
         this.api()
             .columns(3)
             .every(function () {
@@ -235,34 +204,35 @@ var table = $("#tbl_approval").DataTable({
                     .unique()
                     .sort()
                     .each(function (d, j) {
+                        debugger
                         select.append('<option value="' + d + '">' + d + '</option>');
                     });
             });
         $("#search").on("keyup", function () {
             table.search(this.value).draw();
         });
-        filterButton.addEventListener('click', function () {
-            // Memanggil fungsi yang menampilkan isi filter
-            self.api()
-                .columns(3)
-                .every(function () {
-                    var column = this;
-                    var select = $('<select class="form-control form-control-sm" style="width:200px; display:inline-block; margin-left: 10px;"><option value="">-- STATUS --</option></select>')
-                        .appendTo($("#tbl_approval_filter.dataTables_filter"))
-                        .on('change', function () {
-                            var val = $.fn.dataTable.util.escapeRegex($(this).val());
-                            console.log('Selected value:', val);
-                            column.search(val ? '^' + val + '$' : '', true, false).draw();
-                        });
-                    column
-                        .data()
-                        .unique()
-                        .sort()
-                        .each(function (d, j) {
-                            select.append('<option value="' + d + '">' + d + '</option>');
-                        });
-                });
-        });
+        //filterButton.addEventListener('click', function () {
+        //    // Memanggil fungsi yang menampilkan isi filter
+        //    self.api()
+        //        .columns(3)
+        //        .every(function () {
+        //            var column = this;
+        //            var select = $('<select class="form-control form-control-sm" style="width:200px; display:inline-block; margin-left: 10px;"><option value="">-- STATUS --</option></select>')
+        //                .appendTo($("#tbl_approval_filter.dataTables_filter"))
+        //                .on('change', function () {
+        //                    var val = $.fn.dataTable.util.escapeRegex($(this).val());
+        //                    console.log('Selected value:', val);
+        //                    column.search(val ? '^' + val + '$' : '', true, false).draw();
+        //                });
+        //            column
+        //                .data()
+        //                .unique()
+        //                .sort()
+        //                .each(function (d, j) {
+        //                    select.append('<option value="' + d + '">' + d + '</option>');
+        //                });
+        //        });
+        //});
     },
 });
 

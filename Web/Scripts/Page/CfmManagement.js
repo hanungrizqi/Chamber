@@ -1,4 +1,22 @@
-﻿Codebase.helpersOnLoad(['cb-table-tools-checkable', 'cb-table-tools-sections']);
+﻿Codebase.helpersOnLoad(['cb-table-tools-checkable', 'cb-table-tools-sections', 'js-flatpickr', 'jq-datepicker', 'jq-colorpicker', 'jq-maxlength', 'jq-select2', 'jq-rangeslider', 'jq-masked-inputs', 'jq-pw-strength']);
+
+$("document").ready(function () {
+    $("#example-flatpickr-range").flatpickr({
+        mode: "range",
+        onChange: function (selectedDates, dateStr, instance) {
+            if (selectedDates.length === 2) {
+                debugger
+                var startDate = selectedDates[0];
+                var endDate = selectedDates[1];
+
+                var startDateLocal = startDate.toLocaleDateString('en-CA');
+                var endDateLocal = endDate.toLocaleDateString('en-CA');
+
+                table.ajax.url($("#web_link").val() + "/api/CfmManagement/Get_ListChambers_Daterange/" + startDateLocal + "/" + endDateLocal).load();
+            }
+        },
+    });
+})
 
 $(document).on('click', '.action-link', function (e) {
     e.preventDefault();
@@ -93,6 +111,23 @@ var table = $("#tbl_cfmmngmnt").DataTable({
         });
     },
 });
+
+$("#downloadButton").on("click", function () {
+    debugger
+    generatePDF();
+});
+
+$("#downloadButton2").on("click", function () {
+    debugger
+    generatePDF();
+});
+
+function generatePDF() {
+    debugger
+    var doc = new jsPDF();
+    doc.autoTable({ html: '#tbl_cfmmngmnt' });
+    doc.save('CfmManagement.pdf');
+}
 
 table.on('draw', function () {
     var visibleCheckboxes = document.querySelectorAll('#tbl_cfmmngmnt tbody .row-checkbox:checked');

@@ -1,4 +1,25 @@
-﻿Codebase.helpersOnLoad(['cb-table-tools-checkable', 'cb-table-tools-sections']);
+﻿Codebase.helpersOnLoad(['cb-table-tools-checkable', 'cb-table-tools-sections', 'js-flatpickr']);
+
+$("document").ready(function () {
+    $("#example-flatpickr-range").flatpickr({
+        mode: "range",
+        onChange: function (selectedDates, dateStr, instance) {
+            if (selectedDates.length === 2) {
+                debugger
+                var startDate = selectedDates[0];
+                var endDate = selectedDates[1];
+
+                // Konversi ke format "YYYY-MM-DD"
+                var startDateLocal = startDate.toLocaleDateString('en-CA'); // Gunakan locale yang sesuai dengan format yang diinginkan
+                var endDateLocal = endDate.toLocaleDateString('en-CA'); // Gunakan locale yang sesuai dengan format yang diinginkan
+
+                // Update the table data source with the selected date range filter
+                table.ajax.url($("#web_link").val() + "/api/Emprecord/Get_ListEmprecord_Daterange/" + $("#hd_positid").val() + "/" + startDateLocal + "/" + endDateLocal).load();
+
+            }
+        },
+    });
+})
 
 $(document).on('click', '.action-link', function (e) {
     e.preventDefault();
@@ -69,7 +90,7 @@ var table = $("#tbl_empr").DataTable({
                 var text = '';
                 var noteValues = note.split(',');
                 for (var i = 0; i < noteValues.length; i++) {
-                    debugger
+                    //debugger
                     var noteValue = noteValues[i].trim();
                     switch (noteValue) {
                         case 'heart_rate':
@@ -108,19 +129,19 @@ var table = $("#tbl_empr").DataTable({
             render: function (data, type, row) {
                 let text = '';
                 if (data == "Fit") {
-                    text = `<span class="badge" style="background-color: #dfffde; color: #4ffe55; font-size: 12px; font-family: Poppins; font-weight: 500; word-wrap: break-word;"><i class="fa fa-circle" style="font-size: 6px; vertical-align: middle; margin-top: -2px;"></i> ${data}</span>`;
+                    text = `<span class="badge" style="background-color: #dfffde; color: #4ffe55; font-size: 12px; font-family: Poppins; font-weight: 500; word-wrap: break-word;"><i class="fa fa-circle" style="font-size: 6px; vertical-align: middle; margin-top: -2px; margin-right: 4px;"></i>${data}</span>`;
                 } else if (data == "Unfit") {
-                    text = `<span class="badge" style="background-color: #ffdede; color: #fe4f4f; font-size: 12px; font-family: Poppins; font-weight: 500; word-wrap: break-word;"><i class="fa fa-circle" style="font-size: 6px; vertical-align: middle; margin-top: -2px;"></i> ${data}</span>`;
+                    text = `<span class="badge" style="background-color: #ffdede; color: #fe4f4f; font-size: 12px; font-family: Poppins; font-weight: 500; word-wrap: break-word;"><i class="fa fa-circle" style="font-size: 6px; vertical-align: middle; margin-top: -2px; margin-right: 4px;"></i>${data}</span>`;
                 } else if (data == "Retest") {
-                    text = `<span class="badge" style="background-color: #E3E3FF; color: #927FB3; font-size: 12px; font-family: Poppins; font-weight: 500; word-wrap: break-word;"><i class="fa fa-circle" style="font-size: 6px; vertical-align: middle; margin-top: -2px;"></i> ${data}</span>`;
+                    text = `<span class="badge" style="background-color: #E3E3FF; color: #927FB3; font-size: 12px; font-family: Poppins; font-weight: 500; word-wrap: break-word;"><i class="fa fa-circle" style="font-size: 6px; vertical-align: middle; margin-top: -2px; margin-right: 4px;"></i>${data}</span>`;
                 } else if (data == "Fit Need Rest Time") {
-                    text = `<span class="badge" style="background-color: #defeff; color: #4fecfe; font-size: 12px; font-family: Poppins; font-weight: 500; word-wrap: break-word;"><i class="fa fa-circle" style="font-size: 6px; vertical-align: middle; margin-top: -2px;"></i> ${data}</span>`;
+                    text = `<span class="badge" style="background-color: #defeff; color: #4fecfe; font-size: 12px; font-family: Poppins; font-weight: 500; word-wrap: break-word;"><i class="fa fa-circle" style="font-size: 6px; vertical-align: middle; margin-top: -2px; margin-right: 4px;"></i>${data}</span>`;
                 } else if (data == "Unfit Butuh Paramedis") {
-                    text = `<span class="badge" style="background-color: #ffdef3; color: #fe4f4f; font-size: 12px; font-family: Poppins; font-weight: 500; word-wrap: break-word;"><i class="fa fa-circle" style="font-size: 6px; vertical-align: middle; margin-top: -2px;"></i> ${data}</span>`;
+                    text = `<span class="badge" style="background-color: #ffdef3; color: #fe4f4f; font-size: 12px; font-family: Poppins; font-weight: 500; word-wrap: break-word;"><i class="fa fa-circle" style="font-size: 6px; vertical-align: middle; margin-top: -2px; margin-right: 4px;"></i>${data}</span>`;
                 } else if (data == "Istirahat") {
-                    text = `<span class="badge" style="background-color: #fff0de; color: #feb24f; font-size: 12px; font-family: Poppins; font-weight: 500; word-wrap: break-word;"><i class="fa fa-circle" style="font-size: 6px; vertical-align: middle; margin-top: -2px;"></i> ${data}</span>`;
+                    text = `<span class="badge" style="background-color: #fff0de; color: #feb24f; font-size: 12px; font-family: Poppins; font-weight: 500; word-wrap: break-word;"><i class="fa fa-circle" style="font-size: 6px; vertical-align: middle; margin-top: -2px; margin-right: 4px;"></i>${data}</span>`;
                 } else if (data == "Berhenti Bekerja") {
-                    text = `<span class="badge" style="background-color: #ff9999; color: #ff1c1c; font-size: 12px; font-family: Poppins; font-weight: 500; word-wrap: break-word;"><i class="fa fa-circle" style="font-size: 6px; vertical-align: middle; margin-top: -2px;"></i> ${data}</span>`;
+                    text = `<span class="badge" style="background-color: #ff9999; color: #ff1c1c; font-size: 12px; font-family: Poppins; font-weight: 500; word-wrap: break-word;"><i class="fa fa-circle" style="font-size: 6px; vertical-align: middle; margin-top: -2px; margin-right: 4px;"></i>${data}</span>`;
                 } else {
                     text = `<span class="badge bg-info">${data}</span>`;
                 }
@@ -142,14 +163,16 @@ var table = $("#tbl_empr").DataTable({
             render: function (data, type, row) {
                 var actions = '<div class="btn-group">';
                 actions += '<button class="btn btn-sm" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-ellipsis-vertical"></i></button>';
-                actions += '<ul class="dropdown-menu dropdown-menu-right">';
-                actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Unfit" href="#">Unfit</a></li>';
-                actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Fit Need Rest Time" href="#">Fit Need Rest Time</a></li>';
-                actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Unfit Butuh Paramedis" href="#">Unfit Butuh Paramedis</a></li>';
-                actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Retest" href="#">Retest</a></li>';
-                actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Istirahat" href="#">Istirahat</a></li>';
-                actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Berhenti Bekerja" href="#">Berhenti Bekerja</a></li>';
-                actions += '</ul>';
+                if ($("#hd_idroles").val() != 3) {
+                    actions += '<ul class="dropdown-menu dropdown-menu-right">';
+                    actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Unfit" href="#">Unfit</a></li>';
+                    actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Fit Need Rest Time" href="#">Fit Need Rest Time</a></li>';
+                    actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Unfit Butuh Paramedis" href="#">Unfit Butuh Paramedis</a></li>';
+                    actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Retest" href="#">Retest</a></li>';
+                    actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Istirahat" href="#">Istirahat</a></li>';
+                    actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Berhenti Bekerja" href="#">Berhenti Bekerja</a></li>';
+                    actions += '</ul>';
+                }
                 actions += '</div>';
                 return actions;
             }
@@ -165,10 +188,10 @@ var table = $("#tbl_empr").DataTable({
             }
         });
         this.api()
-            .columns(5)
+            .columns(3)
             .every(function () {
                 var column = this;
-                var select = $('<select class="form-control form-control-sm" style="width:200px; display:inline-block; margin-left: 10px;"><option value="">-- CHAMBER --</option></select>')
+                var select = $('<select class="form-control form-control-sm" style="width:200px; display:inline-block; margin-left: 10px;"><option value="">-- LAST STATUS --</option></select>')
                     .appendTo($("#tbl_empr_filter.dataTables_filter"))
                     .on('change', function () {
                         var val = $.fn.dataTable.util.escapeRegex($(this).val());
@@ -187,6 +210,23 @@ var table = $("#tbl_empr").DataTable({
         });
     },
 });
+
+$("#downloadButton").on("click", function () {
+    debugger
+    generatePDF();
+});
+
+$("#downloadButton2").on("click", function () {
+    debugger
+    generatePDF();
+});
+
+function generatePDF() {
+    debugger
+    var doc = new jsPDF();
+    doc.autoTable({ html: '#tbl_empr' });
+    doc.save('EmployeeRecord.pdf');
+}
 
 $('#tbl_empr tbody').on('click', 'tr', function (e) {
     debugger

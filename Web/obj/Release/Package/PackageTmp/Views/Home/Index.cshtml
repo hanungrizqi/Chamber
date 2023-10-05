@@ -15,7 +15,7 @@
                 </div>
                 <div class="ms-1 text-start">
                     <p class="fs-sm text-uppercase fw-semibold text-muted mb-0">
-                        Total Karyawan Masuk
+                        Total Karyawan Masuk Chamber
                     </p>
                     <p class="fs-lg fw-semibold mb-0">
                         @Session["KaryawanMasuk"].ToString()
@@ -84,10 +84,10 @@
                         Prosentase Fatigue
                     </p>
                     <p class="fs-lg fw-semibold mb-0">
-                        16
+                        -
                     </p>
                     <p class="fw-normal mb-0" style="font-size: small">
-                        Update Terakhir
+                        -
                     </p>
                 </div>
                 <br />
@@ -105,10 +105,10 @@
                         Sudah Approved
                     </p>
                     <p class="fs-lg fw-semibold mb-0">
-                        5605
+                        @Session["SudahApproved"].ToString()
                     </p>
                     <p class="fw-normal mb-0" style="font-size: small">
-                        Update Terakhir
+                        @Session["UpdateTerakhirSudahApproved"].ToString()
                     </p>
                 </div>
                 <br />
@@ -126,10 +126,10 @@
                         Butuh Approval
                     </p>
                     <p class="fs-lg fw-semibold mb-0">
-                        44
+                        @Session["ButuhApproval"].ToString()
                     </p>
                     <p class="fw-normal mb-0" style="font-size: small">
-                        Update Terakhir
+                        @Session["UpdateTerakhirButuhApproval"].ToString()
                     </p>
                 </div>
                 <br />
@@ -147,10 +147,10 @@
                         Akan Re-test
                     </p>
                     <p class="fs-lg fw-semibold mb-0">
-                        100
+                        @Session["AkanRetest"].ToString()
                     </p>
                     <p class="fw-normal mb-0" style="font-size: small">
-                        Update Terakhir
+                        @Session["UpdateTerakhirRetest"].ToString()
                     </p>
                 </div>
                 <br />

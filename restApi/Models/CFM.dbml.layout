@@ -92,28 +92,10 @@
         <elementListCompartment Id="b2359542-5fff-4166-ad41-39051ad0e0c3" absoluteBounds="0.51500000000000012, 2.46, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="45a3ba34-14b6-4e6e-a92d-468ede205ded" isExpanded="false" absoluteBounds="6.875, 5, 2, 0.45">
-      <DataClassMoniker Name="/CFMDataContext/VW_R_CFM_MANAGEMENT" />
-      <nestedChildShapes>
-        <elementListCompartment Id="7bd11276-9f20-4274-96e3-c251af4b47e4" absoluteBounds="6.89, 5.46, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
     <classShape Id="fe9e0cc4-8161-4355-ae1f-2d5dc567bac5" isExpanded="false" absoluteBounds="0.5, 1.5, 2, 0.45">
       <DataClassMoniker Name="/CFMDataContext/TBL_M_USER" />
       <nestedChildShapes>
         <elementListCompartment Id="2fdb1c89-5d79-4dbc-b456-f8e03e6f31ce" absoluteBounds="0.51499999999999968, 1.96, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="abf71e05-99b4-4f25-b776-9446fdf45362" isExpanded="false" absoluteBounds="6.875, 4.5, 2, 0.45">
-      <DataClassMoniker Name="/CFMDataContext/VW_T_APPROVAL" />
-      <nestedChildShapes>
-        <elementListCompartment Id="c75164e7-08b3-416b-9455-0c89a4859cc4" absoluteBounds="6.89, 4.96, 1.9700000000000002, 4.8646240234375" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="e39ec4d7-4c96-41e8-ac31-a5ec2c79aaa1" isExpanded="false" absoluteBounds="4.75, 0.5, 2, 0.45">
-      <DataClassMoniker Name="/CFMDataContext/TBL_T_APPROVAL" />
-      <nestedChildShapes>
-        <elementListCompartment Id="2c68eb7d-2e45-4468-8275-440568af3617" absoluteBounds="4.765, 0.96, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
     <classShape Id="b16889ba-273f-4ec4-ac01-f8d2c48ced49" isExpanded="false" absoluteBounds="6.875, 3.5, 2, 0.45">
@@ -126,6 +108,24 @@
       <DataClassMoniker Name="/CFMDataContext/VW_R_MOBILE" />
       <nestedChildShapes>
         <elementListCompartment Id="bb348af9-6fe5-495a-87e8-f06db84732d9" absoluteBounds="6.89, 5.96, 1.9700000000000002, 5.0569254557291661" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="dc7faa6d-649c-4020-b452-49f4ed0114d5" isExpanded="false" absoluteBounds="6.875, 5, 2, 0.45">
+      <DataClassMoniker Name="/CFMDataContext/VW_R_CFM_MANAGEMENT" />
+      <nestedChildShapes>
+        <elementListCompartment Id="eaab7bd0-9b40-448c-86a3-3ab81f327ac6" absoluteBounds="6.8900000000000006, 5.46, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="e596ac8d-416b-4502-bb40-d6d65328c9a1" isExpanded="false" absoluteBounds="6.875, 4.5, 2, 0.45">
+      <DataClassMoniker Name="/CFMDataContext/VW_T_APPROVAL" />
+      <nestedChildShapes>
+        <elementListCompartment Id="8b677f25-3ec5-4e4e-99be-0bf5a1c87560" absoluteBounds="6.89, 4.96, 1.9700000000000002, 5.0569254557291661" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="6b10fedc-eefa-4c72-a499-14c624589cef" isExpanded="false" absoluteBounds="4.75, 0.5, 2, 0.45">
+      <DataClassMoniker Name="/CFMDataContext/TBL_T_APPROVAL" />
+      <nestedChildShapes>
+        <elementListCompartment Id="2b941266-ed03-44f9-bc49-8511cee43d38" absoluteBounds="4.765, 0.96, 1.9700000000000002, 2.1724039713541665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
   </nestedChildShapes>

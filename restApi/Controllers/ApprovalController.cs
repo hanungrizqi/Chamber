@@ -27,13 +27,13 @@ namespace restApi.Controllers
                 var excludedStatuses = new[] { 1, 5, 6, 7 };
                 if (isAdminorNot.ID_Role == 1)
                 {
-                    var data = db.VW_T_APPROVALs.Where(a => a.APPROVER == null && !excludedStatuses.Contains(a.ID_STATUS.Value)).OrderBy(a => a.APPROVAL_ID).ToList();
+                    var data = db.VW_T_APPROVALs.Where(a => a.FLAG == 0 && !excludedStatuses.Contains(a.ID_STATUS.Value)).OrderBy(a => a.APPROVAL_ID).ToList();
 
                     return Ok(new { Data = data });
                 }
                 else
                 {
-                    var data = db.VW_T_APPROVALs.Where(a => a.APPROVER == null && !excludedStatuses.Contains(a.ID_STATUS.Value) && a.ATASAN == posid).OrderBy(a => a.APPROVAL_ID).ToList();
+                    var data = db.VW_T_APPROVALs.Where(a => a.FLAG == 0 && !excludedStatuses.Contains(a.ID_STATUS.Value) && a.ATASAN == posid).OrderBy(a => a.APPROVAL_ID).ToList();
 
                     return Ok(new { Data = data });
                 }
@@ -59,11 +59,11 @@ namespace restApi.Controllers
 
                 if (isAdminorNot.ID_Role == 1)
                 {
-                    query = db.VW_T_APPROVALs.Where(a => a.APPROVER == null && !excludedStatuses.Contains(a.ID_STATUS.Value));
+                    query = db.VW_T_APPROVALs.Where(a => a.FLAG == 0 && !excludedStatuses.Contains(a.ID_STATUS.Value));
                 }
                 else
                 {
-                    query = db.VW_T_APPROVALs.Where(a => a.APPROVER == null && !excludedStatuses.Contains(a.ID_STATUS.Value) && a.ATASAN == posid);
+                    query = db.VW_T_APPROVALs.Where(a => a.FLAG == 0 && !excludedStatuses.Contains(a.ID_STATUS.Value) && a.ATASAN == posid);
                 }
 
                 // Parse startDate and endDate to DateTime
@@ -97,6 +97,7 @@ namespace restApi.Controllers
                     cek.ID_STATUS = chambers.ID_STATUS;
                     cek.APPROVER = chambers.APPROVER;
                     cek.WAKTU_APPROVAL = DateTime.UtcNow.ToLocalTime();
+                    cek.FLAG = 1;
 
                     db.SubmitChanges();
 
@@ -127,6 +128,7 @@ namespace restApi.Controllers
                     cek.APPROVER = chambers.APPROVER;
                     cek.WAKTU_APPROVAL = DateTime.UtcNow.ToLocalTime();
                     cek.NOTED = chambers.NOTED;
+                    cek.FLAG = 1;
 
                     db.SubmitChanges();
 

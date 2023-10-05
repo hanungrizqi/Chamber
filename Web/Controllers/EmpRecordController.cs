@@ -17,9 +17,18 @@ namespace Web.Controllers
             {
                 return RedirectToAction("index", "login");
             }
-            int countss = db.VW_T_APPROVALs.Count(a => a.APPROVER == null);
-
-            ViewBag.Count = countss;
+            if (Session["ID_Role"] != null && (int)Session["ID_Role"] == 1)
+            {
+                var excludedStatuses = new[] { 1, 5, 6, 7 };
+                int countss = db.VW_T_APPROVALs.Where(a => a.FLAG == 0 && !excludedStatuses.Contains(a.ID_STATUS.Value)).Count();
+                ViewBag.Count = countss;
+            }
+            else
+            {
+                var excludedStatuses = new[] { 1, 5, 6, 7 };
+                int countss = db.VW_T_APPROVALs.Where(a => a.FLAG == 0 && !excludedStatuses.Contains(a.ID_STATUS.Value) && a.ATASAN == Session["PositionID"].ToString()).Count();
+                ViewBag.Count = countss;
+            }
             return View();
         }
 
@@ -29,8 +38,18 @@ namespace Web.Controllers
             {
                 return RedirectToAction("index", "login");
             }
-            int countss = db.VW_T_APPROVALs.Count(a => a.APPROVER == null);
-            ViewBag.Count = countss;
+            if (Session["ID_Role"] != null && (int)Session["ID_Role"] == 1)
+            {
+                var excludedStatuses = new[] { 1, 5, 6, 7 };
+                int countss = db.VW_T_APPROVALs.Where(a => a.FLAG == 0 && !excludedStatuses.Contains(a.ID_STATUS.Value)).Count();
+                ViewBag.Count = countss;
+            }
+            else
+            {
+                var excludedStatuses = new[] { 1, 5, 6, 7 };
+                int countss = db.VW_T_APPROVALs.Where(a => a.FLAG == 0 && !excludedStatuses.Contains(a.ID_STATUS.Value) && a.ATASAN == Session["PositionID"].ToString()).Count();
+                ViewBag.Count = countss;
+            }
             ViewBag.id = id;
             return View();
         }

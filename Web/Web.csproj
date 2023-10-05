@@ -4362,6 +4362,7 @@
     <Content Include="Scripts\Page\CfmManagement.js" />
     <Content Include="Scripts\Page\EmpRecord.js" />
     <Content Include="Scripts\Page\EmpRecordDetail.js" />
+    <Content Include="Scripts\Page\Home.js" />
     <Content Include="Scripts\Page\login.js" />
     <Content Include="Scripts\Page\SettingMenu.js" />
     <Content Include="Scripts\Page\SettingUser.js" />

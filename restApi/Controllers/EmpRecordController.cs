@@ -22,15 +22,17 @@ namespace restApi.Controllers
             {
                 db.CommandTimeout = 120;
                 var isAdminorNot = db.VW_Users.Where(c => c.POSITION_ID == posid).FirstOrDefault();
+                var excludedStatuses = new[] { 1, 5, 6, 7 };
+
                 if (isAdminorNot.ID_Role == 1)
                 {
-                    var data = db.VW_T_APPROVALs.Where(a => a.APPROVER != null || a.ID_STATUS == 1).OrderBy(a => a.APPROVAL_ID).ToList();
+                    var data = db.VW_T_APPROVALs.Where(a => a.FLAG == 1 || excludedStatuses.Contains(a.ID_STATUS.Value)).OrderBy(a => a.APPROVAL_ID).ToList();
 
                     return Ok(new { Data = data });
                 }
                 else if (isAdminorNot.ID_Role == 2)
                 {
-                    var data = db.VW_T_APPROVALs.Where(a => a.ATASAN == posid && (a.APPROVER != null || a.ID_STATUS == 1)).OrderBy(a => a.APPROVAL_ID).ToList();
+                    var data = db.VW_T_APPROVALs.Where(a => a.ATASAN == posid && (a.FLAG == 1 || excludedStatuses.Contains(a.ID_STATUS.Value))).OrderBy(a => a.APPROVAL_ID).ToList();
 
                     return Ok(new { Data = data });
                 }
@@ -56,15 +58,16 @@ namespace restApi.Controllers
             {
                 db.CommandTimeout = 120;
                 var isAdminorNot = db.VW_Users.Where(c => c.POSITION_ID == posid).FirstOrDefault();
+                var excludedStatuses = new[] { 1, 5, 6, 7 };
                 IQueryable<VW_T_APPROVAL> query = null;
 
                 if (isAdminorNot.ID_Role == 1)
                 {
-                    query = db.VW_T_APPROVALs.Where(a => a.APPROVER != null || a.ID_STATUS == 1);
+                    query = db.VW_T_APPROVALs.Where(a => a.FLAG == 1 || excludedStatuses.Contains(a.ID_STATUS.Value));
                 }
                 else if (isAdminorNot.ID_Role == 2)
                 {
-                    query = db.VW_T_APPROVALs.Where(a => a.ATASAN == posid && (a.APPROVER != null || a.ID_STATUS == 1));
+                    query = db.VW_T_APPROVALs.Where(a => a.ATASAN == posid && (a.FLAG == 1 || excludedStatuses.Contains(a.ID_STATUS.Value)));
                 }
                 else
                 {
@@ -106,6 +109,7 @@ namespace restApi.Controllers
                     cek.ID_STATUS = chambers.ID_STATUS;
                     cek.APPROVER = chambers.APPROVER;
                     cek.WAKTU_APPROVAL = DateTime.UtcNow.ToLocalTime();
+                    cek.FLAG = 1;
 
                     db.SubmitChanges();
 
@@ -153,6 +157,7 @@ namespace restApi.Controllers
                     cek.APPROVER = chambers.APPROVER;
                     cek.WAKTU_APPROVAL = DateTime.UtcNow.ToLocalTime();
                     cek.NOTED = chambers.NOTED;
+                    cek.FLAG = 1;
 
                     db.SubmitChanges();
 

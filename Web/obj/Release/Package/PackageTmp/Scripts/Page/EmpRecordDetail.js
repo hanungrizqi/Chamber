@@ -4,6 +4,13 @@ $("document").ready(function () {
     Detail(function () {
         Status();
     });
+    var idProfile = $("#hd_idroles").val();
+    if (idProfile == 3) {
+        $("#tombolApprove").hide();
+    } else {
+        $("#tombolApprove").show();
+    }
+
 })
 
 var data2;

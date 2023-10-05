@@ -1,6 +1,7 @@
 ﻿using restApi.Models;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -21,6 +22,34 @@ namespace restApi.Controllers
             {
                 db.CommandTimeout = 120;
                 var data = db.VW_R_CFM_MANAGEMENTs.OrderBy(a => a.ID_CHAMBER).ToList();
+
+                return Ok(new { Data = data });
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
+        }
+
+        [HttpGet]
+        [Route("Get_ListChambers_Daterange/{startDate}/{endDate}")]
+        public IHttpActionResult Get_ListChambers_Daterange(string startDate, string endDate)
+        {
+            try
+            {
+                db.CommandTimeout = 120;
+                List<VW_R_CFM_MANAGEMENT> data = null; // Ubah tipe data menjadi List<VW_R_CFM_MANAGEMENT>
+
+                data = db.VW_R_CFM_MANAGEMENTs.OrderBy(a => a.ID_CHAMBER).ToList();
+
+                // Parse startDate and endDate to DateTime
+                DateTime parsedStartDate, parsedEndDate;
+                if (DateTime.TryParseExact(startDate, "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out parsedStartDate) &&
+                    DateTime.TryParseExact(endDate, "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out parsedEndDate))
+                {
+                    // Filter data by date range
+                    data = data.Where(a => a.LSTUSD >= parsedStartDate && a.LSTUSD <= parsedEndDate).ToList(); // Ubah ke List<T>
+                }
 
                 return Ok(new { Data = data });
             }
