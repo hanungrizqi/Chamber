@@ -364,6 +364,75 @@ namespace restApi.Controllers
                 return BadRequest();
             }
         }
+
+        [HttpGet]
+        [Route("TotalKaryawanUnfit_Datepicker/{posid}/{startDate}/{endDate}")]
+        public IHttpActionResult TotalKaryawanUnfit_Datepicker(string posid, string startDate, string endDate)
+        {
+            try
+            {
+                db.CommandTimeout = 120;
+                var isAdminorNot = db.VW_Users.Where(c => c.POSITION_ID == posid).FirstOrDefault();
+                List<VW_T_APPROVAL> data = null;
+
+                // Konversi string tanggal awal dan tanggal akhir menjadi DateTime
+                DateTime startDateDateTime = DateTime.Parse(startDate);
+                DateTime endDateDateTime = DateTime.Parse(endDate);
+
+                if (isAdminorNot.ID_Role == 1)
+                {
+                    data = db.VW_T_APPROVALs.Where(a => a.ID_STATUS == 2 && a.WAKTU_ABSEN >= startDateDateTime && a.WAKTU_ABSEN <= endDateDateTime).ToList();
+                }
+                else
+                {
+                    data = db.VW_T_APPROVALs.Where(a => a.ATASAN == posid && a.ID_STATUS == 2 && a.WAKTU_ABSEN >= startDateDateTime && a.WAKTU_ABSEN <= endDateDateTime).ToList();
+                }
+
+                return Ok(new { Data = data, Total = data.Count() });
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
+        }
+
+        [HttpGet]
+        [Route("UpdateterakhirKaryawanUnfit_Datepicker/{posid}/{startDate}/{endDate}")]
+        public IHttpActionResult UpdateterakhirKaryawanUnfit_Datepicker(string posid, string startDate, string endDate)
+        {
+            try
+            {
+                db.CommandTimeout = 120;
+                var isAdminorNot = db.VW_Users.Where(c => c.POSITION_ID == posid).FirstOrDefault();
+                VW_T_APPROVAL data = null;
+
+                DateTime startDateTime = DateTime.ParseExact(startDate, "yyyy-MM-dd", CultureInfo.InvariantCulture);
+                DateTime endDateTime = DateTime.ParseExact(endDate, "yyyy-MM-dd", CultureInfo.InvariantCulture);
+
+                if (isAdminorNot.ID_Role == 1)
+                {
+                    data = db.VW_T_APPROVALs
+                        .Where(a => a.ID_STATUS == 2 && a.WAKTU_ABSEN >= startDateTime && a.WAKTU_ABSEN <= endDateTime)
+                        .OrderByDescending(a => a.WAKTU_ABSEN)
+                        .FirstOrDefault();
+                }
+                else
+                {
+                    data = db.VW_T_APPROVALs
+                        .Where(a => a.ATASAN == posid && a.ID_STATUS == 2 && a.WAKTU_ABSEN >= startDateTime && a.WAKTU_ABSEN <= endDateTime)
+                        .OrderByDescending(a => a.WAKTU_ABSEN)
+                        .FirstOrDefault();
+                }
+
+                var formattedDate = data != null ? data.WAKTU_ABSEN.Value.ToString("d MMMM yyyy | HH:mm", new CultureInfo("id-ID")) : "";
+
+                return Ok(new { Data = data, Tanggal = formattedDate });
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
+        }
         #endregion
 
         #region Sudah Approved
@@ -416,6 +485,77 @@ namespace restApi.Controllers
                 }
 
                 var formattedDate = data.WAKTU_ABSEN.Value.ToString("d MMMM yyyy | HH:mm", new CultureInfo("id-ID"));
+
+                return Ok(new { Data = data, Tanggal = formattedDate });
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
+        }
+
+        [HttpGet]
+        [Route("sudahapproved_Datepicker/{posid}/{startDate}/{endDate}")]
+        public IHttpActionResult sudahapproved_Datepicker(string posid, string startDate, string endDate)
+        {
+            try
+            {
+                db.CommandTimeout = 120;
+                var isAdminorNot = db.VW_Users.Where(c => c.POSITION_ID == posid).FirstOrDefault();
+                var excludedStatuses = new[] { 1, 5, 6, 7 };
+                List<VW_T_APPROVAL> data = null;
+
+                // Konversi string tanggal awal dan tanggal akhir menjadi DateTime
+                DateTime startDateDateTime = DateTime.Parse(startDate);
+                DateTime endDateDateTime = DateTime.Parse(endDate);
+
+                if (isAdminorNot.ID_Role == 1)
+                {
+                    data = db.VW_T_APPROVALs.Where(a => a.FLAG == 1 || excludedStatuses.Contains(a.ID_STATUS.Value) && a.WAKTU_ABSEN >= startDateDateTime && a.WAKTU_ABSEN <= endDateDateTime).ToList();
+                }
+                else
+                {
+                    data = db.VW_T_APPROVALs.Where(a => a.ATASAN == posid && (a.FLAG == 1 || excludedStatuses.Contains(a.ID_STATUS.Value)) && a.WAKTU_ABSEN >= startDateDateTime && a.WAKTU_ABSEN <= endDateDateTime).ToList();
+                }
+
+                return Ok(new { Data = data, Total = data.Count() });
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
+        }
+
+        [HttpGet]
+        [Route("sudahApprovedDate_Datepicker/{posid}/{startDate}/{endDate}")]
+        public IHttpActionResult sudahApprovedDate_Datepicker(string posid, string startDate, string endDate)
+        {
+            try
+            {
+                db.CommandTimeout = 120;
+                var isAdminorNot = db.VW_Users.Where(c => c.POSITION_ID == posid).FirstOrDefault();
+                var excludedStatuses = new[] { 1, 5, 6, 7 };
+                VW_T_APPROVAL data = null;
+
+                DateTime startDateTime = DateTime.ParseExact(startDate, "yyyy-MM-dd", CultureInfo.InvariantCulture);
+                DateTime endDateTime = DateTime.ParseExact(endDate, "yyyy-MM-dd", CultureInfo.InvariantCulture);
+
+                if (isAdminorNot.ID_Role == 1)
+                {
+                    data = db.VW_T_APPROVALs
+                        .Where(a => a.FLAG == 1 || excludedStatuses.Contains(a.ID_STATUS.Value) && a.WAKTU_ABSEN >= startDateTime && a.WAKTU_ABSEN <= endDateTime)
+                        .OrderByDescending(a => a.WAKTU_ABSEN)
+                        .FirstOrDefault();
+                }
+                else
+                {
+                    data = db.VW_T_APPROVALs
+                        .Where(a => a.ATASAN == posid && (a.FLAG == 1 || excludedStatuses.Contains(a.ID_STATUS.Value)) && a.WAKTU_ABSEN >= startDateTime && a.WAKTU_ABSEN <= endDateTime)
+                        .OrderByDescending(a => a.WAKTU_ABSEN)
+                        .FirstOrDefault();
+                }
+
+                var formattedDate = data != null ? data.WAKTU_ABSEN.Value.ToString("d MMMM yyyy | HH:mm", new CultureInfo("id-ID")) : "-";
 
                 return Ok(new { Data = data, Tanggal = formattedDate });
             }
@@ -484,6 +624,77 @@ namespace restApi.Controllers
                 return BadRequest();
             }
         }
+
+        [HttpGet]
+        [Route("butuhApproval_Datepicker/{posid}/{startDate}/{endDate}")]
+        public IHttpActionResult butuhApproval_Datepicker(string posid, string startDate, string endDate)
+        {
+            try
+            {
+                db.CommandTimeout = 120;
+                var isAdminorNot = db.VW_Users.Where(c => c.POSITION_ID == posid).FirstOrDefault();
+                var excludedStatuses = new[] { 1, 5, 6, 7 };
+                List<VW_T_APPROVAL> data = null;
+
+                // Konversi string tanggal awal dan tanggal akhir menjadi DateTime
+                DateTime startDateDateTime = DateTime.Parse(startDate);
+                DateTime endDateDateTime = DateTime.Parse(endDate);
+
+                if (isAdminorNot.ID_Role == 1)
+                {
+                    data = db.VW_T_APPROVALs.Where(a => a.FLAG == 0 && !excludedStatuses.Contains(a.ID_STATUS.Value) && a.WAKTU_ABSEN >= startDateDateTime && a.WAKTU_ABSEN <= endDateDateTime).ToList();
+                }
+                else
+                {
+                    data = db.VW_T_APPROVALs.Where(a => a.FLAG == 0 && !excludedStatuses.Contains(a.ID_STATUS.Value) && a.ATASAN == posid && a.WAKTU_ABSEN >= startDateDateTime && a.WAKTU_ABSEN <= endDateDateTime).ToList();
+                }
+
+                return Ok(new { Data = data, Total = data.Count() });
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
+        }
+
+        [HttpGet]
+        [Route("butuhApprovalDate_Datepicker/{posid}/{startDate}/{endDate}")]
+        public IHttpActionResult butuhApprovalDate_Datepicker(string posid, string startDate, string endDate)
+        {
+            try
+            {
+                db.CommandTimeout = 120;
+                var isAdminorNot = db.VW_Users.Where(c => c.POSITION_ID == posid).FirstOrDefault();
+                var excludedStatuses = new[] { 1, 5, 6, 7 };
+                VW_T_APPROVAL data = null;
+
+                DateTime startDateTime = DateTime.ParseExact(startDate, "yyyy-MM-dd", CultureInfo.InvariantCulture);
+                DateTime endDateTime = DateTime.ParseExact(endDate, "yyyy-MM-dd", CultureInfo.InvariantCulture);
+
+                if (isAdminorNot.ID_Role == 1)
+                {
+                    data = db.VW_T_APPROVALs
+                        .Where(a => a.FLAG == 0 && !excludedStatuses.Contains(a.ID_STATUS.Value) && a.WAKTU_ABSEN >= startDateTime && a.WAKTU_ABSEN <= endDateTime)
+                        .OrderByDescending(a => a.WAKTU_ABSEN)
+                        .FirstOrDefault();
+                }
+                else
+                {
+                    data = db.VW_T_APPROVALs
+                        .Where(a => a.FLAG == 0 && !excludedStatuses.Contains(a.ID_STATUS.Value) && a.ATASAN == posid && a.WAKTU_ABSEN >= startDateTime && a.WAKTU_ABSEN <= endDateTime)
+                        .OrderByDescending(a => a.WAKTU_ABSEN)
+                        .FirstOrDefault();
+                }
+
+                var formattedDate = data != null ? data.WAKTU_ABSEN.Value.ToString("d MMMM yyyy | HH:mm", new CultureInfo("id-ID")) : "-";
+
+                return Ok(new { Data = data, Tanggal = formattedDate });
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
+        }
         #endregion
 
         #region Retest
@@ -534,6 +745,75 @@ namespace restApi.Controllers
                 }
 
                 var formattedDate = data.WAKTU_ABSEN.Value.ToString("d MMMM yyyy | HH:mm", new CultureInfo("id-ID"));
+
+                return Ok(new { Data = data, Tanggal = formattedDate });
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
+        }
+
+        [HttpGet]
+        [Route("retest_Datepicker/{posid}/{startDate}/{endDate}")]
+        public IHttpActionResult retest_Datepicker(string posid, string startDate, string endDate)
+        {
+            try
+            {
+                db.CommandTimeout = 120;
+                var isAdminorNot = db.VW_Users.Where(c => c.POSITION_ID == posid).FirstOrDefault();
+                List<VW_T_APPROVAL> data = null;
+
+                // Konversi string tanggal awal dan tanggal akhir menjadi DateTime
+                DateTime startDateDateTime = DateTime.Parse(startDate);
+                DateTime endDateDateTime = DateTime.Parse(endDate);
+
+                if (isAdminorNot.ID_Role == 1)
+                {
+                    data = db.VW_T_APPROVALs.Where(a => a.ID_STATUS == 5 && a.WAKTU_ABSEN >= startDateDateTime && a.WAKTU_ABSEN <= endDateDateTime).ToList();
+                }
+                else
+                {
+                    data = db.VW_T_APPROVALs.Where(a => a.ID_STATUS == 5 && a.ATASAN == posid && a.WAKTU_ABSEN >= startDateDateTime && a.WAKTU_ABSEN <= endDateDateTime).ToList();
+                }
+
+                return Ok(new { Data = data, Total = data.Count() });
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
+        }
+
+        [HttpGet]
+        [Route("retestDate_Datepicker/{posid}/{startDate}/{endDate}")]
+        public IHttpActionResult retestDate_Datepicker(string posid, string startDate, string endDate)
+        {
+            try
+            {
+                db.CommandTimeout = 120;
+                var isAdminorNot = db.VW_Users.Where(c => c.POSITION_ID == posid).FirstOrDefault();
+                VW_T_APPROVAL data = null;
+
+                DateTime startDateTime = DateTime.ParseExact(startDate, "yyyy-MM-dd", CultureInfo.InvariantCulture);
+                DateTime endDateTime = DateTime.ParseExact(endDate, "yyyy-MM-dd", CultureInfo.InvariantCulture);
+
+                if (isAdminorNot.ID_Role == 1)
+                {
+                    data = db.VW_T_APPROVALs
+                        .Where(a => a.ID_STATUS == 5 && a.WAKTU_ABSEN >= startDateTime && a.WAKTU_ABSEN <= endDateTime)
+                        .OrderByDescending(a => a.WAKTU_ABSEN)
+                        .FirstOrDefault();
+                }
+                else
+                {
+                    data = db.VW_T_APPROVALs
+                        .Where(a => a.ID_STATUS == 5 && a.ATASAN == posid && a.WAKTU_ABSEN >= startDateTime && a.WAKTU_ABSEN <= endDateTime)
+                        .OrderByDescending(a => a.WAKTU_ABSEN)
+                        .FirstOrDefault();
+                }
+
+                var formattedDate = data != null ? data.WAKTU_ABSEN.Value.ToString("d MMMM yyyy | HH:mm", new CultureInfo("id-ID")) : "-";
 
                 return Ok(new { Data = data, Tanggal = formattedDate });
             }
@@ -600,6 +880,75 @@ namespace restApi.Controllers
                 return BadRequest();
             }
         }
+
+        [HttpGet]
+        [Route("tdkdptbekerja_Datepicker/{posid}/{startDate}/{endDate}")]
+        public IHttpActionResult tdkdptbekerja_Datepicker(string posid, string startDate, string endDate)
+        {
+            try
+            {
+                db.CommandTimeout = 120;
+                var isAdminorNot = db.VW_Users.Where(c => c.POSITION_ID == posid).FirstOrDefault();
+                List<VW_T_APPROVAL> data = null;
+
+                // Konversi string tanggal awal dan tanggal akhir menjadi DateTime
+                DateTime startDateDateTime = DateTime.Parse(startDate);
+                DateTime endDateDateTime = DateTime.Parse(endDate);
+
+                if (isAdminorNot.ID_Role == 1)
+                {
+                    data = db.VW_T_APPROVALs.Where(a => a.ID_STATUS == 7 && a.WAKTU_ABSEN >= startDateDateTime && a.WAKTU_ABSEN <= endDateDateTime).ToList();
+                }
+                else
+                {
+                    data = db.VW_T_APPROVALs.Where(a => a.ID_STATUS == 7 && a.ATASAN == posid && a.WAKTU_ABSEN >= startDateDateTime && a.WAKTU_ABSEN <= endDateDateTime).ToList();
+                }
+
+                return Ok(new { Data = data, Total = data.Count() });
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
+        }
+
+        [HttpGet]
+        [Route("tdkdptbekerjaDate_Datepicker/{posid}/{startDate}/{endDate}")]
+        public IHttpActionResult tdkdptbekerjaDate_Datepicker(string posid, string startDate, string endDate)
+        {
+            try
+            {
+                db.CommandTimeout = 120;
+                var isAdminorNot = db.VW_Users.Where(c => c.POSITION_ID == posid).FirstOrDefault();
+                VW_T_APPROVAL data = null;
+
+                DateTime startDateTime = DateTime.ParseExact(startDate, "yyyy-MM-dd", CultureInfo.InvariantCulture);
+                DateTime endDateTime = DateTime.ParseExact(endDate, "yyyy-MM-dd", CultureInfo.InvariantCulture);
+
+                if (isAdminorNot.ID_Role == 1)
+                {
+                    data = db.VW_T_APPROVALs
+                        .Where(a => a.ID_STATUS == 7 && a.WAKTU_ABSEN >= startDateTime && a.WAKTU_ABSEN <= endDateTime)
+                        .OrderByDescending(a => a.WAKTU_ABSEN)
+                        .FirstOrDefault();
+                }
+                else
+                {
+                    data = db.VW_T_APPROVALs
+                        .Where(a => a.ID_STATUS == 7 && a.ATASAN == posid && a.WAKTU_ABSEN >= startDateTime && a.WAKTU_ABSEN <= endDateTime)
+                        .OrderByDescending(a => a.WAKTU_ABSEN)
+                        .FirstOrDefault();
+                }
+
+                var formattedDate = data != null ? data.WAKTU_ABSEN.Value.ToString("d MMMM yyyy | HH:mm", new CultureInfo("id-ID")) : "-";
+
+                return Ok(new { Data = data, Tanggal = formattedDate });
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
+        }
         #endregion
 
         #region Cham 001
@@ -650,6 +999,82 @@ namespace restApi.Controllers
                     // Handle jika data tidak ditemukan
                     return NotFound();
                 }
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
+        }
+
+        [HttpGet]
+        [Route("cham001_Datepicker/{startDate}/{endDate}")]
+        public IHttpActionResult cham001_Datepicker(string startDate, string endDate)
+        {
+            try
+            {
+                db.CommandTimeout = 120;
+                List<cufn_filterCFMManagementResult> data = null;
+
+                // Parse startDate and endDate to DateTime
+                DateTime parsedStartDate, parsedEndDate;
+                if (DateTime.TryParseExact(startDate, "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out parsedStartDate) &&
+                    DateTime.TryParseExact(endDate, "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out parsedEndDate))
+                {
+                    // Call the stored function with parameters
+                    data = db.cufn_filterCFMManagement(parsedStartDate, parsedEndDate).ToList();
+
+                    // Filter the data to keep only rows where ID_CHAMBER is "CHAM001"
+                    data = data.Where(d => d.ID_CHAMBER == "CHAM001").ToList();
+                }
+
+                // Mengambil nilai USDTDY dari data
+                int? USDTDY = data.Select(d => d.USDTDY).FirstOrDefault();
+                if (USDTDY == null)
+                {
+                    USDTDY = 0;
+                }
+
+                return Ok(new { USDTDY });
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
+        }
+
+        [HttpGet]
+        [Route("cham001Date_Datepicker/{startDate}/{endDate}")]
+        public IHttpActionResult cham001Date_Datepicker(string startDate, string endDate)
+        {
+            try
+            {
+                db.CommandTimeout = 120;
+                List<cufn_filterCFMManagementResult> data = null;
+
+                // Parse startDate and endDate to DateTime
+                DateTime parsedStartDate, parsedEndDate;
+                if (DateTime.TryParseExact(startDate, "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out parsedStartDate) &&
+                    DateTime.TryParseExact(endDate, "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out parsedEndDate))
+                {
+                    // Call the stored function with parameters
+                    data = db.cufn_filterCFMManagement(parsedStartDate, parsedEndDate).ToList();
+
+                    // Filter the data to keep only rows where ID_CHAMBER is "CHAM001"
+                    var filteredData = data.Where(d => d.ID_CHAMBER == "CHAM001").ToList();
+
+                    if (filteredData.Any())
+                    {
+                        var mostRecentItem = filteredData.OrderByDescending(d => d.LSTUSD).First();
+                        var formattedDate = mostRecentItem.LSTUSD.Value.ToString("d MMMM yyyy | HH:mm", new CultureInfo("id-ID"));
+                        return Ok(new { Data = mostRecentItem, Tanggal = formattedDate });
+                    }
+                    else
+                    {
+                        return Ok(new { Tanggal = "-" });
+                    }
+                }
+
+                return NotFound();
             }
             catch (Exception)
             {
@@ -712,6 +1137,82 @@ namespace restApi.Controllers
                 return BadRequest();
             }
         }
+
+        [HttpGet]
+        [Route("cham002_Datepicker/{startDate}/{endDate}")]
+        public IHttpActionResult cham002_Datepicker(string startDate, string endDate)
+        {
+            try
+            {
+                db.CommandTimeout = 120;
+                List<cufn_filterCFMManagementResult> data = null;
+
+                // Parse startDate and endDate to DateTime
+                DateTime parsedStartDate, parsedEndDate;
+                if (DateTime.TryParseExact(startDate, "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out parsedStartDate) &&
+                    DateTime.TryParseExact(endDate, "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out parsedEndDate))
+                {
+                    // Call the stored function with parameters
+                    data = db.cufn_filterCFMManagement(parsedStartDate, parsedEndDate).ToList();
+
+                    // Filter the data to keep only rows where ID_CHAMBER is "CHAM001"
+                    data = data.Where(d => d.ID_CHAMBER == "CHAM002").ToList();
+                }
+
+                // Mengambil nilai USDTDY dari data
+                int? USDTDY = data.Select(d => d.USDTDY).FirstOrDefault();
+                if (USDTDY == null)
+                {
+                    USDTDY = 0;
+                }
+
+                return Ok(new { USDTDY });
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
+        }
+
+        [HttpGet]
+        [Route("cham002Date_Datepicker/{startDate}/{endDate}")]
+        public IHttpActionResult cham002Date_Datepicker(string startDate, string endDate)
+        {
+            try
+            {
+                db.CommandTimeout = 120;
+                List<cufn_filterCFMManagementResult> data = null;
+
+                // Parse startDate and endDate to DateTime
+                DateTime parsedStartDate, parsedEndDate;
+                if (DateTime.TryParseExact(startDate, "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out parsedStartDate) &&
+                    DateTime.TryParseExact(endDate, "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out parsedEndDate))
+                {
+                    // Call the stored function with parameters
+                    data = db.cufn_filterCFMManagement(parsedStartDate, parsedEndDate).ToList();
+
+                    // Filter the data to keep only rows where ID_CHAMBER is "CHAM001"
+                    var filteredData = data.Where(d => d.ID_CHAMBER == "CHAM002").ToList();
+
+                    if (filteredData.Any())
+                    {
+                        var mostRecentItem = filteredData.OrderByDescending(d => d.LSTUSD).First();
+                        var formattedDate = mostRecentItem.LSTUSD.Value.ToString("d MMMM yyyy | HH:mm", new CultureInfo("id-ID"));
+                        return Ok(new { Data = mostRecentItem, Tanggal = formattedDate });
+                    }
+                    else
+                    {
+                        return Ok(new { Tanggal = "-" });
+                    }
+                }
+
+                return NotFound();
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
+        }
         #endregion
 
         #region CHam 003
@@ -768,6 +1269,82 @@ namespace restApi.Controllers
                 return BadRequest();
             }
         }
+
+        [HttpGet]
+        [Route("cham003_Datepicker/{startDate}/{endDate}")]
+        public IHttpActionResult cham003_Datepicker(string startDate, string endDate)
+        {
+            try
+            {
+                db.CommandTimeout = 120;
+                List<cufn_filterCFMManagementResult> data = null;
+
+                // Parse startDate and endDate to DateTime
+                DateTime parsedStartDate, parsedEndDate;
+                if (DateTime.TryParseExact(startDate, "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out parsedStartDate) &&
+                    DateTime.TryParseExact(endDate, "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out parsedEndDate))
+                {
+                    // Call the stored function with parameters
+                    data = db.cufn_filterCFMManagement(parsedStartDate, parsedEndDate).ToList();
+
+                    // Filter the data to keep only rows where ID_CHAMBER is "CHAM001"
+                    data = data.Where(d => d.ID_CHAMBER == "CHAM003").ToList();
+                }
+
+                // Mengambil nilai USDTDY dari data
+                int? USDTDY = data.Select(d => d.USDTDY).FirstOrDefault();
+                if (USDTDY == null)
+                {
+                    USDTDY = 0;
+                }
+
+                return Ok(new { USDTDY });
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
+        }
+
+        [HttpGet]
+        [Route("cham003Date_Datepicker/{startDate}/{endDate}")]
+        public IHttpActionResult cham003Date_Datepicker(string startDate, string endDate)
+        {
+            try
+            {
+                db.CommandTimeout = 120;
+                List<cufn_filterCFMManagementResult> data = null;
+
+                // Parse startDate and endDate to DateTime
+                DateTime parsedStartDate, parsedEndDate;
+                if (DateTime.TryParseExact(startDate, "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out parsedStartDate) &&
+                    DateTime.TryParseExact(endDate, "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out parsedEndDate))
+                {
+                    // Call the stored function with parameters
+                    data = db.cufn_filterCFMManagement(parsedStartDate, parsedEndDate).ToList();
+
+                    // Filter the data to keep only rows where ID_CHAMBER is "CHAM001"
+                    var filteredData = data.Where(d => d.ID_CHAMBER == "CHAM003").ToList();
+
+                    if (filteredData.Any())
+                    {
+                        var mostRecentItem = filteredData.OrderByDescending(d => d.LSTUSD).First();
+                        var formattedDate = mostRecentItem.LSTUSD.Value.ToString("d MMMM yyyy | HH:mm", new CultureInfo("id-ID"));
+                        return Ok(new { Data = mostRecentItem, Tanggal = formattedDate });
+                    }
+                    else
+                    {
+                        return Ok(new { Tanggal = "-" });
+                    }
+                }
+
+                return NotFound();
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
+        }
         #endregion
 
         #region Cham 004
@@ -818,6 +1395,82 @@ namespace restApi.Controllers
                     // Handle jika data tidak ditemukan
                     return NotFound();
                 }
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
+        }
+
+        [HttpGet]
+        [Route("cham004_Datepicker/{startDate}/{endDate}")]
+        public IHttpActionResult cham004_Datepicker(string startDate, string endDate)
+        {
+            try
+            {
+                db.CommandTimeout = 120;
+                List<cufn_filterCFMManagementResult> data = null;
+
+                // Parse startDate and endDate to DateTime
+                DateTime parsedStartDate, parsedEndDate;
+                if (DateTime.TryParseExact(startDate, "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out parsedStartDate) &&
+                    DateTime.TryParseExact(endDate, "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out parsedEndDate))
+                {
+                    // Call the stored function with parameters
+                    data = db.cufn_filterCFMManagement(parsedStartDate, parsedEndDate).ToList();
+
+                    // Filter the data to keep only rows where ID_CHAMBER is "CHAM001"
+                    data = data.Where(d => d.ID_CHAMBER == "CHAM004").ToList();
+                }
+
+                // Mengambil nilai USDTDY dari data
+                int? USDTDY = data.Select(d => d.USDTDY).FirstOrDefault();
+                if (USDTDY == null)
+                {
+                    USDTDY = 0;
+                }
+
+                return Ok(new { USDTDY });
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
+        }
+
+        [HttpGet]
+        [Route("cham004Date_Datepicker/{startDate}/{endDate}")]
+        public IHttpActionResult cham004Date_Datepicker(string startDate, string endDate)
+        {
+            try
+            {
+                db.CommandTimeout = 120;
+                List<cufn_filterCFMManagementResult> data = null;
+
+                // Parse startDate and endDate to DateTime
+                DateTime parsedStartDate, parsedEndDate;
+                if (DateTime.TryParseExact(startDate, "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out parsedStartDate) &&
+                    DateTime.TryParseExact(endDate, "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out parsedEndDate))
+                {
+                    // Call the stored function with parameters
+                    data = db.cufn_filterCFMManagement(parsedStartDate, parsedEndDate).ToList();
+
+                    // Filter the data to keep only rows where ID_CHAMBER is "CHAM001"
+                    var filteredData = data.Where(d => d.ID_CHAMBER == "CHAM004").ToList();
+
+                    if (filteredData.Any())
+                    {
+                        var mostRecentItem = filteredData.OrderByDescending(d => d.LSTUSD).First();
+                        var formattedDate = mostRecentItem.LSTUSD.Value.ToString("d MMMM yyyy | HH:mm", new CultureInfo("id-ID"));
+                        return Ok(new { Data = mostRecentItem, Tanggal = formattedDate });
+                    }
+                    else
+                    {
+                        return Ok(new { Tanggal = "-" });
+                    }
+                }
+
+                return NotFound();
             }
             catch (Exception)
             {

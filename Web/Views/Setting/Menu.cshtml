@@ -6,7 +6,17 @@
 }
 
 <h3>Setting Profile</h3>
-<div class="col-12 mb-2">
+
+<div class="row mb-3">
+    <div class="col">
+        <span style="font-size: 10px;">Berikut detail data setiap chamber yang tersedia di <b>@Session["Site"].ToString()</b>.</span>
+    </div>
+    <div class="col text-end">
+        <span style="font-size: 10px;">@ViewBag.Count person need approval found &nbsp; &nbsp;</span>
+    </div>
+</div>
+
+@*<div class="col-12 mb-2">
     <span style="font-size: 10px;">Berikut detail data setiap chamber yang tersedia di <b>@Session["Site"].ToString()</b>.</span>
 </div>
 
@@ -21,7 +31,7 @@
         <i class="nav-main-link-icon fa fa-download" style="font-size: 10px;"></i>
         <span style="font-size: 10px;">Download</span>
     </div>
-</div>
+</div>*@
 
 <div class="col-sm-12 col-md-6">
     <div class="dropdown" style="position: absolute; top: 0; right: 0%;">

@@ -83,7 +83,7 @@ namespace restApi.Controllers
                         DateTime.TryParseExact(endDate, "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out parsedEndDate))
                     {
                         // Filter data berdasarkan rentang tanggal
-                        query = query.Where(a => a.DATE_FROM_CFC >= parsedStartDate && a.DATE_FROM_CFC <= parsedEndDate);
+                        query = query.Where(a => a.WAKTU_ABSEN >= parsedStartDate && a.WAKTU_ABSEN <= parsedEndDate);
                     }
                 }
 

@@ -250,6 +250,12 @@ namespace restApi.Models
 				return this.GetTable<TBL_T_APPROVAL>();
 			}
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.cufn_filterCFMManagement", IsComposable=true)]
+		public IQueryable<cufn_filterCFMManagementResult> cufn_filterCFMManagement([global::System.Data.Linq.Mapping.ParameterAttribute(Name="SD", DbType="DateTime")] System.Nullable<System.DateTime> sD, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ED", DbType="DateTime")] System.Nullable<System.DateTime> eD)
+		{
+			return this.CreateMethodCallQuery<cufn_filterCFMManagementResult>(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), sD, eD);
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.TBL_M_AKSES")]
@@ -4384,6 +4390,104 @@ namespace restApi.Models
 			if ((this.PropertyChanged != null))
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	public partial class cufn_filterCFMManagementResult
+	{
+		
+		private int _ID;
+		
+		private string _ID_CHAMBER;
+		
+		private string _LOKASI;
+		
+		private System.Nullable<int> _USDTDY;
+		
+		private System.Nullable<System.DateTime> _LSTUSD;
+		
+		public cufn_filterCFMManagementResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", DbType="Int NOT NULL")]
+		public int ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this._ID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID_CHAMBER", DbType="VarChar(10)")]
+		public string ID_CHAMBER
+		{
+			get
+			{
+				return this._ID_CHAMBER;
+			}
+			set
+			{
+				if ((this._ID_CHAMBER != value))
+				{
+					this._ID_CHAMBER = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LOKASI", DbType="VarChar(255)")]
+		public string LOKASI
+		{
+			get
+			{
+				return this._LOKASI;
+			}
+			set
+			{
+				if ((this._LOKASI != value))
+				{
+					this._LOKASI = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_USDTDY", DbType="Int")]
+		public System.Nullable<int> USDTDY
+		{
+			get
+			{
+				return this._USDTDY;
+			}
+			set
+			{
+				if ((this._USDTDY != value))
+				{
+					this._USDTDY = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LSTUSD", DbType="DateTime")]
+		public System.Nullable<System.DateTime> LSTUSD
+		{
+			get
+			{
+				return this._LSTUSD;
+			}
+			set
+			{
+				if ((this._LSTUSD != value))
+				{
+					this._LSTUSD = value;
+				}
 			}
 		}
 	}

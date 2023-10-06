@@ -38,17 +38,15 @@ namespace restApi.Controllers
             try
             {
                 db.CommandTimeout = 120;
-                List<VW_R_CFM_MANAGEMENT> data = null; // Ubah tipe data menjadi List<VW_R_CFM_MANAGEMENT>
-
-                data = db.VW_R_CFM_MANAGEMENTs.OrderBy(a => a.ID_CHAMBER).ToList();
+                List<cufn_filterCFMManagementResult> data = null;
 
                 // Parse startDate and endDate to DateTime
                 DateTime parsedStartDate, parsedEndDate;
                 if (DateTime.TryParseExact(startDate, "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out parsedStartDate) &&
                     DateTime.TryParseExact(endDate, "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out parsedEndDate))
                 {
-                    // Filter data by date range
-                    data = data.Where(a => a.LSTUSD >= parsedStartDate && a.LSTUSD <= parsedEndDate).ToList(); // Ubah ke List<T>
+                    // Call the stored function with parameters
+                    data = db.cufn_filterCFMManagement(parsedStartDate, parsedEndDate).ToList();
                 }
 
                 return Ok(new { Data = data });
@@ -58,6 +56,7 @@ namespace restApi.Controllers
                 return BadRequest();
             }
         }
+
 
         [HttpPost]
         [Route("Create_Chamber")]

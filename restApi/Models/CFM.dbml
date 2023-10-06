@@ -281,4 +281,15 @@
       <Column Name="FLAG" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </Type>
   </Table>
+  <Function Name="dbo.cufn_filterCFMManagement" Method="cufn_filterCFMManagement" IsComposable="true">
+    <Parameter Name="SD" Parameter="sD" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="ED" Parameter="eD" Type="System.DateTime" DbType="DateTime" />
+    <ElementType Name="cufn_filterCFMManagementResult">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ID_CHAMBER" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="LOKASI" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="USDTDY" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="LSTUSD" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </ElementType>
+  </Function>
 </Database>
