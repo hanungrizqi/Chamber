@@ -2,6 +2,62 @@
 
 $("document").ready(function () {
     /*addRoled();*/
+    debugger
+    $("#yourFormId").validate({
+        rules: {
+            "val-username": {
+                required: true
+            },
+            "val-password": {
+                required: true
+            }
+        },
+        messages: {
+            "val-username": {
+                required: "Please enter your kNRP."
+            },
+            "val-password": {
+                required: "Please enter your password."
+            }
+        },
+        submitHandler: function (form) {
+            debugger
+            var obj = {
+                Username: $("#val-username").val(),
+                Password: $("#val-password").val()
+            };
+
+            $.ajax({
+                url: $("#web_link").val() + "/api/Login/Get_Login",
+                data: JSON.stringify(obj),
+                dataType: "json",
+                type: "POST",
+                contentType: "application/json; charset=utf-8",
+                beforeSend: function () {
+                    $("#overlay").show();
+                },
+                success: function (data) {
+                    if (data.Remarks == true) {
+                        SearchRole(obj.Username);
+                    } else {
+                        swal.fire({
+                            title: "Error!",
+                            text: "Username or Password incorrect.",
+                            icon: "error"
+                        });
+                        $("#overlay").hide();
+                    }
+                },
+                error: function (xhr) {
+                    swal.fire({
+                        title: "Error!",
+                        text: "Message: " + xhr.responseText,
+                        icon: "error"
+                    });
+                }
+            });
+        }
+    });
 })
 
 function PostLogin() {
@@ -9,12 +65,11 @@ function PostLogin() {
     obj.Username = $("#val-username").val();
     obj.Password = $("#val-password").val();
 
-    if (obj.Password.trim() === '') {
-        // Password is empty, hide the default button and show the styled button
-        $('.btn.btn-success').css('display', 'none');
-        $('#signInButton').css('display', 'block');
-        return; // Prevent further execution of the function
-    }
+    //if (obj.Password.trim() === '') {
+    //    $('.btn.btn-success').css('display', 'none');
+    //    $('#signInButton').css('display', 'block');
+    //    return;
+    //}
 
     $.ajax({
         url: $("#web_link").val() + "/api/Login/Get_Login", //URI
@@ -51,52 +106,50 @@ function PostLogin() {
     })
 }
 
-function PostLogin2() {
-    var obj = new Object();
-    obj.Username = $("#val-username").val();
-    obj.Password = $("#val-password").val();
+//function PostLogin2() {
+//    var obj = new Object();
+//    obj.Username = $("#val-username").val();
+//    obj.Password = $("#val-password").val();
 
-    if (obj.Password.trim() === '') {
-        // Password is empty, hide the default button and show the styled button
-        $('.btn.btn-success').css('display', 'block');
-        $('#signInButton').css('display', 'none');
-        return; // Prevent further execution of the function
-    }
+//    if (obj.Password.trim() === '') {
+//        $('.btn.btn-success').css('display', 'block');
+//        $('#signInButton').css('display', 'none');
+//        return;
+//    }
 
-    $.ajax({
-        url: $("#web_link").val() + "/api/Login/Get_Login", //URI
-        data: JSON.stringify(obj),
-        dataType: "json",
-        type: "POST",
-        contentType: "application/json; charset=utf-8",
-        beforeSend: function () {
-            debugger
-            $("#overlay").show();
-        },
-        success: function (data) {
-            if (data.Remarks == true) {
-                //MakeSession(obj.Username);
-                SearchRole(obj.Username);
-            }
-            else {
-                swal.fire({
-                    title: "Error!",
-                    text: "Username or Password incorrect.",
-                    icon: 'error',
-                });
-                $("#overlay").hide();
-            }
+//    $.ajax({
+//        url: $("#web_link").val() + "/api/Login/Get_Login", //URI
+//        data: JSON.stringify(obj),
+//        dataType: "json",
+//        type: "POST",
+//        contentType: "application/json; charset=utf-8",
+//        beforeSend: function () {
+//            debugger
+//            $("#overlay").show();
+//        },
+//        success: function (data) {
+//            if (data.Remarks == true) {
+//                SearchRole(obj.Username);
+//            }
+//            else {
+//                swal.fire({
+//                    title: "Error!",
+//                    text: "Username or Password incorrect.",
+//                    icon: 'error',
+//                });
+//                $("#overlay").hide();
+//            }
 
-        },
-        error: function (xhr) {
-            swal.fire({
-                title: "Error!",
-                text: 'Message : ' + xhr.responseText,
-                icon: 'error',
-            });
-        },
-    })
-}
+//        },
+//        error: function (xhr) {
+//            swal.fire({
+//                title: "Error!",
+//                text: 'Message : ' + xhr.responseText,
+//                icon: 'error',
+//            });
+//        },
+//    })
+//}
 
 var rol;
 function SearchRole(nrp) {

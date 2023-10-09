@@ -1,10 +1,31 @@
 ﻿@{
     ViewBag.Title = "Home Page";
-    ViewBag.Navlink = "homeindex";
+    ViewBag.JS = "/Scripts/Page/Home.js";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <!-- Data Karyawan Fit -->
-<h4>Data Karyawan Fit</h4>
+<div class="row">
+    <div class="col">
+        <h4>Data Karyawan Fit</h4>
+    </div>
+    <div class="col text-end">
+        <div style="display: inline-block; vertical-align: middle; max-width:900px">
+            <input type="text" class="js-flatpickr form-control" id="example-flatpickr-range" name="example-flatpickr-range" placeholder="Select Date Range" data-mode="range">
+        </div>
+        @*<div style="display: inline-block; vertical-align: middle; margin-left: 10px;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <mask id="mask0_46_2445" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
+                    <rect width="24" height="24" fill="#D9D9D9" />
+                </mask>
+                <g mask="url(#mask0_46_2445)">
+                    <path d="M8 17H16C16.2833 17 16.5208 16.9042 16.7125 16.7125C16.9042 16.5208 17 16.2833 17 16C17 15.7167 16.9042 15.4792 16.7125 15.2875C16.5208 15.0958 16.2833 15 16 15H8C7.71667 15 7.47917 15.0958 7.2875 15.2875C7.09583 15.4792 7 15.7167 7 16C7 16.2833 7.09583 16.5208 7.2875 16.7125C7.47917 16.9042 7.71667 17 8 17ZM11 10.15L10.1 9.275C9.91667 9.09167 9.6875 9 9.4125 9C9.1375 9 8.9 9.1 8.7 9.3C8.51667 9.48333 8.425 9.71667 8.425 10C8.425 10.2833 8.51667 10.5167 8.7 10.7L11.3 13.3C11.5 13.5 11.7333 13.6 12 13.6C12.2667 13.6 12.5 13.5 12.7 13.3L15.3 10.7C15.4833 10.5167 15.5792 10.2875 15.5875 10.0125C15.5958 9.7375 15.5 9.5 15.3 9.3C15.1167 9.11667 14.8875 9.02083 14.6125 9.0125C14.3375 9.00417 14.1 9.09167 13.9 9.275L13 10.15V7C13 6.71667 12.9042 6.47917 12.7125 6.2875C12.5208 6.09583 12.2833 6 12 6C11.7167 6 11.4792 6.09583 11.2875 6.2875C11.0958 6.47917 11 6.71667 11 7V10.15ZM12 22C10.6167 22 9.31667 21.7375 8.1 21.2125C6.88333 20.6875 5.825 19.975 4.925 19.075C4.025 18.175 3.3125 17.1167 2.7875 15.9C2.2625 14.6833 2 13.3833 2 12C2 10.6167 2.2625 9.31667 2.7875 8.1C3.3125 6.88333 4.025 5.825 4.925 4.925C5.825 4.025 6.88333 3.3125 8.1 2.7875C9.31667 2.2625 10.6167 2 12 2C13.3833 2 14.6833 2.2625 15.9 2.7875C17.1167 3.3125 18.175 4.025 19.075 4.925C19.975 5.825 20.6875 6.88333 21.2125 8.1C21.7375 9.31667 22 10.6167 22 12C22 13.3833 21.7375 14.6833 21.2125 15.9C20.6875 17.1167 19.975 18.175 19.075 19.075C18.175 19.975 17.1167 20.6875 15.9 21.2125C14.6833 21.7375 13.3833 22 12 22Z" fill="#34A048" />
+                </g>
+            </svg>
+            <button id="downloadButton" style="font-size: 12px; text-decoration: none; color: #000;">Download Report</button>
+        </div>*@
+    </div>
+</div>
 <div class="row">
     <!-- Row #1 -->
     <div class="col-md-6 col-xl-4">
@@ -18,10 +39,10 @@
                         Total Karyawan Masuk Chamber
                     </p>
                     <p class="fs-lg fw-semibold mb-0">
-                        @Session["KaryawanMasuk"].ToString()
+                        <span id="totalKaryawanMasuk">-</span>
                     </p>
                     <p class="fw-normal mb-0" style="font-size:small">
-                        Update Terakhir @Session["UpdateTerakhirMasuk"].ToString()
+                        Update Terakhir <span id="updateTerakhirKaryawanMasuk">-</span>
                     </p>
                 </div>
             </div>
@@ -38,10 +59,10 @@
                         Total Karyawan Fit
                     </p>
                     <p class="fs-lg fw-semibold mb-0">
-                        @Session["KaryawanFit"].ToString()
+                        <span id="totalKaryawanFit">-</span>
                     </p>
                     <p class="fw-normal mb-0" style="font-size:small">
-                        Update Terakhir @Session["UpdateTerakhirFit"].ToString()
+                        Update Terakhir <span id="updateTerakhirKaryawanFit">-</span>
                     </p>
                 </div>
             </div>
@@ -58,10 +79,10 @@
                         Total Karyawan Unfit
                     </p>
                     <p class="fs-lg fw-semibold mb-0">
-                        @Session["KaryawanUnfit"].ToString()
+                        <span id="totalKaryawanUnfit">-</span>
                     </p>
                     <p class="fw-normal mb-0" style="font-size:small">
-                        Update Terakhir @Session["UpdateTerakhirUnfit"].ToString()
+                        Update Terakhir <span id="updateTerakhirKaryawanUnfit">-</span>
                     </p>
                 </div>
             </div>
@@ -79,25 +100,19 @@
     <div class="col-6 col-md-4 col-xl-4">
         <div class="block block-link-pop text-center" href="javascript:void(0)">
             <div class="block-content">
-                <div class="ms-1 text-start">
+                <div class="ms-1 text-center">
                     <p class="fs-sm text-uppercase fw-semibold text-muted mb-0">
                         Prosentase Fatigue
                     </p>
-                    <p class="fs-lg fw-semibold mb-0">
-                        -
-                    </p>
-                    <p class="fw-normal mb-0" style="font-size: small">
-                        -
-                    </p>
+                    <div class="col-12">
+                        <canvas id="chartshome"></canvas>
+                    </div>
                 </div>
                 <br />
-                <a class="btn rounded-0 btn-secondary mb-3 w-100" href="/EmpRecord/Index">
-                    Lihat Detail
-                </a>
             </div>
         </div>
     </div>
-    <div class="col-6 col-md-4 col-xl-2">
+    <div class="col-6 col-md-4 col-xl-4">
         <div class="block block-link-pop text-center" href="javascript:void(0)">
             <div class="block-content">
                 <div class="ms-1 text-start">
@@ -105,41 +120,18 @@
                         Sudah Approved
                     </p>
                     <p class="fs-lg fw-semibold mb-0">
-                        @Session["SudahApproved"].ToString()
+                        <span id="sudahapproved">-</span>
                     </p>
                     <p class="fw-normal mb-0" style="font-size: small">
-                        @Session["UpdateTerakhirSudahApproved"].ToString()
+                        Update Terakhir <span id="sudahapprovedDate">-</span>
                     </p>
                 </div>
                 <br />
-                <a class="btn rounded-0 btn-secondary mb-3 w-100" href="/EmpRecord/Index">
+                <a class="btn rounded-0 btn-secondary mb-4 w-100" href="/EmpRecord/Index">
                     Lihat Detail
                 </a>
             </div>
         </div>
-    </div>
-    <div class="col-6 col-md-4 col-xl-2">
-        <div class="block block-link-pop text-center" href="javascript:void(0)">
-            <div class="block-content">
-                <div class="ms-1 text-start">
-                    <p class="fs-sm text-uppercase fw-semibold text-muted mb-0">
-                        Butuh Approval
-                    </p>
-                    <p class="fs-lg fw-semibold mb-0">
-                        @Session["ButuhApproval"].ToString()
-                    </p>
-                    <p class="fw-normal mb-0" style="font-size: small">
-                        @Session["UpdateTerakhirButuhApproval"].ToString()
-                    </p>
-                </div>
-                <br />
-                <a class="btn rounded-0 btn-danger mb-3 w-100" href="/Approval/Index">
-                    Approve
-                </a>
-            </div>
-        </div>
-    </div>
-    <div class="col-6 col-md-4 col-xl-2">
         <div class="block block-link-pop text-center" href="javascript:void(0)">
             <div class="block-content">
                 <div class="ms-1 text-start">
@@ -147,20 +139,39 @@
                         Akan Re-test
                     </p>
                     <p class="fs-lg fw-semibold mb-0">
-                        @Session["AkanRetest"].ToString()
+                        <span id="retest">-</span>
                     </p>
                     <p class="fw-normal mb-0" style="font-size: small">
-                        @Session["UpdateTerakhirRetest"].ToString()
+                        Update Terakhir <span id="retestDate">-</span>
                     </p>
                 </div>
                 <br />
-                <a class="btn rounded-0 btn-secondary mb-3 w-100" href="/EmpRecord/Index">
+                <a class="btn rounded-0 btn-secondary mb-4 w-100" href="/EmpRecord/Index">
                     Lihat Detail
                 </a>
             </div>
         </div>
     </div>
-    <div class="col-6 col-md-4 col-xl-2">
+    <div class="col-6 col-md-4 col-xl-4">
+        <div class="block block-link-pop text-center" href="javascript:void(0)">
+            <div class="block-content">
+                <div class="ms-1 text-start">
+                    <p class="fs-sm text-uppercase fw-semibold text-muted mb-0">
+                        Butuh Approval
+                    </p>
+                    <p class="fs-lg fw-semibold mb-0">
+                        <span id="butuhapproval">-</span>
+                    </p>
+                    <p class="fw-normal mb-0" style="font-size: small">
+                        Update Terakhir <span id="butuhapprovalDate">-</span>
+                    </p>
+                </div>
+                <br />
+                <a class="btn rounded-0 btn-danger mb-4 w-100" href="/Approval/Index">
+                    Approve
+                </a>
+            </div>
+        </div>
         <div class="block block-link-pop text-center" href="javascript:void(0)">
             <div class="block-content">
                 <div class="ms-1 text-start">
@@ -168,10 +179,31 @@
                         Tidak Dapat Bekerja
                     </p>
                     <p class="fs-lg fw-semibold mb-0">
-                        @Session["TidakDptBekerja"].ToString()
+                        <span id="tdkdptbekerja">-</span>
                     </p>
                     <p class="fw-normal mb-0" style="font-size: small">
-                        Update Terakhir @Session["UpdateTerakhirTdkdptBekerja"].ToString()
+                        Update Terakhir <span id="tdkdptbekerjaDate">-</span>
+                    </p>
+                </div>
+                <br />
+                <a class="btn rounded-0 btn-secondary mb-4 w-100" href="/EmpRecord/Index">
+                    Lihat Detail
+                </a>
+            </div>
+        </div>
+    </div>
+    @*<div class="col-6 col-md-4 col-xl-2">
+        <div class="block block-link-pop text-center" href="javascript:void(0)">
+            <div class="block-content">
+                <div class="ms-1 text-start">
+                    <p class="fs-sm text-uppercase fw-semibold text-muted mb-0">
+                        Akan Re-test
+                    </p>
+                    <p class="fs-lg fw-semibold mb-0">
+                        <span id="retest">-</span>
+                    </p>
+                    <p class="fw-normal mb-0" style="font-size: small">
+                        <span id="retestDate">-</span>
                     </p>
                 </div>
                 <br />
@@ -180,7 +212,28 @@
                 </a>
             </div>
         </div>
-    </div>
+    </div>*@
+    @*<div class="col-6 col-md-4 col-xl-2">
+        <div class="block block-link-pop text-center" href="javascript:void(0)">
+            <div class="block-content">
+                <div class="ms-1 text-start">
+                    <p class="fs-sm text-uppercase fw-semibold text-muted mb-0">
+                        Tidak Dapat Bekerja
+                    </p>
+                    <p class="fs-lg fw-semibold mb-0">
+                        <span id="tdkdptbekerja">-</span>
+                    </p>
+                    <p class="fw-normal mb-0" style="font-size: small">
+                        <span id="tdkdptbekerjaDate">-</span>
+                    </p>
+                </div>
+                <br />
+                <a class="btn rounded-0 btn-secondary mb-3 w-100" href="/EmpRecord/Index">
+                    Lihat Detail
+                </a>
+            </div>
+        </div>
+    </div>*@
 </div>
 
 <!-- CFC Utilization -->
@@ -198,10 +251,10 @@
                         Chamber 01
                     </p>
                     <p class="fs-lg fw-semibold mb-0">
-                        @Session["Cham001"].ToString()
+                        <span id="cham001">-</span>
                     </p>
                     <p class="fw-normal mb-0" style="font-size: small">
-                        Update Terakhir @Session["UpdateTerakhirCham1"].ToString()
+                        Last Update <span id="cham001Date">-</span>
                     </p>
                 </div>
                 <br />
@@ -219,10 +272,10 @@
                         Chamber 02
                     </p>
                     <p class="fs-lg fw-semibold mb-0">
-                        @Session["Cham002"].ToString()
+                        <span id="cham002">-</span>
                     </p>
                     <p class="fw-normal mb-0" style="font-size: small">
-                        Update Terakhir @Session["UpdateTerakhirCham2"].ToString()
+                        Last Update <span id="cham002Date">-</span>
                     </p>
                 </div>
                 <br />
@@ -240,10 +293,10 @@
                         Chamber 03
                     </p>
                     <p class="fs-lg fw-semibold mb-0">
-                        @Session["Cham003"].ToString()
+                        <span id="cham003">-</span>
                     </p>
                     <p class="fw-normal mb-0" style="font-size: small">
-                        Update Terakhir @Session["UpdateTerakhirCham3"].ToString()
+                        Last Update <span id="cham003Date">-</span>
                     </p>
                 </div>
                 <br />
@@ -261,10 +314,10 @@
                         Chamber 04
                     </p>
                     <p class="fs-lg fw-semibold mb-0">
-                        @Session["Cham004"].ToString()
+                        <span id="cham004">-</span>
                     </p>
                     <p class="fw-normal mb-0" style="font-size: small">
-                        Update Terakhir @Session["UpdateTerakhirCham4"].ToString()
+                        Last Update <span id="cham004Date">-</span>
                     </p>
                 </div>
                 <br />

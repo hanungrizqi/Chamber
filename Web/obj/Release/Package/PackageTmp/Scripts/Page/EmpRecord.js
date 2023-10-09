@@ -149,7 +149,7 @@ var table = $("#tbl_empr").DataTable({
             }
         },
         {
-            data: 'DATE_FROM_CFC',
+            data: 'WAKTU_ABSEN',
             render: function (data, type, row) {
                 const tanggal = moment(data).format("DD/MM/YYYY");
                 return tanggal;

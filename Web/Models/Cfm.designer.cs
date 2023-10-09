@@ -48,6 +48,9 @@ namespace Web.Models
     partial void InsertTBL_T_APPROVAL(TBL_T_APPROVAL instance);
     partial void UpdateTBL_T_APPROVAL(TBL_T_APPROVAL instance);
     partial void DeleteTBL_T_APPROVAL(TBL_T_APPROVAL instance);
+    partial void InsertTBL_T_CFC(TBL_T_CFC instance);
+    partial void UpdateTBL_T_CFC(TBL_T_CFC instance);
+    partial void DeleteTBL_T_CFC(TBL_T_CFC instance);
     #endregion
 		
 		public CfmDataContext() : 
@@ -152,14 +155,6 @@ namespace Web.Models
 			}
 		}
 		
-		public System.Data.Linq.Table<TBL_T_CFC> TBL_T_CFCs
-		{
-			get
-			{
-				return this.GetTable<TBL_T_CFC>();
-			}
-		}
-		
 		public System.Data.Linq.Table<TBL_M_STATUS_CFM> TBL_M_STATUS_CFMs
 		{
 			get
@@ -197,6 +192,14 @@ namespace Web.Models
 			get
 			{
 				return this.GetTable<VW_T_APPROVAL>();
+			}
+		}
+		
+		public System.Data.Linq.Table<TBL_T_CFC> TBL_T_CFCs
+		{
+			get
+			{
+				return this.GetTable<TBL_T_CFC>();
 			}
 		}
 	}
@@ -1850,249 +1853,6 @@ namespace Web.Models
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.TBL_T_CFC")]
-	public partial class TBL_T_CFC
-	{
-		
-		private int _ID_CFC;
-		
-		private System.DateTime _WAKTU_ABSEN;
-		
-		private string _NRP;
-		
-		private string _ID_CHAMBER;
-		
-		private System.Nullable<double> _OXYGEN_SATURATION;
-		
-		private System.Nullable<double> _HEART_RATE;
-		
-		private System.Nullable<double> _SYSTOLIC;
-		
-		private System.Nullable<double> _DIASTOLIC;
-		
-		private System.Nullable<double> _TEMPRATURE;
-		
-		private string _FACE_PICTURE_URL;
-		
-		private System.Nullable<int> _ID_STATUS;
-		
-		private string _NOTE;
-		
-		private string _ATTENDANCE_NOTE;
-		
-		public TBL_T_CFC()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID_CFC", DbType="Int NOT NULL")]
-		public int ID_CFC
-		{
-			get
-			{
-				return this._ID_CFC;
-			}
-			set
-			{
-				if ((this._ID_CFC != value))
-				{
-					this._ID_CFC = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_WAKTU_ABSEN", DbType="DateTime NOT NULL")]
-		public System.DateTime WAKTU_ABSEN
-		{
-			get
-			{
-				return this._WAKTU_ABSEN;
-			}
-			set
-			{
-				if ((this._WAKTU_ABSEN != value))
-				{
-					this._WAKTU_ABSEN = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NRP", DbType="VarChar(32) NOT NULL", CanBeNull=false)]
-		public string NRP
-		{
-			get
-			{
-				return this._NRP;
-			}
-			set
-			{
-				if ((this._NRP != value))
-				{
-					this._NRP = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID_CHAMBER", DbType="VarChar(32) NOT NULL", CanBeNull=false)]
-		public string ID_CHAMBER
-		{
-			get
-			{
-				return this._ID_CHAMBER;
-			}
-			set
-			{
-				if ((this._ID_CHAMBER != value))
-				{
-					this._ID_CHAMBER = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OXYGEN_SATURATION", DbType="Float")]
-		public System.Nullable<double> OXYGEN_SATURATION
-		{
-			get
-			{
-				return this._OXYGEN_SATURATION;
-			}
-			set
-			{
-				if ((this._OXYGEN_SATURATION != value))
-				{
-					this._OXYGEN_SATURATION = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_HEART_RATE", DbType="Float")]
-		public System.Nullable<double> HEART_RATE
-		{
-			get
-			{
-				return this._HEART_RATE;
-			}
-			set
-			{
-				if ((this._HEART_RATE != value))
-				{
-					this._HEART_RATE = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SYSTOLIC", DbType="Float")]
-		public System.Nullable<double> SYSTOLIC
-		{
-			get
-			{
-				return this._SYSTOLIC;
-			}
-			set
-			{
-				if ((this._SYSTOLIC != value))
-				{
-					this._SYSTOLIC = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DIASTOLIC", DbType="Float")]
-		public System.Nullable<double> DIASTOLIC
-		{
-			get
-			{
-				return this._DIASTOLIC;
-			}
-			set
-			{
-				if ((this._DIASTOLIC != value))
-				{
-					this._DIASTOLIC = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TEMPRATURE", DbType="Float")]
-		public System.Nullable<double> TEMPRATURE
-		{
-			get
-			{
-				return this._TEMPRATURE;
-			}
-			set
-			{
-				if ((this._TEMPRATURE != value))
-				{
-					this._TEMPRATURE = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FACE_PICTURE_URL", DbType="VarChar(128)")]
-		public string FACE_PICTURE_URL
-		{
-			get
-			{
-				return this._FACE_PICTURE_URL;
-			}
-			set
-			{
-				if ((this._FACE_PICTURE_URL != value))
-				{
-					this._FACE_PICTURE_URL = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID_STATUS", DbType="Int")]
-		public System.Nullable<int> ID_STATUS
-		{
-			get
-			{
-				return this._ID_STATUS;
-			}
-			set
-			{
-				if ((this._ID_STATUS != value))
-				{
-					this._ID_STATUS = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NOTE", DbType="VarChar(128)")]
-		public string NOTE
-		{
-			get
-			{
-				return this._NOTE;
-			}
-			set
-			{
-				if ((this._NOTE != value))
-				{
-					this._NOTE = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ATTENDANCE_NOTE", DbType="VarChar(128)")]
-		public string ATTENDANCE_NOTE
-		{
-			get
-			{
-				return this._ATTENDANCE_NOTE;
-			}
-			set
-			{
-				if ((this._ATTENDANCE_NOTE != value))
-				{
-					this._ATTENDANCE_NOTE = value;
-				}
-			}
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.TBL_M_STATUS_CFM")]
 	public partial class TBL_M_STATUS_CFM : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -3146,6 +2906,356 @@ namespace Web.Models
 				{
 					this._FLAG = value;
 				}
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.TBL_T_CFC")]
+	public partial class TBL_T_CFC : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _ID_CFC;
+		
+		private System.DateTime _WAKTU_ABSEN;
+		
+		private string _NRP;
+		
+		private string _ID_CHAMBER;
+		
+		private double _OXYGEN_SATURATION;
+		
+		private double _HEART_RATE;
+		
+		private double _SYSTOLIC;
+		
+		private double _DIASTOLIC;
+		
+		private double _TEMPRATURE;
+		
+		private string _FACE_PICTURE_URL;
+		
+		private System.Nullable<int> _ID_STATUS;
+		
+		private string _NOTE;
+		
+		private string _ATTENDANCE_NOTE;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnID_CFCChanging(int value);
+    partial void OnID_CFCChanged();
+    partial void OnWAKTU_ABSENChanging(System.DateTime value);
+    partial void OnWAKTU_ABSENChanged();
+    partial void OnNRPChanging(string value);
+    partial void OnNRPChanged();
+    partial void OnID_CHAMBERChanging(string value);
+    partial void OnID_CHAMBERChanged();
+    partial void OnOXYGEN_SATURATIONChanging(double value);
+    partial void OnOXYGEN_SATURATIONChanged();
+    partial void OnHEART_RATEChanging(double value);
+    partial void OnHEART_RATEChanged();
+    partial void OnSYSTOLICChanging(double value);
+    partial void OnSYSTOLICChanged();
+    partial void OnDIASTOLICChanging(double value);
+    partial void OnDIASTOLICChanged();
+    partial void OnTEMPRATUREChanging(double value);
+    partial void OnTEMPRATUREChanged();
+    partial void OnFACE_PICTURE_URLChanging(string value);
+    partial void OnFACE_PICTURE_URLChanged();
+    partial void OnID_STATUSChanging(System.Nullable<int> value);
+    partial void OnID_STATUSChanged();
+    partial void OnNOTEChanging(string value);
+    partial void OnNOTEChanged();
+    partial void OnATTENDANCE_NOTEChanging(string value);
+    partial void OnATTENDANCE_NOTEChanged();
+    #endregion
+		
+		public TBL_T_CFC()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID_CFC", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int ID_CFC
+		{
+			get
+			{
+				return this._ID_CFC;
+			}
+			set
+			{
+				if ((this._ID_CFC != value))
+				{
+					this.OnID_CFCChanging(value);
+					this.SendPropertyChanging();
+					this._ID_CFC = value;
+					this.SendPropertyChanged("ID_CFC");
+					this.OnID_CFCChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_WAKTU_ABSEN", DbType="DateTime NOT NULL")]
+		public System.DateTime WAKTU_ABSEN
+		{
+			get
+			{
+				return this._WAKTU_ABSEN;
+			}
+			set
+			{
+				if ((this._WAKTU_ABSEN != value))
+				{
+					this.OnWAKTU_ABSENChanging(value);
+					this.SendPropertyChanging();
+					this._WAKTU_ABSEN = value;
+					this.SendPropertyChanged("WAKTU_ABSEN");
+					this.OnWAKTU_ABSENChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NRP", DbType="VarChar(32) NOT NULL", CanBeNull=false)]
+		public string NRP
+		{
+			get
+			{
+				return this._NRP;
+			}
+			set
+			{
+				if ((this._NRP != value))
+				{
+					this.OnNRPChanging(value);
+					this.SendPropertyChanging();
+					this._NRP = value;
+					this.SendPropertyChanged("NRP");
+					this.OnNRPChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID_CHAMBER", DbType="VarChar(32) NOT NULL", CanBeNull=false)]
+		public string ID_CHAMBER
+		{
+			get
+			{
+				return this._ID_CHAMBER;
+			}
+			set
+			{
+				if ((this._ID_CHAMBER != value))
+				{
+					this.OnID_CHAMBERChanging(value);
+					this.SendPropertyChanging();
+					this._ID_CHAMBER = value;
+					this.SendPropertyChanged("ID_CHAMBER");
+					this.OnID_CHAMBERChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OXYGEN_SATURATION", DbType="Float NOT NULL")]
+		public double OXYGEN_SATURATION
+		{
+			get
+			{
+				return this._OXYGEN_SATURATION;
+			}
+			set
+			{
+				if ((this._OXYGEN_SATURATION != value))
+				{
+					this.OnOXYGEN_SATURATIONChanging(value);
+					this.SendPropertyChanging();
+					this._OXYGEN_SATURATION = value;
+					this.SendPropertyChanged("OXYGEN_SATURATION");
+					this.OnOXYGEN_SATURATIONChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_HEART_RATE", DbType="Float NOT NULL")]
+		public double HEART_RATE
+		{
+			get
+			{
+				return this._HEART_RATE;
+			}
+			set
+			{
+				if ((this._HEART_RATE != value))
+				{
+					this.OnHEART_RATEChanging(value);
+					this.SendPropertyChanging();
+					this._HEART_RATE = value;
+					this.SendPropertyChanged("HEART_RATE");
+					this.OnHEART_RATEChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SYSTOLIC", DbType="Float NOT NULL")]
+		public double SYSTOLIC
+		{
+			get
+			{
+				return this._SYSTOLIC;
+			}
+			set
+			{
+				if ((this._SYSTOLIC != value))
+				{
+					this.OnSYSTOLICChanging(value);
+					this.SendPropertyChanging();
+					this._SYSTOLIC = value;
+					this.SendPropertyChanged("SYSTOLIC");
+					this.OnSYSTOLICChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DIASTOLIC", DbType="Float NOT NULL")]
+		public double DIASTOLIC
+		{
+			get
+			{
+				return this._DIASTOLIC;
+			}
+			set
+			{
+				if ((this._DIASTOLIC != value))
+				{
+					this.OnDIASTOLICChanging(value);
+					this.SendPropertyChanging();
+					this._DIASTOLIC = value;
+					this.SendPropertyChanged("DIASTOLIC");
+					this.OnDIASTOLICChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TEMPRATURE", DbType="Float NOT NULL")]
+		public double TEMPRATURE
+		{
+			get
+			{
+				return this._TEMPRATURE;
+			}
+			set
+			{
+				if ((this._TEMPRATURE != value))
+				{
+					this.OnTEMPRATUREChanging(value);
+					this.SendPropertyChanging();
+					this._TEMPRATURE = value;
+					this.SendPropertyChanged("TEMPRATURE");
+					this.OnTEMPRATUREChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FACE_PICTURE_URL", DbType="VarChar(128)")]
+		public string FACE_PICTURE_URL
+		{
+			get
+			{
+				return this._FACE_PICTURE_URL;
+			}
+			set
+			{
+				if ((this._FACE_PICTURE_URL != value))
+				{
+					this.OnFACE_PICTURE_URLChanging(value);
+					this.SendPropertyChanging();
+					this._FACE_PICTURE_URL = value;
+					this.SendPropertyChanged("FACE_PICTURE_URL");
+					this.OnFACE_PICTURE_URLChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID_STATUS", DbType="Int")]
+		public System.Nullable<int> ID_STATUS
+		{
+			get
+			{
+				return this._ID_STATUS;
+			}
+			set
+			{
+				if ((this._ID_STATUS != value))
+				{
+					this.OnID_STATUSChanging(value);
+					this.SendPropertyChanging();
+					this._ID_STATUS = value;
+					this.SendPropertyChanged("ID_STATUS");
+					this.OnID_STATUSChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NOTE", DbType="VarChar(128)")]
+		public string NOTE
+		{
+			get
+			{
+				return this._NOTE;
+			}
+			set
+			{
+				if ((this._NOTE != value))
+				{
+					this.OnNOTEChanging(value);
+					this.SendPropertyChanging();
+					this._NOTE = value;
+					this.SendPropertyChanged("NOTE");
+					this.OnNOTEChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ATTENDANCE_NOTE", DbType="VarChar(128)")]
+		public string ATTENDANCE_NOTE
+		{
+			get
+			{
+				return this._ATTENDANCE_NOTE;
+			}
+			set
+			{
+				if ((this._ATTENDANCE_NOTE != value))
+				{
+					this.OnATTENDANCE_NOTEChanging(value);
+					this.SendPropertyChanging();
+					this._ATTENDANCE_NOTE = value;
+					this.SendPropertyChanged("ATTENDANCE_NOTE");
+					this.OnATTENDANCE_NOTEChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
 		}
 	}

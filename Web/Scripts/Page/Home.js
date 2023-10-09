@@ -94,7 +94,7 @@ function initChart() {
             'Tidak Dapat Bekerja'
         ],
         datasets: [{
-            label: 'My First Dataset',
+            label: 'Jumlah',
             data: [sudahApprovedValue, retestValue, butuhApprovalValue, tdkdptbekerjaValue],
             backgroundColor: [
                 'rgb(255, 99, 132)',
@@ -111,14 +111,14 @@ function initChart() {
         options: {
             scale: {
                 pointLabels: {
-                    fontSize: 14,
+                    fontSize: 10,
                     fontStyle: 'bold',
                 }
             },
             plugins: {
                 legend: {
                     display: true,
-                    position: 'right',
+                    position: 'bottom',
                 }
             },
         }

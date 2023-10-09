@@ -100,17 +100,11 @@
     <div class="col-6 col-md-4 col-xl-4">
         <div class="block block-link-pop text-center" href="javascript:void(0)">
             <div class="block-content">
-                <div class="ms-1 text-start">
+                <div class="ms-1 text-center">
                     <p class="fs-sm text-uppercase fw-semibold text-muted mb-0">
                         Prosentase Fatigue
                     </p>
                     <div class="col-12">
-                        <!-- Sparkline Pie 1 Container -->
-                        @*<span class="js-sparkline sparkline-pie" data-type="pie"
-                              data-width="75px"
-                              data-height="75px"
-                              data-tooltip-suffix="Tickets">
-                        </span>*@
                         <canvas id="chartshome"></canvas>
                     </div>
                 </div>
@@ -118,7 +112,7 @@
             </div>
         </div>
     </div>
-    <div class="col-6 col-md-4 col-xl-2">
+    <div class="col-6 col-md-4 col-xl-4">
         <div class="block block-link-pop text-center" href="javascript:void(0)">
             <div class="block-content">
                 <div class="ms-1 text-start">
@@ -129,17 +123,36 @@
                         <span id="sudahapproved">-</span>
                     </p>
                     <p class="fw-normal mb-0" style="font-size: small">
-                        <span id="sudahapprovedDate">-</span>
+                        Update Terakhir <span id="sudahapprovedDate">-</span>
                     </p>
                 </div>
                 <br />
-                <a class="btn rounded-0 btn-secondary mb-3 w-100" href="/EmpRecord/Index">
+                <a class="btn rounded-0 btn-secondary mb-4 w-100" href="/EmpRecord/Index">
+                    Lihat Detail
+                </a>
+            </div>
+        </div>
+        <div class="block block-link-pop text-center" href="javascript:void(0)">
+            <div class="block-content">
+                <div class="ms-1 text-start">
+                    <p class="fs-sm text-uppercase fw-semibold text-muted mb-0">
+                        Akan Re-test
+                    </p>
+                    <p class="fs-lg fw-semibold mb-0">
+                        <span id="retest">-</span>
+                    </p>
+                    <p class="fw-normal mb-0" style="font-size: small">
+                        Update Terakhir <span id="retestDate">-</span>
+                    </p>
+                </div>
+                <br />
+                <a class="btn rounded-0 btn-secondary mb-4 w-100" href="/EmpRecord/Index">
                     Lihat Detail
                 </a>
             </div>
         </div>
     </div>
-    <div class="col-6 col-md-4 col-xl-2">
+    <div class="col-6 col-md-4 col-xl-4">
         <div class="block block-link-pop text-center" href="javascript:void(0)">
             <div class="block-content">
                 <div class="ms-1 text-start">
@@ -150,17 +163,36 @@
                         <span id="butuhapproval">-</span>
                     </p>
                     <p class="fw-normal mb-0" style="font-size: small">
-                        <span id="butuhapprovalDate">-</span>
+                        Update Terakhir <span id="butuhapprovalDate">-</span>
                     </p>
                 </div>
                 <br />
-                <a class="btn rounded-0 btn-danger mb-3 w-100" href="/Approval/Index">
+                <a class="btn rounded-0 btn-danger mb-4 w-100" href="/Approval/Index">
                     Approve
                 </a>
             </div>
         </div>
+        <div class="block block-link-pop text-center" href="javascript:void(0)">
+            <div class="block-content">
+                <div class="ms-1 text-start">
+                    <p class="fs-sm text-uppercase fw-semibold text-muted mb-0">
+                        Tidak Dapat Bekerja
+                    </p>
+                    <p class="fs-lg fw-semibold mb-0">
+                        <span id="tdkdptbekerja">-</span>
+                    </p>
+                    <p class="fw-normal mb-0" style="font-size: small">
+                        Update Terakhir <span id="tdkdptbekerjaDate">-</span>
+                    </p>
+                </div>
+                <br />
+                <a class="btn rounded-0 btn-secondary mb-4 w-100" href="/EmpRecord/Index">
+                    Lihat Detail
+                </a>
+            </div>
+        </div>
     </div>
-    <div class="col-6 col-md-4 col-xl-2">
+    @*<div class="col-6 col-md-4 col-xl-2">
         <div class="block block-link-pop text-center" href="javascript:void(0)">
             <div class="block-content">
                 <div class="ms-1 text-start">
@@ -180,8 +212,8 @@
                 </a>
             </div>
         </div>
-    </div>
-    <div class="col-6 col-md-4 col-xl-2">
+    </div>*@
+    @*<div class="col-6 col-md-4 col-xl-2">
         <div class="block block-link-pop text-center" href="javascript:void(0)">
             <div class="block-content">
                 <div class="ms-1 text-start">
@@ -201,7 +233,7 @@
                 </a>
             </div>
         </div>
-    </div>
+    </div>*@
 </div>
 
 <!-- CFC Utilization -->
