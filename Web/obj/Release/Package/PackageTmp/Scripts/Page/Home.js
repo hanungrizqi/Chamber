@@ -2,27 +2,27 @@
 
 $("document").ready(function () {
     Karyawanmasuk();
-    UpdateterakhirKaryawanmasuk()
-    KaryawanFit()
-    UpdateterakhirKaryawaFit()
-    KaryawanUnfit()
-    UpdateterakhirKaryawaUnfit()
-    sudahApproved()
-    sudahApprovedDate()
-    butuhApproval()
-    butuhApprovalDate()
-    retest()
-    retestDate()
-    tdkdptbekerja()
-    tdkdptbekerjaDate()
-    cham001()
-    cham001Date()
-    cham002()
-    cham002Date()
-    cham003()
-    cham003Date()
-    cham004()
-    cham004Date()
+    //UpdateterakhirKaryawanmasuk()
+    //KaryawanFit()
+    //UpdateterakhirKaryawaFit()
+    //KaryawanUnfit()
+    //UpdateterakhirKaryawaUnfit()
+    //sudahApproved()
+    //sudahApprovedDate()
+    //butuhApproval()
+    //butuhApprovalDate()
+    //retest()
+    //retestDate()
+    //tdkdptbekerja()
+    //tdkdptbekerjaDate()
+    //cham001()
+    //cham001Date()
+    //cham002()
+    //cham002Date()
+    //cham003()
+    //cham003Date()
+    //cham004()
+    //cham004Date()
 
     $("#example-flatpickr-range").flatpickr({
         mode: "range",
@@ -195,6 +195,7 @@ function Karyawanmasuk() {
         success: function (result) {
             //debugger
             $("#totalKaryawanMasuk").text(result.Total);
+            UpdateterakhirKaryawanmasuk()
         }
     });
 }
@@ -226,6 +227,7 @@ function UpdateterakhirKaryawanmasuk() {
         success: function (result) {
             //debugger
             $("#updateTerakhirKaryawanMasuk").text(result.Tanggal);
+            KaryawanFit()
         }
     });
 }
@@ -252,6 +254,7 @@ function KaryawanFit() {
         success: function (result) {
             //debugger
             $("#totalKaryawanFit").text(result.Total);
+            UpdateterakhirKaryawaFit()
         }
     });
 }
@@ -276,6 +279,7 @@ function UpdateterakhirKaryawaFit() {
         success: function (result) {
             //debugger
             $("#updateTerakhirKaryawanFit").text(result.Tanggal);
+            KaryawanUnfit()
         }
     });
 }
@@ -301,6 +305,7 @@ function KaryawanUnfit() {
         success: function (result) {
             //debugger
             $("#totalKaryawanUnfit").text(result.Total);
+            UpdateterakhirKaryawaUnfit()
         }
     });
 }
@@ -325,6 +330,7 @@ function UpdateterakhirKaryawaUnfit() {
         success: function (result) {
             //debugger
             $("#updateTerakhirKaryawanUnfit").text(result.Tanggal);
+            sudahApproved()
         }
     });
 }
@@ -350,6 +356,7 @@ function sudahApproved() {
         success: function (result) {
             //debugger
             $("#sudahapproved").text(result.Total);
+            sudahApprovedDate()
         }
     });
 }
@@ -393,6 +400,7 @@ function sudahApprovedDate() {
         success: function (result) {
             //debugger
             $("#sudahapprovedDate").text(result.Tanggal);
+            butuhApproval()
         }
     });
 }
@@ -418,6 +426,7 @@ function butuhApproval() {
         success: function (result) {
             //debugger
             $("#butuhapproval").text(result.Total);
+            butuhApprovalDate()
         }
     });
 }
@@ -430,6 +439,7 @@ function butuhApprovalDate() {
         success: function (result) {
             //debugger
             $("#butuhapprovalDate").text(result.Tanggal);
+            retest()
         }
     });
 }
@@ -477,6 +487,7 @@ function retest() {
         success: function (result) {
             //debugger
             $("#retest").text(result.Total);
+            retestDate()
         }
     });
 }
@@ -489,6 +500,7 @@ function retestDate() {
         success: function (result) {
             //debugger
             $("#retestDate").text(result.Tanggal);
+            tdkdptbekerja()
         }
     });
 }
@@ -535,6 +547,7 @@ function tdkdptbekerja() {
         success: function (result) {
             //debugger
             $("#tdkdptbekerja").text(result.Total);
+            tdkdptbekerjaDate()
         }
     });
 }
@@ -547,6 +560,7 @@ function tdkdptbekerjaDate() {
         success: function (result) {
             //debugger
             $("#tdkdptbekerjaDate").text(result.Tanggal);
+            cham001()
         }
     });
 }
@@ -593,6 +607,7 @@ function cham001() {
         success: function (result) {
             //debugger
             $("#cham001").text(result.USDTDY);
+            cham001Date()
         }
     });
 }
@@ -618,6 +633,7 @@ function cham001Date() {
         success: function (result) {
             //debugger
             $("#cham001Date").text(result.Tanggal);
+            cham002()
         }
     });
 }
@@ -642,6 +658,7 @@ function cham002() {
         success: function (result) {
             //debugger
             $("#cham002").text(result.USDTDY);
+            cham002Date()
         }
     });
 }
@@ -654,6 +671,7 @@ function cham002Date() {
         success: function (result) {
             //debugger
             $("#cham002Date").text(result.Tanggal);
+            cham003()
         }
     });
 }
@@ -691,6 +709,7 @@ function cham003() {
         success: function (result) {
             //debugger
             $("#cham003").text(result.USDTDY);
+            cham003Date()
         }
     });
 }
@@ -703,6 +722,7 @@ function cham003Date() {
         success: function (result) {
             //debugger
             $("#cham003Date").text(result.Tanggal);
+            cham004()
         }
     });
 }
@@ -740,6 +760,7 @@ function cham004() {
         success: function (result) {
             //debugger
             $("#cham004").text(result.USDTDY);
+            cham004Date
         }
     });
 }

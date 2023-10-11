@@ -249,6 +249,34 @@
                                             </a>
                                         </li>
                                     }
+                                    else if (Session["ID_Role"].ToString() == "2")
+                                    {
+                                        <li>
+                                            <a class="text-dark d-flex py-2" href="/Approval/Index">
+                                                <div class="flex-shrink-0 me-2 ms-3">
+                                                    <i class="fa fa-fw fa-exclamation-triangle text-warning"></i>
+                                                </div>
+                                                <div class="flex-grow-1 pe-2">
+                                                    <p class="fw-medium mb-1">@Session["Counted"].ToString() Approval from all site found. Check at Work Approval menu!</p>
+                                                    <div class="text-muted">@Session["LastCFC"].ToString()</div>
+                                                </div>
+                                            </a>
+                                        </li>
+                                    }
+                                    else if (Session["ID_Role"].ToString() == "4")
+                                    {
+                                        <li>
+                                            <a class="text-dark d-flex py-2" href="/Approval/Index">
+                                                <div class="flex-shrink-0 me-2 ms-3">
+                                                    <i class="fa fa-fw fa-exclamation-triangle text-warning"></i>
+                                                </div>
+                                                <div class="flex-grow-1 pe-2">
+                                                    <p class="fw-medium mb-1">@Session["Counted"].ToString() Approval from all site found. Check at Work Approval menu!</p>
+                                                    <div class="text-muted">@Session["LastCFC"].ToString()</div>
+                                                </div>
+                                            </a>
+                                        </li>
+                                    }
                                     else
                                     {
                                         <li>
@@ -282,10 +310,23 @@
                                     <i class="fab fa-fw fa-jenkins opacity-70"></i>
                                     <span>&nbsp; @Session["Role"].ToString()</span>
                                 </a>
-                                <a class="dropdown-item d-flex align-items-center justify-content-between space-x-1" href="/Setting/Users">
-                                    <i class="fa fa-fw fab fa-whmcs opacity-25"></i>
-                                    <span>&nbsp; User Setting</span>
-                                </a>
+                                @if (Session["ID_Role"] != null)
+                                {
+                                    if (Session["ID_Role"].ToString() != "1")
+                                    {
+                                        <a class="dropdown-item d-flex align-items-center justify-content-between space-x-1" href="javascript:void(0)">
+                                            <i class="fa fa-fw fab fa-whmcs opacity-25"></i>
+                                            <span>&nbsp; User Setting</span>
+                                        </a>
+                                    }
+                                    else
+                                    {
+                                        <a class="dropdown-item d-flex align-items-center justify-content-between space-x-1" href="/Setting/Users">
+                                            <i class="fa fa-fw fab fa-whmcs opacity-25"></i>
+                                            <span>&nbsp; User Setting</span>
+                                        </a>
+                                    }
+                                }
                                 <a class="dropdown-item d-flex align-items-center justify-content-between space-x-1" href="/Login/logout">
                                     <i class="fa fa-fw fa-sign-out-alt opacity-25"></i>
                                     <span>&nbsp; Sign Out</span>
@@ -395,7 +436,7 @@
     @*<script>
             Codebase.helpersOnLoad(['cb-table-tools-checkable', 'cb-table-tools-sections']);
         </script>*@
-    <script src="~/Content/assets/js/pages/be_forms_validation.min.js"></script>
+    @*<script src="~/Content/assets/js/pages/be_forms_validation.min.js"></script>*@
     <script src="@Html.Raw(ViewBag.JS)"></script>
     <script>
         var path = window.location.pathname;

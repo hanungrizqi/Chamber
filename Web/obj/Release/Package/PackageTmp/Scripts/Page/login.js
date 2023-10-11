@@ -163,9 +163,22 @@ function SearchRole(nrp) {
         type: "GET",
         cache: false,
         success: function (result) {
-            debugger
-            rol = result.Data.ID_Role;
-            MakeSession(obj.Username, rol)
+            if (result.Remarks == true) {
+                debugger
+                rol = result.Data.ID_Role;
+                MakeSession(obj.Username, rol)
+            }
+            else {
+                swal.fire({
+                    title: "Error!",
+                    text: "Maaf anda tidak memiliki akses ke CFM Web",
+                    icon: 'error',
+                });
+                $("#overlay").hide();
+            }
+        },
+        error: function (xhr) {
+            alert(xhr.responseText);
         }
     });
 }

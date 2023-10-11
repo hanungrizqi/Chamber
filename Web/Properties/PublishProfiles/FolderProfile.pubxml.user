@@ -4,7 +4,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
 -->
 <Project>
   <PropertyGroup>
-    <_PublishTargetUrl>D:\Publish Project\CFM\Development\20231009\Web</_PublishTargetUrl>
+    <_PublishTargetUrl>D:\Publish Project\CFM\Development\20231010\Web</_PublishTargetUrl>
     <History>True|2023-09-29T02:38:53.9722222Z;True|2023-09-29T09:37:25.3386475+07:00;</History>
     <LastFailureDetails />
   </PropertyGroup>
@@ -205,10 +205,10 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>05/27/2022 23:42:50</publishTime>
     </File>
     <File Include="bin/Web.dll">
-      <publishTime>10/09/2023 10:21:04</publishTime>
+      <publishTime>10/10/2023 10:48:57</publishTime>
     </File>
     <File Include="bin/Web.pdb">
-      <publishTime>10/09/2023 10:21:04</publishTime>
+      <publishTime>10/10/2023 10:48:57</publishTime>
     </File>
     <File Include="bin/WebGrease.dll">
       <publishTime>01/23/2014 13:57:34</publishTime>
@@ -12838,10 +12838,10 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>10/03/2023 11:28:51</publishTime>
     </File>
     <File Include="Scripts/Page/Home.js">
-      <publishTime>10/09/2023 14:56:22</publishTime>
+      <publishTime>10/10/2023 09:51:21</publishTime>
     </File>
     <File Include="Scripts/Page/login.js">
-      <publishTime>10/06/2023 16:09:26</publishTime>
+      <publishTime>10/10/2023 10:30:43</publishTime>
     </File>
     <File Include="Scripts/Page/SettingMenu.js">
       <publishTime>09/27/2023 10:45:49</publishTime>
@@ -12871,7 +12871,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>10/06/2023 15:10:21</publishTime>
     </File>
     <File Include="Views/Home/Index.cshtml">
-      <publishTime>10/09/2023 15:04:27</publishTime>
+      <publishTime>10/09/2023 16:33:20</publishTime>
     </File>
     <File Include="Views/Login/Index.cshtml">
       <publishTime>10/06/2023 15:59:49</publishTime>
@@ -12886,7 +12886,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>09/20/2023 10:46:04</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>10/09/2023 15:01:22</publishTime>
+      <publishTime>10/10/2023 10:41:03</publishTime>
     </File>
     <File Include="Views/Shared/_Sidebar.cshtml">
       <publishTime>09/27/2023 13:23:24</publishTime>
@@ -12898,7 +12898,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>09/20/2023 10:46:04</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>10/09/2023 15:10:02</publishTime>
+      <publishTime>10/10/2023 10:48:58</publishTime>
     </File>
   </ItemGroup>
 </Project>

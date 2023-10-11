@@ -62,7 +62,10 @@ namespace restApi.Controllers
                 }
 
                 var data = db.VW_Users.Where(a => a.Username == nrps).FirstOrDefault();
-
+                if (data == null)
+                {
+                    return Ok(new { Remarks = false, Data = data });
+                }
                 return Ok(new { Remarks = true, Data = data });
             }
             catch (Exception)

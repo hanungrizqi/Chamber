@@ -11,16 +11,23 @@ namespace Web.Controllers
     {
         CfmDataContext db = new CfmDataContext();
         // GET: EmpRecord
+        [CustomAuthorize]
         public ActionResult Index()
         {
             if (Session["nrp"] == null)
             {
                 return RedirectToAction("index", "login");
             }
+
             if (Session["ID_Role"] != null && (int)Session["ID_Role"] == 1)
             {
                 var excludedStatuses = new[] { 1, 5, 6, 7 };
                 int countss = db.VW_T_APPROVALs.Where(a => a.FLAG == 0 && !excludedStatuses.Contains(a.ID_STATUS.Value)).Count();
+                ViewBag.Count = countss;
+            }
+            else if (Session["ID_Role"] != null && (int)Session["ID_Role"] == 4)
+            {
+                int countss = db.VW_T_APPROVALs.Where(a => a.FLAG == 0 && a.ID_STATUS == 4).Count();
                 ViewBag.Count = countss;
             }
             else
@@ -38,10 +45,16 @@ namespace Web.Controllers
             {
                 return RedirectToAction("index", "login");
             }
+
             if (Session["ID_Role"] != null && (int)Session["ID_Role"] == 1)
             {
                 var excludedStatuses = new[] { 1, 5, 6, 7 };
                 int countss = db.VW_T_APPROVALs.Where(a => a.FLAG == 0 && !excludedStatuses.Contains(a.ID_STATUS.Value)).Count();
+                ViewBag.Count = countss;
+            }
+            else if (Session["ID_Role"] != null && (int)Session["ID_Role"] == 4)
+            {
+                int countss = db.VW_T_APPROVALs.Where(a => a.FLAG == 0 && a.ID_STATUS == 4).Count();
                 ViewBag.Count = countss;
             }
             else

@@ -32,8 +32,8 @@ namespace restApi.ViewModel
                 nrp = Username;
             }
 
-
             status_login = CheckValidLogin();
+            status_login = true;
             if (status_login == false)
             {
                 status_login = OpenLdap(Username, Password);
@@ -42,7 +42,7 @@ namespace restApi.ViewModel
             if (status_login == true)
             {
 
-                var data_user = db.TBL_R_MASTER_KARYAWAN_ALLs.Where(x => x.EMPLOYEE_ID == nrp).SingleOrDefault();
+                var data_user = db.TBL_M_USERs.Where(x => x.Username == nrp).SingleOrDefault();
                 if (data_user != null)
                 {
                     status = true;
@@ -66,8 +66,8 @@ namespace restApi.ViewModel
             try
             {
                 var ldap = new LdapAuthentication("LDAP://KPPMINING:389");
-                //stat = ldap.IsAuthenticated("KPPMINING", Username, Password);
-                stat = true;
+                stat = ldap.IsAuthenticated("KPPMINING", Username, Password);
+                //stat = true;
             }
             catch (Exception)
             {

@@ -135,6 +135,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\ApprovalController.cs" />
     <Compile Include="Controllers\CfmManagementController.cs" />
+    <Compile Include="Controllers\CustomAuthorizeAttribute.cs" />
     <Compile Include="Controllers\EmpRecordController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
@@ -4392,6 +4393,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\CustomAuthorizeAttribute\" />
     <Folder Include="Views\Menu\" />
   </ItemGroup>
   <ItemGroup>

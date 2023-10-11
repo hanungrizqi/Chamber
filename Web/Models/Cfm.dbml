@@ -197,4 +197,10 @@
       <Column Name="ATTENDANCE_NOTE" Type="System.String" DbType="VarChar(128)" CanBeNull="true" />
     </Type>
   </Table>
+  <Table Name="dbo.VW_AUTORIZE_MENU" Member="VW_AUTORIZE_MENUs">
+    <Type Name="VW_AUTORIZE_MENU">
+      <Column Name="ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Link_Menu" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+    </Type>
+  </Table>
 </Database>

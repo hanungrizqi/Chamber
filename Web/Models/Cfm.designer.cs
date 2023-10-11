@@ -202,6 +202,14 @@ namespace Web.Models
 				return this.GetTable<TBL_T_CFC>();
 			}
 		}
+		
+		public System.Data.Linq.Table<VW_AUTORIZE_MENU> VW_AUTORIZE_MENUs
+		{
+			get
+			{
+				return this.GetTable<VW_AUTORIZE_MENU>();
+			}
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.TBL_R_MENU")]
@@ -3256,6 +3264,51 @@ namespace Web.Models
 			if ((this.PropertyChanged != null))
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.VW_AUTORIZE_MENU")]
+	public partial class VW_AUTORIZE_MENU
+	{
+		
+		private System.Nullable<int> _ID;
+		
+		private string _Link_Menu;
+		
+		public VW_AUTORIZE_MENU()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", DbType="Int")]
+		public System.Nullable<int> ID
+		{
+			get
+			{
+				return this._ID;
+			}
+			set
+			{
+				if ((this._ID != value))
+				{
+					this._ID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Link_Menu", DbType="NVarChar(250)")]
+		public string Link_Menu
+		{
+			get
+			{
+				return this._Link_Menu;
+			}
+			set
+			{
+				if ((this._Link_Menu != value))
+				{
+					this._Link_Menu = value;
+				}
 			}
 		}
 	}

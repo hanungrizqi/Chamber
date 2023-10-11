@@ -92,5 +92,11 @@
         <elementListCompartment Id="6d5466dc-accb-4537-a2f0-4f3689004397" absoluteBounds="2.64, 1.46, 1.9700000000000002, 2.7493082682291665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
+    <classShape Id="1c893587-d079-40fd-9402-08d42c7cd4c2" isExpanded="false" absoluteBounds="4.75, 4, 2, 0.45">
+      <DataClassMoniker Name="/CfmDataContext/VW_AUTORIZE_MENU" />
+      <nestedChildShapes>
+        <elementListCompartment Id="875defc6-6d78-4a61-aad2-c13c3c5998e1" absoluteBounds="4.765, 4.46, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
   </nestedChildShapes>
 </ordesignerObjectsDiagram>

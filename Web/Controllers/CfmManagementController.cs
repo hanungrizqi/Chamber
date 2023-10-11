@@ -10,7 +10,8 @@ namespace Web.Controllers
     public class CfmManagementController : Controller
     {
         CfmDataContext db = new CfmDataContext();
-        // GET: CfmManagement
+        
+        [CustomAuthorize]
         public ActionResult Index()
         {
             if (Session["nrp"] == null)

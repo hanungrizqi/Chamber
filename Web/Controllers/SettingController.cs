@@ -10,7 +10,8 @@ namespace Web.Controllers
     public class SettingController : Controller
     {
         CfmDataContext db = new CfmDataContext();
-        // GET: EmpRecord
+        
+        [CustomAuthorize]
         public ActionResult Users()
         {
             if (Session["nrp"] == null)
@@ -34,6 +35,7 @@ namespace Web.Controllers
             return View();
         }
 
+        [CustomAuthorize]
         public ActionResult Menu()
         {
             if (Session["nrp"] == null)
