@@ -1,18 +1,38 @@
 ﻿Codebase.helpersOnLoad(['jq-select2']);
 
 $("document").ready(function () {
-    Detail(function () {
+    //Detail(function () {
+    //    Status();
+    //});
+    //var idProfile = $("#hd_idroles").val();
+    //if (idProfile == 3) {
+    //    $("#tombolApprove").hide();
+    //} else {
+    //    $("#tombolApprove").show();
+    //}
+
+    // Initialize jumlahApprovalPerhari here with a default value
+    var jumlahApprovalPerhari = 0;
+
+    Detail(function (jumlah) {
+
+        var idProfile = $("#hd_idroles").val();
+        if (idProfile == 3) {
+            $("#tombolApprove").hide();
+        } else {
+            $("#tombolApprove").show();
+        }
+
+        // Update jumlahApprovalPerhari with the value from the callback
+        jumlahApprovalPerhari = jumlah;
         Status();
+        if (jumlahApprovalPerhari === 2 || jumlahApprovalPerhari === 3) {
+            // Disable the dropdown
+            $("#txt_status").prop("disabled", true);
+        }
     });
-    var idProfile = $("#hd_idroles").val();
-    if (idProfile == 3) {
-        $("#tombolApprove").hide();
-    } else {
-        $("#tombolApprove").show();
-    }
-
 })
-
+var combine_approvalid;
 var data2;
 function Detail(callback) {
     $.ajax({
@@ -36,9 +56,33 @@ function Detail(callback) {
             $("#txt_temp").val(data.TEMPRATURE);
             $("#txt_note").val(data.NOTE);
             data2 = data.STATUS;
+            //if (typeof callback === "function") {
+            //    callback();
+            //}
+
+            // Set the value of JUMLAH_APPROVAL_PERHARI to jumlahApprovalPerhari
+            var jumlahApprovalPerhari = data.JUMLAH_APPROVAL_PERHARI;
+
+            recordData(jumlahApprovalPerhari, data.NRP, moment(data.DATE_FROM_CFC).format("YYYY-MM-DD"));
+
             if (typeof callback === "function") {
-                callback();
+                callback(jumlahApprovalPerhari);
             }
+
+        }
+    });
+}
+
+function recordData(jumlahApprovalPerhari, nrp, dateFromCFC) {
+    debugger
+    $.ajax({
+        url: $("#web_link").val() + "/api/EmpRecord/RecordData/" + nrp + "/" + dateFromCFC + "/" + jumlahApprovalPerhari,
+        type: "GET",
+        cache: false,
+        success: function (result) {
+            debugger
+            var datas = result.Data;
+            combine_approvalid = datas.APPROVAL_ID;
         }
     });
 }
