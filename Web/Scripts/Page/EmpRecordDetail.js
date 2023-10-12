@@ -1,38 +1,47 @@
 ﻿Codebase.helpersOnLoad(['jq-select2']);
 
 $("document").ready(function () {
-    //Detail(function () {
-    //    Status();
-    //});
-    //var idProfile = $("#hd_idroles").val();
-    //if (idProfile == 3) {
-    //    $("#tombolApprove").hide();
-    //} else {
-    //    $("#tombolApprove").show();
-    //}
-
-    // Initialize jumlahApprovalPerhari here with a default value
-    var jumlahApprovalPerhari = 0;
-
-    Detail(function (jumlah) {
-
-        var idProfile = $("#hd_idroles").val();
-        if (idProfile == 3) {
-            $("#tombolApprove").hide();
-        } else {
-            $("#tombolApprove").show();
-        }
-
-        // Update jumlahApprovalPerhari with the value from the callback
-        jumlahApprovalPerhari = jumlah;
+    Detail(function () {
         Status();
-        if (jumlahApprovalPerhari === 2 || jumlahApprovalPerhari === 3) {
-            // Disable the dropdown
-            $("#txt_status").prop("disabled", true);
-        }
     });
+    var idProfile = $("#hd_idroles").val();
+    if (idProfile == 3) {
+        $("#tombolApprove").hide();
+    } else {
+        $("#tombolApprove").show();
+    }
+
+    //var jumlahApprovalPerhari = 0;
+    //var approvalids = 0;
+    //var combine_approvalids = 0;
+
+    //Detail(function (jumlah) {
+
+    //    var idProfile = $("#hd_idroles").val();
+    //    if (idProfile == 3) {
+    //        $("#tombolApprove").hide();
+    //    } else {
+    //        $("#tombolApprove").show();
+    //    }
+
+    //    jumlahApprovalPerhari = jumlah;
+    //    approvalids = approvalid;
+    //    combine_approvalids = combine_approvalid;
+    //    Status();
+
+    //    if (jumlahApprovalPerhari === 2 || jumlahApprovalPerhari === 3) {
+    //        debugger
+    //        if (approvalids === combine_approvalids) {
+    //            // Disable the dropdown
+    //            $("#txt_status").prop("disabled", true);
+    //        }
+    //    }
+    //});
 })
+
+var approvalid;
 var combine_approvalid;
+var idstatss;
 var data2;
 function Detail(callback) {
     $.ajax({
@@ -56,17 +65,18 @@ function Detail(callback) {
             $("#txt_temp").val(data.TEMPRATURE);
             $("#txt_note").val(data.NOTE);
             data2 = data.STATUS;
+            approvalid = data.APPROVAL_ID;
+            idstatss = data.ID_STATUS;
             //if (typeof callback === "function") {
             //    callback();
             //}
 
-            // Set the value of JUMLAH_APPROVAL_PERHARI to jumlahApprovalPerhari
             var jumlahApprovalPerhari = data.JUMLAH_APPROVAL_PERHARI;
 
             recordData(jumlahApprovalPerhari, data.NRP, moment(data.DATE_FROM_CFC).format("YYYY-MM-DD"));
-
+            debugger
             if (typeof callback === "function") {
-                callback(jumlahApprovalPerhari);
+                callback(/*jumlahApprovalPerhari, combine_approvalid*/);
             }
 
         }
@@ -76,13 +86,27 @@ function Detail(callback) {
 function recordData(jumlahApprovalPerhari, nrp, dateFromCFC) {
     debugger
     $.ajax({
-        url: $("#web_link").val() + "/api/EmpRecord/RecordData/" + nrp + "/" + dateFromCFC + "/" + jumlahApprovalPerhari,
+        url: $("#web_link").val() + `/api/EmpRecord/RecordData?nrp=${nrp}&datefromcfc=${dateFromCFC}&jmlapprvlperhari=${jumlahApprovalPerhari}`,
         type: "GET",
         cache: false,
         success: function (result) {
             debugger
             var datas = result.Data;
             combine_approvalid = datas.APPROVAL_ID;
+
+            if (idstatss == 5) {
+                if (jumlahApprovalPerhari === 2 || jumlahApprovalPerhari === 3) {
+                    debugger
+                    if (approvalid === combine_approvalid) {
+                        // Disable the dropdown
+                        $("#txt_status").prop("disabled", false);
+                    }
+                    else {
+                        // Disable the dropdown
+                        $("#txt_status").prop("disabled", true);
+                    }
+                }
+            }
         }
     });
 }
@@ -93,7 +117,7 @@ function Status() {
         type: "GET",
         cache: false,
         success: function (result) {
-            debugger
+            //debugger
             $('#txt_status').empty();
             text = '<option></option>';
             var dataStatus = data2;

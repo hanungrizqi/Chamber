@@ -154,13 +154,13 @@ namespace restApi.Controllers
         }
 
         [HttpGet]
-        [Route("RecordData/{nrp}/{datefromcfc}/{jml_apprvl_perhari}")]
-        public IHttpActionResult RecordData(string nrp, DateTime datefromcfc, int jmlapprvlperhari)
+        [Route("RecordData")]
+        public IHttpActionResult RecordData(string nrp, string datefromcfc, int jmlapprvlperhari)
         {
             try
             {
                 db.CommandTimeout = 120;
-                var data = db.VW_T_APPROVALs.Where(a => a.NRP == nrp && a.DATE_FROM_CFC == datefromcfc && a.JUMLAH_APPROVAL_PERHARI == jmlapprvlperhari).OrderByDescending(a => a.WAKTU_ABSEN).FirstOrDefault();
+                var data = db.VW_T_APPROVALs.Where(a => a.NRP == nrp && a.DATE_FROM_CFC.ToString() == datefromcfc && a.JUMLAH_APPROVAL_PERHARI == jmlapprvlperhari).OrderByDescending(a => a.WAKTU_ABSEN).FirstOrDefault();
 
                 return Ok(new { Data = data });
             }

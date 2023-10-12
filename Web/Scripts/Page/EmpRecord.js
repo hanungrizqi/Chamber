@@ -163,31 +163,34 @@ var table = $("#tbl_empr").DataTable({
             render: function (data, type, row) {
                 var actions = '<div class="btn-group">';
                 actions += '<button class="btn btn-sm" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-ellipsis-vertical"></i></button>';
-                if (row.JUMLAH_APPROVAL_PERHARI === 2 || row.JUMLAH_APPROVAL_PERHARI === 3) {
+                if (row.ID_STATUS == 5) {
+                    if (row.JUMLAH_APPROVAL_PERHARI === 2 || row.JUMLAH_APPROVAL_PERHARI === 3) {
 
-                    var isLatestRow = false;
-                    var nrp = row.NRP;
-                    var otherRows = $('#tbl_empr').DataTable().rows().data().toArray();
-                    debugger
-                    for (var i = 0; i < otherRows.length; i++) {
-                        //debugger
-                        var otherRow = otherRows[i];
-                        if (otherRow.NRP === nrp && row.WAKTU_ABSEN > otherRow.WAKTU_ABSEN) {
-                            debugger
-                            isLatestRow = true;
-                            break;
+                        var isLatestRow = false;
+                        var nrp = row.NRP;
+                        var otherRows = $('#tbl_empr').DataTable().rows().data().toArray();
+                        debugger
+                        for (var i = 0; i < otherRows.length; i++) {
+                            //debugger
+                            var otherRow = otherRows[i];
+                            if (otherRow.NRP === nrp && row.WAKTU_ABSEN > otherRow.WAKTU_ABSEN) {
+                                debugger
+                                isLatestRow = true;
+                                break;
+                            }
+                        }
+                        if (isLatestRow === true) {
+                            actions += '<ul class="dropdown-menu dropdown-menu-right">';
+                            actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Unfit" href="#">Unfit</a></li>';
+                            actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Fit Need Rest Time" href="#">Fit Need Rest Time</a></li>';
+                            actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Unfit Butuh Paramedis" href="#">Unfit Butuh Paramedis</a></li>';
+                            actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Istirahat" href="#">Istirahat</a></li>';
+                            actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Berhenti Bekerja" href="#">Berhenti Bekerja</a></li>';
+                            actions += '</ul>';
                         }
                     }
-                    if (isLatestRow === true) {
-                        actions += '<ul class="dropdown-menu dropdown-menu-right">';
-                        actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Unfit" href="#">Unfit</a></li>';
-                        actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Fit Need Rest Time" href="#">Fit Need Rest Time</a></li>';
-                        actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Unfit Butuh Paramedis" href="#">Unfit Butuh Paramedis</a></li>';
-                        actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Istirahat" href="#">Istirahat</a></li>';
-                        actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Berhenti Bekerja" href="#">Berhenti Bekerja</a></li>';
-                        actions += '</ul>';
-                    }
                 }
+                
                 else {
                     if ($("#hd_idroles").val() != 3) {
                         actions += '<ul class="dropdown-menu dropdown-menu-right">';
