@@ -155,11 +155,19 @@ var table = $("#tbl_approval").DataTable({
                 var actions = '<div class="btn-group">';
                 actions += '<button class="btn btn-sm" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-ellipsis-vertical"></i></button>';
                 if (row.STATUS === 'Unfit') {
-                    actions += '<ul class="dropdown-menu">';
-                    actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="UnfitBParamedis" href="#">Unfit Butuh Paramedis</a></li>';
-                    actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Retest" href="#">Retest</a></li>';
-                    actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="BerhentiBekerja" href="#">Berhenti Bekerja</a></li>';
-                    actions += '</ul>';
+                    if (row.JUMLAH_APPROVAL_PERHARI === 3) {
+                        actions += '<ul class="dropdown-menu">';
+                        actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="UnfitBParamedis" href="#">Unfit Butuh Paramedis</a></li>';
+                        actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="BerhentiBekerja" href="#">Berhenti Bekerja</a></li>';
+                        actions += '</ul>';
+                    }
+                    else {
+                        actions += '<ul class="dropdown-menu">';
+                        actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="UnfitBParamedis" href="#">Unfit Butuh Paramedis</a></li>';
+                        actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Retest" href="#">Retest</a></li>';
+                        actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="BerhentiBekerja" href="#">Berhenti Bekerja</a></li>';
+                        actions += '</ul>';
+                    }
                 } else if (row.STATUS === 'Fit Need Rest Time') {
                     actions += '<ul class="dropdown-menu">';
                     actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Fit" href="#">Fit</a></li>';

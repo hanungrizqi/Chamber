@@ -4,6 +4,7 @@
     });
 })
 var statusz;
+var jumlahperhari;
 function Detail(callback) {
     $.ajax({
         url: $("#web_link").val() + "/api/Approval/Detail/" + $("#idapprv").val(), //URI,
@@ -26,6 +27,7 @@ function Detail(callback) {
             $("#txt_temp").val(data.TEMPRATURE);
             $("#txt_note").val(data.NOTE);
             statusz = data.STATUS;
+            jumlahperhari = data.JUMLAH_APPROVAL_PERHARI;
             if (typeof callback === "function") {
                 callback();
             }
@@ -35,6 +37,7 @@ function Detail(callback) {
 
 function updateDropdownVisibility() {
     var txtStatus = statusz;
+    var txtJumlahperhari = jumlahperhari;
     var approvalDropdown = document.getElementById("approvalDropdown");
     console.log(approvalDropdown);
 
@@ -45,28 +48,40 @@ function updateDropdownVisibility() {
         }
         debugger
         if (txtStatus === "Unfit") {
-            // Buat elemen <a> baru untuk "Unfit butuh paramedis"
-            var unfitItem = document.createElement("a");
-            unfitItem.setAttribute("class", "dropdown-item");
-            unfitItem.setAttribute("onclick", "UBParamedis()");
-            unfitItem.innerHTML = '<i class="far fa-fw fa-copy opacity-50 me-1"></i>Unfit Butuh Paramedis';
+            if (txtJumlahperhari === 3) {
+                var unfitItem = document.createElement("a");
+                unfitItem.setAttribute("class", "dropdown-item");
+                unfitItem.setAttribute("onclick", "UBParamedis()");
+                unfitItem.innerHTML = '<i class="far fa-fw fa-copy opacity-50 me-1"></i>Unfit Butuh Paramedis';
 
-            // Buat elemen <a> baru untuk "Retest"
-            var retestItem = document.createElement("a");
-            retestItem.setAttribute("class", "dropdown-item");
-            retestItem.setAttribute("onclick", "Retests()");
-            retestItem.innerHTML = '<i class="fa fa-fw fa-pencil opacity-50 me-1"></i>Retest';
+                var bbkerja = document.createElement("a");
+                bbkerja.setAttribute("class", "dropdown-item");
+                bbkerja.setAttribute("onclick", "BerhentiBekerja()");
+                bbkerja.innerHTML = '<i class="fa fa-fw fa-plane-slash opacity-50 me-1"></i>Berhenti Bekerja';
 
-            // Buat elemen <a> baru untuk "Berhenti Bekerja"
-            var bbkerja = document.createElement("a");
-            bbkerja.setAttribute("class", "dropdown-item");
-            bbkerja.setAttribute("onclick", "BerhentiBekerja()");
-            bbkerja.innerHTML = '<i class="fa fa-fw fa-plane-slash opacity-50 me-1"></i>Berhenti Bekerja';
+                approvalDropdown.appendChild(unfitItem);
+                approvalDropdown.appendChild(bbkerja);
+            }
+            else {
+                var unfitItem = document.createElement("a");
+                unfitItem.setAttribute("class", "dropdown-item");
+                unfitItem.setAttribute("onclick", "UBParamedis()");
+                unfitItem.innerHTML = '<i class="far fa-fw fa-copy opacity-50 me-1"></i>Unfit Butuh Paramedis';
 
-            // Masukkan elemen-elemen baru ke dalam dropdown
-            approvalDropdown.appendChild(unfitItem);
-            approvalDropdown.appendChild(retestItem);
-            approvalDropdown.appendChild(bbkerja);
+                var retestItem = document.createElement("a");
+                retestItem.setAttribute("class", "dropdown-item");
+                retestItem.setAttribute("onclick", "Retests()");
+                retestItem.innerHTML = '<i class="fa fa-fw fa-pencil opacity-50 me-1"></i>Retest';
+
+                var bbkerja = document.createElement("a");
+                bbkerja.setAttribute("class", "dropdown-item");
+                bbkerja.setAttribute("onclick", "BerhentiBekerja()");
+                bbkerja.innerHTML = '<i class="fa fa-fw fa-plane-slash opacity-50 me-1"></i>Berhenti Bekerja';
+
+                approvalDropdown.appendChild(unfitItem);
+                approvalDropdown.appendChild(retestItem);
+                approvalDropdown.appendChild(bbkerja);
+            }
         }
         else if (txtStatus === "Fit Need Rest Time") {
 

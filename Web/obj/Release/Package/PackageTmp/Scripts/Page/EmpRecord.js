@@ -163,15 +163,45 @@ var table = $("#tbl_empr").DataTable({
             render: function (data, type, row) {
                 var actions = '<div class="btn-group">';
                 actions += '<button class="btn btn-sm" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-ellipsis-vertical"></i></button>';
-                if ($("#hd_idroles").val() != 3) {
-                    actions += '<ul class="dropdown-menu dropdown-menu-right">';
-                    actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Unfit" href="#">Unfit</a></li>';
-                    actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Fit Need Rest Time" href="#">Fit Need Rest Time</a></li>';
-                    actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Unfit Butuh Paramedis" href="#">Unfit Butuh Paramedis</a></li>';
-                    actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Retest" href="#">Retest</a></li>';
-                    actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Istirahat" href="#">Istirahat</a></li>';
-                    actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Berhenti Bekerja" href="#">Berhenti Bekerja</a></li>';
-                    actions += '</ul>';
+                if (row.ID_STATUS == 5) {
+                    if (row.JUMLAH_APPROVAL_PERHARI === 2 || row.JUMLAH_APPROVAL_PERHARI === 3) {
+
+                        var isLatestRow = false;
+                        var nrp = row.NRP;
+                        var otherRows = $('#tbl_empr').DataTable().rows().data().toArray();
+                        debugger
+                        for (var i = 0; i < otherRows.length; i++) {
+                            //debugger
+                            var otherRow = otherRows[i];
+                            if (otherRow.NRP === nrp && row.WAKTU_ABSEN > otherRow.WAKTU_ABSEN) {
+                                debugger
+                                isLatestRow = true;
+                                break;
+                            }
+                        }
+                        if (isLatestRow === true) {
+                            actions += '<ul class="dropdown-menu dropdown-menu-right">';
+                            actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Unfit" href="#">Unfit</a></li>';
+                            actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Fit Need Rest Time" href="#">Fit Need Rest Time</a></li>';
+                            actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Unfit Butuh Paramedis" href="#">Unfit Butuh Paramedis</a></li>';
+                            actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Istirahat" href="#">Istirahat</a></li>';
+                            actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Berhenti Bekerja" href="#">Berhenti Bekerja</a></li>';
+                            actions += '</ul>';
+                        }
+                    }
+                }
+                
+                else {
+                    if ($("#hd_idroles").val() != 3) {
+                        actions += '<ul class="dropdown-menu dropdown-menu-right">';
+                        actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Unfit" href="#">Unfit</a></li>';
+                        actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Fit Need Rest Time" href="#">Fit Need Rest Time</a></li>';
+                        actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Unfit Butuh Paramedis" href="#">Unfit Butuh Paramedis</a></li>';
+                        actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Retest" href="#">Retest</a></li>';
+                        actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Istirahat" href="#">Istirahat</a></li>';
+                        actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Berhenti Bekerja" href="#">Berhenti Bekerja</a></li>';
+                        actions += '</ul>';
+                    }
                 }
                 actions += '</div>';
                 return actions;
@@ -253,6 +283,19 @@ table.on('draw', function () {
         checkbox.checked = false;
     });
 });
+
+function isClosestToCurrentDate(date) {
+    debugger
+    var currentDate = new Date();
+    var rowDate = new Date(date);
+
+    // Calculate the difference in milliseconds between the current date and the row date
+    var diff = Math.abs(currentDate - rowDate);
+
+    // If the difference is less than or equal to a certain threshold (e.g., 1 hour), consider it the closest record
+    var thresholdMilliseconds = 60 * 60 * 1000; // 1 hour
+    return diff <= thresholdMilliseconds;
+}
 
 function Unfit(approvalId) {
     console.log('Unfit', approvalId);
