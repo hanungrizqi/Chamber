@@ -760,7 +760,7 @@ function cham004() {
         success: function (result) {
             //debugger
             $("#cham004").text(result.USDTDY);
-            cham004Date
+            cham004Date()
         }
     });
 }

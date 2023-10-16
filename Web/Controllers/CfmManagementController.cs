@@ -11,7 +11,6 @@ namespace Web.Controllers
     {
         CfmDataContext db = new CfmDataContext();
         
-        [CustomAuthorize]
         public ActionResult Index()
         {
             if (Session["nrp"] == null)

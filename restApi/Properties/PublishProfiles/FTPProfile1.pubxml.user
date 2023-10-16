@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+https://go.microsoft.com/fwlink/?LinkID=208121.
+-->
+<Project>
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAABdQzpkk3hU2ILYZa7zddOQAAAAACAAAAAAAQZgAAAAEAACAAAACJHK5ilV/EStoiWWZRMCUdYM2GSjCzCuRKA8tK54UeJAAAAAAOgAAAAAIAACAAAADr042edk1LZaZI3qDpSLNGxH5zlZcNtVQxqxv8Zvk/qYAAAAA53E53dBAoVAP3cmt1J95f1MDCLjmtW4gy+HHGxoJniQ41tpp+LlqigdM2n0B8zq6aOiOsAdLOBt8hxk5oeMH6XVmb4kpomW5zIErG9wGaMhFH8eb4mYZGt1+jx2F6gT9yajF8CN98udmukEz/krJqqNc8TgPwY891jNVEqMKDx0AAAACoYKJeDfDqvv7cRaxfdceYDNtDGtl7iE56Em/tfPUP1Q4rNb1qJPa4NM3akCLhNGe336DM3GFadeR1/W26L89A</EncryptedPassword>
+    <_PublishTargetUrl>ftps://waws-prod-sg1-053.ftp.azurewebsites.windows.net/site/wwwroot/https://dcfcapidev.azurewebsites.net/</_PublishTargetUrl>
+    <History>False|2023-10-16T04:25:18.1765349Z;</History>
+    <LastFailureDetails />
+  </PropertyGroup>
+</Project>

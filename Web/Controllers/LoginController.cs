@@ -37,7 +37,7 @@ namespace Web.Controllers
                 var dataUser = db.VW_Users.Where(a => a.Username == nrp).FirstOrDefault();
                 var dataRole = db.TBL_M_USERs.Where(a => a.Username == nrp).FirstOrDefault();
                 var lastAddedUser = db.TBL_M_USERs.OrderByDescending(u => u.DateAdd).FirstOrDefault();
-                var lastCfc = db.VW_T_APPROVALs.OrderByDescending(u => u.WAKTU_ABSEN).FirstOrDefault();
+                var lastCfc = db.VW_T_APPROVALs.OrderByDescending(u => u.DATETIME_FROM_CFC).FirstOrDefault();
 
                 if (dataRole != null)
                 {
@@ -70,8 +70,8 @@ namespace Web.Controllers
                         int countss = db.VW_T_APPROVALs.Where(a => a.FLAG == 0 && !excludedStatuses.Contains(a.ID_STATUS.Value)).Count();
                         Session["Counted"] = countss;
 
-                        var lastCfc_Notif = db.VW_T_APPROVALs.Where(a => a.FLAG == 0 && !excludedStatuses.Contains(a.ID_STATUS.Value)).OrderByDescending(u => u.WAKTU_ABSEN).FirstOrDefault();
-                        Session["LastCFC"] = GetTimeAgo(lastCfc_Notif?.WAKTU_ABSEN);
+                        var lastCfc_Notif = db.VW_T_APPROVALs.Where(a => a.FLAG == 0 && !excludedStatuses.Contains(a.ID_STATUS.Value)).OrderByDescending(u => u.DATETIME_FROM_CFC).FirstOrDefault();
+                        Session["LastCFC"] = GetTimeAgo(lastCfc_Notif?.DATETIME_FROM_CFC);
                     }
                     else if (dataRole.ID_Role == 2)
                     {
@@ -79,8 +79,8 @@ namespace Web.Controllers
                         int countss = db.VW_T_APPROVALs.Where(a => a.FLAG == 0 && !excludedStatuses.Contains(a.ID_STATUS.Value) && a.ATASAN == dataUser.POSITION_ID.Trim()).Count();
                         Session["Counted"] = countss;
 
-                        var lastCfc_Notif = db.VW_T_APPROVALs.Where(a => a.FLAG == 0 && !excludedStatuses.Contains(a.ID_STATUS.Value) && a.ATASAN == dataUser.POSITION_ID.Trim()).OrderByDescending(u => u.WAKTU_ABSEN).FirstOrDefault();
-                        Session["LastCFC"] = GetTimeAgo(lastCfc_Notif?.WAKTU_ABSEN);
+                        var lastCfc_Notif = db.VW_T_APPROVALs.Where(a => a.FLAG == 0 && !excludedStatuses.Contains(a.ID_STATUS.Value) && a.ATASAN == dataUser.POSITION_ID.Trim()).OrderByDescending(u => u.DATETIME_FROM_CFC).FirstOrDefault();
+                        Session["LastCFC"] = GetTimeAgo(lastCfc_Notif?.DATETIME_FROM_CFC);
                     }
                     else if (dataRole.ID_Role == 4)
                     {
@@ -88,8 +88,8 @@ namespace Web.Controllers
                         int countss = db.VW_T_APPROVALs.Where(a => a.FLAG == 0 && a.ID_STATUS == 4).Count();
                         Session["Counted"] = countss;
 
-                        var lastCfc_Notif = db.VW_T_APPROVALs.Where(a => a.FLAG == 0 && a.ID_STATUS == 4).OrderByDescending(u => u.WAKTU_ABSEN).FirstOrDefault();
-                        Session["LastCFC"] = GetTimeAgo(lastCfc_Notif?.WAKTU_ABSEN);
+                        var lastCfc_Notif = db.VW_T_APPROVALs.Where(a => a.FLAG == 0 && a.ID_STATUS == 4).OrderByDescending(u => u.DATETIME_FROM_CFC).FirstOrDefault();
+                        Session["LastCFC"] = GetTimeAgo(lastCfc_Notif?.DATETIME_FROM_CFC);
                     }
                     else
                     {
@@ -97,8 +97,8 @@ namespace Web.Controllers
                         int countss = db.VW_T_APPROVALs.Where(a => a.FLAG == 0 && !excludedStatuses.Contains(a.ID_STATUS.Value)).Count();
                         Session["Counted"] = countss;
 
-                        var lastCfc_Notif = db.VW_T_APPROVALs.Where(a => a.FLAG == 0 && !excludedStatuses.Contains(a.ID_STATUS.Value)).OrderByDescending(u => u.WAKTU_ABSEN).FirstOrDefault();
-                        Session["LastCFC"] = GetTimeAgo(lastCfc_Notif?.WAKTU_ABSEN);
+                        var lastCfc_Notif = db.VW_T_APPROVALs.Where(a => a.FLAG == 0 && !excludedStatuses.Contains(a.ID_STATUS.Value)).OrderByDescending(u => u.DATETIME_FROM_CFC).FirstOrDefault();
+                        Session["LastCFC"] = GetTimeAgo(lastCfc_Notif?.DATETIME_FROM_CFC);
                     }
                     #endregion
 
@@ -114,7 +114,7 @@ namespace Web.Controllers
                 var dataUser = db.TBL_R_MASTER_KARYAWAN_ALLs.Where(a => a.EMPLOYEE_ID == nrp).FirstOrDefault();
                 var dataRole = db.TBL_M_USERs.Where(a => a.Username == nrp).FirstOrDefault();
                 var lastAddedUser = db.TBL_M_USERs.OrderByDescending(u => u.DateAdd).FirstOrDefault();
-                var lastCfc = db.VW_T_APPROVALs.OrderByDescending(u => u.WAKTU_ABSEN).FirstOrDefault();
+                var lastCfc = db.VW_T_APPROVALs.OrderByDescending(u => u.DATETIME_FROM_CFC).FirstOrDefault();
 
                 if (dataRole != null)
                 {
@@ -160,8 +160,8 @@ namespace Web.Controllers
                         int countss = db.VW_T_APPROVALs.Where(a => a.FLAG == 0 && !excludedStatuses.Contains(a.ID_STATUS.Value)).Count();
                         Session["Counted"] = countss;
 
-                        var lastCfc_Notif = db.VW_T_APPROVALs.Where(a => a.FLAG == 0 && !excludedStatuses.Contains(a.ID_STATUS.Value)).OrderByDescending(u => u.WAKTU_ABSEN).FirstOrDefault();
-                        Session["LastCFC"] = GetTimeAgo(lastCfc_Notif?.WAKTU_ABSEN);
+                        var lastCfc_Notif = db.VW_T_APPROVALs.Where(a => a.FLAG == 0 && !excludedStatuses.Contains(a.ID_STATUS.Value)).OrderByDescending(u => u.DATETIME_FROM_CFC).FirstOrDefault();
+                        Session["LastCFC"] = GetTimeAgo(lastCfc_Notif?.DATETIME_FROM_CFC);
                     }
                     else if (dataRole.ID_Role == 2)
                     {
@@ -169,17 +169,19 @@ namespace Web.Controllers
                         int countss = db.VW_T_APPROVALs.Where(a => a.FLAG == 0 && !excludedStatuses.Contains(a.ID_STATUS.Value) && a.ATASAN == dataUser.POSITION_ID.Trim()).Count();
                         Session["Counted"] = countss;
 
-                        var lastCfc_Notif = db.VW_T_APPROVALs.Where(a => a.FLAG == 0 && !excludedStatuses.Contains(a.ID_STATUS.Value) && a.ATASAN == dataUser.POSITION_ID.Trim()).OrderByDescending(u => u.WAKTU_ABSEN).FirstOrDefault();
-                        Session["LastCFC"] = GetTimeAgo(lastCfc_Notif?.WAKTU_ABSEN);
+                        var lastCfc_Notif = db.VW_T_APPROVALs.Where(a => a.FLAG == 0 && !excludedStatuses.Contains(a.ID_STATUS.Value) && a.ATASAN == dataUser.POSITION_ID.Trim()).OrderByDescending(u => u.DATETIME_FROM_CFC).FirstOrDefault();
+                        Session["LastCFC"] = GetTimeAgo(lastCfc_Notif?.DATETIME_FROM_CFC);
                     }
                     else if (dataRole.ID_Role == 4)
                     {
                         var excludedStatuses = new[] { 1, 5, 6, 7 };
-                        int countss = db.VW_T_APPROVALs.Where(a => a.FLAG == 0 && a.ID_STATUS == 4).Count();
+                        //int countss = db.VW_T_APPROVALs.Where(a => a.FLAG == 0 && a.ID_STATUS == 4).Count();
+                        int countss = db.VW_T_APPROVALs.Where(a => a.ID_STATUS == 4 && a.APPROVER_PARAMEDIC == null).Count();
                         Session["Counted"] = countss;
 
-                        var lastCfc_Notif = db.VW_T_APPROVALs.Where(a => a.FLAG == 0 && a.ID_STATUS == 4).OrderByDescending(u => u.WAKTU_ABSEN).FirstOrDefault();
-                        Session["LastCFC"] = GetTimeAgo(lastCfc_Notif?.WAKTU_ABSEN);
+                        //var lastCfc_Notif = db.VW_T_APPROVALs.Where(a => a.FLAG == 0 && a.ID_STATUS == 4).OrderByDescending(u => u.WAKTU_ABSEN).FirstOrDefault();
+                        var lastCfc_Notif = db.VW_T_APPROVALs.Where(a => a.ID_STATUS == 4 && a.APPROVER_PARAMEDIC == null).OrderByDescending(u => u.DATETIME_FROM_CFC).FirstOrDefault();
+                        Session["LastCFC"] = GetTimeAgo(lastCfc_Notif?.DATETIME_FROM_CFC);
                     }
                     else
                     {
@@ -187,8 +189,8 @@ namespace Web.Controllers
                         int countss = db.VW_T_APPROVALs.Where(a => a.FLAG == 0 && !excludedStatuses.Contains(a.ID_STATUS.Value)).Count();
                         Session["Counted"] = countss;
 
-                        var lastCfc_Notif = db.VW_T_APPROVALs.Where(a => a.FLAG == 0 && !excludedStatuses.Contains(a.ID_STATUS.Value)).OrderByDescending(u => u.WAKTU_ABSEN).FirstOrDefault();
-                        Session["LastCFC"] = GetTimeAgo(lastCfc_Notif?.WAKTU_ABSEN);
+                        var lastCfc_Notif = db.VW_T_APPROVALs.Where(a => a.FLAG == 0 && !excludedStatuses.Contains(a.ID_STATUS.Value)).OrderByDescending(u => u.DATETIME_FROM_CFC).FirstOrDefault();
+                        Session["LastCFC"] = GetTimeAgo(lastCfc_Notif?.DATETIME_FROM_CFC);
                     }
                     #endregion
 
@@ -204,7 +206,7 @@ namespace Web.Controllers
                 var dataUser = db.TBL_R_MASTER_KARYAWAN_ALLs.Where(a => a.EMPLOYEE_ID == nrp).FirstOrDefault();
                 var dataRole = db.TBL_M_USERs.Where(a => a.Username == nrp).FirstOrDefault();
                 var lastAddedUser = db.TBL_M_USERs.OrderByDescending(u => u.DateAdd).FirstOrDefault();
-                var lastCfc = db.VW_T_APPROVALs.OrderByDescending(u => u.WAKTU_ABSEN).FirstOrDefault();
+                var lastCfc = db.VW_T_APPROVALs.OrderByDescending(u => u.DATETIME_FROM_CFC).FirstOrDefault();
 
                 if (dataRole != null)
                 {
@@ -227,6 +229,7 @@ namespace Web.Controllers
                     }
 
                     Session["Name"] = firstName;
+                    //Session["Name"] = dataUser.NAME;
                     Session["Site"] = dataUser.DSTRCT_CODE;
                     Session["Role"] = dataRoledakun.RoleName;
                     Session["PositionID"] = dataUser.POSITION_ID.Trim();
@@ -250,8 +253,16 @@ namespace Web.Controllers
                         int countss = db.VW_T_APPROVALs.Where(a => a.FLAG == 0 && !excludedStatuses.Contains(a.ID_STATUS.Value)).Count();
                         Session["Counted"] = countss;
 
-                        var lastCfc_Notif = db.VW_T_APPROVALs.Where(a => a.FLAG == 0 && !excludedStatuses.Contains(a.ID_STATUS.Value)).OrderByDescending(u => u.WAKTU_ABSEN).FirstOrDefault();
-                        Session["LastCFC"] = GetTimeAgo(lastCfc_Notif?.WAKTU_ABSEN);
+                        var lastCfc_Notif = db.VW_T_APPROVALs.Where(a => a.FLAG == 0 && !excludedStatuses.Contains(a.ID_STATUS.Value)).OrderByDescending(u => u.DATETIME_FROM_CFC).FirstOrDefault();
+                        //Session["LastCFC"] = GetTimeAgo(lastCfc_Notif?.DATETIME_FROM_CFC);
+                        string timeAgos = "Invalid Date";
+                        if (lastCfc_Notif != null && DateTime.TryParse(lastCfc_Notif.DATETIME_FROM_CFC.ToString(), out DateTime dateAdds))
+                        {
+                            DateTime currentTimes = DateTime.Now;
+                            TimeSpan timeDifference = currentTimes - dateAdds;
+                            timeAgos = FormatTimeAgo(timeDifference);
+                        }
+                        Session["LastCFC"] = timeAgos;
                     }
                     else if (dataRole.ID_Role == 2)
                     {
@@ -259,8 +270,9 @@ namespace Web.Controllers
                         int countss = db.VW_T_APPROVALs.Where(a => a.FLAG == 0 && !excludedStatuses.Contains(a.ID_STATUS.Value) && a.ATASAN == dataUser.POSITION_ID.Trim()).Count();
                         Session["Counted"] = countss;
 
-                        var lastCfc_Notif = db.VW_T_APPROVALs.Where(a => a.FLAG == 0 && !excludedStatuses.Contains(a.ID_STATUS.Value) && a.ATASAN == dataUser.POSITION_ID.Trim()).OrderByDescending(u => u.WAKTU_ABSEN).FirstOrDefault();
-                        Session["LastCFC"] = GetTimeAgo(lastCfc_Notif?.WAKTU_ABSEN);
+                        var lastCfc_Notif = db.VW_T_APPROVALs.Where(a => a.FLAG == 0 && !excludedStatuses.Contains(a.ID_STATUS.Value) && a.ATASAN == dataUser.POSITION_ID.Trim()).OrderByDescending(u => u.DATETIME_FROM_CFC).FirstOrDefault();
+                        Session["LastCFC"] = GetTimeAgo(lastCfc_Notif?.DATETIME_FROM_CFC);
+                        
                     }
                     else if (dataRole.ID_Role == 4)
                     {
@@ -268,8 +280,8 @@ namespace Web.Controllers
                         int countss = db.VW_T_APPROVALs.Where(a => a.FLAG == 0 && a.ID_STATUS == 4).Count();
                         Session["Counted"] = countss;
 
-                        var lastCfc_Notif = db.VW_T_APPROVALs.Where(a => a.FLAG == 0 && a.ID_STATUS == 4).OrderByDescending(u => u.WAKTU_ABSEN).FirstOrDefault();
-                        Session["LastCFC"] = GetTimeAgo(lastCfc_Notif?.WAKTU_ABSEN);
+                        var lastCfc_Notif = db.VW_T_APPROVALs.Where(a => a.FLAG == 0 && a.ID_STATUS == 4).OrderByDescending(u => u.DATETIME_FROM_CFC).FirstOrDefault();
+                        Session["LastCFC"] = GetTimeAgo(lastCfc_Notif?.DATETIME_FROM_CFC);
                     }
                     else
                     {
@@ -277,8 +289,8 @@ namespace Web.Controllers
                         int countss = db.VW_T_APPROVALs.Where(a => a.FLAG == 0 && !excludedStatuses.Contains(a.ID_STATUS.Value)).Count();
                         Session["Counted"] = countss;
 
-                        var lastCfc_Notif = db.VW_T_APPROVALs.Where(a => a.FLAG == 0 && !excludedStatuses.Contains(a.ID_STATUS.Value)).OrderByDescending(u => u.WAKTU_ABSEN).FirstOrDefault();
-                        Session["LastCFC"] = GetTimeAgo(lastCfc_Notif?.WAKTU_ABSEN);
+                        var lastCfc_Notif = db.VW_T_APPROVALs.Where(a => a.FLAG == 0 && !excludedStatuses.Contains(a.ID_STATUS.Value)).OrderByDescending(u => u.DATETIME_FROM_CFC).FirstOrDefault();
+                        Session["LastCFC"] = GetTimeAgo(lastCfc_Notif?.DATETIME_FROM_CFC);
                     }
                     #endregion
 

@@ -11,7 +11,6 @@ namespace Web.Controllers
     {
         CfmDataContext db = new CfmDataContext();
         // GET: EmpRecord
-        [CustomAuthorize]
         public ActionResult Index()
         {
             if (Session["nrp"] == null)
@@ -27,7 +26,7 @@ namespace Web.Controllers
             }
             else if (Session["ID_Role"] != null && (int)Session["ID_Role"] == 4)
             {
-                int countss = db.VW_T_APPROVALs.Where(a => a.FLAG == 0 && a.ID_STATUS == 4).Count();
+                int countss = db.VW_T_APPROVALs.Where(a => a.ID_STATUS == 4 && a.APPROVER_PARAMEDIC == null).Count();
                 ViewBag.Count = countss;
             }
             else
@@ -54,7 +53,7 @@ namespace Web.Controllers
             }
             else if (Session["ID_Role"] != null && (int)Session["ID_Role"] == 4)
             {
-                int countss = db.VW_T_APPROVALs.Where(a => a.FLAG == 0 && a.ID_STATUS == 4).Count();
+                int countss = db.VW_T_APPROVALs.Where(a => a.ID_STATUS == 4 && a.APPROVER_PARAMEDIC == null).Count();
                 ViewBag.Count = countss;
             }
             else

@@ -79,40 +79,38 @@ var table = $("#tbl_empr").DataTable({
                 var systo = row.SYSTOLIC;
                 var diasto = row.DIASTOLIC;
                 var tempra = row.TEMPRATURE;
-                //if (oxy/*email*/) {
-                //    //return data + '<p class="fs-sm text-muted mb-0">' + email + '</p>';
-                //    var text = 'OXYGEN = ' + oxy + ', HEART RATE = ' + heart + ', SYSTOLIC = ' + systo + ', DIASTOLIC = ' + diasto + ', TEMPERATURE = ' + tempra;
-                //    return data + '<p class="fs-sm text-muted mb-0">' + text + '</p>';
-                //} else {
-                //    return data;
-                //}
                 var note = row.NOTE;
                 var text = '';
-                var noteValues = note.split(',');
-                for (var i = 0; i < noteValues.length; i++) {
-                    //debugger
-                    var noteValue = noteValues[i].trim();
-                    switch (noteValue) {
-                        case 'heart_rate':
-                            text += 'HEART = ' + heart;
-                            break;
-                        case 'systolic':
-                            text += 'SYSTOLIC = ' + systo;
-                            break;
-                        case 'diastolic':
-                            text += 'DIASTOLIC = ' + diasto;
-                            break;
-                        case 'temprature':
-                            text += 'TEMPERATURE = ' + tempra;
-                            break;
-                        case 'oxygen_saturation':
-                            text += 'OXYGEN = ' + oxy;
-                            break;
-                        default:
-                        //do nothing
-                    }
-                    if (i < noteValues.length - 1) {
-                        text += ', ';
+                /*var noteValues = note.split(',');*/
+
+                if (note && typeof note === 'string')
+                {
+                    var noteValues = note.split(',');
+                    for (var i = 0; i < noteValues.length; i++) {
+                        //debugger
+                        var noteValue = noteValues[i].trim();
+                        switch (noteValue) {
+                            case 'heart_rate':
+                                text += 'HEART = ' + heart;
+                                break;
+                            case 'systolic':
+                                text += 'SYSTOLIC = ' + systo;
+                                break;
+                            case 'diastolic':
+                                text += 'DIASTOLIC = ' + diasto;
+                                break;
+                            case 'temprature':
+                                text += 'TEMPERATURE = ' + tempra;
+                                break;
+                            case 'oxygen_saturation':
+                                text += 'OXYGEN = ' + oxy;
+                                break;
+                            default:
+                            //do nothing
+                        }
+                        if (i < noteValues.length - 1) {
+                            text += ', ';
+                        }
                     }
                 }
 

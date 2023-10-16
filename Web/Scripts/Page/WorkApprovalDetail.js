@@ -19,7 +19,7 @@ function Detail(callback) {
             $("#txt_postitle").val(data.POS_TITLE);
             $("#txt_atasan").val(data.ATASAN);
             $("#txt_status").val(data.STATUS);
-            $("#txt_date").val(moment(data.DATE_FROM_CFC).format("YYYY-MM-DD"));
+            $("#txt_date").val(moment(data.WAKTU_ABSEN).format("YYYY-MM-DD"));
             $("#txt_oxygen").val(data.OXYGEN_SATURATION);
             $("#txt_heartrate").val(data.HEART_RATE);
             $("#txt_sys").val(data.SYSTOLIC);

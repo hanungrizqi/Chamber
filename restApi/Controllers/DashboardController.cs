@@ -75,13 +75,13 @@ namespace restApi.Controllers
                 {
                     var data_1 = db.VW_T_APPROVALs
                         .Where(a => a.FLAG == 0 && !excludedStatuses.Contains(a.ID_STATUS.Value) &&
-                                    a.WAKTU_ABSEN >= startDateDateTime && a.WAKTU_ABSEN <= endDateDateTime)
+                                    a.DATETIME_FROM_CFC >= startDateDateTime && a.DATETIME_FROM_CFC <= endDateDateTime)
                         .OrderBy(a => a.APPROVAL_ID)
                         .ToList();
 
                     var data_2 = db.VW_T_APPROVALs
                         .Where(a => (a.FLAG == 1 || excludedStatuses.Contains(a.ID_STATUS.Value)) &&
-                                    a.WAKTU_ABSEN >= startDateDateTime && a.WAKTU_ABSEN <= endDateDateTime)
+                                    a.DATETIME_FROM_CFC >= startDateDateTime && a.DATETIME_FROM_CFC <= endDateDateTime)
                         .OrderBy(a => a.APPROVAL_ID)
                         .ToList();
 
@@ -92,13 +92,13 @@ namespace restApi.Controllers
                 {
                     var data_1 = db.VW_T_APPROVALs
                         .Where(a => a.FLAG == 0 && !excludedStatuses.Contains(a.ID_STATUS.Value) &&
-                                    a.ATASAN == posid && a.WAKTU_ABSEN >= startDateDateTime && a.WAKTU_ABSEN <= endDateDateTime)
+                                    a.ATASAN == posid && a.DATETIME_FROM_CFC >= startDateDateTime && a.DATETIME_FROM_CFC <= endDateDateTime)
                         .OrderBy(a => a.APPROVAL_ID)
                         .ToList();
 
                     var data_2 = db.VW_T_APPROVALs
                         .Where(a => a.ATASAN == posid && (a.FLAG == 1 || excludedStatuses.Contains(a.ID_STATUS.Value)) &&
-                                    a.WAKTU_ABSEN >= startDateDateTime && a.WAKTU_ABSEN <= endDateDateTime)
+                                    a.DATETIME_FROM_CFC >= startDateDateTime && a.DATETIME_FROM_CFC <= endDateDateTime)
                         .OrderBy(a => a.APPROVAL_ID)
                         .ToList();
 
@@ -127,14 +127,14 @@ namespace restApi.Controllers
 
                 if (isAdminorNot.ID_Role == 1 || isAdminorNot.ID_Role == 4)
                 {
-                    data = db.VW_T_APPROVALs.Where(a => a.FLAG == 0).OrderByDescending(a => a.WAKTU_ABSEN).FirstOrDefault();
+                    data = db.VW_T_APPROVALs.Where(a => a.FLAG == 0).OrderByDescending(a => a.DATETIME_FROM_CFC).FirstOrDefault();
                 }
                 else
                 {
-                    data = db.VW_T_APPROVALs.Where(a => a.ATASAN == posid && a.FLAG == 0).OrderByDescending(a => a.WAKTU_ABSEN).FirstOrDefault();
+                    data = db.VW_T_APPROVALs.Where(a => a.ATASAN == posid && a.FLAG == 0).OrderByDescending(a => a.DATETIME_FROM_CFC).FirstOrDefault();
                 }
 
-                var formattedDate = data.WAKTU_ABSEN.Value.ToString("d MMMM yyyy | HH:mm", new CultureInfo("id-ID"));
+                var formattedDate = data.DATETIME_FROM_CFC.Value.ToString("d MMMM yyyy | HH:mm", new CultureInfo("id-ID"));
 
                 return Ok(new { Data = data, Tanggal = formattedDate });
             }
@@ -161,19 +161,19 @@ namespace restApi.Controllers
                 if (isAdminorNot.ID_Role == 1 || isAdminorNot.ID_Role == 4)
                 {
                     data = db.VW_T_APPROVALs
-                        .Where(a => a.FLAG == 0 && a.WAKTU_ABSEN >= startDateTime && a.WAKTU_ABSEN <= endDateTime)
-                        .OrderByDescending(a => a.WAKTU_ABSEN)
+                        .Where(a => a.FLAG == 0 && a.DATETIME_FROM_CFC >= startDateTime && a.DATETIME_FROM_CFC <= endDateTime)
+                        .OrderByDescending(a => a.DATETIME_FROM_CFC)
                         .FirstOrDefault();
                 }
                 else
                 {
                     data = db.VW_T_APPROVALs
-                        .Where(a => a.ATASAN == posid && a.FLAG == 0 && a.WAKTU_ABSEN >= startDateTime && a.WAKTU_ABSEN <= endDateTime)
-                        .OrderByDescending(a => a.WAKTU_ABSEN)
+                        .Where(a => a.ATASAN == posid && a.FLAG == 0 && a.DATETIME_FROM_CFC >= startDateTime && a.DATETIME_FROM_CFC <= endDateTime)
+                        .OrderByDescending(a => a.DATETIME_FROM_CFC)
                         .FirstOrDefault();
                 }
 
-                var formattedDate = data != null ? data.WAKTU_ABSEN.Value.ToString("d MMMM yyyy | HH:mm", new CultureInfo("id-ID")) : "";
+                var formattedDate = data != null ? data.DATETIME_FROM_CFC.Value.ToString("d MMMM yyyy | HH:mm", new CultureInfo("id-ID")) : "";
 
                 return Ok(new { Data = data, Tanggal = formattedDate });
             }
@@ -230,11 +230,11 @@ namespace restApi.Controllers
 
                 if (isAdminorNot.ID_Role == 1 || isAdminorNot.ID_Role == 4)
                 {
-                    data = db.VW_T_APPROVALs.Where(a => a.ID_STATUS == 1 && a.WAKTU_ABSEN >= startDateDateTime && a.WAKTU_ABSEN <= endDateDateTime).ToList();
+                    data = db.VW_T_APPROVALs.Where(a => a.ID_STATUS == 1 && a.DATETIME_FROM_CFC >= startDateDateTime && a.DATETIME_FROM_CFC <= endDateDateTime).ToList();
                 }
                 else
                 {
-                    data = db.VW_T_APPROVALs.Where(a => a.ATASAN == posid && a.ID_STATUS == 1 && a.WAKTU_ABSEN >= startDateDateTime && a.WAKTU_ABSEN <= endDateDateTime).ToList();
+                    data = db.VW_T_APPROVALs.Where(a => a.ATASAN == posid && a.ID_STATUS == 1 && a.DATETIME_FROM_CFC >= startDateDateTime && a.DATETIME_FROM_CFC <= endDateDateTime).ToList();
                 }
 
                 return Ok(new { Data = data, Total = data.Count() });
@@ -258,14 +258,14 @@ namespace restApi.Controllers
 
                 if (isAdminorNot.ID_Role == 1 || isAdminorNot.ID_Role == 4)
                 {
-                    data = db.VW_T_APPROVALs.Where(a => a.ID_STATUS == 1).OrderByDescending(a => a.WAKTU_ABSEN).FirstOrDefault();
+                    data = db.VW_T_APPROVALs.Where(a => a.ID_STATUS == 1).OrderByDescending(a => a.DATETIME_FROM_CFC).FirstOrDefault();
                 }
                 else
                 {
-                    data = db.VW_T_APPROVALs.Where(a => a.ATASAN == posid && a.ID_STATUS == 1).OrderByDescending(a => a.WAKTU_ABSEN).FirstOrDefault();
+                    data = db.VW_T_APPROVALs.Where(a => a.ATASAN == posid && a.ID_STATUS == 1).OrderByDescending(a => a.DATETIME_FROM_CFC).FirstOrDefault();
                 }
 
-                var formattedDate = data.WAKTU_ABSEN.Value.ToString("d MMMM yyyy | HH:mm", new CultureInfo("id-ID"));
+                var formattedDate = data.DATETIME_FROM_CFC.Value.ToString("d MMMM yyyy | HH:mm", new CultureInfo("id-ID"));
 
                 return Ok(new { Data = data, Tanggal = formattedDate });
             }
@@ -292,19 +292,19 @@ namespace restApi.Controllers
                 if (isAdminorNot.ID_Role == 1 || isAdminorNot.ID_Role == 4)
                 {
                     data = db.VW_T_APPROVALs
-                        .Where(a => a.ID_STATUS == 1 && a.WAKTU_ABSEN >= startDateTime && a.WAKTU_ABSEN <= endDateTime)
-                        .OrderByDescending(a => a.WAKTU_ABSEN)
+                        .Where(a => a.ID_STATUS == 1 && a.DATETIME_FROM_CFC >= startDateTime && a.DATETIME_FROM_CFC <= endDateTime)
+                        .OrderByDescending(a => a.DATETIME_FROM_CFC)
                         .FirstOrDefault();
                 }
                 else
                 {
                     data = db.VW_T_APPROVALs
-                        .Where(a => a.ATASAN == posid && a.ID_STATUS == 1 && a.WAKTU_ABSEN >= startDateTime && a.WAKTU_ABSEN <= endDateTime)
-                        .OrderByDescending(a => a.WAKTU_ABSEN)
+                        .Where(a => a.ATASAN == posid && a.ID_STATUS == 1 && a.DATETIME_FROM_CFC >= startDateTime && a.DATETIME_FROM_CFC <= endDateTime)
+                        .OrderByDescending(a => a.DATETIME_FROM_CFC)
                         .FirstOrDefault();
                 }
 
-                var formattedDate = data != null ? data.WAKTU_ABSEN.Value.ToString("d MMMM yyyy | HH:mm", new CultureInfo("id-ID")) : "";
+                var formattedDate = data != null ? data.DATETIME_FROM_CFC.Value.ToString("d MMMM yyyy | HH:mm", new CultureInfo("id-ID")) : "";
 
                 return Ok(new { Data = data, Tanggal = formattedDate });
             }
@@ -356,14 +356,14 @@ namespace restApi.Controllers
 
                 if (isAdminorNot.ID_Role == 1 || isAdminorNot.ID_Role == 4)
                 {
-                    data = db.VW_T_APPROVALs.Where(a => a.ID_STATUS == 2).OrderByDescending(a => a.WAKTU_ABSEN).FirstOrDefault();
+                    data = db.VW_T_APPROVALs.Where(a => a.ID_STATUS == 2).OrderByDescending(a => a.DATETIME_FROM_CFC).FirstOrDefault();
                 }
                 else
                 {
-                    data = db.VW_T_APPROVALs.Where(a => a.ATASAN == posid && a.ID_STATUS == 2).OrderByDescending(a => a.WAKTU_ABSEN).FirstOrDefault();
+                    data = db.VW_T_APPROVALs.Where(a => a.ATASAN == posid && a.ID_STATUS == 2).OrderByDescending(a => a.DATETIME_FROM_CFC).FirstOrDefault();
                 }
 
-                var formattedDate = data.WAKTU_ABSEN.Value.ToString("d MMMM yyyy | HH:mm", new CultureInfo("id-ID"));
+                var formattedDate = data.DATETIME_FROM_CFC.Value.ToString("d MMMM yyyy | HH:mm", new CultureInfo("id-ID"));
 
                 return Ok(new { Data = data, Tanggal = formattedDate });
             }
@@ -390,11 +390,11 @@ namespace restApi.Controllers
 
                 if (isAdminorNot.ID_Role == 1 || isAdminorNot.ID_Role == 4)
                 {
-                    data = db.VW_T_APPROVALs.Where(a => a.ID_STATUS == 2 && a.WAKTU_ABSEN >= startDateDateTime && a.WAKTU_ABSEN <= endDateDateTime).ToList();
+                    data = db.VW_T_APPROVALs.Where(a => a.ID_STATUS == 2 && a.DATETIME_FROM_CFC >= startDateDateTime && a.DATETIME_FROM_CFC <= endDateDateTime).ToList();
                 }
                 else
                 {
-                    data = db.VW_T_APPROVALs.Where(a => a.ATASAN == posid && a.ID_STATUS == 2 && a.WAKTU_ABSEN >= startDateDateTime && a.WAKTU_ABSEN <= endDateDateTime).ToList();
+                    data = db.VW_T_APPROVALs.Where(a => a.ATASAN == posid && a.ID_STATUS == 2 && a.DATETIME_FROM_CFC >= startDateDateTime && a.DATETIME_FROM_CFC <= endDateDateTime).ToList();
                 }
 
                 return Ok(new { Data = data, Total = data.Count() });
@@ -422,19 +422,19 @@ namespace restApi.Controllers
                 if (isAdminorNot.ID_Role == 1 || isAdminorNot.ID_Role == 4)
                 {
                     data = db.VW_T_APPROVALs
-                        .Where(a => a.ID_STATUS == 2 && a.WAKTU_ABSEN >= startDateTime && a.WAKTU_ABSEN <= endDateTime)
-                        .OrderByDescending(a => a.WAKTU_ABSEN)
+                        .Where(a => a.ID_STATUS == 2 && a.DATETIME_FROM_CFC >= startDateTime && a.DATETIME_FROM_CFC <= endDateTime)
+                        .OrderByDescending(a => a.DATETIME_FROM_CFC)
                         .FirstOrDefault();
                 }
                 else
                 {
                     data = db.VW_T_APPROVALs
-                        .Where(a => a.ATASAN == posid && a.ID_STATUS == 2 && a.WAKTU_ABSEN >= startDateTime && a.WAKTU_ABSEN <= endDateTime)
-                        .OrderByDescending(a => a.WAKTU_ABSEN)
+                        .Where(a => a.ATASAN == posid && a.ID_STATUS == 2 && a.DATETIME_FROM_CFC >= startDateTime && a.DATETIME_FROM_CFC <= endDateTime)
+                        .OrderByDescending(a => a.DATETIME_FROM_CFC)
                         .FirstOrDefault();
                 }
 
-                var formattedDate = data != null ? data.WAKTU_ABSEN.Value.ToString("d MMMM yyyy | HH:mm", new CultureInfo("id-ID")) : "";
+                var formattedDate = data != null ? data.DATETIME_FROM_CFC.Value.ToString("d MMMM yyyy | HH:mm", new CultureInfo("id-ID")) : "";
 
                 return Ok(new { Data = data, Tanggal = formattedDate });
             }
@@ -489,14 +489,14 @@ namespace restApi.Controllers
 
                 if (isAdminorNot.ID_Role == 1 || isAdminorNot.ID_Role == 4)
                 {
-                    data = db.VW_T_APPROVALs.Where(a => a.FLAG == 1 || excludedStatuses.Contains(a.ID_STATUS.Value)).OrderByDescending(a => a.WAKTU_ABSEN).FirstOrDefault();
+                    data = db.VW_T_APPROVALs.Where(a => a.FLAG == 1 || excludedStatuses.Contains(a.ID_STATUS.Value)).OrderByDescending(a => a.DATETIME_FROM_CFC).FirstOrDefault();
                 }
                 else
                 {
-                    data = db.VW_T_APPROVALs.Where(a => a.ATASAN == posid && (a.FLAG == 1 || excludedStatuses.Contains(a.ID_STATUS.Value))).OrderByDescending(a => a.WAKTU_ABSEN).FirstOrDefault();
+                    data = db.VW_T_APPROVALs.Where(a => a.ATASAN == posid && (a.FLAG == 1 || excludedStatuses.Contains(a.ID_STATUS.Value))).OrderByDescending(a => a.DATETIME_FROM_CFC).FirstOrDefault();
                 }
 
-                var formattedDate = data.WAKTU_ABSEN.Value.ToString("d MMMM yyyy | HH:mm", new CultureInfo("id-ID"));
+                var formattedDate = data.DATETIME_FROM_CFC.Value.ToString("d MMMM yyyy | HH:mm", new CultureInfo("id-ID"));
 
                 return Ok(new { Data = data, Tanggal = formattedDate });
             }
@@ -524,11 +524,11 @@ namespace restApi.Controllers
 
                 if (isAdminorNot.ID_Role == 1 || isAdminorNot.ID_Role == 4)
                 {
-                    data = db.VW_T_APPROVALs.Where(a => a.FLAG == 1 || excludedStatuses.Contains(a.ID_STATUS.Value) && a.WAKTU_ABSEN >= startDateDateTime && a.WAKTU_ABSEN <= endDateDateTime).ToList();
+                    data = db.VW_T_APPROVALs.Where(a => a.FLAG == 1 || excludedStatuses.Contains(a.ID_STATUS.Value) && a.DATETIME_FROM_CFC >= startDateDateTime && a.DATETIME_FROM_CFC <= endDateDateTime).ToList();
                 }
                 else
                 {
-                    data = db.VW_T_APPROVALs.Where(a => a.ATASAN == posid && (a.FLAG == 1 || excludedStatuses.Contains(a.ID_STATUS.Value)) && a.WAKTU_ABSEN >= startDateDateTime && a.WAKTU_ABSEN <= endDateDateTime).ToList();
+                    data = db.VW_T_APPROVALs.Where(a => a.ATASAN == posid && (a.FLAG == 1 || excludedStatuses.Contains(a.ID_STATUS.Value)) && a.DATETIME_FROM_CFC >= startDateDateTime && a.DATETIME_FROM_CFC <= endDateDateTime).ToList();
                 }
 
                 return Ok(new { Data = data, Total = data.Count() });
@@ -557,19 +557,19 @@ namespace restApi.Controllers
                 if (isAdminorNot.ID_Role == 1 || isAdminorNot.ID_Role == 4)
                 {
                     data = db.VW_T_APPROVALs
-                        .Where(a => a.FLAG == 1 || excludedStatuses.Contains(a.ID_STATUS.Value) && a.WAKTU_ABSEN >= startDateTime && a.WAKTU_ABSEN <= endDateTime)
-                        .OrderByDescending(a => a.WAKTU_ABSEN)
+                        .Where(a => a.FLAG == 1 || excludedStatuses.Contains(a.ID_STATUS.Value) && a.DATETIME_FROM_CFC >= startDateTime && a.DATETIME_FROM_CFC <= endDateTime)
+                        .OrderByDescending(a => a.DATETIME_FROM_CFC)
                         .FirstOrDefault();
                 }
                 else
                 {
                     data = db.VW_T_APPROVALs
-                        .Where(a => a.ATASAN == posid && (a.FLAG == 1 || excludedStatuses.Contains(a.ID_STATUS.Value)) && a.WAKTU_ABSEN >= startDateTime && a.WAKTU_ABSEN <= endDateTime)
-                        .OrderByDescending(a => a.WAKTU_ABSEN)
+                        .Where(a => a.ATASAN == posid && (a.FLAG == 1 || excludedStatuses.Contains(a.ID_STATUS.Value)) && a.DATETIME_FROM_CFC >= startDateTime && a.DATETIME_FROM_CFC <= endDateTime)
+                        .OrderByDescending(a => a.DATETIME_FROM_CFC)
                         .FirstOrDefault();
                 }
 
-                var formattedDate = data != null ? data.WAKTU_ABSEN.Value.ToString("d MMMM yyyy | HH:mm", new CultureInfo("id-ID")) : "-";
+                var formattedDate = data != null ? data.DATETIME_FROM_CFC.Value.ToString("d MMMM yyyy | HH:mm", new CultureInfo("id-ID")) : "-";
 
                 return Ok(new { Data = data, Tanggal = formattedDate });
             }
@@ -624,14 +624,14 @@ namespace restApi.Controllers
 
                 if (isAdminorNot.ID_Role == 1 || isAdminorNot.ID_Role == 4)
                 {
-                    data = db.VW_T_APPROVALs.Where(a => a.FLAG == 0 && !excludedStatuses.Contains(a.ID_STATUS.Value)).OrderByDescending(a => a.WAKTU_ABSEN).FirstOrDefault();
+                    data = db.VW_T_APPROVALs.Where(a => a.FLAG == 0 && !excludedStatuses.Contains(a.ID_STATUS.Value)).OrderByDescending(a => a.DATETIME_FROM_CFC).FirstOrDefault();
                 }
                 else
                 {
-                    data = db.VW_T_APPROVALs.Where(a => a.FLAG == 0 && !excludedStatuses.Contains(a.ID_STATUS.Value) && a.ATASAN == posid).OrderByDescending(a => a.WAKTU_ABSEN).FirstOrDefault();
+                    data = db.VW_T_APPROVALs.Where(a => a.FLAG == 0 && !excludedStatuses.Contains(a.ID_STATUS.Value) && a.ATASAN == posid).OrderByDescending(a => a.DATETIME_FROM_CFC).FirstOrDefault();
                 }
 
-                var formattedDate = data.WAKTU_ABSEN.Value.ToString("d MMMM yyyy | HH:mm", new CultureInfo("id-ID"));
+                var formattedDate = data.DATETIME_FROM_CFC.Value.ToString("d MMMM yyyy | HH:mm", new CultureInfo("id-ID"));
 
                 return Ok(new { Data = data, Tanggal = formattedDate });
             }
@@ -659,11 +659,11 @@ namespace restApi.Controllers
 
                 if (isAdminorNot.ID_Role == 1 || isAdminorNot.ID_Role == 4)
                 {
-                    data = db.VW_T_APPROVALs.Where(a => a.FLAG == 0 && !excludedStatuses.Contains(a.ID_STATUS.Value) && a.WAKTU_ABSEN >= startDateDateTime && a.WAKTU_ABSEN <= endDateDateTime).ToList();
+                    data = db.VW_T_APPROVALs.Where(a => a.FLAG == 0 && !excludedStatuses.Contains(a.ID_STATUS.Value) && a.DATETIME_FROM_CFC >= startDateDateTime && a.DATETIME_FROM_CFC <= endDateDateTime).ToList();
                 }
                 else
                 {
-                    data = db.VW_T_APPROVALs.Where(a => a.FLAG == 0 && !excludedStatuses.Contains(a.ID_STATUS.Value) && a.ATASAN == posid && a.WAKTU_ABSEN >= startDateDateTime && a.WAKTU_ABSEN <= endDateDateTime).ToList();
+                    data = db.VW_T_APPROVALs.Where(a => a.FLAG == 0 && !excludedStatuses.Contains(a.ID_STATUS.Value) && a.ATASAN == posid && a.DATETIME_FROM_CFC >= startDateDateTime && a.DATETIME_FROM_CFC <= endDateDateTime).ToList();
                 }
 
                 return Ok(new { Data = data, Total = data.Count() });
@@ -692,19 +692,19 @@ namespace restApi.Controllers
                 if (isAdminorNot.ID_Role == 1 || isAdminorNot.ID_Role == 4)
                 {
                     data = db.VW_T_APPROVALs
-                        .Where(a => a.FLAG == 0 && !excludedStatuses.Contains(a.ID_STATUS.Value) && a.WAKTU_ABSEN >= startDateTime && a.WAKTU_ABSEN <= endDateTime)
-                        .OrderByDescending(a => a.WAKTU_ABSEN)
+                        .Where(a => a.FLAG == 0 && !excludedStatuses.Contains(a.ID_STATUS.Value) && a.DATETIME_FROM_CFC >= startDateTime && a.DATETIME_FROM_CFC <= endDateTime)
+                        .OrderByDescending(a => a.DATETIME_FROM_CFC)
                         .FirstOrDefault();
                 }
                 else
                 {
                     data = db.VW_T_APPROVALs
-                        .Where(a => a.FLAG == 0 && !excludedStatuses.Contains(a.ID_STATUS.Value) && a.ATASAN == posid && a.WAKTU_ABSEN >= startDateTime && a.WAKTU_ABSEN <= endDateTime)
-                        .OrderByDescending(a => a.WAKTU_ABSEN)
+                        .Where(a => a.FLAG == 0 && !excludedStatuses.Contains(a.ID_STATUS.Value) && a.ATASAN == posid && a.DATETIME_FROM_CFC >= startDateTime && a.DATETIME_FROM_CFC <= endDateTime)
+                        .OrderByDescending(a => a.DATETIME_FROM_CFC)
                         .FirstOrDefault();
                 }
 
-                var formattedDate = data != null ? data.WAKTU_ABSEN.Value.ToString("d MMMM yyyy | HH:mm", new CultureInfo("id-ID")) : "-";
+                var formattedDate = data != null ? data.DATETIME_FROM_CFC.Value.ToString("d MMMM yyyy | HH:mm", new CultureInfo("id-ID")) : "-";
 
                 return Ok(new { Data = data, Tanggal = formattedDate });
             }
@@ -757,14 +757,14 @@ namespace restApi.Controllers
 
                 if (isAdminorNot.ID_Role == 1 || isAdminorNot.ID_Role == 4)
                 {
-                    data = db.VW_T_APPROVALs.Where(a => a.ID_STATUS == 5).OrderByDescending(a => a.WAKTU_ABSEN).FirstOrDefault();
+                    data = db.VW_T_APPROVALs.Where(a => a.ID_STATUS == 5).OrderByDescending(a => a.DATETIME_FROM_CFC).FirstOrDefault();
                 }
                 else
                 {
-                    data = db.VW_T_APPROVALs.Where(a => a.ID_STATUS == 5 && a.ATASAN == posid).OrderByDescending(a => a.WAKTU_ABSEN).FirstOrDefault();
+                    data = db.VW_T_APPROVALs.Where(a => a.ID_STATUS == 5 && a.ATASAN == posid).OrderByDescending(a => a.DATETIME_FROM_CFC).FirstOrDefault();
                 }
 
-                var formattedDate = data.WAKTU_ABSEN.Value.ToString("d MMMM yyyy | HH:mm", new CultureInfo("id-ID"));
+                var formattedDate = data.DATETIME_FROM_CFC.Value.ToString("d MMMM yyyy | HH:mm", new CultureInfo("id-ID"));
 
                 return Ok(new { Data = data, Tanggal = formattedDate });
             }
@@ -791,11 +791,11 @@ namespace restApi.Controllers
 
                 if (isAdminorNot.ID_Role == 1 || isAdminorNot.ID_Role == 4)
                 {
-                    data = db.VW_T_APPROVALs.Where(a => a.ID_STATUS == 5 && a.WAKTU_ABSEN >= startDateDateTime && a.WAKTU_ABSEN <= endDateDateTime).ToList();
+                    data = db.VW_T_APPROVALs.Where(a => a.ID_STATUS == 5 && a.DATETIME_FROM_CFC >= startDateDateTime && a.DATETIME_FROM_CFC <= endDateDateTime).ToList();
                 }
                 else
                 {
-                    data = db.VW_T_APPROVALs.Where(a => a.ID_STATUS == 5 && a.ATASAN == posid && a.WAKTU_ABSEN >= startDateDateTime && a.WAKTU_ABSEN <= endDateDateTime).ToList();
+                    data = db.VW_T_APPROVALs.Where(a => a.ID_STATUS == 5 && a.ATASAN == posid && a.DATETIME_FROM_CFC >= startDateDateTime && a.DATETIME_FROM_CFC <= endDateDateTime).ToList();
                 }
 
                 return Ok(new { Data = data, Total = data.Count() });
@@ -823,19 +823,19 @@ namespace restApi.Controllers
                 if (isAdminorNot.ID_Role == 1 || isAdminorNot.ID_Role == 4)
                 {
                     data = db.VW_T_APPROVALs
-                        .Where(a => a.ID_STATUS == 5 && a.WAKTU_ABSEN >= startDateTime && a.WAKTU_ABSEN <= endDateTime)
-                        .OrderByDescending(a => a.WAKTU_ABSEN)
+                        .Where(a => a.ID_STATUS == 5 && a.DATETIME_FROM_CFC >= startDateTime && a.DATETIME_FROM_CFC <= endDateTime)
+                        .OrderByDescending(a => a.DATETIME_FROM_CFC)
                         .FirstOrDefault();
                 }
                 else
                 {
                     data = db.VW_T_APPROVALs
-                        .Where(a => a.ID_STATUS == 5 && a.ATASAN == posid && a.WAKTU_ABSEN >= startDateTime && a.WAKTU_ABSEN <= endDateTime)
-                        .OrderByDescending(a => a.WAKTU_ABSEN)
+                        .Where(a => a.ID_STATUS == 5 && a.ATASAN == posid && a.DATETIME_FROM_CFC >= startDateTime && a.DATETIME_FROM_CFC <= endDateTime)
+                        .OrderByDescending(a => a.DATETIME_FROM_CFC)
                         .FirstOrDefault();
                 }
 
-                var formattedDate = data != null ? data.WAKTU_ABSEN.Value.ToString("d MMMM yyyy | HH:mm", new CultureInfo("id-ID")) : "-";
+                var formattedDate = data != null ? data.DATETIME_FROM_CFC.Value.ToString("d MMMM yyyy | HH:mm", new CultureInfo("id-ID")) : "-";
 
                 return Ok(new { Data = data, Tanggal = formattedDate });
             }
@@ -888,14 +888,14 @@ namespace restApi.Controllers
 
                 if (isAdminorNot.ID_Role == 1 || isAdminorNot.ID_Role == 4)
                 {
-                    data = db.VW_T_APPROVALs.Where(a => a.ID_STATUS == 7).OrderByDescending(a => a.WAKTU_ABSEN).FirstOrDefault();
+                    data = db.VW_T_APPROVALs.Where(a => a.ID_STATUS == 7).OrderByDescending(a => a.DATETIME_FROM_CFC).FirstOrDefault();
                 }
                 else
                 {
-                    data = db.VW_T_APPROVALs.Where(a => a.ID_STATUS == 7 && a.ATASAN == posid).OrderByDescending(a => a.WAKTU_ABSEN).FirstOrDefault();
+                    data = db.VW_T_APPROVALs.Where(a => a.ID_STATUS == 7 && a.ATASAN == posid).OrderByDescending(a => a.DATETIME_FROM_CFC).FirstOrDefault();
                 }
 
-                var formattedDate = data.WAKTU_ABSEN.Value.ToString("d MMMM yyyy | HH:mm", new CultureInfo("id-ID"));
+                var formattedDate = data.DATETIME_FROM_CFC.Value.ToString("d MMMM yyyy | HH:mm", new CultureInfo("id-ID"));
 
                 return Ok(new { Data = data, Tanggal = formattedDate });
             }
@@ -922,11 +922,11 @@ namespace restApi.Controllers
 
                 if (isAdminorNot.ID_Role == 1 || isAdminorNot.ID_Role == 4)
                 {
-                    data = db.VW_T_APPROVALs.Where(a => a.ID_STATUS == 7 && a.WAKTU_ABSEN >= startDateDateTime && a.WAKTU_ABSEN <= endDateDateTime).ToList();
+                    data = db.VW_T_APPROVALs.Where(a => a.ID_STATUS == 7 && a.DATETIME_FROM_CFC >= startDateDateTime && a.DATETIME_FROM_CFC <= endDateDateTime).ToList();
                 }
                 else
                 {
-                    data = db.VW_T_APPROVALs.Where(a => a.ID_STATUS == 7 && a.ATASAN == posid && a.WAKTU_ABSEN >= startDateDateTime && a.WAKTU_ABSEN <= endDateDateTime).ToList();
+                    data = db.VW_T_APPROVALs.Where(a => a.ID_STATUS == 7 && a.ATASAN == posid && a.DATETIME_FROM_CFC >= startDateDateTime && a.DATETIME_FROM_CFC <= endDateDateTime).ToList();
                 }
 
                 return Ok(new { Data = data, Total = data.Count() });
@@ -954,19 +954,19 @@ namespace restApi.Controllers
                 if (isAdminorNot.ID_Role == 1 || isAdminorNot.ID_Role == 4)
                 {
                     data = db.VW_T_APPROVALs
-                        .Where(a => a.ID_STATUS == 7 && a.WAKTU_ABSEN >= startDateTime && a.WAKTU_ABSEN <= endDateTime)
-                        .OrderByDescending(a => a.WAKTU_ABSEN)
+                        .Where(a => a.ID_STATUS == 7 && a.DATETIME_FROM_CFC >= startDateTime && a.DATETIME_FROM_CFC <= endDateTime)
+                        .OrderByDescending(a => a.DATETIME_FROM_CFC)
                         .FirstOrDefault();
                 }
                 else
                 {
                     data = db.VW_T_APPROVALs
-                        .Where(a => a.ID_STATUS == 7 && a.ATASAN == posid && a.WAKTU_ABSEN >= startDateTime && a.WAKTU_ABSEN <= endDateTime)
-                        .OrderByDescending(a => a.WAKTU_ABSEN)
+                        .Where(a => a.ID_STATUS == 7 && a.ATASAN == posid && a.DATETIME_FROM_CFC >= startDateTime && a.DATETIME_FROM_CFC <= endDateTime)
+                        .OrderByDescending(a => a.DATETIME_FROM_CFC)
                         .FirstOrDefault();
                 }
 
-                var formattedDate = data != null ? data.WAKTU_ABSEN.Value.ToString("d MMMM yyyy | HH:mm", new CultureInfo("id-ID")) : "-";
+                var formattedDate = data != null ? data.DATETIME_FROM_CFC.Value.ToString("d MMMM yyyy | HH:mm", new CultureInfo("id-ID")) : "-";
 
                 return Ok(new { Data = data, Tanggal = formattedDate });
             }

@@ -33,7 +33,8 @@ namespace restApi.Controllers
                 }
                 else if (isAdminorNot.ID_Role == 4)
                 {
-                    var data = db.VW_T_APPROVALs.Where(a => a.FLAG == 0 && a.ID_STATUS == 4).OrderBy(a => a.APPROVAL_ID).ToList();
+                    //var data = db.VW_T_APPROVALs.Where(a => a.FLAG == 0 && a.ID_STATUS == 4).OrderBy(a => a.APPROVAL_ID).ToList();
+                    var data = db.VW_T_APPROVALs.Where(a => a.ID_STATUS == 4 && a.APPROVER_PARAMEDIC == null).OrderBy(a => a.APPROVAL_ID).ToList();
 
                     return Ok(new { Data = data });
                 }
@@ -104,14 +105,31 @@ namespace restApi.Controllers
 
                 if (cek != null)
                 {
-                    cek.ID_STATUS = chambers.ID_STATUS;
-                    cek.APPROVER = chambers.APPROVER;
-                    cek.WAKTU_APPROVAL = DateTime.UtcNow.ToLocalTime();
-                    cek.FLAG = 1;
+                    var cekRole = db.VW_Users.Where(a => a.Username == chambers.APPROVER).FirstOrDefault();
+                    if (cekRole.ID_Role == 4)
+                    {
+                        cek.ID_STATUS = chambers.ID_STATUS;
+                        //cek.APPROVER = chambers.APPROVER;
+                        cek.WAKTU_APPROVAL = DateTime.UtcNow.ToLocalTime();
+                        cek.APPROVER_PARAMEDIC = chambers.APPROVER;
+                        cek.FLAG = 1;
 
-                    db.SubmitChanges();
+                        db.SubmitChanges();
 
-                    return Ok(new { Remarks = true });
+                        return Ok(new { Remarks = true });
+                    }
+                    else
+                    {
+                        cek.ID_STATUS = chambers.ID_STATUS;
+                        cek.APPROVER = chambers.APPROVER;
+                        cek.WAKTU_APPROVAL = DateTime.UtcNow.ToLocalTime();
+                        cek.FLAG = 1;
+
+                        db.SubmitChanges();
+
+                        return Ok(new { Remarks = true });
+                    }
+                    
                 }
                 else
                 {
@@ -134,15 +152,31 @@ namespace restApi.Controllers
 
                 if (cek != null)
                 {
-                    cek.ID_STATUS = chambers.ID_STATUS;
-                    cek.APPROVER = chambers.APPROVER;
-                    cek.WAKTU_APPROVAL = DateTime.UtcNow.ToLocalTime();
-                    cek.NOTED = chambers.NOTED;
-                    cek.FLAG = 1;
+                    var cekRole = db.VW_Users.Where(a => a.Username == chambers.APPROVER).FirstOrDefault();
+                    if (cekRole.ID_Role == 4)
+                    {
+                        cek.ID_STATUS = chambers.ID_STATUS;
+                        //cek.APPROVER = chambers.APPROVER;
+                        cek.WAKTU_APPROVAL = DateTime.UtcNow.ToLocalTime();
+                        cek.APPROVER_PARAMEDIC = chambers.APPROVER;
+                        cek.FLAG = 1;
 
-                    db.SubmitChanges();
+                        db.SubmitChanges();
 
-                    return Ok(new { Remarks = true });
+                        return Ok(new { Remarks = true });
+                    }
+                    else
+                    {
+                        cek.ID_STATUS = chambers.ID_STATUS;
+                        cek.APPROVER = chambers.APPROVER;
+                        cek.WAKTU_APPROVAL = DateTime.UtcNow.ToLocalTime();
+                        cek.FLAG = 1;
+
+                        db.SubmitChanges();
+
+                        return Ok(new { Remarks = true });
+                    }
+                    
                 }
                 else
                 {

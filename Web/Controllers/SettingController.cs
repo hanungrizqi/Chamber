@@ -11,7 +11,6 @@ namespace Web.Controllers
     {
         CfmDataContext db = new CfmDataContext();
         
-        [CustomAuthorize]
         public ActionResult Users()
         {
             if (Session["nrp"] == null)
@@ -35,7 +34,6 @@ namespace Web.Controllers
             return View();
         }
 
-        [CustomAuthorize]
         public ActionResult Menu()
         {
             if (Session["nrp"] == null)

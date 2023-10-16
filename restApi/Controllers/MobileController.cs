@@ -86,7 +86,8 @@ namespace restApi.Controllers
                     history_tanggal = a.WAKTU_ABSEN.Value.ToString("d MMMM yyyy | HH:mm", new CultureInfo("id-ID")),
                     idchamber = a.ID_CHAMBER,
                     temperatur_badan = $"{a.TEMPRATURE} C",
-                    day = a.WAKTU_ABSEN.Value.ToString("dddd", new CultureInfo("id-ID"))
+                    day = a.WAKTU_ABSEN.Value.ToString("dddd", new CultureInfo("id-ID")),
+                    status = a.STATUS
                 }).ToList();
 
                 return Ok(new { Data = data });
@@ -112,7 +113,8 @@ namespace restApi.Controllers
                     history_tanggal = a.WAKTU_ABSEN.Value.ToString("d MMMM yyyy | HH:mm", new CultureInfo("id-ID")),
                     idchamber = a.ID_CHAMBER,
                     tekanan_darah = $"SYS ({a.SYSTOLIC}) / DIA ({a.DIASTOLIC})",
-                    day = a.WAKTU_ABSEN.Value.ToString("dddd", new CultureInfo("id-ID"))
+                    day = a.WAKTU_ABSEN.Value.ToString("dddd", new CultureInfo("id-ID")),
+                    status = a.STATUS
                 }).ToList();
 
                 return Ok(new { Data = data });
@@ -138,7 +140,8 @@ namespace restApi.Controllers
                     history_tanggal = a.WAKTU_ABSEN.Value.ToString("d MMMM yyyy | HH:mm", new CultureInfo("id-ID")),
                     idchamber = a.ID_CHAMBER,
                     spo02 = $"{a.OXYGEN_SATURATION}%",
-                    day = a.WAKTU_ABSEN.Value.ToString("dddd", new CultureInfo("id-ID"))
+                    day = a.WAKTU_ABSEN.Value.ToString("dddd", new CultureInfo("id-ID")),
+                    status = a.STATUS
                 }).ToList();
 
                 return Ok(new { Data = data });
@@ -164,7 +167,8 @@ namespace restApi.Controllers
                     history_tanggal = a.WAKTU_ABSEN.Value.ToString("d MMMM yyyy | HH:mm", new CultureInfo("id-ID")),
                     idchamber = a.ID_CHAMBER,
                     heart_rate = $"{a.HEART_RATE} Bpm",
-                    day = a.WAKTU_ABSEN.Value.ToString("dddd", new CultureInfo("id-ID"))
+                    day = a.WAKTU_ABSEN.Value.ToString("dddd", new CultureInfo("id-ID")),
+                    status = a.STATUS
                 }).ToList();
 
                 return Ok(new { Data = data });
@@ -193,7 +197,8 @@ namespace restApi.Controllers
                     tekanan_darah = $"SYS ({a.SYSTOLIC}) / DIA ({a.DIASTOLIC})",
                     spo02 = $"{a.OXYGEN_SATURATION}%",
                     heart_rate = $"{a.HEART_RATE} Bpm",
-                    day = a.WAKTU_ABSEN.Value.ToString("dddd", new CultureInfo("id-ID"))
+                    day = a.WAKTU_ABSEN.Value.ToString("dddd", new CultureInfo("id-ID")),
+                    status = a.STATUS
                 }).ToList();
 
                 return Ok(new { Data = data });
@@ -236,7 +241,8 @@ namespace restApi.Controllers
                         history_tanggal = a.WAKTU_ABSEN.Value.ToString("d MMMM yyyy | HH:mm", new CultureInfo("id-ID")),
                         idchamber = a.ID_CHAMBER,
                         temperatur_badan = $"{a.TEMPRATURE} C",
-                        day = a.WAKTU_ABSEN.Value.ToString("dddd", new CultureInfo("id-ID"))
+                        day = a.WAKTU_ABSEN.Value.ToString("dddd", new CultureInfo("id-ID")),
+                        status = a.STATUS
                     })
                     .OrderBy(a => a.history_tanggal)
                     .ToList();
@@ -276,7 +282,8 @@ namespace restApi.Controllers
                         history_tanggal = a.WAKTU_ABSEN.Value.ToString("d MMMM yyyy | HH:mm", new CultureInfo("id-ID")),
                         idchamber = a.ID_CHAMBER,
                         tekanan_darah = $"SYS ({a.SYSTOLIC}) / DIA ({a.DIASTOLIC})",
-                        day = a.WAKTU_ABSEN.Value.ToString("dddd", new CultureInfo("id-ID"))
+                        day = a.WAKTU_ABSEN.Value.ToString("dddd", new CultureInfo("id-ID")),
+                        status = a.STATUS
                     })
                     .OrderBy(a => a.history_tanggal)
                     .ToList();
@@ -316,7 +323,8 @@ namespace restApi.Controllers
                         history_tanggal = a.WAKTU_ABSEN.Value.ToString("d MMMM yyyy | HH:mm", new CultureInfo("id-ID")),
                         idchamber = a.ID_CHAMBER,
                         spo02 = $"{a.OXYGEN_SATURATION}%",
-                        day = a.WAKTU_ABSEN.Value.ToString("dddd", new CultureInfo("id-ID"))
+                        day = a.WAKTU_ABSEN.Value.ToString("dddd", new CultureInfo("id-ID")),
+                        status = a.STATUS
                     })
                     .OrderBy(a => a.history_tanggal)
                     .ToList();
@@ -356,7 +364,8 @@ namespace restApi.Controllers
                         history_tanggal = a.WAKTU_ABSEN.Value.ToString("d MMMM yyyy | HH:mm", new CultureInfo("id-ID")),
                         idchamber = a.ID_CHAMBER,
                         heart_rate = $"{a.HEART_RATE} Bpm",
-                        day = a.WAKTU_ABSEN.Value.ToString("dddd", new CultureInfo("id-ID"))
+                        day = a.WAKTU_ABSEN.Value.ToString("dddd", new CultureInfo("id-ID")),
+                        status = a.STATUS
                     })
                     .OrderBy(a => a.history_tanggal)
                     .ToList();
@@ -399,7 +408,8 @@ namespace restApi.Controllers
                         tekanan_darah = $"SYS ({a.SYSTOLIC}) / DIA ({a.DIASTOLIC})",
                         spo02 = $"{a.OXYGEN_SATURATION}%",
                         heart_rate = $"{a.HEART_RATE} Bpm",
-                        day = a.WAKTU_ABSEN.Value.ToString("dddd", new CultureInfo("id-ID"))
+                        day = a.WAKTU_ABSEN.Value.ToString("dddd", new CultureInfo("id-ID")),
+                        status = a.STATUS
                     })
                     .OrderBy(a => a.history_tanggal)
                     .ToList();

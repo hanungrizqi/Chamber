@@ -71,6 +71,7 @@ var table = $("#tbl_approval").DataTable({
         {
             data: 'NAME',
             render: function (data, type, row) {
+                debugger
                 var email = row.EMAIL;
                 var oxy = row.OXYGEN_SATURATION;
                 var heart = row.HEART_RATE;
@@ -79,34 +80,38 @@ var table = $("#tbl_approval").DataTable({
                 var tempra = row.TEMPRATURE;
                 var note = row.NOTE;
                 var text = '';
-                var noteValues = note.split(',');
-                for (var i = 0; i < noteValues.length; i++) {
-                    //debugger
-                    var noteValue = noteValues[i].trim();
-                    switch (noteValue) {
-                        case 'heart_rate':
-                            text += 'HEART = ' + heart;
-                            break;
-                        case 'systolic':
-                            text += 'SYSTOLIC = ' + systo;
-                            break;
-                        case 'diastolic':
-                            text += 'DIASTOLIC = ' + diasto;
-                            break;
-                        case 'temprature':
-                            text += 'TEMPERATURE = ' + tempra;
-                            break;
-                        case 'oxygen_saturation':
-                            text += 'OXYGEN = ' + oxy;
-                            break;
-                        default:
-                            //do nothing
-                    }
-                    if (i < noteValues.length - 1) {
-                        text += ', ';
+                /*var noteValues = note.split(',');*/
+
+                if (note && typeof note === 'string')
+                {
+                    var noteValues = note.split(',');
+                    for (var i = 0; i < noteValues.length; i++) {
+                        //debugger
+                        var noteValue = noteValues[i].trim();
+                        switch (noteValue) {
+                            case 'heart_rate':
+                                text += 'HEART = ' + heart;
+                                break;
+                            case 'systolic':
+                                text += 'SYSTOLIC = ' + systo;
+                                break;
+                            case 'diastolic':
+                                text += 'DIASTOLIC = ' + diasto;
+                                break;
+                            case 'temprature':
+                                text += 'TEMPERATURE = ' + tempra;
+                                break;
+                            case 'oxygen_saturation':
+                                text += 'OXYGEN = ' + oxy;
+                                break;
+                            default:
+                                //do nothing
+                        }
+                        if (i < noteValues.length - 1) {
+                            text += ', ';
+                        }
                     }
                 }
-
                 if (text) {
                     return data + '<p class="fs-sm text-muted mb-0">' + text + '</p>';
                 } else {

@@ -4,8 +4,8 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
 -->
 <Project>
   <PropertyGroup>
-    <_PublishTargetUrl>D:\Publish Project\CFM\Development\20231012\Web</_PublishTargetUrl>
-    <History>True|2023-09-29T02:38:53.9722222Z;True|2023-09-29T09:37:25.3386475+07:00;</History>
+    <_PublishTargetUrl>D:\Publish Project\CFM\Development\20131016\Web</_PublishTargetUrl>
+    <History>True|2023-10-16T03:13:30.1526974Z;True|2023-10-13T10:26:47.4591977+07:00;True|2023-09-29T09:38:53.9722222+07:00;True|2023-09-29T09:37:25.3386475+07:00;</History>
     <LastFailureDetails />
   </PropertyGroup>
   <ItemGroup>
@@ -205,10 +205,10 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>05/27/2022 23:42:50</publishTime>
     </File>
     <File Include="bin/Web.dll">
-      <publishTime>10/12/2023 15:35:24</publishTime>
+      <publishTime>10/16/2023 10:13:20</publishTime>
     </File>
     <File Include="bin/Web.pdb">
-      <publishTime>10/12/2023 15:35:24</publishTime>
+      <publishTime>10/16/2023 10:13:20</publishTime>
     </File>
     <File Include="bin/WebGrease.dll">
       <publishTime>01/23/2014 13:57:34</publishTime>
@@ -11874,6 +11874,9 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     <File Include="Content/assets/media/photos/logo.png">
       <publishTime>09/21/2023 13:25:40</publishTime>
     </File>
+    <File Include="Content/assets/media/photos/logo_dcfc.png">
+      <publishTime>10/13/2023 09:45:54</publishTime>
+    </File>
     <File Include="Content/assets/media/photos/pama.jpg">
       <publishTime>09/20/2023 13:39:14</publishTime>
     </File>
@@ -12823,7 +12826,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>09/20/2023 10:46:04</publishTime>
     </File>
     <File Include="Models/Cfm.dbml">
-      <publishTime>10/11/2023 09:43:43</publishTime>
+      <publishTime>10/13/2023 15:10:05</publishTime>
     </File>
     <File Include="Scripts/moment.min.js">
       <publishTime>09/20/2023 14:14:30</publishTime>
@@ -12838,7 +12841,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>10/12/2023 15:02:46</publishTime>
     </File>
     <File Include="Scripts/Page/Home.js">
-      <publishTime>10/10/2023 09:51:21</publishTime>
+      <publishTime>10/13/2023 09:34:30</publishTime>
     </File>
     <File Include="Scripts/Page/login.js">
       <publishTime>10/10/2023 10:30:43</publishTime>
@@ -12853,13 +12856,13 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>10/12/2023 09:53:06</publishTime>
     </File>
     <File Include="Scripts/Page/WorkApprovalDetail.js">
-      <publishTime>10/12/2023 09:56:45</publishTime>
+      <publishTime>10/13/2023 14:45:02</publishTime>
     </File>
     <File Include="Views/Approval/Detail.cshtml">
       <publishTime>10/06/2023 15:11:38</publishTime>
     </File>
     <File Include="Views/Approval/Index.cshtml">
-      <publishTime>10/06/2023 15:07:10</publishTime>
+      <publishTime>10/13/2023 14:43:36</publishTime>
     </File>
     <File Include="Views/CfmManagement/Index.cshtml">
       <publishTime>10/06/2023 15:08:14</publishTime>
@@ -12871,10 +12874,10 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>10/06/2023 15:10:21</publishTime>
     </File>
     <File Include="Views/Home/Index.cshtml">
-      <publishTime>10/09/2023 16:33:20</publishTime>
+      <publishTime>10/13/2023 10:02:33</publishTime>
     </File>
     <File Include="Views/Login/Index.cshtml">
-      <publishTime>10/06/2023 15:59:49</publishTime>
+      <publishTime>10/13/2023 09:46:02</publishTime>
     </File>
     <File Include="Views/Setting/Menu.cshtml">
       <publishTime>10/06/2023 15:09:47</publishTime>
@@ -12886,7 +12889,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>09/20/2023 10:46:04</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>10/10/2023 14:38:53</publishTime>
+      <publishTime>10/13/2023 14:29:00</publishTime>
     </File>
     <File Include="Views/Shared/_Sidebar.cshtml">
       <publishTime>09/27/2023 13:23:24</publishTime>
@@ -12898,7 +12901,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>09/20/2023 10:46:04</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>10/12/2023 15:35:25</publishTime>
+      <publishTime>10/16/2023 10:13:21</publishTime>
     </File>
   </ItemGroup>
 </Project>
