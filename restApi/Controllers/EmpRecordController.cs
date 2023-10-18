@@ -24,7 +24,7 @@ namespace restApi.Controllers
                 var isAdminorNot = db.VW_Users.Where(c => c.POSITION_ID == posid).FirstOrDefault();
                 var excludedStatuses = new[] { 1, 5, 6, 7 };
 
-                if (isAdminorNot.ID_Role == 1)
+                if (isAdminorNot.ID_Role == 1 || isAdminorNot.ID_Role == 4)
                 {
                     var data = db.VW_T_APPROVALs.Where(a => a.FLAG == 1 || excludedStatuses.Contains(a.ID_STATUS.Value)).OrderBy(a => a.APPROVAL_ID).ToList();
 
@@ -36,12 +36,12 @@ namespace restApi.Controllers
 
                     return Ok(new { Data = data });
                 }
-                else if (isAdminorNot.ID_Role == 4)
-                {
-                    var data = db.VW_T_APPROVALs.Where(a => a.FLAG == 1 && a.ID_STATUS == 4).ToList();
+                //else if (isAdminorNot.ID_Role == 4)
+                //{
+                //    var data = db.VW_T_APPROVALs.Where(a => a.FLAG == 1 && a.ID_STATUS == 4).ToList();
 
-                    return Ok(new { Data = data });
-                }
+                //    return Ok(new { Data = data });
+                //}
                 else
                 {
                     var data = db.VW_T_APPROVALs.Where(a => a.POSITION_ID == posid).OrderBy(a => a.APPROVAL_ID).ToList();
@@ -57,8 +57,8 @@ namespace restApi.Controllers
         }
         
         [HttpGet]
-        [Route("Get_ListEmprecord_Daterange/{posid}/{startDate}/{endDate}")]
-        public IHttpActionResult Get_ListEmprecord_Daterange(string posid, string startDate = null, string endDate = null)
+        [Route("Get_ListEmprecord_Daterange")]
+        public IHttpActionResult Get_ListEmprecord_Daterange(string posid, string startDate, string endDate)
         {
             try
             {
@@ -84,17 +84,20 @@ namespace restApi.Controllers
                     query = db.VW_T_APPROVALs.Where(a => a.POSITION_ID == posid);
                 }
 
-                // Jika startDate dan endDate diberikan, tambahkan filter berdasarkan tanggal
-                if (!string.IsNullOrEmpty(startDate) && !string.IsNullOrEmpty(endDate))
+                //if (!string.IsNullOrEmpty(startDate) && !string.IsNullOrEmpty(endDate))
+                //{
+                //    DateTime parsedStartDate, parsedEndDate;
+                //    if (DateTime.TryParseExact(startDate, "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out parsedStartDate) &&
+                //        DateTime.TryParseExact(endDate, "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out parsedEndDate))
+                //    {
+                //        query = query.Where(a => a.WAKTU_ABSEN >= parsedStartDate && a.WAKTU_ABSEN <= parsedEndDate);
+                //    }
+                //}
+
+                if (DateTime.TryParseExact(startDate, "yyyy-MM-dd HH:mm:ss.fff", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime parsedStartDate) && DateTime.TryParseExact(endDate, "yyyy-MM-dd HH:mm:ss.fff", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime parsedEndDate))
                 {
-                    // Parse startDate dan endDate menjadi DateTime
-                    DateTime parsedStartDate, parsedEndDate;
-                    if (DateTime.TryParseExact(startDate, "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out parsedStartDate) &&
-                        DateTime.TryParseExact(endDate, "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out parsedEndDate))
-                    {
-                        // Filter data berdasarkan rentang tanggal
-                        query = query.Where(a => a.WAKTU_ABSEN >= parsedStartDate && a.WAKTU_ABSEN <= parsedEndDate);
-                    }
+                    // Filter data by date range
+                    query = query.Where(a => a.WAKTU_ABSEN >= parsedStartDate && a.WAKTU_ABSEN <= parsedEndDate);
                 }
 
                 var data = query.OrderBy(a => a.APPROVAL_ID).ToList();

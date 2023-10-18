@@ -5,7 +5,7 @@ $("document").ready(function () {
         Status();
     });
     var idProfile = $("#hd_idroles").val();
-    if (idProfile == 3) {
+    if (idProfile == 3 || idProfile == 4) {
         $("#tombolApprove").hide();
     } else {
         $("#tombolApprove").show();

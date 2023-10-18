@@ -54,7 +54,7 @@ namespace restApi.Controllers
         }
 
         [HttpGet]
-        [Route("Get_ListApproval_Daterange/{posid}/{startDate}/{endDate}")]
+        [Route("Get_ListApproval_Daterange")]
         public IHttpActionResult Get_ListApproval_Daterange(string posid, string startDate, string endDate)
         {
             try
@@ -78,9 +78,15 @@ namespace restApi.Controllers
                 }
 
                 // Parse startDate and endDate to DateTime
-                DateTime parsedStartDate, parsedEndDate;
-                if (DateTime.TryParseExact(startDate, "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out parsedStartDate) &&
-                    DateTime.TryParseExact(endDate, "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out parsedEndDate))
+                //DateTime parsedStartDate, parsedEndDate;
+                //if (DateTime.TryParseExact(startDate, "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out parsedStartDate) &&
+                //    DateTime.TryParseExact(endDate, "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out parsedEndDate))
+                //{
+                //    // Filter data by date range
+                //    query = query.Where(a => a.WAKTU_ABSEN >= parsedStartDate && a.WAKTU_ABSEN <= parsedEndDate);
+                //}
+
+                if (DateTime.TryParseExact(startDate, "yyyy-MM-dd HH:mm:ss.fff", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime parsedStartDate) && DateTime.TryParseExact(endDate, "yyyy-MM-dd HH:mm:ss.fff", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime parsedEndDate))
                 {
                     // Filter data by date range
                     query = query.Where(a => a.WAKTU_ABSEN >= parsedStartDate && a.WAKTU_ABSEN <= parsedEndDate);
@@ -205,5 +211,41 @@ namespace restApi.Controllers
                 return BadRequest();
             }
         }
+
+        [HttpPost]
+        [Route("Insert_Dummy_Data")]
+        public IHttpActionResult Insert_Dummy_Data(List<TBL_T_CFC> param)
+        {
+            try
+            {
+                foreach (TBL_T_CFC p in param)
+                {
+                    TBL_T_CFC tbl = new TBL_T_CFC();
+                    tbl.WAKTU_ABSEN = p.WAKTU_ABSEN;
+                    tbl.NRP = p.NRP;
+                    tbl.ID_CHAMBER = p.ID_CHAMBER;
+                    tbl.OXYGEN_SATURATION = p.OXYGEN_SATURATION;
+                    tbl.HEART_RATE = p.HEART_RATE;
+                    tbl.SYSTOLIC = p.SYSTOLIC;
+                    tbl.DIASTOLIC = p.DIASTOLIC;
+                    tbl.TEMPRATURE = p.TEMPRATURE;
+                    tbl.FACE_PICTURE_URL = p.FACE_PICTURE_URL;
+                    tbl.ID_STATUS = p.ID_STATUS;
+                    tbl.NOTE = p.NOTE;
+                    tbl.ATTENDANCE_NOTE = p.ATTENDANCE_NOTE;
+
+                    db.TBL_T_CFCs.InsertOnSubmit(tbl);
+                }
+
+                db.SubmitChanges();
+
+                return Json(new { Remarks = true });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { Remarks = false, Message = ex });
+            }
+        }
+
     }
 }
