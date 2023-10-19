@@ -5,6 +5,14 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+@section Stylesheet{
+    <style>
+        .dataTables_scrollBody {
+            overflow: visible !important;
+        }
+    </style>
+}
+
 <div class="row">
     <div class="col">
         <h3>Employee Record</h3>
@@ -37,25 +45,25 @@
 </div>
 
 @*<div class="col-12 mb-2">
-    <span style="font-size: 10px;">Berikut detail data setiap chamber yang tersedia di <b>@Session["Site"].ToString()</b>.</span>
-</div>
+        <span style="font-size: 10px;">Berikut detail data setiap chamber yang tersedia di <b>@Session["Site"].ToString()</b>.</span>
+    </div>
 
-<div class="row mb-3">
-    <div class="col">
-        <label><input type="search" class="form-control form-control-sm" placeholder="Search" id="search" aria-controls="tbl_approval"></label>
-    </div>
-    <div class="col text-end">
-        <span style="font-size: 10px;">@ViewBag.Count person need approval found &nbsp; &nbsp;</span>
-        <button id="filterbuton">
-            <i class="nav-main-link-icon fa fa-arrow-down-wide-short" style="font-size: 10px;"></i>
-            <span style="font-size: 10px;">filter</span>
-        </button>
-        <button id="downloadButton2">
-            <i class="nav-main-link-icon fa fa-download" style="font-size: 10px;"></i>
-            <span style="font-size: 10px;">Download</span>
-        </button>
-    </div>
-</div>*@
+    <div class="row mb-3">
+        <div class="col">
+            <label><input type="search" class="form-control form-control-sm" placeholder="Search" id="search" aria-controls="tbl_approval"></label>
+        </div>
+        <div class="col text-end">
+            <span style="font-size: 10px;">@ViewBag.Count person need approval found &nbsp; &nbsp;</span>
+            <button id="filterbuton">
+                <i class="nav-main-link-icon fa fa-arrow-down-wide-short" style="font-size: 10px;"></i>
+                <span style="font-size: 10px;">filter</span>
+            </button>
+            <button id="downloadButton2">
+                <i class="nav-main-link-icon fa fa-download" style="font-size: 10px;"></i>
+                <span style="font-size: 10px;">Download</span>
+            </button>
+        </div>
+    </div>*@
 
 <div class="col-sm-12 col-md-6">
     <div class="dropdown" style="position: absolute; top: 0; right: 0%;">

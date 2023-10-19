@@ -179,91 +179,71 @@ var table = $("#tbl_empr").DataTable({
             render: function (data, type, row) {
                 var actions = '<div class="btn-group">';
                 actions += '<button class="btn btn-sm" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-ellipsis-vertical"></i></button>';
-                if ($("#hd_idroles").val() == 4) {
+                if ($("#hd_idroles").val() == 4 || $("#hd_idroles").val() == 3) {
                     //do nothing
                 }
                 else {
-                    if (row.ID_STATUS == 5) {
-                        if (row.JUMLAH_APPROVAL_PERHARI == 2 || row.JUMLAH_APPROVAL_PERHARI == 3 || row.JUMLAH_APPROVAL_PERHARI == 4 && row.) {
-
-                            var isLatestRow = false;
-                            var nrp = row.NRP;
-                            var otherRows = $('#tbl_empr').DataTable().rows().data().toArray();
-                            debugger
-                            //var descs = $('#tbl_empr').DataTable().rows().data().toArray();
-                            //descs.sort(function (a, b) {
-                            //    return new Date(b.DATETIME_FROM_CFC) - new Date(a.DATETIME_FROM_CFC);
-                            //});
-
-                            for (var i = 0; i < otherRows.length; i++) {
-                                var otherRow = otherRows[i];
-                                debugger
-                                if (otherRow.NRP == nrp && row.DATETIME_FROM_CFC > otherRow.DATETIME_FROM_CFC) {
-                                    isLatestRow = true;
-                                    break;
-                                }
-                            }
-
-                            //var isLatestRow = false;
-                            //var nrp = row.NRP;
-                            //var otherRows = $('#tbl_empr').DataTable().rows().data().toArray();
-
-                            //otherRows.sort(function (a, b) {
-                            //    return new Date(a.DATETIME_FROM_CFC) - new Date(b.DATETIME_FROM_CFC);
-                            //});
-                            //debugger
-                            //for (var i = 0; i < otherRows.length; i++) {
-                            //    //debugger
-                            //    var otherRow = otherRows[i];
-                            //    if (otherRow.NRP == nrp && otherRow.DATETIME_FROM_CFC === row.DATETIME_FROM_CFC) {
-                            //        continue;
-                            //    }
-                            //    if (otherRow.NRP == nrp && row.DATETIME_FROM_CFC > otherRow.DATETIME_FROM_CFC) {
-                            //        isLatestRow = true;
-                            //        break;
-                            //    }
-                            //}
-
-                            if (isLatestRow) {
-                                actions += '<ul class="dropdown-menu dropdown-menu-right">';
-                                actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Unfit" href="#">Unfit</a></li>';
-                                actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Fit Need Rest Time" href="#">Fit Need Rest Time</a></li>';
-                                actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Unfit Butuh Paramedis" href="#">Unfit Butuh Paramedis</a></li>';
-                                actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Istirahat" href="#">Istirahat</a></li>';
-                                actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Berhenti Bekerja" href="#">Berhenti Bekerja</a></li>';
-                                actions += '</ul>';
-                            }
-                        }
-                        else {
-                            actions += '<ul class="dropdown-menu dropdown-menu-right">';
-                            actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Unfit" href="#">Unfit</a></li>';
-                            actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Fit Need Rest Time" href="#">Fit Need Rest Time</a></li>';
-                            actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Unfit Butuh Paramedis" href="#">Unfit Butuh Paramedis</a></li>';
-                            actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Istirahat" href="#">Istirahat</a></li>';
-                            actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Berhenti Bekerja" href="#">Berhenti Bekerja</a></li>';
-                            actions += '</ul>';
-                        }
+                    //if (row.ID_STATUS == 5) {
+                    //    if (row.IS_LATEST == true) {
+                    //        actions += '<ul class="dropdown-menu dropdown-menu-right">';
+                    //        actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Unfit" href="#">Unfit</a></li>';
+                    //        actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Fit Need Rest Time" href="#">Fit Need Rest Time</a></li>';
+                    //        actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Unfit Butuh Paramedis" href="#">Unfit Butuh Paramedis</a></li>';
+                    //        actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Istirahat" href="#">Istirahat</a></li>';
+                    //        actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Berhenti Bekerja" href="#">Berhenti Bekerja</a></li>';
+                    //        actions += '</ul>';
+                    //    }
+                    //    else {  
+                    //        //DO NOTHING
+                    //    }
+                    //}
+                    if (row.IS_LATEST == true && row.ID_STATUS == 5) {
+                        actions += '<ul class="dropdown-menu dropdown-menu-right">';
+                        actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Unfit" href="#">Unfit</a></li>';
+                        actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Fit Need Rest Time" href="#">Fit Need Rest Time</a></li>';
+                        actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Unfit Butuh Paramedis" href="#">Unfit Butuh Paramedis</a></li>';
+                        actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Istirahat" href="#">Istirahat</a></li>';
+                        actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Berhenti Bekerja" href="#">Berhenti Bekerja</a></li>';
+                        actions += '</ul>';
+                    }
+                    if (row.IS_LATEST == true && row.ID_STATUS != 5) {
+                        actions += '<ul class="dropdown-menu dropdown-menu-right">';
+                        actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Unfit" href="#">Unfit</a></li>';
+                        actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Fit Need Rest Time" href="#">Fit Need Rest Time</a></li>';
+                        actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Unfit Butuh Paramedis" href="#">Unfit Butuh Paramedis</a></li>';
+                        actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Istirahat" href="#">Istirahat</a></li>';
+                        actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Berhenti Bekerja" href="#">Berhenti Bekerja</a></li>';
+                        actions += '</ul>';
+                    }
+                    if (row.IS_LATEST == false && row.ID_STATUS == 5 && row.JUMLAH_APPROVAL_PERHARI == 1) {
+                        actions += '<ul class="dropdown-menu dropdown-menu-right">';
+                        actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Unfit" href="#">Unfit</a></li>';
+                        actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Fit Need Rest Time" href="#">Fit Need Rest Time</a></li>';
+                        actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Unfit Butuh Paramedis" href="#">Unfit Butuh Paramedis</a></li>';
+                        actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Istirahat" href="#">Istirahat</a></li>';
+                        actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Berhenti Bekerja" href="#">Berhenti Bekerja</a></li>';
+                        actions += '</ul>';
+                    }
+                    else if (row.IS_LATEST == false && row.ID_STATUS != 5) {
+                        actions += '<ul class="dropdown-menu dropdown-menu-right">';
+                        actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Unfit" href="#">Unfit</a></li>';
+                        actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Fit Need Rest Time" href="#">Fit Need Rest Time</a></li>';
+                        actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Unfit Butuh Paramedis" href="#">Unfit Butuh Paramedis</a></li>';
+                        actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Istirahat" href="#">Istirahat</a></li>';
+                        actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Berhenti Bekerja" href="#">Berhenti Bekerja</a></li>';
+                        actions += '</ul>';
                     }
                     else {
-                        if ($("#hd_idroles").val() != 3) {
-                            actions += '<ul class="dropdown-menu dropdown-menu-right">';
-                            actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Unfit" href="#">Unfit</a></li>';
-                            actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Fit Need Rest Time" href="#">Fit Need Rest Time</a></li>';
-                            actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Unfit Butuh Paramedis" href="#">Unfit Butuh Paramedis</a></li>';
-                            actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Retest" href="#">Retest</a></li>';
-                            actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Istirahat" href="#">Istirahat</a></li>';
-                            actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Berhenti Bekerja" href="#">Berhenti Bekerja</a></li>';
-                            actions += '</ul>';
-                        }
+                        //DO NOTHING
                     }
                 }
-                
                 actions += '</div>';
                 return actions;
             }
         },
     ],
     initComplete: function () {
+        console.log($('#tbl_empr').DataTable().rows().data().toArray())
         var headerCheckbox = document.getElementById('checkAll');
         var rowCheckboxes = document.getElementsByClassName('row-checkbox');
         headerCheckbox.addEventListener('change', function () {
@@ -297,31 +277,31 @@ var table = $("#tbl_empr").DataTable({
 });
 
 $("#downloadButton").on("click", function () {
-    debugger
+    //debugger
     generatePDF();
 });
 
 $("#downloadButton2").on("click", function () {
-    debugger
+    //debugger
     generatePDF();
 });
 
 function generatePDF() {
-    debugger
+    //debugger
     var doc = new jsPDF();
     doc.autoTable({ html: '#tbl_empr' });
     doc.save('EmployeeRecord.pdf');
 }
 
 $('#tbl_empr tbody').on('click', 'tr', function (e) {
-    debugger
+    //debugger
     // Get the index of the clicked cell (td) within the row
     var columnIndex = $(e.target).closest('td').index();
-    debugger
+    //debugger
 
     // Check if the clicked column is allowed to redirect to detail
     if (columnIndex === 1 || columnIndex === 2 || columnIndex === 3 || columnIndex === 4 || columnIndex === 5) {
-        debugger
+        //debugger
         var rowId = this.id; // Get the unique row ID
         var approvalId = rowId.split('_')[1]; // Extract the APPROVAL_ID
         // Construct the URL with the parameter

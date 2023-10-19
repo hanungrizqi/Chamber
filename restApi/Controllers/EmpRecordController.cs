@@ -28,7 +28,63 @@ namespace restApi.Controllers
                 {
                     var data = db.VW_T_APPROVALs.Where(a => a.FLAG == 1 || excludedStatuses.Contains(a.ID_STATUS.Value)).OrderBy(a => a.APPROVAL_ID).ToList();
 
-                    return Ok(new { Data = data });
+                    var listUser = data.Where(x => x.ID_STATUS == 5 && x.JUMLAH_APPROVAL_PERHARI >= 2).Select(x => x.NRP).Distinct().ToList();
+
+                    List<VwLatest> filteredData = new List<VwLatest>();
+
+
+                    foreach (var j in data)
+                    {
+                        VW_T_APPROVAL latestDataByUser = new VW_T_APPROVAL();
+
+                        foreach (var i in listUser)
+                        {
+                            if(j.NRP == i)
+                            {
+                                latestDataByUser = data.Where(x => x.NRP == i).OrderByDescending(x => x.DATETIME_FROM_CFC).FirstOrDefault();
+                                break;
+                            }
+                        }
+
+                        if (j == latestDataByUser)
+                        {
+                            filteredData.Add(new VwLatest
+                            {
+                                NRP = j.NRP,
+                                DATETIME_FROM_CFC = j.DATETIME_FROM_CFC,
+                                APPROVAL_ID = j.APPROVAL_ID,
+                                NAME = j.NAME,
+                                POS_TITLE = j.POS_TITLE,
+                                ID_STATUS = j.ID_STATUS,
+                                STATUS = j.STATUS,
+                                WAKTU_ABSEN = j.WAKTU_ABSEN,
+                                ID_CHAMBER = j.ID_CHAMBER,
+                                JUMLAH_APPROVAL_PERHARI = j.JUMLAH_APPROVAL_PERHARI,
+                                IS_LATEST = true
+                            });
+                        }
+                        else
+                        {
+                            filteredData.Add(new VwLatest
+                            {
+                                NRP = j.NRP,
+                                DATETIME_FROM_CFC = j.DATETIME_FROM_CFC,
+                                APPROVAL_ID = j.APPROVAL_ID,
+                                NAME = j.NAME,
+                                POS_TITLE = j.POS_TITLE,
+                                ID_STATUS = j.ID_STATUS,
+                                STATUS = j.STATUS,
+                                WAKTU_ABSEN = j.WAKTU_ABSEN,
+                                ID_CHAMBER = j.ID_CHAMBER,
+                                JUMLAH_APPROVAL_PERHARI = j.JUMLAH_APPROVAL_PERHARI,
+                                IS_LATEST = false
+                            });
+                        }
+
+                    }
+
+                    return Ok(new { Data = filteredData });
+                    //return Ok(new { Data = data });
                 }
                 else if (isAdminorNot.ID_Role == 2)
                 {
@@ -36,12 +92,6 @@ namespace restApi.Controllers
 
                     return Ok(new { Data = data });
                 }
-                //else if (isAdminorNot.ID_Role == 4)
-                //{
-                //    var data = db.VW_T_APPROVALs.Where(a => a.FLAG == 1 && a.ID_STATUS == 4).ToList();
-
-                //    return Ok(new { Data = data });
-                //}
                 else
                 {
                     var data = db.VW_T_APPROVALs.Where(a => a.POSITION_ID == posid).OrderBy(a => a.APPROVAL_ID).ToList();
@@ -203,6 +253,25 @@ namespace restApi.Controllers
             {
                 return Ok(new { Remarks = false, Message = e });
             }
+        }
+
+        public class VwLatest
+        {
+            public string NRP { get; set; }
+            public DateTime? DATETIME_FROM_CFC { get; set; }
+            public bool IS_LATEST { get; set; }
+            public int APPROVAL_ID { get; set; }
+            public string NAME { get; set; }
+            public string POS_TITLE { get; set; }
+            public int? ID_STATUS { get; set; }
+            public string STATUS { get; set; }
+            public DateTime? WAKTU_ABSEN { get; set; }
+            public string ID_CHAMBER { get; set; }
+            public int? JUMLAH_APPROVAL_PERHARI { get; set; }
+        }
+        public class DistinctName
+        {
+            public string NRP { get; set; }
         }
     }
 }
