@@ -11,11 +11,17 @@ namespace Web.Controllers
     {
         CfmDataContext db = new CfmDataContext();
         // GET: Approval
-        public ActionResult Index()
+        public ActionResult Index(string startDate = null, string endDate = null)
         {
             if (Session["nrp"] == null)
             {
                 return RedirectToAction("index", "login");
+            }
+
+            if (startDate != null)
+            {
+                ViewBag.StartDate = startDate;
+                ViewBag.EndDate = endDate;
             }
 
             if (Session["ID_Role"] != null && (int)Session["ID_Role"] == 1)

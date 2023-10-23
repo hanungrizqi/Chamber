@@ -32,7 +32,7 @@ namespace restApi.Controllers
         }
 
         [HttpGet]
-        [Route("Get_ListChambers_Daterange/{startDate}/{endDate}")]
+        [Route("Get_ListChambers_Daterange")]
         public IHttpActionResult Get_ListChambers_Daterange(string startDate, string endDate)
         {
             try
@@ -42,8 +42,8 @@ namespace restApi.Controllers
 
                 // Parse startDate and endDate to DateTime
                 DateTime parsedStartDate, parsedEndDate;
-                if (DateTime.TryParseExact(startDate, "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out parsedStartDate) &&
-                    DateTime.TryParseExact(endDate, "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out parsedEndDate))
+                if (DateTime.TryParseExact(startDate, "yyyy-MM-dd HH:mm:ss.fff", CultureInfo.InvariantCulture, DateTimeStyles.None, out parsedStartDate) &&
+                    DateTime.TryParseExact(endDate, "yyyy-MM-dd HH:mm:ss.fff", CultureInfo.InvariantCulture, DateTimeStyles.None, out parsedEndDate))
                 {
                     // Call the stored function with parameters
                     data = db.cufn_filterCFMManagement(parsedStartDate, parsedEndDate).ToList();

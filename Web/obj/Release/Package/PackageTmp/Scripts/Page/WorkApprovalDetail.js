@@ -48,7 +48,7 @@ function updateDropdownVisibility() {
         }
         debugger
         if (txtStatus === "Unfit") {
-            if (txtJumlahperhari === 3) {
+            if (txtJumlahperhari === 4) {
                 var unfitItem = document.createElement("a");
                 unfitItem.setAttribute("class", "dropdown-item");
                 unfitItem.setAttribute("onclick", "UBParamedis()");

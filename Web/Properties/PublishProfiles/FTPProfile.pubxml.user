@@ -7,6 +7,8 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     <TimeStampOfAssociatedLegacyPublishXmlFile />
     <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAABdQzpkk3hU2ILYZa7zddOQAAAAACAAAAAAAQZgAAAAEAACAAAAAA6a9fjdzqWux0qUS7hvamRLumrqVqDdT1jhL1Nq25aAAAAAAOgAAAAAIAACAAAABFrt8ctWyO1aujKPSr+zJG/kETotNAABu78Ah11BuRsIAAAAC093R9f311Rbqi2LAxFj9nKJYU2hRho9zmNmyVe+seqpvsBzufIIGeaCVv98g615ciOMw0AQjnqvC9WcM23goDdj+Bprmy7KoNx80dkni15B3zwCvN9ehFl36qrhwqDjsCzm9Se9K5mnS0mmsvFq8lrUlR6zRji65yNN8suT0g+kAAAACtSur82E6YU9FeEmAbE9LmHAFLBUC0NC5YWCLLAUjhsqoLIVUYytyjStKpB04XL5LJhRyl34kEcisFf2pF6VBZ</EncryptedPassword>
     <_PublishTargetUrl>ftps://waws-prod-sg1-053.ftp.azurewebsites.windows.net/site/wwwroot</_PublishTargetUrl>
+    <History>True|2023-10-19T09:39:15.4814984Z;False|2023-10-19T15:53:52.9930583+07:00;</History>
+    <LastFailureDetails />
   </PropertyGroup>
   <ItemGroup>
     <File Include="bin/Antlr3.Runtime.dll">
@@ -205,10 +207,10 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>05/27/2022 23:42:50</publishTime>
     </File>
     <File Include="bin/Web.dll">
-      <publishTime>10/16/2023 15:13:20</publishTime>
+      <publishTime>10/19/2023 16:24:47</publishTime>
     </File>
     <File Include="bin/Web.pdb">
-      <publishTime>10/16/2023 15:13:20</publishTime>
+      <publishTime>10/19/2023 16:24:47</publishTime>
     </File>
     <File Include="bin/WebGrease.dll">
       <publishTime>01/23/2014 13:57:34</publishTime>
@@ -12835,10 +12837,10 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>04/10/2023 16:09:44</publishTime>
     </File>
     <File Include="Scripts/Page/EmpRecord.js">
-      <publishTime>10/16/2023 10:58:44</publishTime>
+      <publishTime>10/19/2023 14:43:58</publishTime>
     </File>
     <File Include="Scripts/Page/EmpRecordDetail.js">
-      <publishTime>10/12/2023 15:02:46</publishTime>
+      <publishTime>10/17/2023 15:46:04</publishTime>
     </File>
     <File Include="Scripts/Page/Home.js">
       <publishTime>10/13/2023 09:34:30</publishTime>
@@ -12853,16 +12855,16 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>09/27/2023 10:34:02</publishTime>
     </File>
     <File Include="Scripts/Page/WorkApproval.js">
-      <publishTime>10/16/2023 10:56:17</publishTime>
+      <publishTime>10/19/2023 10:16:59</publishTime>
     </File>
     <File Include="Scripts/Page/WorkApprovalDetail.js">
-      <publishTime>10/13/2023 14:45:02</publishTime>
+      <publishTime>10/18/2023 10:16:10</publishTime>
     </File>
     <File Include="Views/Approval/Detail.cshtml">
       <publishTime>06/10/2023 15:11:38</publishTime>
     </File>
     <File Include="Views/Approval/Index.cshtml">
-      <publishTime>10/13/2023 14:43:36</publishTime>
+      <publishTime>10/19/2023 13:28:03</publishTime>
     </File>
     <File Include="Views/CfmManagement/Index.cshtml">
       <publishTime>06/10/2023 15:08:14</publishTime>
@@ -12871,10 +12873,10 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>06/10/2023 15:10:56</publishTime>
     </File>
     <File Include="Views/EmpRecord/Index.cshtml">
-      <publishTime>06/10/2023 15:10:21</publishTime>
+      <publishTime>10/19/2023 13:28:17</publishTime>
     </File>
     <File Include="Views/Home/Index.cshtml">
-      <publishTime>10/13/2023 10:02:33</publishTime>
+      <publishTime>10/17/2023 15:13:34</publishTime>
     </File>
     <File Include="Views/Login/Index.cshtml">
       <publishTime>10/16/2023 15:12:53</publishTime>
@@ -12889,7 +12891,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>09/20/2023 10:46:04</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>10/19/2023 10:16:54</publishTime>
     </File>
     <File Include="Views/Shared/_Sidebar.cshtml">
       <publishTime>09/27/2023 13:23:24</publishTime>
@@ -12901,7 +12903,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>09/20/2023 10:46:04</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>10/16/2023 15:13:23</publishTime>
+      <publishTime>10/19/2023 16:24:48</publishTime>
     </File>
   </ItemGroup>
 </Project>

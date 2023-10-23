@@ -7,7 +7,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     <TimeStampOfAssociatedLegacyPublishXmlFile />
     <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAABdQzpkk3hU2ILYZa7zddOQAAAAACAAAAAAAQZgAAAAEAACAAAAD/+sJn6g9r+YNlBOGsmfuXhh9zzJZkmWhq11y6sruEjAAAAAAOgAAAAAIAACAAAAAIYy9q8frHWrn3GdUGG7U92w1x1ujyBAheP23rMe6BAoAAAAB7a1iUT8q4B3LTsHIMW5ewk3zP4XTL5efCCFmcQ9Q1DqSIKQffNOm272sT7ENxmHczDGe730JMbPTCug2wax84oJz9vFa3p/iZuHzkttirBaXXFGkp9Mt0M2+N3+gLn61MzcmAPK8Y+IID4bEwb0kTUthtAoJy1KXTbJKZwIboO0AAAAB1EurXR/4VP+zD3YkbMWZ4srXzWDHd0aFGG6Rbe6OBDkHGeozCyDckIJvootcb2Xk5GVb/Zgaqm59rFHFAv7oA</EncryptedPassword>
     <_PublishTargetUrl>ftps://waws-prod-sg1-053.ftp.azurewebsites.windows.net/site/wwwroot</_PublishTargetUrl>
-    <History>True|2023-10-16T04:32:21.1671860Z;False|2023-10-16T11:28:07.3793140+07:00;False|2023-10-16T11:26:36.3070834+07:00;</History>
+    <History>True|2023-10-19T09:24:22.0922437Z;True|2023-10-19T14:57:14.4106612+07:00;True|2023-10-16T11:32:21.1671860+07:00;False|2023-10-16T11:28:07.3793140+07:00;False|2023-10-16T11:26:36.3070834+07:00;</History>
     <LastFailureDetails />
   </PropertyGroup>
   <ItemGroup>
@@ -93,10 +93,10 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>04/22/2019 01:06:16</publishTime>
     </File>
     <File Include="bin/restApi.dll">
-      <publishTime>10/16/2023 11:29:52</publishTime>
+      <publishTime>10/19/2023 16:23:27</publishTime>
     </File>
     <File Include="bin/restApi.pdb">
-      <publishTime>10/16/2023 11:29:52</publishTime>
+      <publishTime>10/19/2023 16:23:27</publishTime>
     </File>
     <File Include="bin/roslyn/csc.exe">
       <publishTime>08/08/2018 05:38:48</publishTime>

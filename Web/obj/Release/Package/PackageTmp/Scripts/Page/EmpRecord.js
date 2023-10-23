@@ -9,12 +9,30 @@ $("document").ready(function () {
                 var startDate = selectedDates[0];
                 var endDate = selectedDates[1];
 
-                // Konversi ke format "YYYY-MM-DD"
-                var startDateLocal = startDate.toLocaleDateString('en-CA'); // Gunakan locale yang sesuai dengan format yang diinginkan
-                var endDateLocal = endDate.toLocaleDateString('en-CA'); // Gunakan locale yang sesuai dengan format yang diinginkan
+                //// Konversi ke format "YYYY-MM-DD"
+                //var startDateLocal = startDate.toLocaleDateString('en-CA');
+                //var endDateLocal = endDate.toLocaleDateString('en-CA');
 
-                // Update the table data source with the selected date range filter
-                table.ajax.url($("#web_link").val() + "/api/Emprecord/Get_ListEmprecord_Daterange/" + $("#hd_positid").val() + "/" + startDateLocal + "/" + endDateLocal).load();
+                //table.ajax.url($("#web_link").val() + "/api/Emprecord/Get_ListEmprecord_Daterange/" + $("#hd_positid").val() + "/" + startDateLocal + "/" + endDateLocal).load();
+
+                var currentTime = new Date();
+                var startDateFormatted = startDate.getFullYear() + '-' +
+                    ('0' + (startDate.getMonth() + 1)).slice(-2) + '-' +
+                    ('0' + startDate.getDate()).slice(-2) + ' ' +
+                    '00' + ':' +
+                    '00' + ':' +
+                    '00' + '.' +
+                    currentTime.getMilliseconds();
+
+                var endDateFormatted = endDate.getFullYear() + '-' +
+                    ('0' + (endDate.getMonth() + 1)).slice(-2) + '-' +
+                    ('0' + endDate.getDate()).slice(-2) + ' ' +
+                    ('0' + currentTime.getHours()).slice(-2) + ':' +
+                    ('0' + currentTime.getMinutes()).slice(-2) + ':' +
+                    ('0' + currentTime.getSeconds()).slice(-2) + '.' +
+                    currentTime.getMilliseconds();
+
+                table.ajax.url($("#web_link").val() + "/api/EmpRecord/Get_ListEmprecord_Daterange?posid=" + $("#hd_positid").val() + "&startDate=" + startDateFormatted + "&endDate=" + endDateFormatted).load();
 
             }
         },
@@ -149,7 +167,7 @@ var table = $("#tbl_empr").DataTable({
         {
             data: 'WAKTU_ABSEN',
             render: function (data, type, row) {
-                const tanggal = moment(data).format("DD/MM/YYYY");
+                const tanggal = moment(data).format("DD/MM/YYYY HH:mm");
                 return tanggal;
             }
         },
@@ -161,44 +179,62 @@ var table = $("#tbl_empr").DataTable({
             render: function (data, type, row) {
                 var actions = '<div class="btn-group">';
                 actions += '<button class="btn btn-sm" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-ellipsis-vertical"></i></button>';
-                if (row.ID_STATUS == 5) {
-                    if (row.JUMLAH_APPROVAL_PERHARI === 2 || row.JUMLAH_APPROVAL_PERHARI === 3) {
-
-                        var isLatestRow = false;
-                        var nrp = row.NRP;
-                        var otherRows = $('#tbl_empr').DataTable().rows().data().toArray();
-                        debugger
-                        for (var i = 0; i < otherRows.length; i++) {
-                            //debugger
-                            var otherRow = otherRows[i];
-                            if (otherRow.NRP === nrp && row.WAKTU_ABSEN > otherRow.WAKTU_ABSEN) {
-                                debugger
-                                isLatestRow = true;
-                                break;
-                            }
-                        }
-                        if (isLatestRow === true) {
-                            actions += '<ul class="dropdown-menu dropdown-menu-right">';
-                            actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Unfit" href="#">Unfit</a></li>';
-                            actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Fit Need Rest Time" href="#">Fit Need Rest Time</a></li>';
-                            actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Unfit Butuh Paramedis" href="#">Unfit Butuh Paramedis</a></li>';
-                            actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Istirahat" href="#">Istirahat</a></li>';
-                            actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Berhenti Bekerja" href="#">Berhenti Bekerja</a></li>';
-                            actions += '</ul>';
-                        }
-                    }
+                if ($("#hd_idroles").val() == 4 || $("#hd_idroles").val() == 3) {
+                    //do nothing
                 }
-                
                 else {
-                    if ($("#hd_idroles").val() != 3) {
+                    //if (row.ID_STATUS == 5) {
+                    //    if (row.IS_LATEST == true) {
+                    //        actions += '<ul class="dropdown-menu dropdown-menu-right">';
+                    //        actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Unfit" href="#">Unfit</a></li>';
+                    //        actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Fit Need Rest Time" href="#">Fit Need Rest Time</a></li>';
+                    //        actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Unfit Butuh Paramedis" href="#">Unfit Butuh Paramedis</a></li>';
+                    //        actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Istirahat" href="#">Istirahat</a></li>';
+                    //        actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Berhenti Bekerja" href="#">Berhenti Bekerja</a></li>';
+                    //        actions += '</ul>';
+                    //    }
+                    //    else {  
+                    //        //DO NOTHING
+                    //    }
+                    //}
+                    if (row.IS_LATEST == true && row.ID_STATUS == 5) {
                         actions += '<ul class="dropdown-menu dropdown-menu-right">';
                         actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Unfit" href="#">Unfit</a></li>';
                         actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Fit Need Rest Time" href="#">Fit Need Rest Time</a></li>';
                         actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Unfit Butuh Paramedis" href="#">Unfit Butuh Paramedis</a></li>';
-                        actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Retest" href="#">Retest</a></li>';
                         actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Istirahat" href="#">Istirahat</a></li>';
                         actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Berhenti Bekerja" href="#">Berhenti Bekerja</a></li>';
                         actions += '</ul>';
+                    }
+                    if (row.IS_LATEST == true && row.ID_STATUS != 5) {
+                        actions += '<ul class="dropdown-menu dropdown-menu-right">';
+                        actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Unfit" href="#">Unfit</a></li>';
+                        actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Fit Need Rest Time" href="#">Fit Need Rest Time</a></li>';
+                        actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Unfit Butuh Paramedis" href="#">Unfit Butuh Paramedis</a></li>';
+                        actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Istirahat" href="#">Istirahat</a></li>';
+                        actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Berhenti Bekerja" href="#">Berhenti Bekerja</a></li>';
+                        actions += '</ul>';
+                    }
+                    if (row.IS_LATEST == false && row.ID_STATUS == 5 && row.JUMLAH_APPROVAL_PERHARI == 1) {
+                        actions += '<ul class="dropdown-menu dropdown-menu-right">';
+                        actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Unfit" href="#">Unfit</a></li>';
+                        actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Fit Need Rest Time" href="#">Fit Need Rest Time</a></li>';
+                        actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Unfit Butuh Paramedis" href="#">Unfit Butuh Paramedis</a></li>';
+                        actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Istirahat" href="#">Istirahat</a></li>';
+                        actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Berhenti Bekerja" href="#">Berhenti Bekerja</a></li>';
+                        actions += '</ul>';
+                    }
+                    else if (row.IS_LATEST == false && row.ID_STATUS != 5) {
+                        actions += '<ul class="dropdown-menu dropdown-menu-right">';
+                        actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Unfit" href="#">Unfit</a></li>';
+                        actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Fit Need Rest Time" href="#">Fit Need Rest Time</a></li>';
+                        actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Unfit Butuh Paramedis" href="#">Unfit Butuh Paramedis</a></li>';
+                        actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Istirahat" href="#">Istirahat</a></li>';
+                        actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Berhenti Bekerja" href="#">Berhenti Bekerja</a></li>';
+                        actions += '</ul>';
+                    }
+                    else {
+                        //DO NOTHING
                     }
                 }
                 actions += '</div>';
@@ -207,6 +243,7 @@ var table = $("#tbl_empr").DataTable({
         },
     ],
     initComplete: function () {
+        console.log($('#tbl_empr').DataTable().rows().data().toArray())
         var headerCheckbox = document.getElementById('checkAll');
         var rowCheckboxes = document.getElementsByClassName('row-checkbox');
         headerCheckbox.addEventListener('change', function () {
@@ -240,31 +277,31 @@ var table = $("#tbl_empr").DataTable({
 });
 
 $("#downloadButton").on("click", function () {
-    debugger
+    //debugger
     generatePDF();
 });
 
 $("#downloadButton2").on("click", function () {
-    debugger
+    //debugger
     generatePDF();
 });
 
 function generatePDF() {
-    debugger
+    //debugger
     var doc = new jsPDF();
     doc.autoTable({ html: '#tbl_empr' });
     doc.save('EmployeeRecord.pdf');
 }
 
 $('#tbl_empr tbody').on('click', 'tr', function (e) {
-    debugger
+    //debugger
     // Get the index of the clicked cell (td) within the row
     var columnIndex = $(e.target).closest('td').index();
-    debugger
+    //debugger
 
     // Check if the clicked column is allowed to redirect to detail
     if (columnIndex === 1 || columnIndex === 2 || columnIndex === 3 || columnIndex === 4 || columnIndex === 5) {
-        debugger
+        //debugger
         var rowId = this.id; // Get the unique row ID
         var approvalId = rowId.split('_')[1]; // Extract the APPROVAL_ID
         // Construct the URL with the parameter

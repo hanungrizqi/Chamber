@@ -28,10 +28,10 @@ namespace restApi.Controllers
                 {
                     var data = db.VW_T_APPROVALs.Where(a => a.FLAG == 1 || excludedStatuses.Contains(a.ID_STATUS.Value)).OrderBy(a => a.APPROVAL_ID).ToList();
 
+                    //mendapatkan descending NRP dengan status retest dan jumlah approval perhari 2,3,4
                     var listUser = data.Where(x => x.ID_STATUS == 5 && x.JUMLAH_APPROVAL_PERHARI >= 2).Select(x => x.NRP).Distinct().ToList();
 
                     List<VwLatest> filteredData = new List<VwLatest>();
-
 
                     foreach (var j in data)
                     {
@@ -60,6 +60,12 @@ namespace restApi.Controllers
                                 WAKTU_ABSEN = j.WAKTU_ABSEN,
                                 ID_CHAMBER = j.ID_CHAMBER,
                                 JUMLAH_APPROVAL_PERHARI = j.JUMLAH_APPROVAL_PERHARI,
+                                OXYGEN_SATURATION = (int)j.OXYGEN_SATURATION,
+                                HEART_RATE = (int)j.HEART_RATE,
+                                SYSTOLIC = (int)j.SYSTOLIC,
+                                DIASTOLIC = (int)j.DIASTOLIC,
+                                TEMPRATURE = (int)j.TEMPRATURE,
+                                NOTE = j.NOTE,
                                 IS_LATEST = true
                             });
                         }
@@ -77,6 +83,12 @@ namespace restApi.Controllers
                                 WAKTU_ABSEN = j.WAKTU_ABSEN,
                                 ID_CHAMBER = j.ID_CHAMBER,
                                 JUMLAH_APPROVAL_PERHARI = j.JUMLAH_APPROVAL_PERHARI,
+                                OXYGEN_SATURATION = (int)j.OXYGEN_SATURATION,
+                                HEART_RATE = (int)j.HEART_RATE,
+                                SYSTOLIC = (int)j.SYSTOLIC,
+                                DIASTOLIC = (int)j.DIASTOLIC,
+                                TEMPRATURE = (int)j.TEMPRATURE,
+                                NOTE = j.NOTE,
                                 IS_LATEST = false
                             });
                         }
@@ -84,13 +96,79 @@ namespace restApi.Controllers
                     }
 
                     return Ok(new { Data = filteredData });
-                    //return Ok(new { Data = data });
                 }
                 else if (isAdminorNot.ID_Role == 2)
                 {
                     var data = db.VW_T_APPROVALs.Where(a => a.ATASAN == posid && (a.FLAG == 1 || excludedStatuses.Contains(a.ID_STATUS.Value))).OrderBy(a => a.APPROVAL_ID).ToList();
 
-                    return Ok(new { Data = data });
+                    //mendapatkan descending NRP dengan status retest dan jumlah approval perhari 2,3,4
+                    var listUser = data.Where(x => x.ID_STATUS == 5 && x.JUMLAH_APPROVAL_PERHARI >= 2).Select(x => x.NRP).Distinct().ToList();
+
+                    List<VwLatest> filteredData = new List<VwLatest>();
+
+                    foreach (var j in data)
+                    {
+                        VW_T_APPROVAL latestDataByUser = new VW_T_APPROVAL();
+
+                        foreach (var i in listUser)
+                        {
+                            if (j.NRP == i)
+                            {
+                                latestDataByUser = data.Where(x => x.NRP == i).OrderByDescending(x => x.DATETIME_FROM_CFC).FirstOrDefault();
+                                break;
+                            }
+                        }
+
+                        if (j == latestDataByUser)
+                        {
+                            filteredData.Add(new VwLatest
+                            {
+                                NRP = j.NRP,
+                                DATETIME_FROM_CFC = j.DATETIME_FROM_CFC,
+                                APPROVAL_ID = j.APPROVAL_ID,
+                                NAME = j.NAME,
+                                POS_TITLE = j.POS_TITLE,
+                                ID_STATUS = j.ID_STATUS,
+                                STATUS = j.STATUS,
+                                WAKTU_ABSEN = j.WAKTU_ABSEN,
+                                ID_CHAMBER = j.ID_CHAMBER,
+                                JUMLAH_APPROVAL_PERHARI = j.JUMLAH_APPROVAL_PERHARI,
+                                OXYGEN_SATURATION = (int)j.OXYGEN_SATURATION,
+                                HEART_RATE = (int)j.HEART_RATE,
+                                SYSTOLIC = (int)j.SYSTOLIC,
+                                DIASTOLIC = (int)j.DIASTOLIC,
+                                TEMPRATURE = (int)j.TEMPRATURE,
+                                NOTE = j.NOTE,
+                                IS_LATEST = true
+                            });
+                        }
+                        else
+                        {
+                            filteredData.Add(new VwLatest
+                            {
+                                NRP = j.NRP,
+                                DATETIME_FROM_CFC = j.DATETIME_FROM_CFC,
+                                APPROVAL_ID = j.APPROVAL_ID,
+                                NAME = j.NAME,
+                                POS_TITLE = j.POS_TITLE,
+                                ID_STATUS = j.ID_STATUS,
+                                STATUS = j.STATUS,
+                                WAKTU_ABSEN = j.WAKTU_ABSEN,
+                                ID_CHAMBER = j.ID_CHAMBER,
+                                JUMLAH_APPROVAL_PERHARI = j.JUMLAH_APPROVAL_PERHARI,
+                                OXYGEN_SATURATION = (int)j.OXYGEN_SATURATION,
+                                HEART_RATE = (int)j.HEART_RATE,
+                                SYSTOLIC = (int)j.SYSTOLIC,
+                                DIASTOLIC = (int)j.DIASTOLIC,
+                                TEMPRATURE = (int)j.TEMPRATURE,
+                                NOTE = j.NOTE,
+                                IS_LATEST = false
+                            });
+                        }
+
+                    }
+
+                    return Ok(new { Data = filteredData });
                 }
                 else
                 {
@@ -105,7 +183,7 @@ namespace restApi.Controllers
                 return BadRequest();
             }
         }
-        
+
         [HttpGet]
         [Route("Get_ListEmprecord_Daterange")]
         public IHttpActionResult Get_ListEmprecord_Daterange(string posid, string startDate, string endDate)
@@ -134,24 +212,17 @@ namespace restApi.Controllers
                     query = db.VW_T_APPROVALs.Where(a => a.POSITION_ID == posid);
                 }
 
-                //if (!string.IsNullOrEmpty(startDate) && !string.IsNullOrEmpty(endDate))
-                //{
-                //    DateTime parsedStartDate, parsedEndDate;
-                //    if (DateTime.TryParseExact(startDate, "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out parsedStartDate) &&
-                //        DateTime.TryParseExact(endDate, "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out parsedEndDate))
-                //    {
-                //        query = query.Where(a => a.WAKTU_ABSEN >= parsedStartDate && a.WAKTU_ABSEN <= parsedEndDate);
-                //    }
-                //}
-
                 if (DateTime.TryParseExact(startDate, "yyyy-MM-dd HH:mm:ss.fff", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime parsedStartDate) && DateTime.TryParseExact(endDate, "yyyy-MM-dd HH:mm:ss.fff", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime parsedEndDate))
                 {
-                    // Filter data by date range
                     query = query.Where(a => a.WAKTU_ABSEN >= parsedStartDate && a.WAKTU_ABSEN <= parsedEndDate);
                 }
 
                 var data = query.OrderBy(a => a.APPROVAL_ID).ToList();
-                return Ok(new { Data = data });
+
+                List<VwLatest> filteredData = GetFilteredData(data);
+                return Ok(new { Data = filteredData });
+
+                //return Ok(new { Data = data });
             }
             catch (Exception)
             {
@@ -213,7 +284,7 @@ namespace restApi.Controllers
             try
             {
                 db.CommandTimeout = 120;
-                var data = db.VW_T_APPROVALs.Where(a => a.NRP == nrp && a.DATE_FROM_CFC.ToString() == datefromcfc && a.JUMLAH_APPROVAL_PERHARI == jmlapprvlperhari).OrderByDescending(a => a.WAKTU_ABSEN).FirstOrDefault();
+                var data = db.VW_T_APPROVALs.Where(a => a.NRP == nrp && a.DATE_FROM_CFC.ToString() == datefromcfc && a.JUMLAH_APPROVAL_PERHARI == jmlapprvlperhari).OrderByDescending(a => a.DATETIME_FROM_CFC).FirstOrDefault();
 
                 return Ok(new { Data = data });
             }
@@ -222,7 +293,6 @@ namespace restApi.Controllers
                 return BadRequest();
             }
         }
-
 
         [HttpPost]
         [Route("Approve")]
@@ -268,10 +338,87 @@ namespace restApi.Controllers
             public DateTime? WAKTU_ABSEN { get; set; }
             public string ID_CHAMBER { get; set; }
             public int? JUMLAH_APPROVAL_PERHARI { get; set; }
+            public int OXYGEN_SATURATION { get; set; }
+            public int HEART_RATE { get; set; }
+            public int SYSTOLIC { get; set; }
+            public int DIASTOLIC { set; get; }
+            public int TEMPRATURE { get; set; }
+            public string NOTE { get; set; }
         }
-        public class DistinctName
+
+        public List<VwLatest> GetFilteredData(IEnumerable<VW_T_APPROVAL> data)
         {
-            public string NRP { get; set; }
+            var listUser = data
+                .Where(x => x.ID_STATUS == 5 && x.JUMLAH_APPROVAL_PERHARI >= 2)
+                .Select(x => x.NRP)
+                .Distinct()
+                .ToList();
+
+            List<VwLatest> filteredData = new List<VwLatest>();
+
+            foreach (var j in data)
+            {
+                VW_T_APPROVAL latestDataByUser = new VW_T_APPROVAL();
+
+                foreach (var i in listUser)
+                {
+                    if (j.NRP == i)
+                    {
+                        latestDataByUser = data.Where(x => x.NRP == i).OrderByDescending(x => x.DATETIME_FROM_CFC).FirstOrDefault();
+                        break;
+                    }
+                }
+
+                if (j == latestDataByUser)
+                {
+                    filteredData.Add(new VwLatest
+                    {
+                        NRP = j.NRP,
+                        DATETIME_FROM_CFC = j.DATETIME_FROM_CFC,
+                        APPROVAL_ID = j.APPROVAL_ID,
+                        NAME = j.NAME,
+                        POS_TITLE = j.POS_TITLE,
+                        ID_STATUS = j.ID_STATUS,
+                        STATUS = j.STATUS,
+                        WAKTU_ABSEN = j.WAKTU_ABSEN,
+                        ID_CHAMBER = j.ID_CHAMBER,
+                        JUMLAH_APPROVAL_PERHARI = j.JUMLAH_APPROVAL_PERHARI,
+                        OXYGEN_SATURATION = (int)j.OXYGEN_SATURATION,
+                        HEART_RATE = (int)j.HEART_RATE,
+                        SYSTOLIC = (int)j.SYSTOLIC,
+                        DIASTOLIC = (int)j.DIASTOLIC,
+                        TEMPRATURE = (int)j.TEMPRATURE,
+                        NOTE = j.NOTE,
+                        IS_LATEST = true
+                    });
+                }
+                else
+                {
+                    filteredData.Add(new VwLatest
+                    {
+                        NRP = j.NRP,
+                        DATETIME_FROM_CFC = j.DATETIME_FROM_CFC,
+                        APPROVAL_ID = j.APPROVAL_ID,
+                        NAME = j.NAME,
+                        POS_TITLE = j.POS_TITLE,
+                        ID_STATUS = j.ID_STATUS,
+                        STATUS = j.STATUS,
+                        WAKTU_ABSEN = j.WAKTU_ABSEN,
+                        ID_CHAMBER = j.ID_CHAMBER,
+                        JUMLAH_APPROVAL_PERHARI = j.JUMLAH_APPROVAL_PERHARI,
+                        OXYGEN_SATURATION = (int)j.OXYGEN_SATURATION,
+                        HEART_RATE = (int)j.HEART_RATE,
+                        SYSTOLIC = (int)j.SYSTOLIC,
+                        DIASTOLIC = (int)j.DIASTOLIC,
+                        TEMPRATURE = (int)j.TEMPRATURE,
+                        NOTE = j.NOTE,
+                        IS_LATEST = false
+                    });
+                }
+            }
+
+            return filteredData;
         }
+
     }
 }

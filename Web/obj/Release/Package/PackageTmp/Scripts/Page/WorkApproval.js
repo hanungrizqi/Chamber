@@ -9,10 +9,28 @@ $("document").ready(function () {
                 var startDate = selectedDates[0];
                 var endDate = selectedDates[1];
 
-                var startDateLocal = startDate.toLocaleDateString('en-CA');
-                var endDateLocal = endDate.toLocaleDateString('en-CA');
+                //var startDateLocal = startDate.toLocaleDateString('en-CA');
+                //var endDateLocal = endDate.toLocaleDateString('en-CA');
 
-                table.ajax.url($("#web_link").val() + "/api/Approval/Get_ListApproval_Daterange/" + $("#hd_positid").val() + "/" + startDateLocal + "/" + endDateLocal).load();
+                var currentTime = new Date();
+                var startDateFormatted = startDate.getFullYear() + '-' +
+                    ('0' + (startDate.getMonth() + 1)).slice(-2) + '-' +
+                    ('0' + startDate.getDate()).slice(-2) + ' ' +
+                    '00' + ':' +
+                    '00' + ':' +
+                    '00' + '.' +
+                    currentTime.getMilliseconds();
+
+                var endDateFormatted = endDate.getFullYear() + '-' +
+                    ('0' + (endDate.getMonth() + 1)).slice(-2) + '-' +
+                    ('0' + endDate.getDate()).slice(-2) + ' ' +
+                    ('0' + currentTime.getHours()).slice(-2) + ':' +
+                    ('0' + currentTime.getMinutes()).slice(-2) + ':' +
+                    ('0' + currentTime.getSeconds()).slice(-2) + '.' +
+                    currentTime.getMilliseconds();
+
+                table.ajax.url($("#web_link").val() + "/api/Approval/Get_ListApproval_Daterange?posid=" + $("#hd_positid").val() + "&startDate=" + startDateFormatted + "&endDate=" + endDateFormatted).load();
+
             }
         },
     });
@@ -71,7 +89,7 @@ var table = $("#tbl_approval").DataTable({
         {
             data: 'NAME',
             render: function (data, type, row) {
-                debugger
+                //debugger
                 var email = row.EMAIL;
                 var oxy = row.OXYGEN_SATURATION;
                 var heart = row.HEART_RATE;
@@ -147,7 +165,7 @@ var table = $("#tbl_approval").DataTable({
         {
             data: 'WAKTU_ABSEN',
             render: function (data, type, row) {
-                const tanggal = moment(data).format("DD/MM/YYYY");
+                const tanggal = moment(data).format("DD/MM/YYYY HH:mm");
                 return tanggal;
             }
         },
@@ -160,7 +178,7 @@ var table = $("#tbl_approval").DataTable({
                 var actions = '<div class="btn-group">';
                 actions += '<button class="btn btn-sm" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-ellipsis-vertical"></i></button>';
                 if (row.STATUS === 'Unfit') {
-                    if (row.JUMLAH_APPROVAL_PERHARI === 3) {
+                    if (row.JUMLAH_APPROVAL_PERHARI === 4) {
                         actions += '<ul class="dropdown-menu">';
                         actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="UnfitBParamedis" href="#">Unfit Butuh Paramedis</a></li>';
                         actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="BerhentiBekerja" href="#">Berhenti Bekerja</a></li>';
@@ -217,7 +235,6 @@ var table = $("#tbl_approval").DataTable({
                     .unique()
                     .sort()
                     .each(function (d, j) {
-                        debugger
                         select.append('<option value="' + d + '">' + d + '</option>');
                     });
             });

@@ -1,19 +1,27 @@
 ﻿Codebase.helpersOnLoad(['cb-table-tools-checkable', 'cb-table-tools-sections', 'js-flatpickr']);
 
 $("document").ready(function () {
+    console.log($('#sD').val())
+    console.log($('#eD').val())
+    console.log($('#stats').val())
+    if ($('#sD').val()) {
+        debugger
+        table.ajax.url($("#web_link").val() + "/api/EmpRecord/Get_ListEmprecord_Daterange?posid=" + $("#hd_positid").val() + "&startDate=" + $('#sD').val() + "&endDate=" + $('#eD').val()).load();
+        $("#example-flatpickr-range").flatpickr({
+            mode: "range",
+            defaultDate: [$('#sD').val(), $('#eD').val()],
+            
+        });
+        initializeCustomFilter($('#stats').val())
+    }
+    debugger
     $("#example-flatpickr-range").flatpickr({
         mode: "range",
         onChange: function (selectedDates, dateStr, instance) {
             if (selectedDates.length === 2) {
-                debugger
+                //debugger
                 var startDate = selectedDates[0];
                 var endDate = selectedDates[1];
-
-                //// Konversi ke format "YYYY-MM-DD"
-                //var startDateLocal = startDate.toLocaleDateString('en-CA');
-                //var endDateLocal = endDate.toLocaleDateString('en-CA');
-
-                //table.ajax.url($("#web_link").val() + "/api/Emprecord/Get_ListEmprecord_Daterange/" + $("#hd_positid").val() + "/" + startDateLocal + "/" + endDateLocal).load();
 
                 var currentTime = new Date();
                 var startDateFormatted = startDate.getFullYear() + '-' +
@@ -182,21 +190,8 @@ var table = $("#tbl_empr").DataTable({
                 if ($("#hd_idroles").val() == 4 || $("#hd_idroles").val() == 3) {
                     //do nothing
                 }
-                else {
-                    //if (row.ID_STATUS == 5) {
-                    //    if (row.IS_LATEST == true) {
-                    //        actions += '<ul class="dropdown-menu dropdown-menu-right">';
-                    //        actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Unfit" href="#">Unfit</a></li>';
-                    //        actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Fit Need Rest Time" href="#">Fit Need Rest Time</a></li>';
-                    //        actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Unfit Butuh Paramedis" href="#">Unfit Butuh Paramedis</a></li>';
-                    //        actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Istirahat" href="#">Istirahat</a></li>';
-                    //        actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Berhenti Bekerja" href="#">Berhenti Bekerja</a></li>';
-                    //        actions += '</ul>';
-                    //    }
-                    //    else {  
-                    //        //DO NOTHING
-                    //    }
-                    //}
+                else
+                {
                     if (row.IS_LATEST == true && row.ID_STATUS == 5) {
                         actions += '<ul class="dropdown-menu dropdown-menu-right">';
                         actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Unfit" href="#">Unfit</a></li>';
@@ -270,11 +265,21 @@ var table = $("#tbl_empr").DataTable({
                         select.append('<option value="' + d + '">' + d + '</option>');
                     });
             });
+        initializeCustomFilter($('#stats').val())
         $("#search").on("keyup", function () {
             table.search(this.value).draw();
         });
+
     },
 });
+
+function initializeCustomFilter(filter) {
+    var selectDropdown = $("#tbl_empr_filter select");
+    selectDropdown.val(filter);
+    table.columns(3)
+         .search(filter)
+         .draw();
+}
 
 $("#downloadButton").on("click", function () {
     //debugger
@@ -320,7 +325,7 @@ table.on('draw', function () {
 });
 
 function isClosestToCurrentDate(date) {
-    debugger
+    //debugger
     var currentDate = new Date();
     var rowDate = new Date(date);
 

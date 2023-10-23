@@ -57,7 +57,7 @@ namespace restApi.Controllers
         }
 
         [HttpGet]
-        [Route("TotalKaryawanMasuk_Datepicker/{posid}/{startDate}/{endDate}")]
+        [Route("TotalKaryawanMasuk_Datepicker")]
         public IHttpActionResult TotalKaryawanMasuk_Datepicker(string posid, string startDate, string endDate)
         {
             try
@@ -145,7 +145,7 @@ namespace restApi.Controllers
         }
 
         [HttpGet]
-        [Route("UpdateterakhirKaryawanMasuk_Datepicker/{posid}/{startDate}/{endDate}")]
+        [Route("UpdateterakhirKaryawanMasuk_Datepicker")]
         public IHttpActionResult UpdateterakhirKaryawanMasuk_Datepicker(string posid, string startDate, string endDate)
         {
             try
@@ -155,8 +155,8 @@ namespace restApi.Controllers
                 //VW_T_APPROVAL data = null;
                 VW_T_APPROVAL data = new VW_T_APPROVAL();
 
-                DateTime startDateTime = DateTime.ParseExact(startDate, "yyyy-MM-dd", CultureInfo.InvariantCulture);
-                DateTime endDateTime = DateTime.ParseExact(endDate, "yyyy-MM-dd", CultureInfo.InvariantCulture);
+                DateTime startDateTime = DateTime.ParseExact(startDate, "yyyy-MM-dd HH:mm:ss.fff", CultureInfo.InvariantCulture);
+                DateTime endDateTime = DateTime.ParseExact(endDate, "yyyy-MM-dd HH:mm:ss.fff", CultureInfo.InvariantCulture);
 
                 if (isAdminorNot.ID_Role == 1 || isAdminorNot.ID_Role == 4)
                 {
@@ -214,7 +214,7 @@ namespace restApi.Controllers
         }
 
         [HttpGet]
-        [Route("TotalKaryawanFit_Datepicker/{posid}/{startDate}/{endDate}")]
+        [Route("TotalKaryawanFit_Datepicker")]
         public IHttpActionResult TotalKaryawanFit_Datepicker(string posid, string startDate, string endDate)
         {
             try
@@ -276,7 +276,7 @@ namespace restApi.Controllers
         }
 
         [HttpGet]
-        [Route("UpdateterakhirKaryawanFit_Datepicker/{posid}/{startDate}/{endDate}")]
+        [Route("UpdateterakhirKaryawanFit_Datepicker")]
         public IHttpActionResult UpdateterakhirKaryawanFit_Datepicker(string posid, string startDate, string endDate)
         {
             try
@@ -286,8 +286,8 @@ namespace restApi.Controllers
                 //VW_T_APPROVAL data = null;
                 VW_T_APPROVAL data = new VW_T_APPROVAL();
 
-                DateTime startDateTime = DateTime.ParseExact(startDate, "yyyy-MM-dd", CultureInfo.InvariantCulture);
-                DateTime endDateTime = DateTime.ParseExact(endDate, "yyyy-MM-dd", CultureInfo.InvariantCulture);
+                DateTime startDateTime = DateTime.ParseExact(startDate, "yyyy-MM-dd HH:mm:ss.fff", CultureInfo.InvariantCulture);
+                DateTime endDateTime = DateTime.ParseExact(endDate, "yyyy-MM-dd HH:mm:ss.fff", CultureInfo.InvariantCulture);
 
                 if (isAdminorNot.ID_Role == 1 || isAdminorNot.ID_Role == 4)
                 {
@@ -418,7 +418,7 @@ namespace restApi.Controllers
         //}
 
         [HttpGet]
-        [Route("TotalKaryawanUnfit_Datepicker/{posid}/{startDate}/{endDate}")]
+        [Route("TotalKaryawanUnfit_Datepicker")]
         public IHttpActionResult TotalKaryawanUnfit_Datepicker(string posid, string startDate, string endDate)
         {
             try
@@ -450,7 +450,7 @@ namespace restApi.Controllers
         }
 
         [HttpGet]
-        [Route("UpdateterakhirKaryawanUnfit_Datepicker/{posid}/{startDate}/{endDate}")]
+        [Route("UpdateterakhirKaryawanUnfit_Datepicker")]
         public IHttpActionResult UpdateterakhirKaryawanUnfit_Datepicker(string posid, string startDate, string endDate)
         {
             try
@@ -460,8 +460,8 @@ namespace restApi.Controllers
                 //VW_T_APPROVAL data = null;
                 VW_T_APPROVAL data = new VW_T_APPROVAL();
 
-                DateTime startDateTime = DateTime.ParseExact(startDate, "yyyy-MM-dd", CultureInfo.InvariantCulture);
-                DateTime endDateTime = DateTime.ParseExact(endDate, "yyyy-MM-dd", CultureInfo.InvariantCulture);
+                DateTime startDateTime = DateTime.ParseExact(startDate, "yyyy-MM-dd HH:mm:ss.fff", CultureInfo.InvariantCulture);
+                DateTime endDateTime = DateTime.ParseExact(endDate, "yyyy-MM-dd HH:mm:ss.fff", CultureInfo.InvariantCulture);
 
                 if (isAdminorNot.ID_Role == 1 || isAdminorNot.ID_Role == 4)
                 {
@@ -552,7 +552,7 @@ namespace restApi.Controllers
         }
 
         [HttpGet]
-        [Route("sudahapproved_Datepicker/{posid}/{startDate}/{endDate}")]
+        [Route("sudahapproved_Datepicker")]
         public IHttpActionResult sudahapproved_Datepicker(string posid, string startDate, string endDate)
         {
             try
@@ -569,11 +569,11 @@ namespace restApi.Controllers
 
                 if (isAdminorNot.ID_Role == 1 || isAdminorNot.ID_Role == 4)
                 {
-                    data = db.VW_T_APPROVALs.Where(a => a.FLAG == 1 || excludedStatuses.Contains(a.ID_STATUS.Value) && a.DATETIME_FROM_CFC >= startDateDateTime && a.DATETIME_FROM_CFC <= endDateDateTime).ToList();
+                    data = db.VW_T_APPROVALs.Where(a => (a.FLAG == 1 || excludedStatuses.Contains(a.ID_STATUS.Value)) && a.WAKTU_ABSEN >= startDateDateTime && a.WAKTU_ABSEN <= endDateDateTime).ToList();
                 }
                 else
                 {
-                    data = db.VW_T_APPROVALs.Where(a => a.ATASAN == posid && (a.FLAG == 1 || excludedStatuses.Contains(a.ID_STATUS.Value)) && a.DATETIME_FROM_CFC >= startDateDateTime && a.DATETIME_FROM_CFC <= endDateDateTime).ToList();
+                    data = db.VW_T_APPROVALs.Where(a => a.ATASAN == posid && (a.FLAG == 1 || excludedStatuses.Contains(a.ID_STATUS.Value)) && a.WAKTU_ABSEN >= startDateDateTime && a.WAKTU_ABSEN <= endDateDateTime).ToList();
                 }
 
                 return Ok(new { Data = data, Total = data.Count() });
@@ -585,7 +585,7 @@ namespace restApi.Controllers
         }
 
         [HttpGet]
-        [Route("sudahApprovedDate_Datepicker/{posid}/{startDate}/{endDate}")]
+        [Route("sudahApprovedDate_Datepicker")]
         public IHttpActionResult sudahApprovedDate_Datepicker(string posid, string startDate, string endDate)
         {
             try
@@ -596,20 +596,20 @@ namespace restApi.Controllers
                 //VW_T_APPROVAL data = null;
                 VW_T_APPROVAL data = new VW_T_APPROVAL();
 
-                DateTime startDateTime = DateTime.ParseExact(startDate, "yyyy-MM-dd", CultureInfo.InvariantCulture);
-                DateTime endDateTime = DateTime.ParseExact(endDate, "yyyy-MM-dd", CultureInfo.InvariantCulture);
+                DateTime startDateTime = DateTime.ParseExact(startDate, "yyyy-MM-dd HH:mm:ss.fff", CultureInfo.InvariantCulture);
+                DateTime endDateTime = DateTime.ParseExact(endDate, "yyyy-MM-dd HH:mm:ss.fff", CultureInfo.InvariantCulture);
 
                 if (isAdminorNot.ID_Role == 1 || isAdminorNot.ID_Role == 4)
                 {
                     data = db.VW_T_APPROVALs
-                        .Where(a => a.FLAG == 1 || excludedStatuses.Contains(a.ID_STATUS.Value) && a.DATETIME_FROM_CFC >= startDateTime && a.DATETIME_FROM_CFC <= endDateTime)
+                        .Where(a => a.FLAG == 1 || excludedStatuses.Contains(a.ID_STATUS.Value) && a.WAKTU_ABSEN >= startDateTime && a.WAKTU_ABSEN <= endDateTime)
                         .OrderByDescending(a => a.APPROVAL_ID)
                         .FirstOrDefault();
                 }
                 else
                 {
                     data = db.VW_T_APPROVALs
-                        .Where(a => a.ATASAN == posid && (a.FLAG == 1 || excludedStatuses.Contains(a.ID_STATUS.Value)) && a.DATETIME_FROM_CFC >= startDateTime && a.DATETIME_FROM_CFC <= endDateTime)
+                        .Where(a => a.ATASAN == posid && (a.FLAG == 1 || excludedStatuses.Contains(a.ID_STATUS.Value)) && a.WAKTU_ABSEN >= startDateTime && a.WAKTU_ABSEN <= endDateTime)
                         .OrderByDescending(a => a.APPROVAL_ID)
                         .FirstOrDefault();
                 }
@@ -688,7 +688,7 @@ namespace restApi.Controllers
         }
 
         [HttpGet]
-        [Route("butuhApproval_Datepicker/{posid}/{startDate}/{endDate}")]
+        [Route("butuhApproval_Datepicker")]
         public IHttpActionResult butuhApproval_Datepicker(string posid, string startDate, string endDate)
         {
             try
@@ -705,11 +705,11 @@ namespace restApi.Controllers
 
                 if (isAdminorNot.ID_Role == 1 || isAdminorNot.ID_Role == 4)
                 {
-                    data = db.VW_T_APPROVALs.Where(a => a.FLAG == 0 && !excludedStatuses.Contains(a.ID_STATUS.Value) && a.DATETIME_FROM_CFC >= startDateDateTime && a.DATETIME_FROM_CFC <= endDateDateTime).ToList();
+                    data = db.VW_T_APPROVALs.Where(a => a.FLAG == 0 && !excludedStatuses.Contains(a.ID_STATUS.Value) && a.WAKTU_ABSEN >= startDateDateTime && a.WAKTU_ABSEN <= endDateDateTime).ToList();
                 }
                 else
                 {
-                    data = db.VW_T_APPROVALs.Where(a => a.FLAG == 0 && !excludedStatuses.Contains(a.ID_STATUS.Value) && a.ATASAN == posid && a.DATETIME_FROM_CFC >= startDateDateTime && a.DATETIME_FROM_CFC <= endDateDateTime).ToList();
+                    data = db.VW_T_APPROVALs.Where(a => a.FLAG == 0 && !excludedStatuses.Contains(a.ID_STATUS.Value) && a.ATASAN == posid && a.WAKTU_ABSEN >= startDateDateTime && a.WAKTU_ABSEN <= endDateDateTime).ToList();
                 }
 
                 return Ok(new { Data = data, Total = data.Count() });
@@ -721,7 +721,7 @@ namespace restApi.Controllers
         }
 
         [HttpGet]
-        [Route("butuhApprovalDate_Datepicker/{posid}/{startDate}/{endDate}")]
+        [Route("butuhApprovalDate_Datepicker")]
         public IHttpActionResult butuhApprovalDate_Datepicker(string posid, string startDate, string endDate)
         {
             try
@@ -732,20 +732,20 @@ namespace restApi.Controllers
                 //VW_T_APPROVAL data = null;
                 VW_T_APPROVAL data = new VW_T_APPROVAL();
 
-                DateTime startDateTime = DateTime.ParseExact(startDate, "yyyy-MM-dd", CultureInfo.InvariantCulture);
-                DateTime endDateTime = DateTime.ParseExact(endDate, "yyyy-MM-dd", CultureInfo.InvariantCulture);
+                DateTime startDateTime = DateTime.ParseExact(startDate, "yyyy-MM-dd HH:mm:ss.fff", CultureInfo.InvariantCulture);
+                DateTime endDateTime = DateTime.ParseExact(endDate, "yyyy-MM-dd HH:mm:ss.fff", CultureInfo.InvariantCulture);
 
                 if (isAdminorNot.ID_Role == 1 || isAdminorNot.ID_Role == 4)
                 {
                     data = db.VW_T_APPROVALs
-                        .Where(a => a.FLAG == 0 && !excludedStatuses.Contains(a.ID_STATUS.Value) && a.DATETIME_FROM_CFC >= startDateTime && a.DATETIME_FROM_CFC <= endDateTime)
+                        .Where(a => a.FLAG == 0 && !excludedStatuses.Contains(a.ID_STATUS.Value) && a.WAKTU_ABSEN >= startDateTime && a.WAKTU_ABSEN <= endDateTime)
                         .OrderByDescending(a => a.APPROVAL_ID)
                         .FirstOrDefault();
                 }
                 else
                 {
                     data = db.VW_T_APPROVALs
-                        .Where(a => a.FLAG == 0 && !excludedStatuses.Contains(a.ID_STATUS.Value) && a.ATASAN == posid && a.DATETIME_FROM_CFC >= startDateTime && a.DATETIME_FROM_CFC <= endDateTime)
+                        .Where(a => a.FLAG == 0 && !excludedStatuses.Contains(a.ID_STATUS.Value) && a.ATASAN == posid && a.WAKTU_ABSEN >= startDateTime && a.WAKTU_ABSEN <= endDateTime)
                         .OrderByDescending(a => a.APPROVAL_ID)
                         .FirstOrDefault();
                 }
@@ -821,7 +821,7 @@ namespace restApi.Controllers
         }
 
         [HttpGet]
-        [Route("retest_Datepicker/{posid}/{startDate}/{endDate}")]
+        [Route("retest_Datepicker")]
         public IHttpActionResult retest_Datepicker(string posid, string startDate, string endDate)
         {
             try
@@ -837,11 +837,11 @@ namespace restApi.Controllers
 
                 if (isAdminorNot.ID_Role == 1 || isAdminorNot.ID_Role == 4)
                 {
-                    data = db.VW_T_APPROVALs.Where(a => a.ID_STATUS == 5 && a.DATETIME_FROM_CFC >= startDateDateTime && a.DATETIME_FROM_CFC <= endDateDateTime).ToList();
+                    data = db.VW_T_APPROVALs.Where(a => a.ID_STATUS == 5 && a.WAKTU_ABSEN >= startDateDateTime && a.WAKTU_ABSEN <= endDateDateTime).ToList();
                 }
                 else
                 {
-                    data = db.VW_T_APPROVALs.Where(a => a.ID_STATUS == 5 && a.ATASAN == posid && a.DATETIME_FROM_CFC >= startDateDateTime && a.DATETIME_FROM_CFC <= endDateDateTime).ToList();
+                    data = db.VW_T_APPROVALs.Where(a => a.ID_STATUS == 5 && a.ATASAN == posid && a.WAKTU_ABSEN >= startDateDateTime && a.WAKTU_ABSEN <= endDateDateTime).ToList();
                 }
 
                 return Ok(new { Data = data, Total = data.Count() });
@@ -853,7 +853,7 @@ namespace restApi.Controllers
         }
 
         [HttpGet]
-        [Route("retestDate_Datepicker/{posid}/{startDate}/{endDate}")]
+        [Route("retestDate_Datepicker")]
         public IHttpActionResult retestDate_Datepicker(string posid, string startDate, string endDate)
         {
             try
@@ -863,20 +863,20 @@ namespace restApi.Controllers
                 //VW_T_APPROVAL data = null;
                 VW_T_APPROVAL data = new VW_T_APPROVAL();
 
-                DateTime startDateTime = DateTime.ParseExact(startDate, "yyyy-MM-dd", CultureInfo.InvariantCulture);
-                DateTime endDateTime = DateTime.ParseExact(endDate, "yyyy-MM-dd", CultureInfo.InvariantCulture);
+                DateTime startDateTime = DateTime.ParseExact(startDate, "yyyy-MM-dd HH:mm:ss.fff", CultureInfo.InvariantCulture);
+                DateTime endDateTime = DateTime.ParseExact(endDate, "yyyy-MM-dd HH:mm:ss.fff", CultureInfo.InvariantCulture);
 
                 if (isAdminorNot.ID_Role == 1 || isAdminorNot.ID_Role == 4)
                 {
                     data = db.VW_T_APPROVALs
-                        .Where(a => a.ID_STATUS == 5 && a.DATETIME_FROM_CFC >= startDateTime && a.DATETIME_FROM_CFC <= endDateTime)
+                        .Where(a => a.ID_STATUS == 5 && a.WAKTU_ABSEN >= startDateTime && a.WAKTU_ABSEN <= endDateTime)
                         .OrderByDescending(a => a.APPROVAL_ID)
                         .FirstOrDefault();
                 }
                 else
                 {
                     data = db.VW_T_APPROVALs
-                        .Where(a => a.ID_STATUS == 5 && a.ATASAN == posid && a.DATETIME_FROM_CFC >= startDateTime && a.DATETIME_FROM_CFC <= endDateTime)
+                        .Where(a => a.ID_STATUS == 5 && a.ATASAN == posid && a.WAKTU_ABSEN >= startDateTime && a.WAKTU_ABSEN <= endDateTime)
                         .OrderByDescending(a => a.APPROVAL_ID)
                         .FirstOrDefault();
                 }
@@ -952,7 +952,7 @@ namespace restApi.Controllers
         }
 
         [HttpGet]
-        [Route("tdkdptbekerja_Datepicker/{posid}/{startDate}/{endDate}")]
+        [Route("tdkdptbekerja_Datepicker")]
         public IHttpActionResult tdkdptbekerja_Datepicker(string posid, string startDate, string endDate)
         {
             try
@@ -968,11 +968,11 @@ namespace restApi.Controllers
 
                 if (isAdminorNot.ID_Role == 1 || isAdminorNot.ID_Role == 4)
                 {
-                    data = db.VW_T_APPROVALs.Where(a => a.ID_STATUS == 7 && a.DATETIME_FROM_CFC >= startDateDateTime && a.DATETIME_FROM_CFC <= endDateDateTime).ToList();
+                    data = db.VW_T_APPROVALs.Where(a => a.ID_STATUS == 7 && a.WAKTU_ABSEN >= startDateDateTime && a.WAKTU_ABSEN <= endDateDateTime).ToList();
                 }
                 else
                 {
-                    data = db.VW_T_APPROVALs.Where(a => a.ID_STATUS == 7 && a.ATASAN == posid && a.DATETIME_FROM_CFC >= startDateDateTime && a.DATETIME_FROM_CFC <= endDateDateTime).ToList();
+                    data = db.VW_T_APPROVALs.Where(a => a.ID_STATUS == 7 && a.ATASAN == posid && a.WAKTU_ABSEN >= startDateDateTime && a.WAKTU_ABSEN <= endDateDateTime).ToList();
                 }
 
                 return Ok(new { Data = data, Total = data.Count() });
@@ -984,7 +984,7 @@ namespace restApi.Controllers
         }
 
         [HttpGet]
-        [Route("tdkdptbekerjaDate_Datepicker/{posid}/{startDate}/{endDate}")]
+        [Route("tdkdptbekerjaDate_Datepicker")]
         public IHttpActionResult tdkdptbekerjaDate_Datepicker(string posid, string startDate, string endDate)
         {
             try
@@ -994,20 +994,20 @@ namespace restApi.Controllers
                 //VW_T_APPROVAL data = null;
                 VW_T_APPROVAL data = new VW_T_APPROVAL();
 
-                DateTime startDateTime = DateTime.ParseExact(startDate, "yyyy-MM-dd", CultureInfo.InvariantCulture);
-                DateTime endDateTime = DateTime.ParseExact(endDate, "yyyy-MM-dd", CultureInfo.InvariantCulture);
+                DateTime startDateTime = DateTime.ParseExact(startDate, "yyyy-MM-dd HH:mm:ss.fff", CultureInfo.InvariantCulture);
+                DateTime endDateTime = DateTime.ParseExact(endDate, "yyyy-MM-dd HH:mm:ss.fff", CultureInfo.InvariantCulture);
 
                 if (isAdminorNot.ID_Role == 1 || isAdminorNot.ID_Role == 4)
                 {
                     data = db.VW_T_APPROVALs
-                        .Where(a => a.ID_STATUS == 7 && a.DATETIME_FROM_CFC >= startDateTime && a.DATETIME_FROM_CFC <= endDateTime)
+                        .Where(a => a.ID_STATUS == 7 && a.WAKTU_ABSEN >= startDateTime && a.WAKTU_ABSEN <= endDateTime)
                         .OrderByDescending(a => a.APPROVAL_ID)
                         .FirstOrDefault();
                 }
                 else
                 {
                     data = db.VW_T_APPROVALs
-                        .Where(a => a.ID_STATUS == 7 && a.ATASAN == posid && a.DATETIME_FROM_CFC >= startDateTime && a.DATETIME_FROM_CFC <= endDateTime)
+                        .Where(a => a.ID_STATUS == 7 && a.ATASAN == posid && a.WAKTU_ABSEN >= startDateTime && a.WAKTU_ABSEN <= endDateTime)
                         .OrderByDescending(a => a.APPROVAL_ID)
                         .FirstOrDefault();
                 }
@@ -1080,7 +1080,7 @@ namespace restApi.Controllers
         }
 
         [HttpGet]
-        [Route("cham001_Datepicker/{startDate}/{endDate}")]
+        [Route("cham001_Datepicker")]
         public IHttpActionResult cham001_Datepicker(string startDate, string endDate)
         {
             try
@@ -1091,8 +1091,8 @@ namespace restApi.Controllers
 
                 // Parse startDate and endDate to DateTime
                 DateTime parsedStartDate, parsedEndDate;
-                if (DateTime.TryParseExact(startDate, "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out parsedStartDate) &&
-                    DateTime.TryParseExact(endDate, "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out parsedEndDate))
+                if (DateTime.TryParseExact(startDate, "yyyy-MM-dd HH:mm:ss.fff", CultureInfo.InvariantCulture, DateTimeStyles.None, out parsedStartDate) &&
+                    DateTime.TryParseExact(endDate, "yyyy-MM-dd HH:mm:ss.fff", CultureInfo.InvariantCulture, DateTimeStyles.None, out parsedEndDate))
                 {
                     // Call the stored function with parameters
                     data = db.cufn_filterCFMManagement(parsedStartDate, parsedEndDate).ToList();
@@ -1117,7 +1117,7 @@ namespace restApi.Controllers
         }
 
         [HttpGet]
-        [Route("cham001Date_Datepicker/{startDate}/{endDate}")]
+        [Route("cham001Date_Datepicker")]
         public IHttpActionResult cham001Date_Datepicker(string startDate, string endDate)
         {
             try
@@ -1128,8 +1128,8 @@ namespace restApi.Controllers
 
                 // Parse startDate and endDate to DateTime
                 DateTime parsedStartDate, parsedEndDate;
-                if (DateTime.TryParseExact(startDate, "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out parsedStartDate) &&
-                    DateTime.TryParseExact(endDate, "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out parsedEndDate))
+                if (DateTime.TryParseExact(startDate, "yyyy-MM-dd HH:mm:ss.fff", CultureInfo.InvariantCulture, DateTimeStyles.None, out parsedStartDate) &&
+                    DateTime.TryParseExact(endDate, "yyyy-MM-dd HH:mm:ss.fff", CultureInfo.InvariantCulture, DateTimeStyles.None, out parsedEndDate))
                 {
                     // Call the stored function with parameters
                     data = db.cufn_filterCFMManagement(parsedStartDate, parsedEndDate).ToList();
@@ -1215,7 +1215,7 @@ namespace restApi.Controllers
         }
 
         [HttpGet]
-        [Route("cham002_Datepicker/{startDate}/{endDate}")]
+        [Route("cham002_Datepicker")]
         public IHttpActionResult cham002_Datepicker(string startDate, string endDate)
         {
             try
@@ -1226,8 +1226,8 @@ namespace restApi.Controllers
 
                 // Parse startDate and endDate to DateTime
                 DateTime parsedStartDate, parsedEndDate;
-                if (DateTime.TryParseExact(startDate, "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out parsedStartDate) &&
-                    DateTime.TryParseExact(endDate, "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out parsedEndDate))
+                if (DateTime.TryParseExact(startDate, "yyyy-MM-dd HH:mm:ss.fff", CultureInfo.InvariantCulture, DateTimeStyles.None, out parsedStartDate) &&
+                    DateTime.TryParseExact(endDate, "yyyy-MM-dd HH:mm:ss.fff", CultureInfo.InvariantCulture, DateTimeStyles.None, out parsedEndDate))
                 {
                     // Call the stored function with parameters
                     data = db.cufn_filterCFMManagement(parsedStartDate, parsedEndDate).ToList();
@@ -1252,7 +1252,7 @@ namespace restApi.Controllers
         }
 
         [HttpGet]
-        [Route("cham002Date_Datepicker/{startDate}/{endDate}")]
+        [Route("cham002Date_Datepicker")]
         public IHttpActionResult cham002Date_Datepicker(string startDate, string endDate)
         {
             try
@@ -1263,8 +1263,8 @@ namespace restApi.Controllers
 
                 // Parse startDate and endDate to DateTime
                 DateTime parsedStartDate, parsedEndDate;
-                if (DateTime.TryParseExact(startDate, "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out parsedStartDate) &&
-                    DateTime.TryParseExact(endDate, "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out parsedEndDate))
+                if (DateTime.TryParseExact(startDate, "yyyy-MM-dd HH:mm:ss.fff", CultureInfo.InvariantCulture, DateTimeStyles.None, out parsedStartDate) &&
+                    DateTime.TryParseExact(endDate, "yyyy-MM-dd HH:mm:ss.fff", CultureInfo.InvariantCulture, DateTimeStyles.None, out parsedEndDate))
                 {
                     // Call the stored function with parameters
                     data = db.cufn_filterCFMManagement(parsedStartDate, parsedEndDate).ToList();
@@ -1350,7 +1350,7 @@ namespace restApi.Controllers
         }
 
         [HttpGet]
-        [Route("cham003_Datepicker/{startDate}/{endDate}")]
+        [Route("cham003_Datepicker")]
         public IHttpActionResult cham003_Datepicker(string startDate, string endDate)
         {
             try
@@ -1361,8 +1361,8 @@ namespace restApi.Controllers
 
                 // Parse startDate and endDate to DateTime
                 DateTime parsedStartDate, parsedEndDate;
-                if (DateTime.TryParseExact(startDate, "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out parsedStartDate) &&
-                    DateTime.TryParseExact(endDate, "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out parsedEndDate))
+                if (DateTime.TryParseExact(startDate, "yyyy-MM-dd HH:mm:ss.fff", CultureInfo.InvariantCulture, DateTimeStyles.None, out parsedStartDate) &&
+                    DateTime.TryParseExact(endDate, "yyyy-MM-dd HH:mm:ss.fff", CultureInfo.InvariantCulture, DateTimeStyles.None, out parsedEndDate))
                 {
                     // Call the stored function with parameters
                     data = db.cufn_filterCFMManagement(parsedStartDate, parsedEndDate).ToList();
@@ -1387,7 +1387,7 @@ namespace restApi.Controllers
         }
 
         [HttpGet]
-        [Route("cham003Date_Datepicker/{startDate}/{endDate}")]
+        [Route("cham003Date_Datepicker")]
         public IHttpActionResult cham003Date_Datepicker(string startDate, string endDate)
         {
             try
@@ -1398,8 +1398,8 @@ namespace restApi.Controllers
 
                 // Parse startDate and endDate to DateTime
                 DateTime parsedStartDate, parsedEndDate;
-                if (DateTime.TryParseExact(startDate, "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out parsedStartDate) &&
-                    DateTime.TryParseExact(endDate, "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out parsedEndDate))
+                if (DateTime.TryParseExact(startDate, "yyyy-MM-dd HH:mm:ss.fff", CultureInfo.InvariantCulture, DateTimeStyles.None, out parsedStartDate) &&
+                    DateTime.TryParseExact(endDate, "yyyy-MM-dd HH:mm:ss.fff", CultureInfo.InvariantCulture, DateTimeStyles.None, out parsedEndDate))
                 {
                     // Call the stored function with parameters
                     data = db.cufn_filterCFMManagement(parsedStartDate, parsedEndDate).ToList();
@@ -1485,7 +1485,7 @@ namespace restApi.Controllers
         }
 
         [HttpGet]
-        [Route("cham004_Datepicker/{startDate}/{endDate}")]
+        [Route("cham004_Datepicker")]
         public IHttpActionResult cham004_Datepicker(string startDate, string endDate)
         {
             try
@@ -1496,8 +1496,8 @@ namespace restApi.Controllers
 
                 // Parse startDate and endDate to DateTime
                 DateTime parsedStartDate, parsedEndDate;
-                if (DateTime.TryParseExact(startDate, "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out parsedStartDate) &&
-                    DateTime.TryParseExact(endDate, "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out parsedEndDate))
+                if (DateTime.TryParseExact(startDate, "yyyy-MM-dd HH:mm:ss.fff", CultureInfo.InvariantCulture, DateTimeStyles.None, out parsedStartDate) &&
+                    DateTime.TryParseExact(endDate, "yyyy-MM-dd HH:mm:ss.fff", CultureInfo.InvariantCulture, DateTimeStyles.None, out parsedEndDate))
                 {
                     // Call the stored function with parameters
                     data = db.cufn_filterCFMManagement(parsedStartDate, parsedEndDate).ToList();
@@ -1522,7 +1522,7 @@ namespace restApi.Controllers
         }
 
         [HttpGet]
-        [Route("cham004Date_Datepicker/{startDate}/{endDate}")]
+        [Route("cham004Date_Datepicker")]
         public IHttpActionResult cham004Date_Datepicker(string startDate, string endDate)
         {
             try
@@ -1533,8 +1533,8 @@ namespace restApi.Controllers
 
                 // Parse startDate and endDate to DateTime
                 DateTime parsedStartDate, parsedEndDate;
-                if (DateTime.TryParseExact(startDate, "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out parsedStartDate) &&
-                    DateTime.TryParseExact(endDate, "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out parsedEndDate))
+                if (DateTime.TryParseExact(startDate, "yyyy-MM-dd HH:mm:ss.fff", CultureInfo.InvariantCulture, DateTimeStyles.None, out parsedStartDate) &&
+                    DateTime.TryParseExact(endDate, "yyyy-MM-dd HH:mm:ss.fff", CultureInfo.InvariantCulture, DateTimeStyles.None, out parsedEndDate))
                 {
                     // Call the stored function with parameters
                     data = db.cufn_filterCFMManagement(parsedStartDate, parsedEndDate).ToList();

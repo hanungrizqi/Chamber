@@ -11,11 +11,22 @@ namespace Web.Controllers
     {
         CfmDataContext db = new CfmDataContext();
         // GET: EmpRecord
-        public ActionResult Index()
+        public ActionResult Index(string startDate = null, string endDate = null, string status = null)
         {
             if (Session["nrp"] == null)
             {
                 return RedirectToAction("index", "login");
+            }
+
+            if (status != null)
+            {
+                ViewBag.Status = status;
+            }
+
+            if (startDate != null)
+            {
+                ViewBag.StartDate = startDate;
+                ViewBag.EndDate = endDate;
             }
 
             if (Session["ID_Role"] != null && (int)Session["ID_Role"] == 1)

@@ -11,12 +11,19 @@ namespace Web.Controllers
     {
         CfmDataContext db = new CfmDataContext();
         
-        public ActionResult Index()
+        public ActionResult Index(string startDate = null, string endDate = null)
         {
             if (Session["nrp"] == null)
             {
                 return RedirectToAction("index", "login");
             }
+
+            if (startDate != null)
+            {
+                ViewBag.StartDate = startDate;
+                ViewBag.EndDate = endDate;
+            }
+
             if (Session["ID_Role"] != null && (int)Session["ID_Role"] == 1)
             {
                 var excludedStatuses = new[] { 1, 5, 6, 7 };
