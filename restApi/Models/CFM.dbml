@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="DB_SHE_CFM_KPT" Class="CFMDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="WebSettings" ConnectionString="Data Source=kphosq101\shpol;Initial Catalog=DB_SHE_CFM_KPT;Persist Security Info=True;User ID=sqlservices" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="DB_SHE_CFM_KPTConnectionString" Provider="System.Data.SqlClient" />
+  <Connection Mode="WebSettings" ConnectionString="Data Source=10.14.101.101\shpol;Initial Catalog=DB_SHE_CFM_KPT;Persist Security Info=True;User ID=sqlservices" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="DB_SHE_CFM_KPTConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="dbo.TBL_M_AKSES" Member="TBL_M_AKSEs">
     <Type Name="TBL_M_AKSE">
       <Column Name="ID_Menu" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -289,6 +289,28 @@
     <Parameter Name="SD" Parameter="sD" Type="System.DateTime" DbType="DateTime" />
     <Parameter Name="ED" Parameter="eD" Type="System.DateTime" DbType="DateTime" />
     <ElementType Name="cufn_filterCFMManagementResult">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ID_CHAMBER" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="LOKASI" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="USDTDY" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="LSTUSD" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.cufn_filterCFMManagement_forGL" Method="cufn_filterCFMManagement_forGL" IsComposable="true">
+    <Parameter Name="SD" Parameter="sD" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="ED" Parameter="eD" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="ATASAN" Parameter="aTASAN" Type="System.String" DbType="VarChar(50)" />
+    <ElementType Name="cufn_filterCFMManagement_forGLResult">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ID_CHAMBER" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="LOKASI" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="USDTDY" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="LSTUSD" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.cufn_getCFMManagement_forGL" Method="cufn_getCFMManagement_forGL" IsComposable="true">
+    <Parameter Name="ATASAN" Parameter="aTASAN" Type="System.String" DbType="VarChar(50)" />
+    <ElementType Name="cufn_getCFMManagement_forGLResult">
       <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="ID_CHAMBER" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
       <Column Name="LOKASI" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />

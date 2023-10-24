@@ -1,6 +1,16 @@
 ﻿Codebase.helpersOnLoad(['cb-table-tools-checkable', 'cb-table-tools-sections', 'js-flatpickr', 'jq-datepicker', 'jq-colorpicker', 'jq-maxlength', 'jq-select2', 'jq-rangeslider', 'jq-masked-inputs', 'jq-pw-strength']);
 
 $("document").ready(function () {
+    if ($('#sD').val()) {
+        debugger
+        table.ajax.url($("#web_link").val() + "/api/Approval/Get_ListApproval_Daterange?posid=" + $("#hd_positid").val() + "&startDate=" + $('#sD').val() + "&endDate=" + $('#eD').val()).load();
+        $("#example-flatpickr-range").flatpickr({
+            mode: "range",
+            defaultDate: [$('#sD').val(), $('#eD').val()],
+
+        });
+    }
+    debugger
     $("#example-flatpickr-range").flatpickr({
         mode: "range",
         onChange: function (selectedDates, dateStr, instance) {

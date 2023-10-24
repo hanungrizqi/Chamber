@@ -2,28 +2,8 @@
 
 $("document").ready(function () {
     Karyawanmasuk();
-    //UpdateterakhirKaryawanmasuk()
-    //KaryawanFit()
-    //UpdateterakhirKaryawaFit()
-    //KaryawanUnfit()
-    //UpdateterakhirKaryawaUnfit()
-    //sudahApproved()
-    //sudahApprovedDate()
-    //butuhApproval()
-    //butuhApprovalDate()
-    //retest()
-    //retestDate()
-    //tdkdptbekerja()
-    //tdkdptbekerjaDate()
-    //cham001()
-    //cham001Date()
-    //cham002()
-    //cham002Date()
-    //cham003()
-    //cham003Date()
-    //cham004()
-    //cham004Date()
-
+    var sDate;
+    var eDate;
     $("#example-flatpickr-range").flatpickr({
         mode: "range",
         onChange: function (selectedDates, dateStr, instance) {
@@ -31,9 +11,28 @@ $("document").ready(function () {
                 var startDate = selectedDates[0];
                 var endDate = selectedDates[1];
 
-                var startDateLocal = startDate.toLocaleDateString('en-CA');
-                var endDateLocal = endDate.toLocaleDateString('en-CA');
+                //var startDateLocal = startDate.toLocaleDateString('en-CA');
+                //var endDateLocal = endDate.toLocaleDateString('en-CA');
                 //debugger
+                var currentTime = new Date();
+                var startDateLocal = startDate.getFullYear() + '-' +
+                    ('0' + (startDate.getMonth() + 1)).slice(-2) + '-' +
+                    ('0' + startDate.getDate()).slice(-2) + ' ' +
+                    '00' + ':' +
+                    '00' + ':' +
+                    '00' + '.' +
+                    currentTime.getMilliseconds();
+
+                var endDateLocal = endDate.getFullYear() + '-' +
+                    ('0' + (endDate.getMonth() + 1)).slice(-2) + '-' +
+                    ('0' + endDate.getDate()).slice(-2) + ' ' +
+                    ('0' + currentTime.getHours()).slice(-2) + ':' +
+                    ('0' + currentTime.getMinutes()).slice(-2) + ':' +
+                    ('0' + currentTime.getSeconds()).slice(-2) + '.' +
+                    currentTime.getMilliseconds();
+
+                sDate = startDateLocal;
+                eDate = endDateLocal;
 
                 updateHTMLElementsKaryawanMasuk(startDateLocal, endDateLocal);
                 updateHTMLElementsUpdateTerakhirKaryawanMasuk(startDateLocal, endDateLocal);
@@ -72,6 +71,97 @@ $("document").ready(function () {
                 updateChartWithDateRange(startDateLocal, endDateLocal);
             }
         },
+    });
+
+    $("#linkSudahApprove").click(function () {
+        if (sDate != null) {
+            var url = "/EmpRecord/Index?startDate=" + sDate + "&endDate=" + eDate;
+            window.location.href = url;
+        }
+        else {
+            var url = "/EmpRecord/Index";
+            window.location.href = url;
+        }
+    });
+
+    $("#linkButuhApprove").click(function () {
+        if (sDate != null) {
+            var url = "/Approval/Index?startDate=" + sDate + "&endDate=" + eDate;
+            window.location.href = url;
+        }
+        else {
+            var url = "/Approval/Index";
+            window.location.href = url;
+        }
+    });
+
+    $("#linkChamber").click(function () {
+        if (sDate != null) {
+            var url = "/CfmManagement/Index?startDate=" + sDate + "&endDate=" + eDate;
+            window.location.href = url;
+        }
+        else {
+            var url = "/CfmManagement/Index";
+            window.location.href = url;
+        }
+    });
+    $("#linkChamber2").click(function () {
+        if (sDate != null) {
+            var url = "/CfmManagement/Index?startDate=" + sDate + "&endDate=" + eDate;
+            window.location.href = url;
+        }
+        else {
+            var url = "/CfmManagement/Index";
+            window.location.href = url;
+        }
+    });
+    $("#linkChamber3").click(function () {
+        if (sDate != null) {
+            var url = "/CfmManagement/Index?startDate=" + sDate + "&endDate=" + eDate;
+            window.location.href = url;
+        }
+        else {
+            var url = "/CfmManagement/Index";
+            window.location.href = url;
+        }
+    });
+    $("#linkChamber4").click(function () {
+        if (sDate != null) {
+            var url = "/CfmManagement/Index?startDate=" + sDate + "&endDate=" + eDate;
+            window.location.href = url;
+        }
+        else {
+            var url = "/CfmManagement/Index";
+            window.location.href = url;
+        }
+    });
+
+    $("#aknrtst").click(function () {
+        //debugger
+        if (sDate != null) {
+            //debugger
+            var url = "/EmpRecord/Index?startDate=" + sDate + "&endDate=" + eDate + "&status=Retest";
+            window.location.href = url;
+        }
+        else {
+            //debugger
+            var url = "/EmpRecord/Index?status=Retest";
+            window.location.href = url;
+        }
+    });
+
+    $("#brhntbkrj").click(function () {
+        //debugger
+        if (sDate != null) {
+            //debugger
+            var url = "/EmpRecord/Index?startDate=" + sDate + "&endDate=" + eDate + "&status=Berhenti Bekerja";
+            window.location.href = url;
+        }
+        else {
+            //debugger
+            var url = "/EmpRecord/Index?status=Berhenti Bekerja";
+            window.location.href = url;
+        }
     });
     
     fetchData();
@@ -207,7 +297,7 @@ function updateHTMLElementsKaryawanMasuk(startDate, endDate) {
 
     // Contoh:
     $.ajax({
-        url: $("#web_link").val() + "/api/Dashboard/TotalKaryawanMasuk_Datepicker/" + $("#hd_positid").val() + "/" + startDate + "/" + endDate,
+        url: $("#web_link").val() + "/api/Dashboard/TotalKaryawanMasuk_Datepicker?posid=" + $("#hd_positid").val() + "&startDate=" + startDate + "&endDate=" + endDate,
         type: "GET",
         cache: false,
         success: function (result) {
@@ -235,7 +325,7 @@ function UpdateterakhirKaryawanmasuk() {
 function updateHTMLElementsUpdateTerakhirKaryawanMasuk(startDate, endDate) {
     //debugger
     $.ajax({
-        url: $("#web_link").val() + "/api/Dashboard/UpdateterakhirKaryawanMasuk_Datepicker/" + $("#hd_positid").val() + "/" + startDate + "/" + endDate,
+        url: $("#web_link").val() + "/api/Dashboard/UpdateterakhirKaryawanMasuk_Datepicker?posid=" + $("#hd_positid").val() + "&startDate=" + startDate + "&endDate=" + endDate,
         type: "GET",
         cache: false,
         success: function (result) {
@@ -262,7 +352,7 @@ function KaryawanFit() {
 function updateHTMLElementsKaryawanFit(startDate, endDate) {
     //debugger
     $.ajax({
-        url: $("#web_link").val() + "/api/Dashboard/TotalKaryawanFit_Datepicker/" + $("#hd_positid").val() + "/" + startDate + "/" + endDate,
+        url: $("#web_link").val() + "/api/Dashboard/TotalKaryawanFit_Datepicker?posid=" + $("#hd_positid").val() + "&startDate=" + startDate + "&endDate=" + endDate,
         type: "GET",
         cache: false,
         success: function (result) {
@@ -287,7 +377,7 @@ function UpdateterakhirKaryawaFit() {
 function updateHTMLElementsUpdateTerakhirKaryawanFit(startDate, endDate) {
     //debugger
     $.ajax({
-        url: $("#web_link").val() + "/api/Dashboard/UpdateterakhirKaryawanFit_Datepicker/" + $("#hd_positid").val() + "/" + startDate + "/" + endDate,
+        url: $("#web_link").val() + "/api/Dashboard/UpdateterakhirKaryawanFit_Datepicker?posid=" + $("#hd_positid").val() + "&startDate=" + startDate + "&endDate=" + endDate,
         type: "GET",
         cache: false,
         success: function (result) {
@@ -313,7 +403,7 @@ function KaryawanUnfit() {
 function updateHTMLElementsKaryawanUnfit(startDate, endDate) {
     //debugger
     $.ajax({
-        url: $("#web_link").val() + "/api/Dashboard/TotalKaryawanUnfit_Datepicker/" + $("#hd_positid").val() + "/" + startDate + "/" + endDate,
+        url: $("#web_link").val() + "/api/Dashboard/TotalKaryawanUnfit_Datepicker?posid=" + $("#hd_positid").val() + "&startDate=" + startDate + "&endDate=" + endDate,
         type: "GET",
         cache: false,
         success: function (result) {
@@ -338,7 +428,7 @@ function UpdateterakhirKaryawaUnfit() {
 function updateHTMLElementsUpdateTerakhirKaryawanUnfit(startDate, endDate) {
     //debugger
     $.ajax({
-        url: $("#web_link").val() + "/api/Dashboard/UpdateterakhirKaryawanUnfit_Datepicker/" + $("#hd_positid").val() + "/" + startDate + "/" + endDate,
+        url: $("#web_link").val() + "/api/Dashboard/UpdateterakhirKaryawanUnfit_Datepicker?posid=" + $("#hd_positid").val() + "&startDate=" + startDate + "&endDate=" + endDate,
         type: "GET",
         cache: false,
         success: function (result) {
@@ -371,7 +461,7 @@ function updateHTMLElementssudahApproved(startDate, endDate) {
     // Set variabel penanda sebagai true untuk menandakan bahwa grafik sedang dalam proses pembaruan
     isUpdatingChart = true;
     $.ajax({
-        url: $("#web_link").val() + "/api/Dashboard/sudahapproved_Datepicker/" + $("#hd_positid").val() + "/" + startDate + "/" + endDate,
+        url: $("#web_link").val() + "/api/Dashboard/sudahapproved_Datepicker?posid=" + $("#hd_positid").val() + "&startDate=" + startDate + "&endDate=" + endDate,
         type: "GET",
         cache: false,
         success: function (result) {
@@ -408,7 +498,7 @@ function sudahApprovedDate() {
 function updateHTMLElementssudahApprovedDate(startDate, endDate) {
     //debugger
     $.ajax({
-        url: $("#web_link").val() + "/api/Dashboard/sudahApprovedDate_Datepicker/" + $("#hd_positid").val() + "/" + startDate + "/" + endDate,
+        url: $("#web_link").val() + "/api/Dashboard/sudahApprovedDate_Datepicker?posid=" + $("#hd_positid").val() + "&startDate=" + startDate + "&endDate=" + endDate,
         type: "GET",
         cache: false,
         success: function (result) {
@@ -453,7 +543,7 @@ function updateHTMLElementsbutuhApproval(startDate, endDate) {
     isUpdatingChart2 = true;
 
     $.ajax({
-        url: $("#web_link").val() + "/api/Dashboard/butuhApproval_Datepicker/" + $("#hd_positid").val() + "/" + startDate + "/" + endDate,
+        url: $("#web_link").val() + "/api/Dashboard/butuhApproval_Datepicker?posid=" + $("#hd_positid").val() + "&startDate=" + startDate + "&endDate=" + endDate,
         type: "GET",
         cache: false,
         success: function (result) {
@@ -469,7 +559,7 @@ function updateHTMLElementsbutuhApproval(startDate, endDate) {
 function updateHTMLElementsbutuhApprovalDate(startDate, endDate) {
     //debugger
     $.ajax({
-        url: $("#web_link").val() + "/api/Dashboard/butuhApprovalDate_Datepicker/" + $("#hd_positid").val() + "/" + startDate + "/" + endDate,
+        url: $("#web_link").val() + "/api/Dashboard/butuhApprovalDate_Datepicker?posid=" + $("#hd_positid").val() + "&startDate=" + startDate + "&endDate=" + endDate,
         type: "GET",
         cache: false,
         success: function (result) {
@@ -513,7 +603,7 @@ function updateHTMLElementsretest(startDate, endDate) {
     isUpdatingChart3 = true;
 
     $.ajax({
-        url: $("#web_link").val() + "/api/Dashboard/retest_Datepicker/" + $("#hd_positid").val() + "/" + startDate + "/" + endDate,
+        url: $("#web_link").val() + "/api/Dashboard/retest_Datepicker?posid=" + $("#hd_positid").val() + "&startDate=" + startDate + "&endDate=" + endDate,
         type: "GET",
         cache: false,
         success: function (result) {
@@ -529,7 +619,7 @@ function updateHTMLElementsretest(startDate, endDate) {
 function updateHTMLElementsretestDate(startDate, endDate) {
     //debugger
     $.ajax({
-        url: $("#web_link").val() + "/api/Dashboard/retestDate_Datepicker/" + $("#hd_positid").val() + "/" + startDate + "/" + endDate,
+        url: $("#web_link").val() + "/api/Dashboard/retestDate_Datepicker?posid=" + $("#hd_positid").val() + "&startDate=" + startDate + "&endDate=" + endDate,
         type: "GET",
         cache: false,
         success: function (result) {
@@ -573,7 +663,7 @@ function updateHTMLElementstdkdptbekerja(startDate, endDate) {
     isUpdatingChart4 = true;
 
     $.ajax({
-        url: $("#web_link").val() + "/api/Dashboard/tdkdptbekerja_Datepicker/" + $("#hd_positid").val() + "/" + startDate + "/" + endDate,
+        url: $("#web_link").val() + "/api/Dashboard/tdkdptbekerja_Datepicker?posid=" + $("#hd_positid").val() + "&startDate=" + startDate + "&endDate=" + endDate,
         type: "GET",
         cache: false,
         success: function (result) {
@@ -589,7 +679,7 @@ function updateHTMLElementstdkdptbekerja(startDate, endDate) {
 function updateHTMLElementstdkdptbekerjaDate(startDate, endDate) {
     //debugger
     $.ajax({
-        url: $("#web_link").val() + "/api/Dashboard/tdkdptbekerjaDate_Datepicker/" + $("#hd_positid").val() + "/" + startDate + "/" + endDate,
+        url: $("#web_link").val() + "/api/Dashboard/tdkdptbekerjaDate_Datepicker?posid=" + $("#hd_positid").val() + "&startDate=" + startDate + "&endDate=" + endDate,
         type: "GET",
         cache: false,
         success: function (result) {
@@ -615,11 +705,11 @@ function cham001() {
 function updateHTMLElementscham001(startDate, endDate) {
     //debugger
     $.ajax({
-        url: $("#web_link").val() + "/api/Dashboard/cham001_Datepicker/" + startDate + "/" + endDate,
+        url: $("#web_link").val() + "/api/Dashboard/cham001_Datepicker?startDate=" + startDate + "&endDate=" + endDate,
         type: "GET",
         cache: false,
         success: function (result) {
-            debugger
+            //debugger
             $("#cham001").text(result.USDTDY);
         }
     });
@@ -640,7 +730,7 @@ function cham001Date() {
 
 function updateHTMLElementscham001Date(startDate, endDate) {
     $.ajax({
-        url: $("#web_link").val() + "/api/Dashboard/cham001Date_Datepicker/" + startDate + "/" + endDate,
+        url: $("#web_link").val() + "/api/Dashboard/cham001Date_Datepicker?startDate=" + startDate + "&endDate=" + endDate,
         type: "GET",
         cache: false,
         success: function (result) {
@@ -677,9 +767,9 @@ function cham002Date() {
 }
 
 function updateHTMLElementscham002(startDate, endDate) {
-    debugger
+    //debugger
     $.ajax({
-        url: $("#web_link").val() + "/api/Dashboard/cham002_Datepicker/" + startDate + "/" + endDate,
+        url: $("#web_link").val() + "/api/Dashboard/cham002_Datepicker?startDate=" + startDate + "&endDate=" + endDate,
         type: "GET",
         cache: false,
         success: function (result) {
@@ -691,7 +781,7 @@ function updateHTMLElementscham002(startDate, endDate) {
 
 function updateHTMLElementscham002Date(startDate, endDate) {
     $.ajax({
-        url: $("#web_link").val() + "/api/Dashboard/cham002Date_Datepicker/" + startDate + "/" + endDate,
+        url: $("#web_link").val() + "/api/Dashboard/cham002Date_Datepicker?startDate=" + startDate + "&endDate=" + endDate,
         type: "GET",
         cache: false,
         success: function (result) {
@@ -728,9 +818,9 @@ function cham003Date() {
 }
 
 function updateHTMLElementscham003(startDate, endDate) {
-    debugger
+    //debugger
     $.ajax({
-        url: $("#web_link").val() + "/api/Dashboard/cham003_Datepicker/" + startDate + "/" + endDate,
+        url: $("#web_link").val() + "/api/Dashboard/cham003_Datepicker?startDate=" + startDate + "&endDate=" + endDate,
         type: "GET",
         cache: false,
         success: function (result) {
@@ -742,7 +832,7 @@ function updateHTMLElementscham003(startDate, endDate) {
 
 function updateHTMLElementscham003Date(startDate, endDate) {
     $.ajax({
-        url: $("#web_link").val() + "/api/Dashboard/cham003Date_Datepicker/" + startDate + "/" + endDate,
+        url: $("#web_link").val() + "/api/Dashboard/cham003Date_Datepicker?startDate=" + startDate + "&endDate=" + endDate,
         type: "GET",
         cache: false,
         success: function (result) {
@@ -778,9 +868,9 @@ function cham004Date() {
 }
 
 function updateHTMLElementscham004(startDate, endDate) {
-    debugger
+    //debugger
     $.ajax({
-        url: $("#web_link").val() + "/api/Dashboard/cham004_Datepicker/" + startDate + "/" + endDate,
+        url: $("#web_link").val() + "/api/Dashboard/cham004_Datepicker?startDate=" + startDate + "&endDate=" + endDate,
         type: "GET",
         cache: false,
         success: function (result) {
@@ -792,7 +882,7 @@ function updateHTMLElementscham004(startDate, endDate) {
 
 function updateHTMLElementscham004Date(startDate, endDate) {
     $.ajax({
-        url: $("#web_link").val() + "/api/Dashboard/cham004Date_Datepicker/" + startDate + "/" + endDate,
+        url: $("#web_link").val() + "/api/Dashboard/cham004Date_Datepicker?startDate=" + startDate + "&endDate=" + endDate,
         type: "GET",
         cache: false,
         success: function (result) {

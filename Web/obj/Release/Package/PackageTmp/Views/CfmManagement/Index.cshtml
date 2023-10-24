@@ -5,6 +5,9 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<input type="text" id="sD" value="@ViewBag.StartDate" hidden />
+<input type="text" id="eD" value="@ViewBag.EndDate" hidden />
+
 <div class="row">
     <div class="col">
         <h3>Chamber Management</h3>
@@ -39,12 +42,12 @@
     <div class="col text-end">
         <span style="font-size: 10px;">@ViewBag.Count person need approval found &nbsp; &nbsp;</span>
         @*<button id="filterbuton">
-            <i class="nav-main-link-icon fa fa-arrow-down-wide-short" style="font-size: 10px;"></i>
-            <span style="font-size: 10px;">filter</span>
-        </button>
-        <button id="downloadButton2">
-            <i class="nav-main-link-icon fa fa-download" style="font-size: 10px;"></i>
-            <span style="font-size: 10px;">Download</span>*@
+                <i class="nav-main-link-icon fa fa-arrow-down-wide-short" style="font-size: 10px;"></i>
+                <span style="font-size: 10px;">filter</span>
+            </button>
+            <button id="downloadButton2">
+                <i class="nav-main-link-icon fa fa-download" style="font-size: 10px;"></i>
+                <span style="font-size: 10px;">Download</span>*@
         </button>
     </div>
 </div>

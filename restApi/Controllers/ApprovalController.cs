@@ -21,10 +21,10 @@ namespace restApi.Controllers
             try
             {
                 db.CommandTimeout = 120;
-                //var data = db.VW_T_APPROVALs.Where(a => a.APPROVER == "" || a.APPROVER == null && a.ID_STATUS != 1).OrderBy(a => a.APPROVAL_ID).ToList();
 
                 var isAdminorNot = db.VW_Users.Where(c => c.POSITION_ID == posid).FirstOrDefault();
                 var excludedStatuses = new[] { 1, 5, 6, 7 };
+                var excludedStatuses2 = new[] { 1, 4, 5, 6, 7 };
                 if (isAdminorNot.ID_Role == 1)
                 {
                     var data = db.VW_T_APPROVALs.Where(a => a.FLAG == 0 && !excludedStatuses.Contains(a.ID_STATUS.Value)).OrderBy(a => a.APPROVAL_ID).ToList();
@@ -40,7 +40,7 @@ namespace restApi.Controllers
                 }
                 else
                 {
-                    var data = db.VW_T_APPROVALs.Where(a => a.FLAG == 0 && !excludedStatuses.Contains(a.ID_STATUS.Value) && a.ATASAN == posid).OrderBy(a => a.APPROVAL_ID).ToList();
+                    var data = db.VW_T_APPROVALs.Where(a => a.FLAG == 0 && !excludedStatuses2.Contains(a.ID_STATUS.Value) && a.ATASAN == posid).OrderBy(a => a.APPROVAL_ID).ToList();
 
                     return Ok(new { Data = data });
                 }
@@ -116,7 +116,7 @@ namespace restApi.Controllers
                     {
                         cek.ID_STATUS = chambers.ID_STATUS;
                         //cek.APPROVER = chambers.APPROVER;
-                        cek.WAKTU_APPROVAL = DateTime.UtcNow.ToLocalTime();
+                        cek.WAKTU_APPROVAL = DateTime.Now;
                         cek.APPROVER_PARAMEDIC = chambers.APPROVER;
                         cek.FLAG = 1;
 
@@ -128,7 +128,7 @@ namespace restApi.Controllers
                     {
                         cek.ID_STATUS = chambers.ID_STATUS;
                         cek.APPROVER = chambers.APPROVER;
-                        cek.WAKTU_APPROVAL = DateTime.UtcNow.ToLocalTime();
+                        cek.WAKTU_APPROVAL = DateTime.Now;
                         cek.FLAG = 1;
 
                         db.SubmitChanges();
@@ -163,7 +163,7 @@ namespace restApi.Controllers
                     {
                         cek.ID_STATUS = chambers.ID_STATUS;
                         //cek.APPROVER = chambers.APPROVER;
-                        cek.WAKTU_APPROVAL = DateTime.UtcNow.ToLocalTime();
+                        cek.WAKTU_APPROVAL = DateTime.Now;
                         cek.APPROVER_PARAMEDIC = chambers.APPROVER;
                         cek.FLAG = 1;
 
@@ -175,7 +175,7 @@ namespace restApi.Controllers
                     {
                         cek.ID_STATUS = chambers.ID_STATUS;
                         cek.APPROVER = chambers.APPROVER;
-                        cek.WAKTU_APPROVAL = DateTime.UtcNow.ToLocalTime();
+                        cek.WAKTU_APPROVAL = DateTime.Now;
                         cek.FLAG = 1;
 
                         db.SubmitChanges();

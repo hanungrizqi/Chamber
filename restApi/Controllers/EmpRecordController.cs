@@ -242,7 +242,7 @@ namespace restApi.Controllers
                 {
                     cek.ID_STATUS = chambers.ID_STATUS;
                     cek.APPROVER = chambers.APPROVER;
-                    cek.WAKTU_APPROVAL = DateTime.UtcNow.ToLocalTime();
+                    cek.WAKTU_APPROVAL = DateTime.Now;
                     cek.FLAG = 1;
 
                     db.SubmitChanges();
@@ -306,7 +306,7 @@ namespace restApi.Controllers
                 {
                     cek.ID_STATUS = chambers.ID_STATUS;
                     cek.APPROVER = chambers.APPROVER;
-                    cek.WAKTU_APPROVAL = DateTime.UtcNow.ToLocalTime();
+                    cek.WAKTU_APPROVAL = DateTime.Now;
                     cek.NOTED = chambers.NOTED;
                     cek.FLAG = 1;
 

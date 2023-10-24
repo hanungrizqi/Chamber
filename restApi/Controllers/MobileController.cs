@@ -15,33 +15,6 @@ namespace restApi.Controllers
         CFMDataContext db = new CFMDataContext();
 
         [HttpGet]
-        [Route("Dashboard")]
-        public IHttpActionResult Dashboard()
-        {
-            try
-            {
-                var data = db.VW_T_CFCs.Select(a => new
-                {
-                    nama = a.NAME,
-                    umur = a.AGE,
-                    tanggal_check = a.WAKTU_ABSEN,
-                    temperatur_badan = a.TEMPRATURE,
-                    sys = a.SYSTOLIC,
-                    dia = a.DIASTOLIC,
-                    spo = a.OXYGEN_SATURATION,
-                    heart = a.HEART_RATE,
-                    nrp = a.NRP
-                }).ToList();
-
-                return Ok(new { Data = data, Total = data.Count() });
-            }
-            catch (Exception)
-            {
-                return BadRequest();
-            }
-        }
-
-        [HttpGet]
         [Route("Dashboards")]
         public IHttpActionResult Dashboards(string nrp)
         {
@@ -82,12 +55,14 @@ namespace restApi.Controllers
                 .Where(a => a.NRP == nrp && a.WAKTU_ABSEN.Value.Year == currentYear)
                 .Select(a => new
                 {
+                    day = a.WAKTU_ABSEN.Value.ToString("dddd", new CultureInfo("id-ID")),
                     nrp = a.NRP,
                     history_tanggal = a.WAKTU_ABSEN.Value.ToString("d MMMM yyyy | HH:mm", new CultureInfo("id-ID")),
                     idchamber = a.ID_CHAMBER,
+                    status = a.STATUS,
                     temperatur_badan = $"{a.TEMPRATURE} C",
-                    day = a.WAKTU_ABSEN.Value.ToString("dddd", new CultureInfo("id-ID")),
-                    status = a.STATUS
+                    value = a.TEMPRATURE,
+                    satuan = "C",
                 }).ToList();
 
                 return Ok(new { Data = data });
@@ -109,12 +84,15 @@ namespace restApi.Controllers
                  .Where(a => a.NRP == nrp && a.WAKTU_ABSEN.Value.Year == currentYear)
                 .Select(a => new
                 {
+                    day = a.WAKTU_ABSEN.Value.ToString("dddd", new CultureInfo("id-ID")),
                     nrp = a.NRP,
                     history_tanggal = a.WAKTU_ABSEN.Value.ToString("d MMMM yyyy | HH:mm", new CultureInfo("id-ID")),
                     idchamber = a.ID_CHAMBER,
+                    status = a.STATUS,
                     tekanan_darah = $"SYS ({a.SYSTOLIC}) / DIA ({a.DIASTOLIC})",
-                    day = a.WAKTU_ABSEN.Value.ToString("dddd", new CultureInfo("id-ID")),
-                    status = a.STATUS
+                    value_sys = a.SYSTOLIC,
+                    value_dia = a.DIASTOLIC,
+                    satuan = "",
                 }).ToList();
 
                 return Ok(new { Data = data });
@@ -136,12 +114,14 @@ namespace restApi.Controllers
                 .Where(a => a.NRP == nrp && a.WAKTU_ABSEN.Value.Year == currentYear)
                 .Select(a => new
                 {
+                    day = a.WAKTU_ABSEN.Value.ToString("dddd", new CultureInfo("id-ID")),
                     nrp = a.NRP,
                     history_tanggal = a.WAKTU_ABSEN.Value.ToString("d MMMM yyyy | HH:mm", new CultureInfo("id-ID")),
                     idchamber = a.ID_CHAMBER,
+                    status = a.STATUS,
                     spo02 = $"{a.OXYGEN_SATURATION}%",
-                    day = a.WAKTU_ABSEN.Value.ToString("dddd", new CultureInfo("id-ID")),
-                    status = a.STATUS
+                    value = a.OXYGEN_SATURATION,
+                    satuan = "%",
                 }).ToList();
 
                 return Ok(new { Data = data });
@@ -163,12 +143,14 @@ namespace restApi.Controllers
                 .Where(a => a.NRP == nrp && a.WAKTU_ABSEN.Value.Year == currentYear)
                 .Select(a => new
                 {
+                    day = a.WAKTU_ABSEN.Value.ToString("dddd", new CultureInfo("id-ID")),
                     nrp = a.NRP,
                     history_tanggal = a.WAKTU_ABSEN.Value.ToString("d MMMM yyyy | HH:mm", new CultureInfo("id-ID")),
                     idchamber = a.ID_CHAMBER,
+                    status = a.STATUS,
                     heart_rate = $"{a.HEART_RATE} Bpm",
-                    day = a.WAKTU_ABSEN.Value.ToString("dddd", new CultureInfo("id-ID")),
-                    status = a.STATUS
+                    value = a.HEART_RATE,
+                    satuan = "bpm"
                 }).ToList();
 
                 return Ok(new { Data = data });
@@ -195,6 +177,8 @@ namespace restApi.Controllers
                     idchamber = a.ID_CHAMBER,
                     temperatur_badan = $"{a.TEMPRATURE} C",
                     tekanan_darah = $"SYS ({a.SYSTOLIC}) / DIA ({a.DIASTOLIC})",
+                    tekanan_darah_sys = a.SYSTOLIC,
+                    tekanan_darah_dia = a.DIASTOLIC,
                     spo02 = $"{a.OXYGEN_SATURATION}%",
                     heart_rate = $"{a.HEART_RATE} Bpm",
                     day = a.WAKTU_ABSEN.Value.ToString("dddd", new CultureInfo("id-ID")),
@@ -237,12 +221,14 @@ namespace restApi.Controllers
                 var data = dataFromDB
                     .Select(a => new
                     {
+                        day = a.WAKTU_ABSEN.Value.ToString("dddd", new CultureInfo("id-ID")),
                         nrp = a.NRP,
                         history_tanggal = a.WAKTU_ABSEN.Value.ToString("d MMMM yyyy | HH:mm", new CultureInfo("id-ID")),
                         idchamber = a.ID_CHAMBER,
+                        status = a.STATUS,
                         temperatur_badan = $"{a.TEMPRATURE} C",
-                        day = a.WAKTU_ABSEN.Value.ToString("dddd", new CultureInfo("id-ID")),
-                        status = a.STATUS
+                        value = a.TEMPRATURE,
+                        satuan = "C",
                     })
                     .OrderBy(a => a.history_tanggal)
                     .ToList();
@@ -278,12 +264,15 @@ namespace restApi.Controllers
                 var data = dataFromDB
                     .Select(a => new
                     {
+                        day = a.WAKTU_ABSEN.Value.ToString("dddd", new CultureInfo("id-ID")),
                         nrp = a.NRP,
                         history_tanggal = a.WAKTU_ABSEN.Value.ToString("d MMMM yyyy | HH:mm", new CultureInfo("id-ID")),
                         idchamber = a.ID_CHAMBER,
+                        status = a.STATUS,
                         tekanan_darah = $"SYS ({a.SYSTOLIC}) / DIA ({a.DIASTOLIC})",
-                        day = a.WAKTU_ABSEN.Value.ToString("dddd", new CultureInfo("id-ID")),
-                        status = a.STATUS
+                        value_sys = a.SYSTOLIC,
+                        value_dia = a.DIASTOLIC,
+                        satuan = "",
                     })
                     .OrderBy(a => a.history_tanggal)
                     .ToList();
@@ -319,12 +308,14 @@ namespace restApi.Controllers
                 var data = dataFromDB
                     .Select(a => new
                     {
+                        day = a.WAKTU_ABSEN.Value.ToString("dddd", new CultureInfo("id-ID")),
                         nrp = a.NRP,
                         history_tanggal = a.WAKTU_ABSEN.Value.ToString("d MMMM yyyy | HH:mm", new CultureInfo("id-ID")),
                         idchamber = a.ID_CHAMBER,
+                        status = a.STATUS,
                         spo02 = $"{a.OXYGEN_SATURATION}%",
-                        day = a.WAKTU_ABSEN.Value.ToString("dddd", new CultureInfo("id-ID")),
-                        status = a.STATUS
+                        value = a.OXYGEN_SATURATION,
+                        satuan = "%",
                     })
                     .OrderBy(a => a.history_tanggal)
                     .ToList();
@@ -360,12 +351,14 @@ namespace restApi.Controllers
                 var data = dataFromDB
                     .Select(a => new
                     {
+                        day = a.WAKTU_ABSEN.Value.ToString("dddd", new CultureInfo("id-ID")),
                         nrp = a.NRP,
                         history_tanggal = a.WAKTU_ABSEN.Value.ToString("d MMMM yyyy | HH:mm", new CultureInfo("id-ID")),
                         idchamber = a.ID_CHAMBER,
+                        status = a.STATUS,
                         heart_rate = $"{a.HEART_RATE} Bpm",
-                        day = a.WAKTU_ABSEN.Value.ToString("dddd", new CultureInfo("id-ID")),
-                        status = a.STATUS
+                        value = a.HEART_RATE,
+                        satuan = "bpm"
                     })
                     .OrderBy(a => a.history_tanggal)
                     .ToList();
@@ -406,6 +399,8 @@ namespace restApi.Controllers
                         idchamber = a.ID_CHAMBER,
                         temperatur_badan = $"{a.TEMPRATURE} C",
                         tekanan_darah = $"SYS ({a.SYSTOLIC}) / DIA ({a.DIASTOLIC})",
+                        tekanan_darah_sys = a.SYSTOLIC,
+                        tekanan_darah_dia = a.DIASTOLIC,
                         spo02 = $"{a.OXYGEN_SATURATION}%",
                         heart_rate = $"{a.HEART_RATE} Bpm",
                         day = a.WAKTU_ABSEN.Value.ToString("dddd", new CultureInfo("id-ID")),

@@ -1,6 +1,15 @@
 ﻿Codebase.helpersOnLoad(['cb-table-tools-checkable', 'cb-table-tools-sections', 'js-flatpickr', 'jq-datepicker', 'jq-colorpicker', 'jq-maxlength', 'jq-select2', 'jq-rangeslider', 'jq-masked-inputs', 'jq-pw-strength']);
 
 $("document").ready(function () {
+    if ($('#sD').val()) {
+        debugger
+        table.ajax.url($("#web_link").val() + "/api/CfmManagement/Get_ListChambers_Daterange?startDate=" + $('#sD').val() + "&endDate=" + $('#eD').val()).load();
+        $("#example-flatpickr-range").flatpickr({
+            mode: "range",
+            defaultDate: [$('#sD').val(), $('#eD').val()],
+
+        });
+    }
     $("#example-flatpickr-range").flatpickr({
         mode: "range",
         onChange: function (selectedDates, dateStr, instance) {
@@ -9,10 +18,27 @@ $("document").ready(function () {
                 var startDate = selectedDates[0];
                 var endDate = selectedDates[1];
 
-                var startDateLocal = startDate.toLocaleDateString('en-CA');
-                var endDateLocal = endDate.toLocaleDateString('en-CA');
+                //var startDateLocal = startDate.toLocaleDateString('en-CA');
+                //var endDateLocal = endDate.toLocaleDateString('en-CA');
 
-                table.ajax.url($("#web_link").val() + "/api/CfmManagement/Get_ListChambers_Daterange/" + startDateLocal + "/" + endDateLocal).load();
+                var currentTime = new Date();
+                var startDateLocal = startDate.getFullYear() + '-' +
+                    ('0' + (startDate.getMonth() + 1)).slice(-2) + '-' +
+                    ('0' + startDate.getDate()).slice(-2) + ' ' +
+                    '00' + ':' +
+                    '00' + ':' +
+                    '00' + '.' +
+                    currentTime.getMilliseconds();
+
+                var endDateLocal = endDate.getFullYear() + '-' +
+                    ('0' + (endDate.getMonth() + 1)).slice(-2) + '-' +
+                    ('0' + endDate.getDate()).slice(-2) + ' ' +
+                    ('0' + currentTime.getHours()).slice(-2) + ':' +
+                    ('0' + currentTime.getMinutes()).slice(-2) + ':' +
+                    ('0' + currentTime.getSeconds()).slice(-2) + '.' +
+                    currentTime.getMilliseconds();
+
+                table.ajax.url($("#web_link").val() + "/api/CfmManagement/Get_ListChambers_Daterange?startDate=" + startDateLocal + "&endDate=" + endDateLocal).load();
             }
         },
     });
