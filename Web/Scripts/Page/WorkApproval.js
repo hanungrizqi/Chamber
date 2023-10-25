@@ -72,7 +72,6 @@ $(document).on('click', '.action-link', function (e) {
 
 var table = $("#tbl_approval").DataTable({
     ajax: {
-        //url: $("#web_link").val() + "/api/Approval/Get_ListApproval",
         url: $("#web_link").val() + "/api/Approval/Get_ListApproval/" + $("#hd_positid").val(),
         dataSrc: "Data",
     },
@@ -175,9 +174,12 @@ var table = $("#tbl_approval").DataTable({
         {
             data: 'WAKTU_ABSEN',
             render: function (data, type, row) {
-                const tanggal = moment(data).format("DD/MM/YYYY HH:mm");
-                return tanggal;
-            }
+                if (type === 'display') {
+                    return moment(data).format("DD/MM/YYYY HH:mm");
+                }
+                return data;
+            },
+            type: 'date',
         },
         { data: 'ID_CHAMBER' },
         {
@@ -226,9 +228,6 @@ var table = $("#tbl_approval").DataTable({
                 rowCheckboxes[i].checked = isChecked;
             }
         });
-        //var filterButton = document.getElementById('filterbuton');
-        //debugger
-        //var self = this;
         this.api()
             .columns(3)
             .every(function () {
@@ -251,28 +250,6 @@ var table = $("#tbl_approval").DataTable({
         $("#search").on("keyup", function () {
             table.search(this.value).draw();
         });
-        //filterButton.addEventListener('click', function () {
-        //    // Memanggil fungsi yang menampilkan isi filter
-        //    self.api()
-        //        .columns(3)
-        //        .every(function () {
-        //            var column = this;
-        //            var select = $('<select class="form-control form-control-sm" style="width:200px; display:inline-block; margin-left: 10px;"><option value="">-- STATUS --</option></select>')
-        //                .appendTo($("#tbl_approval_filter.dataTables_filter"))
-        //                .on('change', function () {
-        //                    var val = $.fn.dataTable.util.escapeRegex($(this).val());
-        //                    console.log('Selected value:', val);
-        //                    column.search(val ? '^' + val + '$' : '', true, false).draw();
-        //                });
-        //            column
-        //                .data()
-        //                .unique()
-        //                .sort()
-        //                .each(function (d, j) {
-        //                    select.append('<option value="' + d + '">' + d + '</option>');
-        //                });
-        //        });
-        //});
     },
 });
 

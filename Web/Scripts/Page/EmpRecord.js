@@ -173,11 +173,19 @@ var table = $("#tbl_empr").DataTable({
             }
         },
         {
+            //data: 'WAKTU_ABSEN',
+            //render: function (data, type, row) {
+            //    const tanggal = moment(data).format("DD/MM/YYYY HH:mm");
+            //    return tanggal;
+            //}
             data: 'WAKTU_ABSEN',
             render: function (data, type, row) {
-                const tanggal = moment(data).format("DD/MM/YYYY HH:mm");
-                return tanggal;
-            }
+                if (type == 'display') {
+                    return moment(data).format("DD/MM/YYYY HH:mm");
+                }
+                return data;
+            },
+            type: 'date',
         },
         { data: 'ID_CHAMBER' },
         {
