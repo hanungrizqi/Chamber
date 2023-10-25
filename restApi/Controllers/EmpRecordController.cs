@@ -13,7 +13,7 @@ namespace restApi.Controllers
     public class EmpRecordController : ApiController
     {
         CFMDataContext db = new CFMDataContext();
-
+         
         [HttpGet]
         [Route("Get_ListEmprecord/{posid}")]
         public IHttpActionResult Get_ListEmprecord(string posid)
