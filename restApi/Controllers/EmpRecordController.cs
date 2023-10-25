@@ -172,7 +172,8 @@ namespace restApi.Controllers
                 }
                 else
                 {
-                    var data = db.VW_T_APPROVALs.Where(a => a.POSITION_ID == posid).OrderBy(a => a.APPROVAL_ID).ToList();
+                    //var data = db.VW_T_APPROVALs.Where(a => a.POSITION_ID == posid).OrderBy(a => a.APPROVAL_ID).ToList();
+                    var data = db.VW_T_APPROVALs.Where(a => a.NRP == isAdminorNot.Username).OrderBy(a => a.APPROVAL_ID).ToList();
 
                     return Ok(new { Data = data });
                 }
@@ -209,8 +210,61 @@ namespace restApi.Controllers
                 }
                 else
                 {
-                    query = db.VW_T_APPROVALs.Where(a => a.POSITION_ID == posid);
+                    query = db.VW_T_APPROVALs.Where(a => a.NRP == isAdminorNot.Username);
                 }
+
+                if (DateTime.TryParseExact(startDate, "yyyy-MM-dd HH:mm:ss.fff", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime parsedStartDate) && DateTime.TryParseExact(endDate, "yyyy-MM-dd HH:mm:ss.fff", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime parsedEndDate))
+                {
+                    query = query.Where(a => a.WAKTU_ABSEN >= parsedStartDate && a.WAKTU_ABSEN <= parsedEndDate);
+                }
+
+                var data = query.OrderBy(a => a.APPROVAL_ID).ToList();
+
+                List<VwLatest> filteredData = GetFilteredData(data);
+                return Ok(new { Data = filteredData });
+
+                //return Ok(new { Data = data });
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
+        }
+
+        [HttpGet]
+        [Route("Get_ListEmprecord_Operator/{nrp}")]
+        public IHttpActionResult Get_ListEmprecord_Operator(string nrp)
+        {
+            try
+            {
+                db.CommandTimeout = 120;
+                var isAdminorNot = db.VW_Users.Where(c => c.Username == nrp).FirstOrDefault();
+                var excludedStatuses = new[] { 1, 5, 6, 7 };
+
+                //var data = db.VW_T_APPROVALs.Where(a => a.POSITION_ID == posid).OrderBy(a => a.APPROVAL_ID).ToList();
+                var data = db.VW_T_APPROVALs.Where(a => a.NRP == isAdminorNot.Username).OrderBy(a => a.APPROVAL_ID).ToList();
+
+                return Ok(new { Data = data });
+
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
+        }
+
+        [HttpGet]
+        [Route("Get_ListEmprecord_Daterange_Operator")]
+        public IHttpActionResult Get_ListEmprecord_Daterange_Operator(string nrp, string startDate, string endDate)
+        {
+            try
+            {
+                db.CommandTimeout = 120;
+                var isAdminorNot = db.VW_Users.Where(c => c.Username == nrp).FirstOrDefault();
+                var excludedStatuses = new[] { 1, 5, 6, 7 };
+                IQueryable<VW_T_APPROVAL> query = null;
+
+                query = db.VW_T_APPROVALs.Where(a => a.NRP == isAdminorNot.Username);
 
                 if (DateTime.TryParseExact(startDate, "yyyy-MM-dd HH:mm:ss.fff", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime parsedStartDate) && DateTime.TryParseExact(endDate, "yyyy-MM-dd HH:mm:ss.fff", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime parsedEndDate))
                 {

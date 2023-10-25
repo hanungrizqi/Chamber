@@ -7,7 +7,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     <TimeStampOfAssociatedLegacyPublishXmlFile />
     <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAABdQzpkk3hU2ILYZa7zddOQAAAAACAAAAAAAQZgAAAAEAACAAAAAA6a9fjdzqWux0qUS7hvamRLumrqVqDdT1jhL1Nq25aAAAAAAOgAAAAAIAACAAAABFrt8ctWyO1aujKPSr+zJG/kETotNAABu78Ah11BuRsIAAAAC093R9f311Rbqi2LAxFj9nKJYU2hRho9zmNmyVe+seqpvsBzufIIGeaCVv98g615ciOMw0AQjnqvC9WcM23goDdj+Bprmy7KoNx80dkni15B3zwCvN9ehFl36qrhwqDjsCzm9Se9K5mnS0mmsvFq8lrUlR6zRji65yNN8suT0g+kAAAACtSur82E6YU9FeEmAbE9LmHAFLBUC0NC5YWCLLAUjhsqoLIVUYytyjStKpB04XL5LJhRyl34kEcisFf2pF6VBZ</EncryptedPassword>
     <_PublishTargetUrl>ftps://waws-prod-sg1-053.ftp.azurewebsites.windows.net/site/wwwroot</_PublishTargetUrl>
-    <History>True|2023-10-24T08:28:55.1465368Z;True|2023-10-23T11:55:34.2462126+07:00;True|2023-10-19T16:39:15.4814984+07:00;False|2023-10-19T15:53:52.9930583+07:00;</History>
+    <History>True|2023-10-25T04:36:34.2858446Z;True|2023-10-24T15:28:55.1465368+07:00;True|2023-10-23T11:55:34.2462126+07:00;True|2023-10-19T16:39:15.4814984+07:00;False|2023-10-19T15:53:52.9930583+07:00;</History>
     <LastFailureDetails />
   </PropertyGroup>
   <ItemGroup>
@@ -207,10 +207,10 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>05/27/2022 23:42:50</publishTime>
     </File>
     <File Include="bin/Web.dll">
-      <publishTime>10/24/2023 15:05:37</publishTime>
+      <publishTime>10/25/2023 14:02:56</publishTime>
     </File>
     <File Include="bin/Web.pdb">
-      <publishTime>10/24/2023 15:05:37</publishTime>
+      <publishTime>10/25/2023 14:02:56</publishTime>
     </File>
     <File Include="bin/WebGrease.dll">
       <publishTime>01/23/2014 13:57:34</publishTime>
@@ -12837,13 +12837,13 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>10/23/2023 10:56:47</publishTime>
     </File>
     <File Include="Scripts/Page/EmpRecord.js">
-      <publishTime>10/23/2023 10:26:50</publishTime>
+      <publishTime>10/25/2023 13:54:59</publishTime>
     </File>
     <File Include="Scripts/Page/EmpRecordDetail.js">
       <publishTime>10/20/2023 10:00:01</publishTime>
     </File>
     <File Include="Scripts/Page/Home.js">
-      <publishTime>10/23/2023 11:07:18</publishTime>
+      <publishTime>10/25/2023 08:55:10</publishTime>
     </File>
     <File Include="Scripts/Page/login.js">
       <publishTime>10/10/2023 10:30:43</publishTime>
@@ -12855,7 +12855,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>09/27/2023 10:34:02</publishTime>
     </File>
     <File Include="Scripts/Page/WorkApproval.js">
-      <publishTime>10/23/2023 10:35:35</publishTime>
+      <publishTime>10/25/2023 10:53:45</publishTime>
     </File>
     <File Include="Scripts/Page/WorkApprovalDetail.js">
       <publishTime>10/18/2023 10:16:10</publishTime>
@@ -12903,7 +12903,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>09/20/2023 10:46:04</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>10/24/2023 15:05:40</publishTime>
+      <publishTime>10/25/2023 14:02:58</publishTime>
     </File>
   </ItemGroup>
 </Project>

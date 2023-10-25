@@ -83,7 +83,6 @@ $("document").ready(function () {
             window.location.href = url;
         }
     });
-
     $("#linkButuhApprove").click(function () {
         if (sDate != null) {
             var url = "/Approval/Index?startDate=" + sDate + "&endDate=" + eDate;
@@ -149,7 +148,6 @@ $("document").ready(function () {
             window.location.href = url;
         }
     });
-
     $("#brhntbkrj").click(function () {
         //debugger
         if (sDate != null) {
@@ -691,7 +689,7 @@ function updateHTMLElementstdkdptbekerjaDate(startDate, endDate) {
 //cham001
 function cham001() {
     $.ajax({
-        url: $("#web_link").val() + "/api/Dashboard/cham001", //URI,
+        url: $("#web_link").val() + "/api/Dashboard/cham001?posid=" + $("#hd_positid").val(), //URI,
         type: "GET",
         cache: false,
         success: function (result) {
@@ -705,7 +703,7 @@ function cham001() {
 function updateHTMLElementscham001(startDate, endDate) {
     //debugger
     $.ajax({
-        url: $("#web_link").val() + "/api/Dashboard/cham001_Datepicker?startDate=" + startDate + "&endDate=" + endDate,
+        url: $("#web_link").val() + "/api/Dashboard/cham001_Datepicker?startDate=" + startDate + "&endDate=" + endDate + "&posid=" + $("#hd_positid").val(),
         type: "GET",
         cache: false,
         success: function (result) {
@@ -717,7 +715,7 @@ function updateHTMLElementscham001(startDate, endDate) {
 
 function cham001Date() {
     $.ajax({
-        url: $("#web_link").val() + "/api/Dashboard/cham001Date", //URI,
+        url: $("#web_link").val() + "/api/Dashboard/cham001Date?posid=" + $("#hd_positid").val(), //URI,
         type: "GET",
         cache: false,
         success: function (result) {
@@ -730,7 +728,7 @@ function cham001Date() {
 
 function updateHTMLElementscham001Date(startDate, endDate) {
     $.ajax({
-        url: $("#web_link").val() + "/api/Dashboard/cham001Date_Datepicker?startDate=" + startDate + "&endDate=" + endDate,
+        url: $("#web_link").val() + "/api/Dashboard/cham001Date_Datepicker?startDate=" + startDate + "&endDate=" + endDate + "&posid=" + $("#hd_positid").val(),
         type: "GET",
         cache: false,
         success: function (result) {
@@ -742,7 +740,7 @@ function updateHTMLElementscham001Date(startDate, endDate) {
 //cham002
 function cham002() {
     $.ajax({
-        url: $("#web_link").val() + "/api/Dashboard/cham002", //URI,
+        url: $("#web_link").val() + "/api/Dashboard/cham002?posid=" + $("#hd_positid").val(), //URI,
         type: "GET",
         cache: false,
         success: function (result) {
@@ -755,7 +753,7 @@ function cham002() {
 
 function cham002Date() {
     $.ajax({
-        url: $("#web_link").val() + "/api/Dashboard/cham002Date", //URI,
+        url: $("#web_link").val() + "/api/Dashboard/cham002Date?posid=" + $("#hd_positid").val(), //URI,
         type: "GET",
         cache: false,
         success: function (result) {
@@ -769,7 +767,7 @@ function cham002Date() {
 function updateHTMLElementscham002(startDate, endDate) {
     //debugger
     $.ajax({
-        url: $("#web_link").val() + "/api/Dashboard/cham002_Datepicker?startDate=" + startDate + "&endDate=" + endDate,
+        url: $("#web_link").val() + "/api/Dashboard/cham002_Datepicker?startDate=" + startDate + "&endDate=" + endDate + "&posid=" + $("#hd_positid").val(),
         type: "GET",
         cache: false,
         success: function (result) {
@@ -781,7 +779,7 @@ function updateHTMLElementscham002(startDate, endDate) {
 
 function updateHTMLElementscham002Date(startDate, endDate) {
     $.ajax({
-        url: $("#web_link").val() + "/api/Dashboard/cham002Date_Datepicker?startDate=" + startDate + "&endDate=" + endDate,
+        url: $("#web_link").val() + "/api/Dashboard/cham002Date_Datepicker?startDate=" + startDate + "&endDate=" + endDate + "&posid=" + $("#hd_positid").val(),
         type: "GET",
         cache: false,
         success: function (result) {
@@ -793,7 +791,7 @@ function updateHTMLElementscham002Date(startDate, endDate) {
 //cham003
 function cham003() {
     $.ajax({
-        url: $("#web_link").val() + "/api/Dashboard/cham003", //URI,
+        url: $("#web_link").val() + "/api/Dashboard/cham003?posid=" + $("#hd_positid").val(), //URI,
         type: "GET",
         cache: false,
         success: function (result) {
@@ -806,7 +804,7 @@ function cham003() {
 
 function cham003Date() {
     $.ajax({
-        url: $("#web_link").val() + "/api/Dashboard/cham003Date", //URI,
+        url: $("#web_link").val() + "/api/Dashboard/cham003Date?posid=" + $("#hd_positid").val(), //URI,
         type: "GET",
         cache: false,
         success: function (result) {
@@ -820,7 +818,7 @@ function cham003Date() {
 function updateHTMLElementscham003(startDate, endDate) {
     //debugger
     $.ajax({
-        url: $("#web_link").val() + "/api/Dashboard/cham003_Datepicker?startDate=" + startDate + "&endDate=" + endDate,
+        url: $("#web_link").val() + "/api/Dashboard/cham003_Datepicker?startDate=" + startDate + "&endDate=" + endDate + "&posid=" + $("#hd_positid").val(),
         type: "GET",
         cache: false,
         success: function (result) {
@@ -832,7 +830,7 @@ function updateHTMLElementscham003(startDate, endDate) {
 
 function updateHTMLElementscham003Date(startDate, endDate) {
     $.ajax({
-        url: $("#web_link").val() + "/api/Dashboard/cham003Date_Datepicker?startDate=" + startDate + "&endDate=" + endDate,
+        url: $("#web_link").val() + "/api/Dashboard/cham003Date_Datepicker?startDate=" + startDate + "&endDate=" + endDate + "&posid=" + $("#hd_positid").val(),
         type: "GET",
         cache: false,
         success: function (result) {
@@ -844,7 +842,7 @@ function updateHTMLElementscham003Date(startDate, endDate) {
 //cham004
 function cham004() {
     $.ajax({
-        url: $("#web_link").val() + "/api/Dashboard/cham004", //URI,
+        url: $("#web_link").val() + "/api/Dashboard/cham004?posid=" + $("#hd_positid").val(), //URI,
         type: "GET",
         cache: false,
         success: function (result) {
@@ -857,7 +855,7 @@ function cham004() {
 
 function cham004Date() {
     $.ajax({
-        url: $("#web_link").val() + "/api/Dashboard/cham004Date", //URI,
+        url: $("#web_link").val() + "/api/Dashboard/cham004Date?posid=" + $("#hd_positid").val(), //URI,
         type: "GET",
         cache: false,
         success: function (result) {
@@ -870,7 +868,7 @@ function cham004Date() {
 function updateHTMLElementscham004(startDate, endDate) {
     //debugger
     $.ajax({
-        url: $("#web_link").val() + "/api/Dashboard/cham004_Datepicker?startDate=" + startDate + "&endDate=" + endDate,
+        url: $("#web_link").val() + "/api/Dashboard/cham004_Datepicker?startDate=" + startDate + "&endDate=" + endDate + "&posid=" + $("#hd_positid").val(),
         type: "GET",
         cache: false,
         success: function (result) {
@@ -882,7 +880,7 @@ function updateHTMLElementscham004(startDate, endDate) {
 
 function updateHTMLElementscham004Date(startDate, endDate) {
     $.ajax({
-        url: $("#web_link").val() + "/api/Dashboard/cham004Date_Datepicker?startDate=" + startDate + "&endDate=" + endDate,
+        url: $("#web_link").val() + "/api/Dashboard/cham004Date_Datepicker?startDate=" + startDate + "&endDate=" + endDate + "&posid=" + $("#hd_positid").val(),
         type: "GET",
         cache: false,
         success: function (result) {

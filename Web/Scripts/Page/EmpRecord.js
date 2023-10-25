@@ -39,9 +39,15 @@ $("document").ready(function () {
                     ('0' + currentTime.getMinutes()).slice(-2) + ':' +
                     ('0' + currentTime.getSeconds()).slice(-2) + '.' +
                     currentTime.getMilliseconds();
+                debugger
+                if ($("#hd_idroles").val() == 3) {
+                    table.ajax.url($("#web_link").val() + "/api/EmpRecord/Get_ListEmprecord_Daterange_Operator?nrp=" + $("#hd_nrp").val() + "&startDate=" + startDateFormatted + "&endDate=" + endDateFormatted).load();
+                }
+                else {
+                    table.ajax.url($("#web_link").val() + "/api/EmpRecord/Get_ListEmprecord_Daterange?posid=" + $("#hd_positid").val() + "&startDate=" + startDateFormatted + "&endDate=" + endDateFormatted).load();
 
-                table.ajax.url($("#web_link").val() + "/api/EmpRecord/Get_ListEmprecord_Daterange?posid=" + $("#hd_positid").val() + "&startDate=" + startDateFormatted + "&endDate=" + endDateFormatted).load();
-
+                }
+                
             }
         },
     });
@@ -67,14 +73,28 @@ $(document).on('click', '.action-link', function (e) {
     }
 });
 
-var table = $("#tbl_empr").DataTable({
-    ajax: {
-        //url: $("#web_link").val() + "/api/Emprecord/Get_ListEmprecord",
+var ajaxConfig;
+
+if ($("#hd_idroles").val() == 3) {
+    ajaxConfig = {
+        url: $("#web_link").val() + "/api/Emprecord/Get_ListEmprecord_Operator/" + $("#hd_nrp").val(),
+        dataSrc: "Data"
+    };
+} else {
+    ajaxConfig = {
         url: $("#web_link").val() + "/api/Emprecord/Get_ListEmprecord/" + $("#hd_positid").val(),
-        dataSrc: "Data",
-    },
+        dataSrc: "Data"
+    };
+}
+
+var table = $("#tbl_empr").DataTable({
+    //ajax: {
+    //    url: $("#web_link").val() + "/api/Emprecord/Get_ListEmprecord/" + $("#hd_positid").val(),
+    //    dataSrc: "Data",
+    //},
+    ajax: ajaxConfig,
     fixedHeader: {
-        header: true, // Aktifkan header tetap
+        header: true,
     },
     "columnDefs": [
         { "className": "dt-nowrap", "targets": '_all' },
