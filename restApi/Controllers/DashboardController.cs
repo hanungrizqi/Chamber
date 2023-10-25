@@ -1086,25 +1086,40 @@ namespace restApi.Controllers
 
         [HttpGet]
         [Route("cham001Date")]
-        public IHttpActionResult cham001Date()
+        public IHttpActionResult cham001Date(string posid)
         {
             try
             {
                 db.CommandTimeout = 120;
-                VW_R_CFM_MANAGEMENT data = new VW_R_CFM_MANAGEMENT();
-
-                data = db.VW_R_CFM_MANAGEMENTs.FirstOrDefault(a => a.ID == 1);
-
-                if (data != null)
+                var checkRole = db.VW_Users.Where(a => a.POSITION_ID == posid).FirstOrDefault();
+                if (checkRole.ID_Role == 1 || checkRole.ID_Role == 4)
                 {
-                    var formattedDate = data.LSTUSD.Value.ToString("d MMMM yyyy | HH:mm", new CultureInfo("id-ID"));
+                    VW_R_CFM_MANAGEMENT data = new VW_R_CFM_MANAGEMENT();
 
-                    return Ok(new { Data = data, Tanggal = formattedDate });
+                    data = db.VW_R_CFM_MANAGEMENTs.FirstOrDefault(a => a.ID == 1);
+
+                    if (data != null)
+                    {
+                        var formattedDate = data.LSTUSD.Value.ToString("d MMMM yyyy | HH:mm", new CultureInfo("id-ID"));
+
+                        return Ok(new { Data = data, Tanggal = formattedDate });
+                    }
+                    else
+                    {
+                        return NotFound();
+                    }
                 }
                 else
                 {
-                    return NotFound();
+                    var data = db.cufn_getCFMManagement_forGL(posid).ToList();
+
+                    var date = data.Where(a => a.ID == 1).ToList();
+                    var datee = date.Select(d => d.LSTUSD).FirstOrDefault();
+                    var formattedDate = datee.Value.ToString("d MMMM yyyy | HH:mm", new CultureInfo("id-ID"));
+
+                    return Ok(new { Data = data, Tanggal = formattedDate });
                 }
+                
             }
             catch (Exception)
             {
@@ -1236,21 +1251,34 @@ namespace restApi.Controllers
         #region Cham 002
         [HttpGet]
         [Route("cham002")]
-        public IHttpActionResult cham002()
+        public IHttpActionResult cham002(string posid)
         {
             try
             {
                 db.CommandTimeout = 120;
-                var data = db.VW_R_CFM_MANAGEMENTs.FirstOrDefault(a => a.ID == 2);
-
-                if (data != null)
+                var checkRole = db.VW_Users.Where(a => a.POSITION_ID == posid).FirstOrDefault();
+                if (checkRole.ID_Role == 1 || checkRole.ID_Role == 4)
                 {
-                    return Ok(new { USDTDY = data.USDTDY });
+                    var data = db.VW_R_CFM_MANAGEMENTs.FirstOrDefault(a => a.ID == 2);
+
+                    if (data != null)
+                    {
+                        return Ok(new { USDTDY = data.USDTDY });
+                    }
+                    else
+                    {
+                        return NotFound();
+                    }
                 }
                 else
                 {
-                    return NotFound();
+                    var data = db.cufn_getCFMManagement_forGL(posid).ToList();
+
+                    var filteredData = data.Where(a => a.ID == 2).ToList();
+                    var USDTDY = filteredData.Select(d => d.USDTDY).FirstOrDefault();
+                    return Ok(new { USDTDY });
                 }
+                
             }
             catch (Exception)
             {
@@ -1260,25 +1288,40 @@ namespace restApi.Controllers
 
         [HttpGet]
         [Route("cham002Date")]
-        public IHttpActionResult cham002Date()
+        public IHttpActionResult cham002Date(string posid)
         {
             try
             {
                 db.CommandTimeout = 120;
-                VW_R_CFM_MANAGEMENT data = new VW_R_CFM_MANAGEMENT();
-
-                data = db.VW_R_CFM_MANAGEMENTs.FirstOrDefault(a => a.ID == 2);
-
-                if (data != null)
+                var checkRole = db.VW_Users.Where(a => a.POSITION_ID == posid).FirstOrDefault();
+                if (checkRole.ID_Role == 1 || checkRole.ID_Role == 4)
                 {
-                    var formattedDate = data.LSTUSD.Value.ToString("d MMMM yyyy | HH:mm", new CultureInfo("id-ID"));
+                    VW_R_CFM_MANAGEMENT data = new VW_R_CFM_MANAGEMENT();
 
-                    return Ok(new { Data = data, Tanggal = formattedDate });
+                    data = db.VW_R_CFM_MANAGEMENTs.FirstOrDefault(a => a.ID == 2);
+
+                    if (data != null)
+                    {
+                        var formattedDate = data.LSTUSD.Value.ToString("d MMMM yyyy | HH:mm", new CultureInfo("id-ID"));
+
+                        return Ok(new { Data = data, Tanggal = formattedDate });
+                    }
+                    else
+                    {
+                        return NotFound();
+                    }
                 }
                 else
                 {
-                    return NotFound();
+                    var data = db.cufn_getCFMManagement_forGL(posid).ToList();
+
+                    var date = data.Where(a => a.ID == 2).ToList();
+                    var datee = date.Select(d => d.LSTUSD).FirstOrDefault();
+                    var formattedDate = datee.Value.ToString("d MMMM yyyy | HH:mm", new CultureInfo("id-ID"));
+
+                    return Ok(new { Data = data, Tanggal = formattedDate });
                 }
+                
             }
             catch (Exception)
             {
@@ -1408,24 +1451,37 @@ namespace restApi.Controllers
         }
         #endregion
 
-        #region CHam 003
+        #region Cham 003
         [HttpGet]
         [Route("cham003")]
-        public IHttpActionResult cham003()
+        public IHttpActionResult cham003(string posid)
         {
             try
             {
                 db.CommandTimeout = 120;
-                var data = db.VW_R_CFM_MANAGEMENTs.FirstOrDefault(a => a.ID == 3);
-
-                if (data != null)
+                var checkRole = db.VW_Users.Where(a => a.POSITION_ID == posid).FirstOrDefault();
+                if (checkRole.ID_Role == 1 || checkRole.ID_Role == 4)
                 {
-                    return Ok(new { USDTDY = data.USDTDY });
+                    var data = db.VW_R_CFM_MANAGEMENTs.FirstOrDefault(a => a.ID == 3);
+
+                    if (data != null)
+                    {
+                        return Ok(new { USDTDY = data.USDTDY });
+                    }
+                    else
+                    {
+                        return NotFound();
+                    }
                 }
                 else
                 {
-                    return NotFound();
+                    var data = db.cufn_getCFMManagement_forGL(posid).ToList();
+
+                    var filteredData = data.Where(a => a.ID == 3).ToList();
+                    var USDTDY = filteredData.Select(d => d.USDTDY).FirstOrDefault();
+                    return Ok(new { USDTDY });
                 }
+                
             }
             catch (Exception)
             {
@@ -1435,24 +1491,38 @@ namespace restApi.Controllers
 
         [HttpGet]
         [Route("cham003Date")]
-        public IHttpActionResult cham003Date()
+        public IHttpActionResult cham003Date(string posid)
         {
             try
             {
                 db.CommandTimeout = 120;
-                VW_R_CFM_MANAGEMENT data = new VW_R_CFM_MANAGEMENT();
-
-                data = db.VW_R_CFM_MANAGEMENTs.FirstOrDefault(a => a.ID == 3);
-
-                if (data != null)
+                var checkRole = db.VW_Users.Where(a => a.POSITION_ID == posid).FirstOrDefault();
+                if (checkRole.ID_Role == 1 || checkRole.ID_Role == 4)
                 {
-                    var formattedDate = data.LSTUSD.Value.ToString("d MMMM yyyy | HH:mm", new CultureInfo("id-ID"));
+                    VW_R_CFM_MANAGEMENT data = new VW_R_CFM_MANAGEMENT();
 
-                    return Ok(new { Data = data, Tanggal = formattedDate });
+                    data = db.VW_R_CFM_MANAGEMENTs.FirstOrDefault(a => a.ID == 3);
+
+                    if (data != null)
+                    {
+                        var formattedDate = data.LSTUSD.Value.ToString("d MMMM yyyy | HH:mm", new CultureInfo("id-ID"));
+
+                        return Ok(new { Data = data, Tanggal = formattedDate });
+                    }
+                    else
+                    {
+                        return NotFound();
+                    }
                 }
                 else
                 {
-                    return NotFound();
+                    var data = db.cufn_getCFMManagement_forGL(posid).ToList();
+
+                    var date = data.Where(a => a.ID == 3).ToList();
+                    var datee = date.Select(d => d.LSTUSD).FirstOrDefault();
+                    var formattedDate = datee.Value.ToString("d MMMM yyyy | HH:mm", new CultureInfo("id-ID"));
+
+                    return Ok(new { Data = data, Tanggal = formattedDate });
                 }
             }
             catch (Exception)
@@ -1587,20 +1657,32 @@ namespace restApi.Controllers
         #region Cham 004
         [HttpGet]
         [Route("cham004")]
-        public IHttpActionResult cham004()
+        public IHttpActionResult cham004(string posid)
         {
             try
             {
                 db.CommandTimeout = 120;
-                var data = db.VW_R_CFM_MANAGEMENTs.FirstOrDefault(a => a.ID == 4);
-
-                if (data != null)
+                var checkRole = db.VW_Users.Where(a => a.POSITION_ID == posid).FirstOrDefault();
+                if (checkRole.ID_Role == 1 || checkRole.ID_Role == 4)
                 {
-                    return Ok(new { USDTDY = data.USDTDY });
+                    var data = db.VW_R_CFM_MANAGEMENTs.FirstOrDefault(a => a.ID == 4);
+
+                    if (data != null)
+                    {
+                        return Ok(new { USDTDY = data.USDTDY });
+                    }
+                    else
+                    {
+                        return NotFound();
+                    }
                 }
                 else
                 {
-                    return NotFound();
+                    var data = db.cufn_getCFMManagement_forGL(posid).ToList();
+
+                    var filteredData = data.Where(a => a.ID == 4).ToList();
+                    var USDTDY = filteredData.Select(d => d.USDTDY).FirstOrDefault();
+                    return Ok(new { USDTDY });
                 }
             }
             catch (Exception)
@@ -1611,24 +1693,38 @@ namespace restApi.Controllers
 
         [HttpGet]
         [Route("cham004Date")]
-        public IHttpActionResult cham004Date()
+        public IHttpActionResult cham004Date(string posid)
         {
             try
             {
                 db.CommandTimeout = 120;
-                VW_R_CFM_MANAGEMENT data = new VW_R_CFM_MANAGEMENT();
-
-                data = db.VW_R_CFM_MANAGEMENTs.FirstOrDefault(a => a.ID == 4);
-
-                if (data != null)
+                var checkRole = db.VW_Users.Where(a => a.POSITION_ID == posid).FirstOrDefault();
+                if (checkRole.ID_Role == 1 || checkRole.ID_Role == 4)
                 {
-                    var formattedDate = data.LSTUSD.Value.ToString("d MMMM yyyy | HH:mm", new CultureInfo("id-ID"));
+                    VW_R_CFM_MANAGEMENT data = new VW_R_CFM_MANAGEMENT();
 
-                    return Ok(new { Data = data, Tanggal = formattedDate });
+                    data = db.VW_R_CFM_MANAGEMENTs.FirstOrDefault(a => a.ID == 4);
+
+                    if (data != null)
+                    {
+                        var formattedDate = data.LSTUSD.Value.ToString("d MMMM yyyy | HH:mm", new CultureInfo("id-ID"));
+
+                        return Ok(new { Data = data, Tanggal = formattedDate });
+                    }
+                    else
+                    {
+                        return NotFound();
+                    }
                 }
                 else
                 {
-                    return NotFound();
+                    var data = db.cufn_getCFMManagement_forGL(posid).ToList();
+
+                    var date = data.Where(a => a.ID == 4).ToList();
+                    var datee = date.Select(d => d.LSTUSD).FirstOrDefault();
+                    var formattedDate = datee.Value.ToString("d MMMM yyyy | HH:mm", new CultureInfo("id-ID"));
+
+                    return Ok(new { Data = data, Tanggal = formattedDate });
                 }
             }
             catch (Exception)
