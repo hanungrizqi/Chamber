@@ -971,13 +971,9 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\assets\fonts\fontawesome\fa-brands-400.ttf" />
-    <Content Include="Content\assets\fonts\fontawesome\fa-brands-400.woff2" />
     <Content Include="Content\assets\fonts\fontawesome\fa-regular-400.ttf" />
-    <Content Include="Content\assets\fonts\fontawesome\fa-regular-400.woff2" />
     <Content Include="Content\assets\fonts\fontawesome\fa-solid-900.ttf" />
-    <Content Include="Content\assets\fonts\fontawesome\fa-solid-900.woff2" />
     <Content Include="Content\assets\fonts\fontawesome\fa-v4compatibility.ttf" />
-    <Content Include="Content\assets\fonts\fontawesome\fa-v4compatibility.woff2" />
     <Content Include="Content\assets\fonts\simple-line-icons\Simple-Line-Icons.eot" />
     <Content Include="Content\assets\fonts\simple-line-icons\Simple-Line-Icons.ttf" />
     <Content Include="Content\assets\fonts\simple-line-icons\Simple-Line-Icons.woff" />

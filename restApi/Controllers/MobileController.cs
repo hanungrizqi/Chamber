@@ -33,7 +33,8 @@ namespace restApi.Controllers
                     diastolic = a.DIASTOLIC,
                     oxygen = $"{a.OXYGEN_SATURATION}%",
                     heart_rate = $"{a.HEART_RATE} Bpm",
-                    day = a.WAKTU_ABSEN.Value.ToString("dddd", new CultureInfo("id-ID"))
+                    day = a.WAKTU_ABSEN.Value.ToString("dddd", new CultureInfo("id-ID")),
+                    datetime = a.WAKTU_ABSEN
                 }).Where(a => a.nrp == nrp).FirstOrDefault();
 
                 return Ok(new { Data = data });
@@ -63,6 +64,7 @@ namespace restApi.Controllers
                     temperatur_badan = $"{a.TEMPRATURE} C",
                     value = a.TEMPRATURE,
                     satuan = "C",
+                    datetime = a.WAKTU_ABSEN
                 }).ToList();
 
                 return Ok(new { Data = data });
@@ -93,6 +95,7 @@ namespace restApi.Controllers
                     value_sys = a.SYSTOLIC,
                     value_dia = a.DIASTOLIC,
                     satuan = "",
+                    datetime = a.WAKTU_ABSEN
                 }).ToList();
 
                 return Ok(new { Data = data });
@@ -122,6 +125,7 @@ namespace restApi.Controllers
                     spo02 = $"{a.OXYGEN_SATURATION}%",
                     value = a.OXYGEN_SATURATION,
                     satuan = "%",
+                    datetime = a.WAKTU_ABSEN
                 }).ToList();
 
                 return Ok(new { Data = data });
@@ -150,7 +154,8 @@ namespace restApi.Controllers
                     status = a.STATUS,
                     heart_rate = $"{a.HEART_RATE} Bpm",
                     value = a.HEART_RATE,
-                    satuan = "bpm"
+                    satuan = "bpm",
+                    datetime = a.WAKTU_ABSEN
                 }).ToList();
 
                 return Ok(new { Data = data });
@@ -182,7 +187,8 @@ namespace restApi.Controllers
                     spo02 = $"{a.OXYGEN_SATURATION}%",
                     heart_rate = $"{a.HEART_RATE} Bpm",
                     day = a.WAKTU_ABSEN.Value.ToString("dddd", new CultureInfo("id-ID")),
-                    status = a.STATUS
+                    status = a.STATUS,
+                    datetime = a.WAKTU_ABSEN
                 }).ToList();
 
                 return Ok(new { Data = data });
@@ -229,6 +235,7 @@ namespace restApi.Controllers
                         temperatur_badan = $"{a.TEMPRATURE} C",
                         value = a.TEMPRATURE,
                         satuan = "C",
+                        datetime = a.WAKTU_ABSEN
                     })
                     .OrderBy(a => a.history_tanggal)
                     .ToList();
@@ -273,6 +280,7 @@ namespace restApi.Controllers
                         value_sys = a.SYSTOLIC,
                         value_dia = a.DIASTOLIC,
                         satuan = "",
+                        datetime = a.WAKTU_ABSEN
                     })
                     .OrderBy(a => a.history_tanggal)
                     .ToList();
@@ -316,6 +324,7 @@ namespace restApi.Controllers
                         spo02 = $"{a.OXYGEN_SATURATION}%",
                         value = a.OXYGEN_SATURATION,
                         satuan = "%",
+                        datetime = a.WAKTU_ABSEN
                     })
                     .OrderBy(a => a.history_tanggal)
                     .ToList();
@@ -358,7 +367,8 @@ namespace restApi.Controllers
                         status = a.STATUS,
                         heart_rate = $"{a.HEART_RATE} Bpm",
                         value = a.HEART_RATE,
-                        satuan = "bpm"
+                        satuan = "bpm",
+                        datetime = a.WAKTU_ABSEN
                     })
                     .OrderBy(a => a.history_tanggal)
                     .ToList();
@@ -404,7 +414,8 @@ namespace restApi.Controllers
                         spo02 = $"{a.OXYGEN_SATURATION}%",
                         heart_rate = $"{a.HEART_RATE} Bpm",
                         day = a.WAKTU_ABSEN.Value.ToString("dddd", new CultureInfo("id-ID")),
-                        status = a.STATUS
+                        status = a.STATUS,
+                        datetime = a.WAKTU_ABSEN
                     })
                     .OrderBy(a => a.history_tanggal)
                     .ToList();
