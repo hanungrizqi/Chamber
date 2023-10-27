@@ -33,7 +33,6 @@ namespace restApi.ViewModel
             }
 
             status_login = CheckValidLogin();
-            //status_login = true;
             if (status_login == false)
             {
                 status_login = OpenLdap(Username, Password);
@@ -63,8 +62,8 @@ namespace restApi.ViewModel
 
             try
             {
-                var ldap = new LdapAuthentication("LDAP://KPPMINING:389");
-                stat = ldap.IsAuthenticated("KPPMINING", Username, Password);
+                var ldap = new LdapAuthentication("LDAP://KPPMINING.NET:389");
+                //stat = ldap.IsAuthenticated("KPPMINING.NET", Username, Password);
                 stat = true;
             }
             catch (Exception)
