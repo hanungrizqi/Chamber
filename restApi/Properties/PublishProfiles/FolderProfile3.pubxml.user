@@ -4,8 +4,8 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
 -->
 <Project>
   <PropertyGroup>
-    <_PublishTargetUrl>D:\Publish Project\CFM\Production\20231027_GOLIVE\restApi</_PublishTargetUrl>
-    <History>True|2023-10-27T11:43:24.5411838Z;</History>
+    <_PublishTargetUrl>D:\Publish Project\CFM\Production\20231101_V2\api</_PublishTargetUrl>
+    <History>True|2023-11-01T06:48:25.0285080Z;True|2023-11-01T13:37:06.2795071+07:00;True|2023-10-27T18:43:24.5411838+07:00;</History>
     <LastFailureDetails />
   </PropertyGroup>
   <ItemGroup>
@@ -91,10 +91,10 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>04/22/2019 01:06:16</publishTime>
     </File>
     <File Include="bin/restApi.dll">
-      <publishTime>10/27/2023 18:43:22</publishTime>
+      <publishTime>11/01/2023 13:48:24</publishTime>
     </File>
     <File Include="bin/restApi.pdb">
-      <publishTime>10/27/2023 18:43:22</publishTime>
+      <publishTime>11/01/2023 13:48:24</publishTime>
     </File>
     <File Include="bin/roslyn/csc.exe">
       <publishTime>08/08/2018 05:38:48</publishTime>
@@ -376,7 +376,7 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
       <publishTime>09/20/2023 10:47:53</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>10/27/2023 18:43:23</publishTime>
+      <publishTime>11/01/2023 13:48:24</publishTime>
     </File>
   </ItemGroup>
 </Project>

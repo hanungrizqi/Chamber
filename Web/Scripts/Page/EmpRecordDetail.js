@@ -11,32 +11,6 @@ $("document").ready(function () {
         $("#tombolApprove").show();
     }
 
-    //var jumlahApprovalPerhari = 0;
-    //var approvalids = 0;
-    //var combine_approvalids = 0;
-
-    //Detail(function (jumlah) {
-
-    //    var idProfile = $("#hd_idroles").val();
-    //    if (idProfile == 3) {
-    //        $("#tombolApprove").hide();
-    //    } else {
-    //        $("#tombolApprove").show();
-    //    }
-
-    //    jumlahApprovalPerhari = jumlah;
-    //    approvalids = approvalid;
-    //    combine_approvalids = combine_approvalid;
-    //    Status();
-
-    //    if (jumlahApprovalPerhari === 2 || jumlahApprovalPerhari === 3) {
-    //        debugger
-    //        if (approvalids === combine_approvalids) {
-    //            // Disable the dropdown
-    //            $("#txt_status").prop("disabled", true);
-    //        }
-    //    }
-    //});
 })
 
 var approvalid;
@@ -67,10 +41,7 @@ function Detail(callback) {
             data2 = data.STATUS;
             approvalid = data.APPROVAL_ID;
             idstatss = data.ID_STATUS;
-            //if (typeof callback === "function") {
-            //    callback();
-            //}
-
+            
             var jumlahApprovalPerhari = data.JUMLAH_APPROVAL_PERHARI;
 
             recordData(jumlahApprovalPerhari, data.NRP, moment(data.DATE_FROM_CFC).format("YYYY-MM-DD"));
@@ -95,15 +66,15 @@ function recordData(jumlahApprovalPerhari, nrp, dateFromCFC) {
             combine_approvalid = datas.APPROVAL_ID;
 
             //if (idstatss == 5) {
-                if (jumlahApprovalPerhari >= 2) {
-                    debugger
-                    if (approvalid == datas.APPROVAL_ID /*combine_approvalid*/) {
-                        $("#txt_status").prop("disabled", false);
-                    }
-                    else {
-                        $("#txt_status").prop("disabled", true);
-                    }
+            if (jumlahApprovalPerhari >= 2) {
+                debugger
+                if (approvalid == datas.APPROVAL_ID /*combine_approvalid*/) {
+                    $("#txt_status").prop("disabled", false);
                 }
+                else {
+                    $("#txt_status").prop("disabled", true);
+                }
+            }
             //}
         }
     });

@@ -164,6 +164,7 @@
     <Content Include="Content\assets\css\themes\flat.min.css" />
     <Content Include="Content\assets\css\themes\pulse.css" />
     <Content Include="Content\assets\css\themes\pulse.min.css" />
+    <Content Include="Content\assets\fonts\fontawesome\fa-brands-400.woff2" />
     <Content Include="Content\assets\fonts\simple-line-icons\Simple-Line-Icons.svg" />
     <Content Include="Content\assets\jspdf\jspdf.plugin.autotable.js" />
     <Content Include="Content\assets\jspdf\jspdf.plugin.autotable.min.js" />
@@ -1182,6 +1183,9 @@
     <Content Include="Content\assets\js\plugins\fullcalendar\package.json" />
     <Content Include="Content\assets\js\plugins\fullcalendar\README.md" />
     <Content Include="Content\assets\js\plugins\pwstrength-bootstrap\pwstrength-bootstrap.min.map" />
+    <Content Include="Content\assets\fonts\fontawesome\fa-regular-400.woff2" />
+    <Content Include="Content\assets\fonts\fontawesome\fa-solid-900.woff2" />
+    <Content Include="Content\assets\fonts\fontawesome\fa-v4compatibility.woff2" />
     <None Include="Models\Cfm.dbml.layout">
       <DependentUpon>Cfm.dbml</DependentUpon>
     </None>

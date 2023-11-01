@@ -139,15 +139,7 @@
                 <div class="content-header justify-content-lg-center bg-black-10">
                     <!-- Logo -->
                     <div>
-                        <span class="smini-visible fw-bold tracking-wide fs-lg">
-                            c<span class="text-primary">b</span>
-                        </span>
-                        <a class="link-fx fw-bold tracking-wide mx-auto" href="index.html">
-                            <span class="smini-hidden">
-                                <i class="fa fa-fire text-primary"></i>
-                                <span class="fs-4 text-dual">code</span><span class="fs-4 text-primary">base</span>
-                            </span>
-                        </a>
+                        <img src="~/Content/assets/media/photos/logo_dcfc.png" class="img-fluid" style="max-width:120px">
                     </div>
                     <!-- END Logo -->
                     <!-- Options -->
@@ -173,21 +165,45 @@
                         -->
                         <ul class="nav-main">
                             <li class="nav-main-item">
-                                <a class="nav-main-link active" href="db_social.html">
+                                <a class="nav-main-link" href="/Home/Index" id="dashboard-mobiles">
                                     <i class="nav-main-link-icon fa fa-home"></i>
-                                    <span class="nav-main-link-name">Home</span>
+                                    <span class="nav-main-link-name">Dashboard</span>
                                 </a>
                             </li>
                             <li class="nav-main-item">
-                                <a class="nav-main-link" href="">
+                                <a class="nav-main-link" href="/Approval/Index" id="approval-mobiles">
                                     <i class="nav-main-link-icon fa fa-flag"></i>
-                                    <span class="nav-main-link-name">Notifications</span>
+                                    <span class="nav-main-link-name">Work Approval</span>
                                 </a>
                             </li>
                             <li class="nav-main-item">
-                                <a class="nav-main-link" href="">
+                                <a class="nav-main-link" href="/CfmManagement/Index" id="cfm-mobiles">
                                     <i class="nav-main-link-icon fa fa-envelope"></i>
-                                    <span class="nav-main-link-name">Messages</span>
+                                    <span class="nav-main-link-name">CFM Management</span>
+                                </a>
+                            </li>
+                            <li class="nav-main-item">
+                                <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
+                                    <i class="nav-main-link-icon fa fa-grip-vertical"></i>
+                                    <span class="nav-main-link-name">User Management</span>
+                                </a>
+                                <ul class="nav-main-submenu">
+                                    <li class="nav-main-item">
+                                        <a class="nav-main-link" href="/Setting/Users" id="user-mobiles">
+                                            <span class="nav-main-link-name">User</span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-main-item">
+                                        <a class="nav-main-link" href="/Setting/Menu" id="profile-mobiles">
+                                            <span class="nav-main-link-name">Profile</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="nav-main-item">
+                                <a class="nav-main-link" href="/EmpRecord/Index" id="emprecord-mobiles">
+                                    <i class="nav-main-link-icon fa fa-envelope"></i>
+                                    <span class="nav-main-link-name">Employee Record</span>
                                 </a>
                             </li>
                         </ul>
@@ -204,31 +220,18 @@
             <!-- Header Content -->
             <div class="content-header">
                 <div class="row g-0 align-items-center w-100">
-                    <div class="col text-start">
-                        <img src="~/Content/assets/media/photos/logo_dcfc.png" style="max-width:120px">
-                    </div>
-                    <div class="col-8 text-end" style="border-right: 1px solid #C7C7C7;">
-                        @Html.Action("Menu", "Menu")
-                    </div>
                     @*default row = 4,6,2*@
-                    <div class="col text-center">
-                        <!--<button type="button" class="btn btn-sm" id="page-header-notifications" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
-                            @*<img src="~/Content/assets/media/photos/awan.png" style="max-width:34px">*@
-                            <!--<svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <mask id="mask0_1262_837" maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
-                                    <rect width="24" height="24" fill="#D9D9D9" />
-                                </mask>
-                                <g mask="url(#mask0_1262_837)">
-                                    <path d="M5 19C4.71667 19 4.47917 18.9042 4.2875 18.7125C4.09583 18.5208 4 18.2833 4 18C4 17.7167 4.09583 17.4792 4.2875 17.2875C4.47917 17.0958 4.71667 17 5 17H6V10C6 8.61667 6.41667 7.3875 7.25 6.3125C8.08333 5.2375 9.16667 4.53333 10.5 4.2V3.5C10.5 3.08333 10.6458 2.72917 10.9375 2.4375C11.2292 2.14583 11.5833 2 12 2C12.4167 2 12.7708 2.14583 13.0625 2.4375C13.3542 2.72917 13.5 3.08333 13.5 3.5V4.2C14.8333 4.53333 15.9167 5.2375 16.75 6.3125C17.5833 7.3875 18 8.61667 18 10V17H19C19.2833 17 19.5208 17.0958 19.7125 17.2875C19.9042 17.4792 20 17.7167 20 18C20 18.2833 19.9042 18.5208 19.7125 18.7125C19.5208 18.9042 19.2833 19 19 19H5ZM12 22C11.45 22 10.9792 21.8042 10.5875 21.4125C10.1958 21.0208 10 20.55 10 20H14C14 20.55 13.8042 21.0208 13.4125 21.4125C13.0208 21.8042 12.55 22 12 22Z" fill="#C7C7C7" />
-                                </g>
-                            </svg>
-
-                            <br />
-                            <span class="d-none d-md-inline-block">
-                                <span class="text-dual" style="font-size:10px">Notification</span>
-                            </span>
-                        </button>-->
-                        <button type="button" class="btn btn-sm btn-alt-secondary" id="page-header-notifications" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <div class="col text-start">
+                        <img src="~/Content/assets/media/photos/logo_dcfc.png" class="img-fluid" style="max-width:120px">
+                    </div>
+                    <div class="col-5 text-center">
+                        @Html.Action("Menu", "Menu")
+                        <button type="button" class="btn btn-sm btn-alt-secondary d-lg-none" data-toggle="layout" data-action="sidebar_toggle">
+                            <i class="fa fa-fw fa-bars"></i>
+                        </button>
+                    </div>
+                    <div class="col text-end">
+                        <button type="button" class="btn btn-sm btn-alt-secondary" data-toggle="layout" id="page-header-notifications" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fa fa-bell"></i>
                         </button>
                         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end p-0" aria-labelledby="page-header-notifications">
@@ -260,7 +263,6 @@
                                                 </div>
                                                 <div class="flex-grow-1 pe-2">
                                                     <p class="fw-medium mb-1">@Session["Counted"].ToString() Approval from all site found. Check at Work Approval menu!</p>
-                                                    @*<div class="text-muted">@Session["LastCFC"].ToString()</div>*@
                                                 </div>
                                             </a>
                                         </li>
@@ -274,7 +276,6 @@
                                                 </div>
                                                 <div class="flex-grow-1 pe-2">
                                                     <p class="fw-medium mb-1">@Session["Counted"].ToString() Approval from all site found. Check at Work Approval menu!</p>
-                                                    @*<div class="text-muted">@Session["LastCFC"].ToString()</div>*@
                                                 </div>
                                             </a>
                                         </li>
@@ -288,7 +289,6 @@
                                                 </div>
                                                 <div class="flex-grow-1 pe-2">
                                                     <p class="fw-medium mb-1">@Session["Counted"].ToString() Approval from all site found. Check at Work Approval menu!</p>
-                                                    @*<div class="text-muted">@Session["LastCFC"].ToString()</div>*@
                                                 </div>
                                             </a>
                                         </li>
@@ -314,12 +314,7 @@
                                 </a>
                             </div>
                         </div>
-                        <!-- END Open Search Section -->
-                        <!-- Compose -->
-                        @*<button type="button" class="btn rounded-pill btn-outline-secondary ms-1 tombol" id="page-header-user-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span class="d-none d-sm-inline">@Session["Name"].ToString()</span>
-                            <i class="fa fa-ellipsis-vertical opacity-50 naraw"></i>
-                        </button>*@
+
                         <button type="button" class="btn btn-sm btn-alt-success ms-1" id="page-header-user-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="far fa-edit opacity-50"></i>
                             <span class="d-none d-sm-inline">@Session["Name"].ToString()</span>
@@ -463,18 +458,26 @@
         var labelText = "";
         if (path === "/Approval/Index") {
             labelText = "Work Approval";
+            document.getElementById("approval-mobiles").classList.add('active');
         } else if (path === "/Home/Index") {
             labelText = "Dashboard";
+            document.getElementById("dashboard-mobiles").classList.add('active');
         } else if (path === "/CfmManagement/Index") {
             labelText = "CFM Management";
+            document.getElementById("cfm-mobiles").classList.add('active');
         } else if (path === "/EmpRecord/Index") {
             labelText = "Employee Record"
+            document.getElementById("emprecord-mobiles").classList.add('active');
         } else if (path === "/Setting/Users") {
             labelText = "Setting User"
+            document.getElementById("user-mobiles").classList.add('active');
         } else if (path === "/Setting/Menu") {
             labelText = "Setting Profile"
+            document.getElementById("profile-mobiles").classList.add('active');
         } else if (path.startsWith("/Approval/Detail")) {
             labelText = "Detail Approval";
+        } else if (path.startsWith("/EmpRecord/Detail_ERecord")) {
+            labelText = "Detail Employee Record";
         }
 
         document.getElementById("alamat").textContent = labelText;
