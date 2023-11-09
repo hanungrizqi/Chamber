@@ -28,7 +28,6 @@ namespace restApi.Controllers
                 {
                     var data = db.VW_T_APPROVALs.Where(a => a.FLAG == 1 || excludedStatuses.Contains(a.ID_STATUS.Value)).OrderBy(a => a.APPROVAL_ID).ToList();
 
-                    //mendapatkan descending NRP dengan status retest dan jumlah approval perhari 2,3,4
                     var listUser = data.Where(x => x.ID_STATUS == 5 && x.JUMLAH_APPROVAL_PERHARI >= 2).Select(x => x.NRP).Distinct().ToList();
 
                     List<VwLatest> filteredData = new List<VwLatest>();
@@ -101,7 +100,6 @@ namespace restApi.Controllers
                 {
                     var data = db.VW_T_APPROVALs.Where(a => a.ATASAN == posid && (a.FLAG == 1 || excludedStatuses.Contains(a.ID_STATUS.Value))).OrderBy(a => a.APPROVAL_ID).ToList();
 
-                    //mendapatkan descending NRP dengan status retest dan jumlah approval perhari 2,3,4
                     var listUser = data.Where(x => x.ID_STATUS == 5 && x.JUMLAH_APPROVAL_PERHARI >= 2).Select(x => x.NRP).Distinct().ToList();
 
                     List<VwLatest> filteredData = new List<VwLatest>();
@@ -172,7 +170,6 @@ namespace restApi.Controllers
                 }
                 else
                 {
-                    //var data = db.VW_T_APPROVALs.Where(a => a.POSITION_ID == posid).OrderBy(a => a.APPROVAL_ID).ToList();
                     var data = db.VW_T_APPROVALs.Where(a => a.NRP == isAdminorNot.Username).OrderBy(a => a.APPROVAL_ID).ToList();
 
                     return Ok(new { Data = data });
@@ -223,7 +220,6 @@ namespace restApi.Controllers
                 List<VwLatest> filteredData = GetFilteredData(data);
                 return Ok(new { Data = filteredData });
 
-                //return Ok(new { Data = data });
             }
             catch (Exception)
             {
@@ -241,7 +237,6 @@ namespace restApi.Controllers
                 var isAdminorNot = db.VW_Users.Where(c => c.Username == nrp).FirstOrDefault();
                 var excludedStatuses = new[] { 1, 5, 6, 7 };
 
-                //var data = db.VW_T_APPROVALs.Where(a => a.POSITION_ID == posid).OrderBy(a => a.APPROVAL_ID).ToList();
                 var data = db.VW_T_APPROVALs.Where(a => a.NRP == isAdminorNot.Username).OrderBy(a => a.APPROVAL_ID).ToList();
 
                 return Ok(new { Data = data });
@@ -276,7 +271,6 @@ namespace restApi.Controllers
                 List<VwLatest> filteredData = GetFilteredData(data);
                 return Ok(new { Data = filteredData });
 
-                //return Ok(new { Data = data });
             }
             catch (Exception)
             {

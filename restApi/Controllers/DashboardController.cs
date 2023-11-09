@@ -25,7 +25,6 @@ namespace restApi.Controllers
                 db.CommandTimeout = 120;
                 var isAdminorNot = db.VW_Users.Where(c => c.POSITION_ID == posid).FirstOrDefault();
                 var excludedStatuses = new[] { 1, 5, 6, 7 };
-                //List<VW_T_APPROVAL> data = null;
                 List<VW_T_APPROVAL> data = new List<VW_T_APPROVAL>();
 
                 if (isAdminorNot.ID_Role == 1 || isAdminorNot.ID_Role == 4)
@@ -36,7 +35,6 @@ namespace restApi.Controllers
 
                     data_2.AddRange(data_1);
                     data = data_2;
-                    //data = db.VW_T_APPROVALs.ToList();
                 }
                 else
                 {
@@ -67,7 +65,6 @@ namespace restApi.Controllers
                 var excludedStatuses = new[] { 1, 5, 6, 7 };
                 List<VW_T_APPROVAL> data = new List<VW_T_APPROVAL>();
 
-                // Konversi string tanggal awal dan tanggal akhir menjadi DateTime
                 DateTime startDateDateTime = DateTime.Parse(startDate);
                 DateTime endDateDateTime = DateTime.Parse(endDate);
 
@@ -122,7 +119,6 @@ namespace restApi.Controllers
             {
                 db.CommandTimeout = 120;
                 var isAdminorNot = db.VW_Users.Where(c => c.POSITION_ID == posid).FirstOrDefault();
-                //VW_T_APPROVAL data = null;
                 VW_T_APPROVAL data = new VW_T_APPROVAL();
 
                 if (isAdminorNot.ID_Role == 1 || isAdminorNot.ID_Role == 4)
@@ -152,7 +148,6 @@ namespace restApi.Controllers
             {
                 db.CommandTimeout = 120;
                 var isAdminorNot = db.VW_Users.Where(c => c.POSITION_ID == posid).FirstOrDefault();
-                //VW_T_APPROVAL data = null;
                 VW_T_APPROVAL data = new VW_T_APPROVAL();
 
                 DateTime startDateTime = DateTime.ParseExact(startDate, "yyyy-MM-dd HH:mm:ss.fff", CultureInfo.InvariantCulture);
@@ -193,7 +188,6 @@ namespace restApi.Controllers
             {
                 db.CommandTimeout = 120;
                 var isAdminorNot = db.VW_Users.Where(c => c.POSITION_ID == posid).FirstOrDefault();
-                //List<VW_T_APPROVAL> data = null;
                 List<VW_T_APPROVAL> data = new List<VW_T_APPROVAL>();
 
                 if (isAdminorNot.ID_Role == 1 || isAdminorNot.ID_Role == 4)
@@ -221,10 +215,8 @@ namespace restApi.Controllers
             {
                 db.CommandTimeout = 120;
                 var isAdminorNot = db.VW_Users.Where(c => c.POSITION_ID == posid).FirstOrDefault();
-                //List<VW_T_APPROVAL> data = null;
                 List<VW_T_APPROVAL> data = new List<VW_T_APPROVAL>();
 
-                // Konversi string tanggal awal dan tanggal akhir menjadi DateTime
                 DateTime startDateDateTime = DateTime.Parse(startDate);
                 DateTime endDateDateTime = DateTime.Parse(endDate);
 
@@ -253,7 +245,6 @@ namespace restApi.Controllers
             {
                 db.CommandTimeout = 120;
                 var isAdminorNot = db.VW_Users.Where(c => c.POSITION_ID == posid).FirstOrDefault();
-                //VW_T_APPROVAL data = null;
                 VW_T_APPROVAL data = new VW_T_APPROVAL();
 
                 if (isAdminorNot.ID_Role == 1 || isAdminorNot.ID_Role == 4)
@@ -265,7 +256,6 @@ namespace restApi.Controllers
                     data = db.VW_T_APPROVALs.Where(a => a.ATASAN == posid && a.ID_STATUS == 1).OrderByDescending(a => a.APPROVAL_ID).FirstOrDefault();
                 }
 
-                //var formattedDate = (data.WAKTU_APPROVAL ?? data.DATETIME_FROM_CFC).Value.ToString("d MMMM yyyy | HH:mm", new CultureInfo("id-ID"));
                 var formattedDate = data != null ? (data.WAKTU_APPROVAL ?? data.DATETIME_FROM_CFC).Value.ToString("d MMMM yyyy | HH:mm", new CultureInfo("id-ID")) : "-";
 
                 return Ok(new { Data = data, Tanggal = formattedDate });
@@ -284,7 +274,6 @@ namespace restApi.Controllers
             {
                 db.CommandTimeout = 120;
                 var isAdminorNot = db.VW_Users.Where(c => c.POSITION_ID == posid).FirstOrDefault();
-                //VW_T_APPROVAL data = null;
                 VW_T_APPROVAL data = new VW_T_APPROVAL();
 
                 DateTime startDateTime = DateTime.ParseExact(startDate, "yyyy-MM-dd HH:mm:ss.fff", CultureInfo.InvariantCulture);
@@ -325,7 +314,6 @@ namespace restApi.Controllers
             {
                 db.CommandTimeout = 120;
                 var isAdminorNot = db.VW_Users.Where(c => c.POSITION_ID == posid).FirstOrDefault();
-                //List<VW_T_APPROVAL> data = null;
                 List<VW_T_APPROVAL> data = new List<VW_T_APPROVAL>();
 
                 if (isAdminorNot.ID_Role == 1 || isAdminorNot.ID_Role == 4)
@@ -364,7 +352,6 @@ namespace restApi.Controllers
                     data = db.VW_T_APPROVALs.Where(a => a.ATASAN == posid && a.ID_STATUS == 2).OrderByDescending(a => a.APPROVAL_ID).FirstOrDefault();
                 }
 
-                //var formattedDate = (data.WAKTU_APPROVAL ?? data.DATETIME_FROM_CFC).Value.ToString("d MMMM yyyy | HH:mm", new CultureInfo("id-ID"));
                 var formattedDate = data != null ? (data.WAKTU_APPROVAL ?? data.DATETIME_FROM_CFC).Value.ToString("d MMMM yyyy | HH:mm", new CultureInfo("id-ID")) : "-";
 
                 return Ok(new { Data = data, Tanggal = formattedDate });
@@ -383,10 +370,8 @@ namespace restApi.Controllers
             {
                 db.CommandTimeout = 120;
                 var isAdminorNot = db.VW_Users.Where(c => c.POSITION_ID == posid).FirstOrDefault();
-                //List<VW_T_APPROVAL> data = null;
                 List<VW_T_APPROVAL> data = new List<VW_T_APPROVAL>();
 
-                // Konversi string tanggal awal dan tanggal akhir menjadi DateTime
                 DateTime startDateDateTime = DateTime.Parse(startDate);
                 DateTime endDateDateTime = DateTime.Parse(endDate);
 
@@ -415,7 +400,6 @@ namespace restApi.Controllers
             {
                 db.CommandTimeout = 120;
                 var isAdminorNot = db.VW_Users.Where(c => c.POSITION_ID == posid).FirstOrDefault();
-                //VW_T_APPROVAL data = null;
                 VW_T_APPROVAL data = new VW_T_APPROVAL();
 
                 DateTime startDateTime = DateTime.ParseExact(startDate, "yyyy-MM-dd HH:mm:ss.fff", CultureInfo.InvariantCulture);
@@ -457,7 +441,6 @@ namespace restApi.Controllers
                 db.CommandTimeout = 120;
                 var isAdminorNot = db.VW_Users.Where(c => c.POSITION_ID == posid).FirstOrDefault();
                 var excludedStatuses = new[] { 1, 5, 6, 7 };
-                //List<VW_T_APPROVAL> data = null;
                 List<VW_T_APPROVAL> data = new List<VW_T_APPROVAL>();
 
                 if (isAdminorNot.ID_Role == 1 || isAdminorNot.ID_Role == 4)
@@ -486,7 +469,6 @@ namespace restApi.Controllers
                 db.CommandTimeout = 120;
                 var isAdminorNot = db.VW_Users.Where(c => c.POSITION_ID == posid).FirstOrDefault();
                 var excludedStatuses = new[] { 1, 5, 6, 7 };
-                //VW_T_APPROVAL data = null;
                 VW_T_APPROVAL data = new VW_T_APPROVAL();
 
                 if (isAdminorNot.ID_Role == 1 || isAdminorNot.ID_Role == 4)
@@ -498,8 +480,6 @@ namespace restApi.Controllers
                     data = db.VW_T_APPROVALs.Where(a => a.ATASAN == posid && (a.FLAG == 1 || excludedStatuses.Contains(a.ID_STATUS.Value))).OrderByDescending(a => a.APPROVAL_ID).FirstOrDefault();
                 }
 
-                //var formattedDate = data.WAKTU_APPROVAL.Value.ToString("d MMMM yyyy | HH:mm", new CultureInfo("id-ID"));
-                //var formattedDate = (data.WAKTU_APPROVAL ?? data.DATETIME_FROM_CFC).Value.ToString("d MMMM yyyy | HH:mm", new CultureInfo("id-ID"));
                 var formattedDate = data != null ? (data.WAKTU_APPROVAL ?? data.DATETIME_FROM_CFC).Value.ToString("d MMMM yyyy | HH:mm", new CultureInfo("id-ID")) : "-";
 
                 return Ok(new { Data = data, Tanggal = formattedDate });
@@ -519,10 +499,8 @@ namespace restApi.Controllers
                 db.CommandTimeout = 120;
                 var isAdminorNot = db.VW_Users.Where(c => c.POSITION_ID == posid).FirstOrDefault();
                 var excludedStatuses = new[] { 1, 5, 6, 7 };
-                //List<VW_T_APPROVAL> data = null;
                 List<VW_T_APPROVAL> data = new List<VW_T_APPROVAL>();
 
-                // Konversi string tanggal awal dan tanggal akhir menjadi DateTime
                 DateTime startDateDateTime = DateTime.Parse(startDate);
                 DateTime endDateDateTime = DateTime.Parse(endDate);
 
@@ -552,7 +530,6 @@ namespace restApi.Controllers
                 db.CommandTimeout = 120;
                 var isAdminorNot = db.VW_Users.Where(c => c.POSITION_ID == posid).FirstOrDefault();
                 var excludedStatuses = new[] { 1, 5, 6, 7 };
-                //VW_T_APPROVAL data = null;
                 VW_T_APPROVAL data = new VW_T_APPROVAL();
 
                 DateTime startDateTime = DateTime.ParseExact(startDate, "yyyy-MM-dd HH:mm:ss.fff", CultureInfo.InvariantCulture);
@@ -594,7 +571,6 @@ namespace restApi.Controllers
                 db.CommandTimeout = 120;
                 var isAdminorNot = db.VW_Users.Where(c => c.POSITION_ID == posid).FirstOrDefault();
                 var excludedStatuses = new[] { 1, 5, 6, 7 };
-                //List<VW_T_APPROVAL> data = null;
                 List<VW_T_APPROVAL> data = new List<VW_T_APPROVAL>();
 
                 if (isAdminorNot.ID_Role == 1)
@@ -627,7 +603,6 @@ namespace restApi.Controllers
                 db.CommandTimeout = 120;
                 var isAdminorNot = db.VW_Users.Where(c => c.POSITION_ID == posid).FirstOrDefault();
                 var excludedStatuses = new[] { 1, 5, 6, 7 };
-                //VW_T_APPROVAL data = null;
                 VW_T_APPROVAL data = new VW_T_APPROVAL();
 
                 if (isAdminorNot.ID_Role == 1)
@@ -643,8 +618,6 @@ namespace restApi.Controllers
                     data = db.VW_T_APPROVALs.Where(a => a.FLAG == 0 && !excludedStatuses.Contains(a.ID_STATUS.Value) && a.ATASAN == posid).OrderByDescending(a => a.APPROVAL_ID).FirstOrDefault();
                 }
 
-                //var formattedDate = data.DATETIME_FROM_CFC.Value.ToString("d MMMM yyyy | HH:mm", new CultureInfo("id-ID"));
-                //var formattedDate = (data.WAKTU_APPROVAL ?? data.DATETIME_FROM_CFC).Value.ToString("d MMMM yyyy | HH:mm", new CultureInfo("id-ID"));
                 var formattedDate = data != null ? (data.WAKTU_APPROVAL ?? data.DATETIME_FROM_CFC).Value.ToString("d MMMM yyyy | HH:mm", new CultureInfo("id-ID")) : "-";
 
                 return Ok(new { Data = data, Tanggal = formattedDate });
@@ -664,10 +637,8 @@ namespace restApi.Controllers
                 db.CommandTimeout = 120;
                 var isAdminorNot = db.VW_Users.Where(c => c.POSITION_ID == posid).FirstOrDefault();
                 var excludedStatuses = new[] { 1, 5, 6, 7 };
-                //List<VW_T_APPROVAL> data = null;
                 List<VW_T_APPROVAL> data = new List<VW_T_APPROVAL>();
 
-                // Konversi string tanggal awal dan tanggal akhir menjadi DateTime
                 DateTime startDateDateTime = DateTime.Parse(startDate);
                 DateTime endDateDateTime = DateTime.Parse(endDate);
 
@@ -701,7 +672,6 @@ namespace restApi.Controllers
                 db.CommandTimeout = 120;
                 var isAdminorNot = db.VW_Users.Where(c => c.POSITION_ID == posid).FirstOrDefault();
                 var excludedStatuses = new[] { 1, 5, 6, 7 };
-                //VW_T_APPROVAL data = null;
                 VW_T_APPROVAL data = new VW_T_APPROVAL();
 
                 DateTime startDateTime = DateTime.ParseExact(startDate, "yyyy-MM-dd HH:mm:ss.fff", CultureInfo.InvariantCulture);
@@ -749,7 +719,6 @@ namespace restApi.Controllers
             {
                 db.CommandTimeout = 120;
                 var isAdminorNot = db.VW_Users.Where(c => c.POSITION_ID == posid).FirstOrDefault();
-                //List<VW_T_APPROVAL> data = null;
                 List<VW_T_APPROVAL> data = new List<VW_T_APPROVAL>();
 
                 if (isAdminorNot.ID_Role == 1 || isAdminorNot.ID_Role == 4)
@@ -777,7 +746,6 @@ namespace restApi.Controllers
             {
                 db.CommandTimeout = 120;
                 var isAdminorNot = db.VW_Users.Where(c => c.POSITION_ID == posid).FirstOrDefault();
-                //VW_T_APPROVAL data = null;
                 VW_T_APPROVAL data = new VW_T_APPROVAL();
 
                 if (isAdminorNot.ID_Role == 1 || isAdminorNot.ID_Role == 4)
@@ -789,7 +757,6 @@ namespace restApi.Controllers
                     data = db.VW_T_APPROVALs.Where(a => a.ID_STATUS == 5 && a.ATASAN == posid).OrderByDescending(a => a.APPROVAL_ID).FirstOrDefault();
                 }
 
-                //var formattedDate = (data.WAKTU_APPROVAL ?? data.DATETIME_FROM_CFC).Value.ToString("d MMMM yyyy | HH:mm", new CultureInfo("id-ID"));
                 var formattedDate = data != null ? (data.WAKTU_APPROVAL ?? data.DATETIME_FROM_CFC).Value.ToString("d MMMM yyyy | HH:mm", new CultureInfo("id-ID")) : "-";
 
                 return Ok(new { Data = data, Tanggal = formattedDate });
@@ -808,10 +775,8 @@ namespace restApi.Controllers
             {
                 db.CommandTimeout = 120;
                 var isAdminorNot = db.VW_Users.Where(c => c.POSITION_ID == posid).FirstOrDefault();
-                //List<VW_T_APPROVAL> data = null;
                 List<VW_T_APPROVAL> data = new List<VW_T_APPROVAL>();
 
-                // Konversi string tanggal awal dan tanggal akhir menjadi DateTime
                 DateTime startDateDateTime = DateTime.Parse(startDate);
                 DateTime endDateDateTime = DateTime.Parse(endDate);
 
@@ -840,7 +805,6 @@ namespace restApi.Controllers
             {
                 db.CommandTimeout = 120;
                 var isAdminorNot = db.VW_Users.Where(c => c.POSITION_ID == posid).FirstOrDefault();
-                //VW_T_APPROVAL data = null;
                 VW_T_APPROVAL data = new VW_T_APPROVAL();
 
                 DateTime startDateTime = DateTime.ParseExact(startDate, "yyyy-MM-dd HH:mm:ss.fff", CultureInfo.InvariantCulture);
@@ -881,7 +845,6 @@ namespace restApi.Controllers
             {
                 db.CommandTimeout = 120;
                 var isAdminorNot = db.VW_Users.Where(c => c.POSITION_ID == posid).FirstOrDefault();
-                //List<VW_T_APPROVAL> data = null;
                 List<VW_T_APPROVAL> data = new List<VW_T_APPROVAL>();
 
                 if (isAdminorNot.ID_Role == 1 || isAdminorNot.ID_Role == 4)
@@ -909,7 +872,6 @@ namespace restApi.Controllers
             {
                 db.CommandTimeout = 120;
                 var isAdminorNot = db.VW_Users.Where(c => c.POSITION_ID == posid).FirstOrDefault();
-                //VW_T_APPROVAL data = null;
                 VW_T_APPROVAL data = new VW_T_APPROVAL();
 
                 if (isAdminorNot.ID_Role == 1 || isAdminorNot.ID_Role == 4)
@@ -921,12 +883,7 @@ namespace restApi.Controllers
                     data = db.VW_T_APPROVALs.Where(a => a.ID_STATUS == 7 && a.ATASAN == posid).OrderByDescending(a => a.APPROVAL_ID).FirstOrDefault();
                 }
 
-                //var formattedDate = (data.WAKTU_APPROVAL ?? data.DATETIME_FROM_CFC).Value.ToString("d MMMM yyyy | HH:mm", new CultureInfo("id-ID"));
                 var formattedDate = data != null ? (data.WAKTU_APPROVAL ?? data.DATETIME_FROM_CFC).Value.ToString("d MMMM yyyy | HH:mm", new CultureInfo("id-ID")) : "-";
-
-                //var gmtPlus7Time = (data.WAKTU_APPROVAL ?? data.DATETIME_FROM_CFC).Value.AddHours(7);
-                //var formattedDate = gmtPlus7Time.ToString("d MMMM yyyy | HH:mm", new CultureInfo("id-ID"));
-
 
                 return Ok(new { Data = data, Tanggal = formattedDate });
             }
@@ -944,10 +901,8 @@ namespace restApi.Controllers
             {
                 db.CommandTimeout = 120;
                 var isAdminorNot = db.VW_Users.Where(c => c.POSITION_ID == posid).FirstOrDefault();
-                //List<VW_T_APPROVAL> data = null;
                 List<VW_T_APPROVAL> data = new List<VW_T_APPROVAL>();
 
-                // Konversi string tanggal awal dan tanggal akhir menjadi DateTime
                 DateTime startDateDateTime = DateTime.Parse(startDate);
                 DateTime endDateDateTime = DateTime.Parse(endDate);
 
@@ -976,7 +931,6 @@ namespace restApi.Controllers
             {
                 db.CommandTimeout = 120;
                 var isAdminorNot = db.VW_Users.Where(c => c.POSITION_ID == posid).FirstOrDefault();
-                //VW_T_APPROVAL data = null;
                 VW_T_APPROVAL data = new VW_T_APPROVAL();
 
                 DateTime startDateTime = DateTime.ParseExact(startDate, "yyyy-MM-dd HH:mm:ss.fff", CultureInfo.InvariantCulture);

@@ -14,8 +14,6 @@ namespace restApi.ViewModel
 
         public string Username { get; set; }
         public string Password { get; set; }
-        //public string Jobsite { get; set; }
-        //public string Roled { get; set; }
 
         public bool Login()
         {

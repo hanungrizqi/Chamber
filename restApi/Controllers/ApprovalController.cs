@@ -33,7 +33,6 @@ namespace restApi.Controllers
                 }
                 else if (isAdminorNot.ID_Role == 4)
                 {
-                    //var data = db.VW_T_APPROVALs.Where(a => a.FLAG == 0 && a.ID_STATUS == 4).OrderBy(a => a.APPROVAL_ID).ToList();
                     var data = db.VW_T_APPROVALs.Where(a => a.ID_STATUS == 4 && a.APPROVER_PARAMEDIC == null).OrderBy(a => a.APPROVAL_ID).ToList();
 
                     return Ok(new { Data = data });
@@ -44,8 +43,6 @@ namespace restApi.Controllers
 
                     return Ok(new { Data = data });
                 }
-
-                //return Ok(new { Data = data });
             }
             catch (Exception)
             {
@@ -77,15 +74,6 @@ namespace restApi.Controllers
                     query = db.VW_T_APPROVALs.Where(a => a.FLAG == 0 && !excludedStatuses.Contains(a.ID_STATUS.Value) && a.ATASAN == posid);
                 }
 
-                // Parse startDate and endDate to DateTime
-                //DateTime parsedStartDate, parsedEndDate;
-                //if (DateTime.TryParseExact(startDate, "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out parsedStartDate) &&
-                //    DateTime.TryParseExact(endDate, "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.None, out parsedEndDate))
-                //{
-                //    // Filter data by date range
-                //    query = query.Where(a => a.WAKTU_ABSEN >= parsedStartDate && a.WAKTU_ABSEN <= parsedEndDate);
-                //}
-
                 if (DateTime.TryParseExact(startDate, "yyyy-MM-dd HH:mm:ss.fff", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime parsedStartDate) && DateTime.TryParseExact(endDate, "yyyy-MM-dd HH:mm:ss.fff", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime parsedEndDate))
                 {
                     // Filter data by date range
@@ -115,7 +103,6 @@ namespace restApi.Controllers
                     if (cekRole.ID_Role == 4)
                     {
                         cek.ID_STATUS = chambers.ID_STATUS;
-                        //cek.APPROVER = chambers.APPROVER;
                         cek.WAKTU_APPROVAL = DateTime.Now;
                         cek.APPROVER_PARAMEDIC = chambers.APPROVER;
                         cek.FLAG = 1;
@@ -162,7 +149,6 @@ namespace restApi.Controllers
                     if (cekRole.ID_Role == 4)
                     {
                         cek.ID_STATUS = chambers.ID_STATUS;
-                        //cek.APPROVER = chambers.APPROVER;
                         cek.WAKTU_APPROVAL = DateTime.Now;
                         cek.APPROVER_PARAMEDIC = chambers.APPROVER;
                         cek.FLAG = 1;

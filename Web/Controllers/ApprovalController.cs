@@ -10,7 +10,6 @@ namespace Web.Controllers
     public class ApprovalController : Controller
     {
         CfmDataContext db = new CfmDataContext();
-        // GET: Approval
         public ActionResult Index(string startDate = null, string endDate = null)
         {
             if (Session["nrp"] == null)

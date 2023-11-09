@@ -19,9 +19,6 @@ $("document").ready(function () {
                 var startDate = selectedDates[0];
                 var endDate = selectedDates[1];
 
-                //var startDateLocal = startDate.toLocaleDateString('en-CA');
-                //var endDateLocal = endDate.toLocaleDateString('en-CA');
-
                 var currentTime = new Date();
                 var startDateFormatted = startDate.getFullYear() + '-' +
                     ('0' + (startDate.getMonth() + 1)).slice(-2) + '-' +
@@ -98,7 +95,6 @@ var table = $("#tbl_approval").DataTable({
         {
             data: 'NAME',
             render: function (data, type, row) {
-                //debugger
                 var email = row.EMAIL;
                 var oxy = row.OXYGEN_SATURATION;
                 var heart = row.HEART_RATE;
@@ -107,13 +103,11 @@ var table = $("#tbl_approval").DataTable({
                 var tempra = row.TEMPRATURE;
                 var note = row.NOTE;
                 var text = '';
-                /*var noteValues = note.split(',');*/
 
                 if (note && typeof note === 'string')
                 {
                     var noteValues = note.split(',');
                     for (var i = 0; i < noteValues.length; i++) {
-                        //debugger
                         var noteValue = noteValues[i].trim();
                         switch (noteValue) {
                             case 'heart_rate':

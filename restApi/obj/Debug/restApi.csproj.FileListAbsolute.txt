@@ -1,5 +1,3 @@
-D:\Backup Project\CFM\CFM\restApi\bin\WebGrease.dll
-D:\Backup Project\CFM\CFM\restApi\obj\Debug\restApi.pdb
 D:\Backup Project\CFM\CFM\restApi\bin\restApi.dll.config
 D:\Backup Project\CFM\CFM\restApi\bin\restApi.dll
 D:\Backup Project\CFM\CFM\restApi\bin\restApi.pdb
@@ -69,6 +67,7 @@ D:\Backup Project\CFM\CFM\restApi\bin\System.Web.Razor.dll
 D:\Backup Project\CFM\CFM\restApi\bin\System.Web.WebPages.Deployment.dll
 D:\Backup Project\CFM\CFM\restApi\bin\System.Web.WebPages.dll
 D:\Backup Project\CFM\CFM\restApi\bin\System.Web.WebPages.Razor.dll
+D:\Backup Project\CFM\CFM\restApi\bin\WebGrease.dll
 D:\Backup Project\CFM\CFM\restApi\bin\System.Web.Http.Cors.xml
 D:\Backup Project\CFM\CFM\restApi\bin\Newtonsoft.Json.xml
 D:\Backup Project\CFM\CFM\restApi\bin\System.Net.Http.Formatting.xml
@@ -87,3 +86,4 @@ D:\Backup Project\CFM\CFM\restApi\obj\Debug\restApi.csproj.AssemblyReference.cac
 D:\Backup Project\CFM\CFM\restApi\obj\Debug\restApi.csproj.CoreCompileInputs.cache
 D:\Backup Project\CFM\CFM\restApi\obj\Debug\restApi.csproj.CopyComplete
 D:\Backup Project\CFM\CFM\restApi\obj\Debug\restApi.dll
+D:\Backup Project\CFM\CFM\restApi\obj\Debug\restApi.pdb

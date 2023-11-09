@@ -74,7 +74,6 @@ namespace restApi.Controllers
             }
         }
 
-        //Keperluan Transaksi
         [HttpGet]
         [Route("getDistrict")]
         public IHttpActionResult getDistrict()

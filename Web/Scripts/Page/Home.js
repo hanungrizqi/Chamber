@@ -11,9 +11,6 @@ $("document").ready(function () {
                 var startDate = selectedDates[0];
                 var endDate = selectedDates[1];
 
-                //var startDateLocal = startDate.toLocaleDateString('en-CA');
-                //var endDateLocal = endDate.toLocaleDateString('en-CA');
-                //debugger
                 var currentTime = new Date();
                 var startDateLocal = startDate.getFullYear() + '-' +
                     ('0' + (startDate.getMonth() + 1)).slice(-2) + '-' +
@@ -67,7 +64,6 @@ $("document").ready(function () {
                 updateHTMLElementscham004(startDateLocal, endDateLocal);
                 updateHTMLElementscham004Date(startDateLocal, endDateLocal);
 
-                // Panggil fungsi untuk mengupdate data grafik
                 updateChartWithDateRange(startDateLocal, endDateLocal);
             }
         },
@@ -269,7 +265,6 @@ function checkDataAndInitChart() {
 }
 
 function updateChartWithDateRange(startDate, endDate) {
-    //debugger
     initChart();
 }
 

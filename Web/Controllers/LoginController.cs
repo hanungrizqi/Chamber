@@ -11,7 +11,6 @@ namespace Web.Controllers
     public class LoginController : Controller
     {
         CfmDataContext db = new CfmDataContext();
-        // GET: Login
         public ActionResult Index()
         {
             Session["Web_Link"] = System.Configuration.ConfigurationManager.AppSettings["WebApp_Link"].ToString();
@@ -175,11 +174,9 @@ namespace Web.Controllers
                     else if (dataRole.ID_Role == 4)
                     {
                         var excludedStatuses = new[] { 1, 5, 6, 7 };
-                        //int countss = db.VW_T_APPROVALs.Where(a => a.FLAG == 0 && a.ID_STATUS == 4).Count();
                         int countss = db.VW_T_APPROVALs.Where(a => a.ID_STATUS == 4 && a.APPROVER_PARAMEDIC == null).Count();
                         Session["Counted"] = countss;
 
-                        //var lastCfc_Notif = db.VW_T_APPROVALs.Where(a => a.FLAG == 0 && a.ID_STATUS == 4).OrderByDescending(u => u.WAKTU_ABSEN).FirstOrDefault();
                         var lastCfc_Notif = db.VW_T_APPROVALs.Where(a => a.ID_STATUS == 4 && a.APPROVER_PARAMEDIC == null).OrderByDescending(u => u.DATETIME_FROM_CFC).FirstOrDefault();
                         Session["LastCFC"] = GetTimeAgo(lastCfc_Notif?.DATETIME_FROM_CFC);
                     }
@@ -229,7 +226,6 @@ namespace Web.Controllers
                     }
 
                     Session["Name"] = firstName;
-                    //Session["Name"] = dataUser.NAME;
                     Session["Site"] = dataUser.DSTRCT_CODE;
                     Session["Role"] = dataRoledakun.RoleName;
                     Session["PositionID"] = dataUser.POSITION_ID.Trim();
@@ -254,7 +250,6 @@ namespace Web.Controllers
                         Session["Counted"] = countss;
 
                         var lastCfc_Notif = db.VW_T_APPROVALs.Where(a => a.FLAG == 0 && !excludedStatuses.Contains(a.ID_STATUS.Value)).OrderByDescending(u => u.DATETIME_FROM_CFC).FirstOrDefault();
-                        //Session["LastCFC"] = GetTimeAgo(lastCfc_Notif?.DATETIME_FROM_CFC);
                         string timeAgos = "Invalid Date";
                         if (lastCfc_Notif != null && DateTime.TryParse(lastCfc_Notif.DATETIME_FROM_CFC.ToString(), out DateTime dateAdds))
                         {

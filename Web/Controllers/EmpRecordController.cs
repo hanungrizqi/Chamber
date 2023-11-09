@@ -10,7 +10,6 @@ namespace Web.Controllers
     public class EmpRecordController : Controller
     {
         CfmDataContext db = new CfmDataContext();
-        // GET: EmpRecord
         public ActionResult Index(string startDate = null, string endDate = null, string status = null)
         {
             if (Session["nrp"] == null)

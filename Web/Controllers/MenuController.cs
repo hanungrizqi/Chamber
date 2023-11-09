@@ -29,24 +29,5 @@ namespace Web.Controllers
             }
 
         }
-
-        //[ChildActionOnly]
-        //public ActionResult Menu_Mob()
-        //{
-        //    if (Session["Nrp"] == null)
-        //    {
-        //        var menu = "";
-
-        //        return PartialView("SideBar2", menu);
-        //    }
-        //    else
-        //    {
-        //        var menu = db.VW_R_MENUs.Where(x => x.ID == Convert.ToInt16(Session["ID_Role"].ToString())).OrderBy(x => x.Order).ToList();
-        //        ViewBag.Sub = db.TBL_R_SUB_MENUs.Where(x => x.Akses.Contains("ALL")).ToList();
-
-        //        return PartialView("_Sidebar2", menu);
-        //    }
-
-        //}
     }
 }
