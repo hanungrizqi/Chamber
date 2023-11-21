@@ -39,7 +39,7 @@ namespace restApi.Controllers
                 }
                 else
                 {
-                    var data = db.VW_T_APPROVALs.Where(a => a.FLAG == 0 && !excludedStatuses2.Contains(a.ID_STATUS.Value) && a.ATASAN == posid).OrderBy(a => a.APPROVAL_ID).ToList();
+                    var data = db.VW_T_APPROVALs.Where(a => a.FLAG == 0 && !excludedStatuses2.Contains(a.ID_STATUS.Value) /*&& a.ATASAN == posid*/).OrderBy(a => a.APPROVAL_ID).ToList();
 
                     return Ok(new { Data = data });
                 }
@@ -71,7 +71,7 @@ namespace restApi.Controllers
                 }
                 else
                 {
-                    query = db.VW_T_APPROVALs.Where(a => a.FLAG == 0 && !excludedStatuses.Contains(a.ID_STATUS.Value) && a.ATASAN == posid);
+                    query = db.VW_T_APPROVALs.Where(a => a.FLAG == 0 && !excludedStatuses.Contains(a.ID_STATUS.Value) /*&& a.ATASAN == posid*/);
                 }
 
                 if (DateTime.TryParseExact(startDate, "yyyy-MM-dd HH:mm:ss.fff", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime parsedStartDate) && DateTime.TryParseExact(endDate, "yyyy-MM-dd HH:mm:ss.fff", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime parsedEndDate))
@@ -108,6 +108,7 @@ namespace restApi.Controllers
                         cek.FLAG = 1;
 
                         db.SubmitChanges();
+                        Exec_NotifOperator(cek.NRP, cek.APPROVAL_ID, cek.ID_CFC);
 
                         return Ok(new { Remarks = true });
                     }
@@ -119,6 +120,7 @@ namespace restApi.Controllers
                         cek.FLAG = 1;
 
                         db.SubmitChanges();
+                        Exec_NotifOperator(cek.NRP, cek.APPROVAL_ID, cek.ID_CFC);
 
                         return Ok(new { Remarks = true });
                     }
@@ -154,6 +156,7 @@ namespace restApi.Controllers
                         cek.FLAG = 1;
 
                         db.SubmitChanges();
+                        Exec_NotifOperator(cek.NRP, cek.APPROVAL_ID, cek.ID_CFC);
 
                         return Ok(new { Remarks = true });
                     }
@@ -165,6 +168,7 @@ namespace restApi.Controllers
                         cek.FLAG = 1;
 
                         db.SubmitChanges();
+                        Exec_NotifOperator(cek.NRP, cek.APPROVAL_ID, cek.ID_CFC);
 
                         return Ok(new { Remarks = true });
                     }
@@ -178,6 +182,24 @@ namespace restApi.Controllers
             catch (Exception e)
             {
                 return Ok(new { Remarks = false, Message = e });
+            }
+        }
+
+        [HttpPost]
+        [Route("Exec_NotifOperator")]
+        public IHttpActionResult Exec_NotifOperator(string nrp, int approval_id, int? id_cfc)
+        {
+            try
+            {
+                db.CommandTimeout = 120;
+                var data = db.cusp_insertPushNotifMOK_Operator(nrp, approval_id);
+                var data2 = db.cusp_insertDataForInAppNotificationCFM_Operator(nrp, id_cfc);
+
+                return Ok(new { Data = data });
+            }
+            catch (Exception)
+            {
+                return BadRequest();
             }
         }
 

@@ -18,7 +18,6 @@
     <!-- END Icons -->
     <!-- Stylesheets -->
     <!-- Fonts and Codebase framework -->
-    @*<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800&display=swap">*@
     <link rel="stylesheet" id="css-main" href="~/Content/assets/css/codebase.min.css">
     <link href="~/Content/Site.css" rel="stylesheet" />
 
@@ -34,11 +33,9 @@
         .tombol {
             font-size: small;
         }
-
         .piraww {
             color: black;
         }
-
         .drpdwn {
             position: absolute;
             inset: auto 0px 0px auto;
@@ -58,7 +55,6 @@
         #downloadButton:hover {
             text-decoration: underline;
         }
-
         #downloadButton2 {
             background: none;
             border: none;
@@ -84,13 +80,6 @@
         #filterbuton:hover {
             text-decoration: underline;
         }
-
-        /*#chartshome {
-            width: 100%;
-            height: 100%;
-            margin: 0;
-            padding: 0;
-        }*/
     </style>
     @RenderSection("Stylesheet", false)
     <script src="~/Content/assets/js/lib/jquery.min.js"></script>
@@ -447,10 +436,7 @@
     <script src="https://cdn.anychart.com/releases/8.11.1/js/anychart-pie.min.js"></script>
     <script src="https://cdn.anychart.com/releases/8.11.1/js/anychart-base.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    @*<script>
-            Codebase.helpersOnLoad(['cb-table-tools-checkable', 'cb-table-tools-sections']);
-        </script>*@
-    @*<script src="~/Content/assets/js/pages/be_forms_validation.min.js"></script>*@
+
     <script src="@Html.Raw(ViewBag.JS)"></script>
     <script>
         var path = window.location.pathname;

@@ -19,7 +19,6 @@ $("document").ready(function () {
         mode: "range",
         onChange: function (selectedDates, dateStr, instance) {
             if (selectedDates.length === 2) {
-                //debugger
                 var startDate = selectedDates[0];
                 var endDate = selectedDates[1];
 
@@ -76,7 +75,6 @@ $(document).on('click', '.action-link', function (e) {
 });
 
 var ajaxConfig;
-
 if ($("#hd_idroles").val() == 3) {
     ajaxConfig = {
         url: $("#web_link").val() + "/api/Emprecord/Get_ListEmprecord_Operator/" + $("#hd_nrp").val(),
@@ -90,10 +88,6 @@ if ($("#hd_idroles").val() == 3) {
 }
 
 var table = $("#tbl_empr").DataTable({
-    //ajax: {
-    //    url: $("#web_link").val() + "/api/Emprecord/Get_ListEmprecord/" + $("#hd_positid").val(),
-    //    dataSrc: "Data",
-    //},
     ajax: ajaxConfig,
     fixedHeader: {
         header: true,
@@ -129,13 +123,11 @@ var table = $("#tbl_empr").DataTable({
                 var tempra = row.TEMPRATURE;
                 var note = row.NOTE;
                 var text = '';
-                /*var noteValues = note.split(',');*/
 
                 if (note && typeof note === 'string')
                 {
                     var noteValues = note.split(',');
                     for (var i = 0; i < noteValues.length; i++) {
-                        //debugger
                         var noteValue = noteValues[i].trim();
                         switch (noteValue) {
                             case 'heart_rate':
@@ -195,11 +187,6 @@ var table = $("#tbl_empr").DataTable({
             }
         },
         {
-            //data: 'WAKTU_ABSEN',
-            //render: function (data, type, row) {
-            //    const tanggal = moment(data).format("DD/MM/YYYY HH:mm");
-            //    return tanggal;
-            //}
             data: 'WAKTU_ABSEN',
             render: function (data, type, row) {
                 if (type == 'display') {
@@ -320,36 +307,25 @@ function initializeCustomFilter(filter) {
 }
 
 $("#downloadButton").on("click", function () {
-    //debugger
     generatePDF();
 });
 
 $("#downloadButton2").on("click", function () {
-    //debugger
     generatePDF();
 });
 
 function generatePDF() {
-    //debugger
     var doc = new jsPDF();
     doc.autoTable({ html: '#tbl_empr' });
     doc.save('EmployeeRecord.pdf');
 }
 
 $('#tbl_empr tbody').on('click', 'tr', function (e) {
-    //debugger
-    // Get the index of the clicked cell (td) within the row
     var columnIndex = $(e.target).closest('td').index();
-    //debugger
-
-    // Check if the clicked column is allowed to redirect to detail
     if (columnIndex === 1 || columnIndex === 2 || columnIndex === 3 || columnIndex === 4 || columnIndex === 5) {
-        //debugger
         var rowId = this.id; // Get the unique row ID
         var approvalId = rowId.split('_')[1]; // Extract the APPROVAL_ID
-        // Construct the URL with the parameter
         var url = '/EmpRecord/Detail_ERecord?id=' + approvalId;
-        // Redirect to the detail approval page
         window.location.href = url;
     }
 });
@@ -363,14 +339,9 @@ table.on('draw', function () {
 });
 
 function isClosestToCurrentDate(date) {
-    //debugger
     var currentDate = new Date();
     var rowDate = new Date(date);
-
-    // Calculate the difference in milliseconds between the current date and the row date
     var diff = Math.abs(currentDate - rowDate);
-
-    // If the difference is less than or equal to a certain threshold (e.g., 1 hour), consider it the closest record
     var thresholdMilliseconds = 60 * 60 * 1000; // 1 hour
     return diff <= thresholdMilliseconds;
 }

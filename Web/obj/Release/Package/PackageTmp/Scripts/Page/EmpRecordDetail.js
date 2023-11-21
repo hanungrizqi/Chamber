@@ -23,7 +23,6 @@ function Detail(callback) {
         type: "GET",
         cache: false,
         success: function (result) {
-            //debugger
             var data = result.Data;
             $("#txt_nrp").val(data.NRP);
             $("#txt_name").val(data.NAME);
@@ -45,9 +44,8 @@ function Detail(callback) {
             var jumlahApprovalPerhari = data.JUMLAH_APPROVAL_PERHARI;
 
             recordData(jumlahApprovalPerhari, data.NRP, moment(data.DATE_FROM_CFC).format("YYYY-MM-DD"));
-            //debugger
             if (typeof callback === "function") {
-                callback(/*jumlahApprovalPerhari, combine_approvalid*/);
+                callback();
             }
 
         }
@@ -64,18 +62,15 @@ function recordData(jumlahApprovalPerhari, nrp, dateFromCFC) {
             debugger
             var datas = result.Data;
             combine_approvalid = datas.APPROVAL_ID;
-
-            //if (idstatss == 5) {
             if (jumlahApprovalPerhari >= 2) {
                 debugger
-                if (approvalid == datas.APPROVAL_ID /*combine_approvalid*/) {
+                if (approvalid == datas.APPROVAL_ID) {
                     $("#txt_status").prop("disabled", false);
                 }
                 else {
                     $("#txt_status").prop("disabled", true);
                 }
             }
-            //}
         }
     });
 }
@@ -86,7 +81,6 @@ function Status() {
         type: "GET",
         cache: false,
         success: function (result) {
-            //debugger
             $('#txt_status').empty();
             text = '<option></option>';
             var dataStatus = data2;

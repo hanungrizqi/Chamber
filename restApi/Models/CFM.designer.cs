@@ -22,7 +22,7 @@ namespace restApi.Models
 	using System;
 	
 	
-	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="DB_SHE_CFM_KPT")]
+	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="db_she_dcfc_kpt")]
 	public partial class CFMDataContext : System.Data.Linq.DataContext
 	{
 		
@@ -270,6 +270,20 @@ namespace restApi.Models
 		public IQueryable<cufn_getCFMManagement_forGLResult> cufn_getCFMManagement_forGL([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ATASAN", DbType="VarChar(50)")] string aTASAN)
 		{
 			return this.CreateMethodCallQuery<cufn_getCFMManagement_forGLResult>(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), aTASAN);
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.cusp_insertPushNotifMOK_Operator")]
+		public int cusp_insertPushNotifMOK_Operator([global::System.Data.Linq.Mapping.ParameterAttribute(Name="NRP", DbType="VarChar(50)")] string nRP, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="APPROVAL_ID", DbType="Int")] System.Nullable<int> aPPROVAL_ID)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), nRP, aPPROVAL_ID);
+			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.cusp_insertDataForInAppNotificationCFM_Operator")]
+		public int cusp_insertDataForInAppNotificationCFM_Operator([global::System.Data.Linq.Mapping.ParameterAttribute(Name="NRP", DbType="VarChar(50)")] string nRP, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ID_CFC", DbType="Int")] System.Nullable<int> iD_CFC)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), nRP, iD_CFC);
+			return ((int)(result.ReturnValue));
 		}
 	}
 	

@@ -98,5 +98,11 @@
         <elementListCompartment Id="922d5498-c3ef-431f-b0f2-555b3f3a4151" absoluteBounds="4.765, 3.46, 1.9700000000000002, 5.4415283203125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
+    <classShape Id="a89a4219-349b-43a8-8a16-8d518f7ab1a8" isExpanded="false" absoluteBounds="6.875, 0.5, 2, 0.45">
+      <DataClassMoniker Name="/CfmDataContext/VW_MOK_LOGIN" />
+      <nestedChildShapes>
+        <elementListCompartment Id="90e93139-eea5-4cb6-be51-e78f2549030f" absoluteBounds="6.8900000000000006, 0.96, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
   </nestedChildShapes>
 </ordesignerObjectsDiagram>

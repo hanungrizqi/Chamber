@@ -1,5 +1,5 @@
-﻿<?xml version="1.0" encoding="utf-8"?><Database Name="DB_SHE_CFM_KPT" Class="CfmDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="WebSettings" ConnectionString="Data Source=kphosq101\shpol;Initial Catalog=DB_SHE_CFM_KPT;Persist Security Info=True;User ID=sqlservices" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="DB_SHE_CFM_KPTConnectionString" Provider="System.Data.SqlClient" />
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="db_she_dcfc_kpp" Class="CfmDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=10.23.1.67;Initial Catalog=db_she_dcfc_kpp;Persist Security Info=True;User ID=sqlservices" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="DB_SHE_CFM_KPTConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="dbo.TBL_R_MENU" Member="TBL_R_MENUs">
     <Type Name="TBL_R_MENU">
       <Column Name="ID_Menu" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -205,6 +205,16 @@
       <Column Name="NOTE" Type="System.String" DbType="VarChar(128)" CanBeNull="true" />
       <Column Name="ATTENDANCE_NOTE" Type="System.String" DbType="VarChar(128)" CanBeNull="true" />
       <Column Name="FLAG" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.VW_MOK_LOGIN" Member="VW_MOK_LOGINs">
+    <Type Name="VW_MOK_LOGIN">
+      <Column Name="username" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="password" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="expiredDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="otp" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="token" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="device_id" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
 </Database>

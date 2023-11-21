@@ -98,7 +98,8 @@ namespace restApi.Controllers
                 }
                 else if (isAdminorNot.ID_Role == 2)
                 {
-                    var data = db.VW_T_APPROVALs.Where(a => a.ATASAN == posid && (a.FLAG == 1 || excludedStatuses.Contains(a.ID_STATUS.Value))).OrderBy(a => a.APPROVAL_ID).ToList();
+                    //var data = db.VW_T_APPROVALs.Where(a => a.ATASAN == posid && (a.FLAG == 1 || excludedStatuses.Contains(a.ID_STATUS.Value))).OrderBy(a => a.APPROVAL_ID).ToList();
+                    var data = db.VW_T_APPROVALs.Where(a => a.FLAG == 1 || excludedStatuses.Contains(a.ID_STATUS.Value)).OrderBy(a => a.APPROVAL_ID).ToList();
 
                     var listUser = data.Where(x => x.ID_STATUS == 5 && x.JUMLAH_APPROVAL_PERHARI >= 2).Select(x => x.NRP).Distinct().ToList();
 
@@ -199,7 +200,8 @@ namespace restApi.Controllers
                 }
                 else if (isAdminorNot.ID_Role == 2)
                 {
-                    query = db.VW_T_APPROVALs.Where(a => a.ATASAN == posid && (a.FLAG == 1 || excludedStatuses.Contains(a.ID_STATUS.Value)));
+                    //query = db.VW_T_APPROVALs.Where(a => a.ATASAN == posid && (a.FLAG == 1 || excludedStatuses.Contains(a.ID_STATUS.Value)));
+                    query = db.VW_T_APPROVALs.Where(a => a.FLAG == 1 || excludedStatuses.Contains(a.ID_STATUS.Value));
                 }
                 else if (isAdminorNot.ID_Role == 4)
                 {

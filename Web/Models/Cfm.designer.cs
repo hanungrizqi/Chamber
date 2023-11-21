@@ -22,7 +22,7 @@ namespace Web.Models
 	using System;
 	
 	
-	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="DB_SHE_CFM_KPT")]
+	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="db_she_dcfc_kpp")]
 	public partial class CfmDataContext : System.Data.Linq.DataContext
 	{
 		
@@ -208,6 +208,14 @@ namespace Web.Models
 			get
 			{
 				return this.GetTable<VW_T_APPROVAL>();
+			}
+		}
+		
+		public System.Data.Linq.Table<VW_MOK_LOGIN> VW_MOK_LOGINs
+		{
+			get
+			{
+				return this.GetTable<VW_MOK_LOGIN>();
 			}
 		}
 	}
@@ -3392,6 +3400,123 @@ namespace Web.Models
 				if ((this._FLAG != value))
 				{
 					this._FLAG = value;
+				}
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.VW_MOK_LOGIN")]
+	public partial class VW_MOK_LOGIN
+	{
+		
+		private string _username;
+		
+		private string _password;
+		
+		private System.Nullable<System.DateTime> _expiredDate;
+		
+		private string _otp;
+		
+		private string _token;
+		
+		private string _device_id;
+		
+		public VW_MOK_LOGIN()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_username", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string username
+		{
+			get
+			{
+				return this._username;
+			}
+			set
+			{
+				if ((this._username != value))
+				{
+					this._username = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_password", DbType="VarChar(50)")]
+		public string password
+		{
+			get
+			{
+				return this._password;
+			}
+			set
+			{
+				if ((this._password != value))
+				{
+					this._password = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_expiredDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> expiredDate
+		{
+			get
+			{
+				return this._expiredDate;
+			}
+			set
+			{
+				if ((this._expiredDate != value))
+				{
+					this._expiredDate = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_otp", DbType="VarChar(50)")]
+		public string otp
+		{
+			get
+			{
+				return this._otp;
+			}
+			set
+			{
+				if ((this._otp != value))
+				{
+					this._otp = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_token", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+		public string token
+		{
+			get
+			{
+				return this._token;
+			}
+			set
+			{
+				if ((this._token != value))
+				{
+					this._token = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_device_id", DbType="VarChar(200) NOT NULL", CanBeNull=false)]
+		public string device_id
+		{
+			get
+			{
+				return this._device_id;
+			}
+			set
+			{
+				if ((this._device_id != value))
+				{
+					this._device_id = value;
 				}
 			}
 		}

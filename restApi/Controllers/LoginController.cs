@@ -18,20 +18,20 @@ namespace restApi.Controllers
         [Route("Get_Login")]
         public IHttpActionResult Get_Login(ClsLogin param)
         {
-            bool remarks = false;
+            //bool remarks = false;
             try
             {
 
-                bool status = param.Login();
+                var status = param.Login();
 
-                remarks = status;
+                //remarks = status.Status;
 
-                return Ok(new { Remarks = remarks });
+                return Ok(new { Remarks = status.Status, Message = status.Message });
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                return Ok(remarks);
+                return Ok(new { Remarks = false, Message = ex.Message });
             }
 
         }

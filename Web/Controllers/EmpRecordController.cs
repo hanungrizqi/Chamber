@@ -42,7 +42,7 @@ namespace Web.Controllers
             else
             {
                 var excludedStatuses = new[] { 1, 5, 6, 7 };
-                int countss = db.VW_T_APPROVALs.Where(a => a.FLAG == 0 && !excludedStatuses.Contains(a.ID_STATUS.Value) && a.ATASAN == Session["PositionID"].ToString()).Count();
+                int countss = db.VW_T_APPROVALs.Where(a => a.FLAG == 0 && !excludedStatuses.Contains(a.ID_STATUS.Value) /*&& a.ATASAN == Session["PositionID"].ToString()*/).Count();
                 ViewBag.Count = countss;
             }
             return View();
@@ -69,7 +69,7 @@ namespace Web.Controllers
             else
             {
                 var excludedStatuses = new[] { 1, 5, 6, 7 };
-                int countss = db.VW_T_APPROVALs.Where(a => a.FLAG == 0 && !excludedStatuses.Contains(a.ID_STATUS.Value) && a.ATASAN == Session["PositionID"].ToString()).Count();
+                int countss = db.VW_T_APPROVALs.Where(a => a.FLAG == 0 && !excludedStatuses.Contains(a.ID_STATUS.Value) /*&& a.ATASAN == Session["PositionID"].ToString()*/).Count();
                 ViewBag.Count = countss;
             }
             ViewBag.id = id;

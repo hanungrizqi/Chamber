@@ -15,9 +15,11 @@ namespace restApi.ViewModel
         public string Username { get; set; }
         public string Password { get; set; }
 
-        public bool Login()
+        public LoginRespon Login()
         {
-            bool status = false;
+            var respon = new LoginRespon();
+
+            //bool status = false;
             bool status_login = false;
             string nrp = "";
 
@@ -42,15 +44,24 @@ namespace restApi.ViewModel
                 var data_user = db.TBL_M_USERs.Where(x => x.Username == nrp).SingleOrDefault();
                 if (data_user != null)
                 {
-                    status = true;
+                    //status = true;
+                    respon.Status = true;
                 }
                 else
                 {
-                    status = false;
+                    //status = false;
+                    respon.Status = false;
+                    respon.Message = "Maaf anda tidak memiliki akses ke DCFC";
                 }
             }
+            else
+            {
+                respon.Status = false;
+                respon.Message = "Username or Password incorrect.";
+            }
 
-            return status;
+            //return status;
+            return respon;
         }
 
 
@@ -92,5 +103,12 @@ namespace restApi.ViewModel
 
             return status;
         }
+
+        public class LoginRespon
+        {
+            public string Message { get; set; }
+            public bool Status { get; set; }
+        }
+
     }
 }

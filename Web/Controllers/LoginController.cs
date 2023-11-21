@@ -31,6 +31,11 @@ namespace Web.Controllers
             }
 
             var check_paramedis = db.VW_Users.Where(a => a.Username == nrp).FirstOrDefault();
+            if (check_paramedis == null)
+            {
+                return new JsonResult() { Data = new { Remarks = false, Message = "Maaf anda tidak memiliki akses ke CFM Web" }, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+            }
+
             if (check_paramedis.ID_Role == 4 && check_paramedis.POSITION_ID == null)
             {
                 var dataUser = db.VW_Users.Where(a => a.Username == nrp).FirstOrDefault();
@@ -262,7 +267,7 @@ namespace Web.Controllers
                     else if (dataRole.ID_Role == 2)
                     {
                         var excludedStatuses = new[] { 1, 5, 6, 7 };
-                        int countss = db.VW_T_APPROVALs.Where(a => a.FLAG == 0 && !excludedStatuses.Contains(a.ID_STATUS.Value) && a.ATASAN == dataUser.POSITION_ID.Trim()).Count();
+                        int countss = db.VW_T_APPROVALs.Where(a => a.FLAG == 0 && !excludedStatuses.Contains(a.ID_STATUS.Value) /*&& a.ATASAN == dataUser.POSITION_ID.Trim()*/).Count();
                         Session["Counted"] = countss;
 
                         var lastCfc_Notif = db.VW_T_APPROVALs.Where(a => a.FLAG == 0 && !excludedStatuses.Contains(a.ID_STATUS.Value) && a.ATASAN == dataUser.POSITION_ID.Trim()).OrderByDescending(u => u.DATETIME_FROM_CFC).FirstOrDefault();
@@ -307,6 +312,7 @@ namespace Web.Controllers
             }
             return "Invalid Date";
         }
+
         private string FormatTimeAgo(TimeSpan timeDifference)
         {
             if (timeDifference.TotalDays >= 1)
@@ -326,6 +332,42 @@ namespace Web.Controllers
                 int minutes = (int)timeDifference.TotalMinutes;
                 return $"{minutes} minute{(minutes != 1 ? "s" : "")} ago";
             }
+        }
+
+        public ActionResult LoginMokGem(string o, string i)
+        {
+            VW_MOK_LOGIN login = db.VW_MOK_LOGINs.Where(f => f.username == o && f.token == i).FirstOrDefault();
+            string test = o + " " + i;
+            if (o == null || i == null)
+            {
+                return RedirectToAction("Index", "Login");
+            }
+            else
+            {
+                string nrp = "";
+
+                if (o.Count() > 7)
+                {
+                    nrp = o.Substring(o.Length - 7);
+                }
+                else
+                {
+                    nrp = o;
+                }
+
+                var checks = db.VW_Users.Where(a => a.Username == nrp).FirstOrDefault();
+                if (checks != null)
+                {
+
+                    var result = MakeSession(o);
+                    return RedirectToAction("Index", "Approval");
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Login");
+                }
+            }
+
         }
 
         public ActionResult Logout()

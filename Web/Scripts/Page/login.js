@@ -41,7 +41,7 @@ $("document").ready(function () {
                     } else {
                         swal.fire({
                             title: "Error!",
-                            text: "Username or Password incorrect.",
+                            text: data.Message,
                             icon: "error"
                         });
                         $("#overlay").hide();
@@ -81,7 +81,8 @@ function PostLogin() {
             else {
                 swal.fire({
                     title: "Error!",
-                    text: "Username or Password incorrect.",
+                    //text: "Username or Password incorrect.",
+                    text: data.Message,
                     icon: 'error',
                 });
                 $("#overlay").hide();

@@ -27,7 +27,7 @@ namespace restApi.Controllers
                 var excludedStatuses = new[] { 1, 5, 6, 7 };
                 List<VW_T_APPROVAL> data = new List<VW_T_APPROVAL>();
 
-                if (isAdminorNot.ID_Role == 1 || isAdminorNot.ID_Role == 4)
+                if (isAdminorNot.ID_Role == 1 || isAdminorNot.ID_Role == 4 || isAdminorNot.ID_Role == 2)
                 {
                     var data_1 = db.VW_T_APPROVALs.Where(a => a.FLAG == 0 && !excludedStatuses.Contains(a.ID_STATUS.Value)).OrderBy(a => a.APPROVAL_ID).ToList();
 
@@ -68,7 +68,7 @@ namespace restApi.Controllers
                 DateTime startDateDateTime = DateTime.Parse(startDate);
                 DateTime endDateDateTime = DateTime.Parse(endDate);
 
-                if (isAdminorNot.ID_Role == 1 || isAdminorNot.ID_Role == 4)
+                if (isAdminorNot.ID_Role == 1 || isAdminorNot.ID_Role == 4 || isAdminorNot.ID_Role == 2)
                 {
                     var data_1 = db.VW_T_APPROVALs
                         .Where(a => a.FLAG == 0 && !excludedStatuses.Contains(a.ID_STATUS.Value) &&
@@ -121,7 +121,7 @@ namespace restApi.Controllers
                 var isAdminorNot = db.VW_Users.Where(c => c.POSITION_ID == posid).FirstOrDefault();
                 VW_T_APPROVAL data = new VW_T_APPROVAL();
 
-                if (isAdminorNot.ID_Role == 1 || isAdminorNot.ID_Role == 4)
+                if (isAdminorNot.ID_Role == 1 || isAdminorNot.ID_Role == 4 || isAdminorNot.ID_Role == 2)
                 {
                     data = db.VW_T_APPROVALs.OrderByDescending(a => a.APPROVAL_ID).FirstOrDefault();
                 }
@@ -153,7 +153,7 @@ namespace restApi.Controllers
                 DateTime startDateTime = DateTime.ParseExact(startDate, "yyyy-MM-dd HH:mm:ss.fff", CultureInfo.InvariantCulture);
                 DateTime endDateTime = DateTime.ParseExact(endDate, "yyyy-MM-dd HH:mm:ss.fff", CultureInfo.InvariantCulture);
 
-                if (isAdminorNot.ID_Role == 1 || isAdminorNot.ID_Role == 4)
+                if (isAdminorNot.ID_Role == 1 || isAdminorNot.ID_Role == 4 || isAdminorNot.ID_Role == 2)
                 {
                     data = db.VW_T_APPROVALs
                         .Where(a => a.DATETIME_FROM_CFC >= startDateTime && a.DATETIME_FROM_CFC <= endDateTime)
@@ -190,7 +190,7 @@ namespace restApi.Controllers
                 var isAdminorNot = db.VW_Users.Where(c => c.POSITION_ID == posid).FirstOrDefault();
                 List<VW_T_APPROVAL> data = new List<VW_T_APPROVAL>();
 
-                if (isAdminorNot.ID_Role == 1 || isAdminorNot.ID_Role == 4)
+                if (isAdminorNot.ID_Role == 1 || isAdminorNot.ID_Role == 4 || isAdminorNot.ID_Role == 2)
                 {
                     data = db.VW_T_APPROVALs.Where(a => a.ID_STATUS == 1).ToList();
                 }
@@ -220,7 +220,7 @@ namespace restApi.Controllers
                 DateTime startDateDateTime = DateTime.Parse(startDate);
                 DateTime endDateDateTime = DateTime.Parse(endDate);
 
-                if (isAdminorNot.ID_Role == 1 || isAdminorNot.ID_Role == 4)
+                if (isAdminorNot.ID_Role == 1 || isAdminorNot.ID_Role == 4 || isAdminorNot.ID_Role == 2)
                 {
                     data = db.VW_T_APPROVALs.Where(a => a.ID_STATUS == 1 && a.DATETIME_FROM_CFC >= startDateDateTime && a.DATETIME_FROM_CFC <= endDateDateTime).ToList();
                 }
@@ -247,7 +247,7 @@ namespace restApi.Controllers
                 var isAdminorNot = db.VW_Users.Where(c => c.POSITION_ID == posid).FirstOrDefault();
                 VW_T_APPROVAL data = new VW_T_APPROVAL();
 
-                if (isAdminorNot.ID_Role == 1 || isAdminorNot.ID_Role == 4)
+                if (isAdminorNot.ID_Role == 1 || isAdminorNot.ID_Role == 4 || isAdminorNot.ID_Role == 2)
                 {
                     data = db.VW_T_APPROVALs.Where(a => a.ID_STATUS == 1).OrderByDescending(a => a.APPROVAL_ID).FirstOrDefault();
                 }
@@ -279,7 +279,7 @@ namespace restApi.Controllers
                 DateTime startDateTime = DateTime.ParseExact(startDate, "yyyy-MM-dd HH:mm:ss.fff", CultureInfo.InvariantCulture);
                 DateTime endDateTime = DateTime.ParseExact(endDate, "yyyy-MM-dd HH:mm:ss.fff", CultureInfo.InvariantCulture);
 
-                if (isAdminorNot.ID_Role == 1 || isAdminorNot.ID_Role == 4)
+                if (isAdminorNot.ID_Role == 1 || isAdminorNot.ID_Role == 4 || isAdminorNot.ID_Role == 2)
                 {
                     data = db.VW_T_APPROVALs
                         .Where(a => a.ID_STATUS == 1 && a.DATETIME_FROM_CFC >= startDateTime && a.DATETIME_FROM_CFC <= endDateTime)
@@ -316,7 +316,7 @@ namespace restApi.Controllers
                 var isAdminorNot = db.VW_Users.Where(c => c.POSITION_ID == posid).FirstOrDefault();
                 List<VW_T_APPROVAL> data = new List<VW_T_APPROVAL>();
 
-                if (isAdminorNot.ID_Role == 1 || isAdminorNot.ID_Role == 4)
+                if (isAdminorNot.ID_Role == 1 || isAdminorNot.ID_Role == 4 || isAdminorNot.ID_Role == 2)
                 {
                     data = db.VW_T_APPROVALs.Where(a => a.ID_STATUS == 2).ToList();
                 }
@@ -343,7 +343,7 @@ namespace restApi.Controllers
                 var isAdminorNot = db.VW_Users.Where(c => c.POSITION_ID == posid).FirstOrDefault();
                 VW_T_APPROVAL data = new VW_T_APPROVAL();
 
-                if (isAdminorNot.ID_Role == 1 || isAdminorNot.ID_Role == 4)
+                if (isAdminorNot.ID_Role == 1 || isAdminorNot.ID_Role == 4 || isAdminorNot.ID_Role == 2)
                 {
                     data = db.VW_T_APPROVALs.Where(a => a.ID_STATUS == 2).OrderByDescending(a => a.APPROVAL_ID).FirstOrDefault();
                 }
@@ -375,7 +375,7 @@ namespace restApi.Controllers
                 DateTime startDateDateTime = DateTime.Parse(startDate);
                 DateTime endDateDateTime = DateTime.Parse(endDate);
 
-                if (isAdminorNot.ID_Role == 1 || isAdminorNot.ID_Role == 4)
+                if (isAdminorNot.ID_Role == 1 || isAdminorNot.ID_Role == 4 || isAdminorNot.ID_Role == 2)
                 {
                     data = db.VW_T_APPROVALs.Where(a => a.ID_STATUS == 2 && a.DATETIME_FROM_CFC >= startDateDateTime && a.DATETIME_FROM_CFC <= endDateDateTime).ToList();
                 }
@@ -405,7 +405,7 @@ namespace restApi.Controllers
                 DateTime startDateTime = DateTime.ParseExact(startDate, "yyyy-MM-dd HH:mm:ss.fff", CultureInfo.InvariantCulture);
                 DateTime endDateTime = DateTime.ParseExact(endDate, "yyyy-MM-dd HH:mm:ss.fff", CultureInfo.InvariantCulture);
 
-                if (isAdminorNot.ID_Role == 1 || isAdminorNot.ID_Role == 4)
+                if (isAdminorNot.ID_Role == 1 || isAdminorNot.ID_Role == 4 || isAdminorNot.ID_Role == 2)
                 {
                     data = db.VW_T_APPROVALs
                         .Where(a => a.ID_STATUS == 2 && a.DATETIME_FROM_CFC >= startDateTime && a.DATETIME_FROM_CFC <= endDateTime)
@@ -443,7 +443,7 @@ namespace restApi.Controllers
                 var excludedStatuses = new[] { 1, 5, 6, 7 };
                 List<VW_T_APPROVAL> data = new List<VW_T_APPROVAL>();
 
-                if (isAdminorNot.ID_Role == 1 || isAdminorNot.ID_Role == 4)
+                if (isAdminorNot.ID_Role == 1 || isAdminorNot.ID_Role == 4 || isAdminorNot.ID_Role == 2)
                 {
                     data = db.VW_T_APPROVALs.Where(a => a.FLAG == 1 || excludedStatuses.Contains(a.ID_STATUS.Value)).ToList();
                 }
@@ -471,7 +471,7 @@ namespace restApi.Controllers
                 var excludedStatuses = new[] { 1, 5, 6, 7 };
                 VW_T_APPROVAL data = new VW_T_APPROVAL();
 
-                if (isAdminorNot.ID_Role == 1 || isAdminorNot.ID_Role == 4)
+                if (isAdminorNot.ID_Role == 1 || isAdminorNot.ID_Role == 4 || isAdminorNot.ID_Role == 2)
                 {
                     data = db.VW_T_APPROVALs.Where(a => a.FLAG == 1 || excludedStatuses.Contains(a.ID_STATUS.Value)).OrderByDescending(a => a.APPROVAL_ID).FirstOrDefault();
                 }
@@ -504,7 +504,7 @@ namespace restApi.Controllers
                 DateTime startDateDateTime = DateTime.Parse(startDate);
                 DateTime endDateDateTime = DateTime.Parse(endDate);
 
-                if (isAdminorNot.ID_Role == 1 || isAdminorNot.ID_Role == 4)
+                if (isAdminorNot.ID_Role == 1 || isAdminorNot.ID_Role == 4 || isAdminorNot.ID_Role == 2)
                 {
                     data = db.VW_T_APPROVALs.Where(a => (a.FLAG == 1 || excludedStatuses.Contains(a.ID_STATUS.Value)) && a.WAKTU_ABSEN >= startDateDateTime && a.WAKTU_ABSEN <= endDateDateTime).ToList();
                 }
@@ -535,7 +535,7 @@ namespace restApi.Controllers
                 DateTime startDateTime = DateTime.ParseExact(startDate, "yyyy-MM-dd HH:mm:ss.fff", CultureInfo.InvariantCulture);
                 DateTime endDateTime = DateTime.ParseExact(endDate, "yyyy-MM-dd HH:mm:ss.fff", CultureInfo.InvariantCulture);
 
-                if (isAdminorNot.ID_Role == 1 || isAdminorNot.ID_Role == 4)
+                if (isAdminorNot.ID_Role == 1 || isAdminorNot.ID_Role == 4 || isAdminorNot.ID_Role == 2)
                 {
                     data = db.VW_T_APPROVALs
                         .Where(a => a.FLAG == 1 || excludedStatuses.Contains(a.ID_STATUS.Value) && a.WAKTU_ABSEN >= startDateTime && a.WAKTU_ABSEN <= endDateTime)
@@ -573,7 +573,7 @@ namespace restApi.Controllers
                 var excludedStatuses = new[] { 1, 5, 6, 7 };
                 List<VW_T_APPROVAL> data = new List<VW_T_APPROVAL>();
 
-                if (isAdminorNot.ID_Role == 1)
+                if (isAdminorNot.ID_Role == 1 || isAdminorNot.ID_Role == 2)
                 {
                     data = db.VW_T_APPROVALs.Where(a => a.FLAG == 0 && !excludedStatuses.Contains(a.ID_STATUS.Value)).ToList();
                 }
@@ -605,7 +605,7 @@ namespace restApi.Controllers
                 var excludedStatuses = new[] { 1, 5, 6, 7 };
                 VW_T_APPROVAL data = new VW_T_APPROVAL();
 
-                if (isAdminorNot.ID_Role == 1)
+                if (isAdminorNot.ID_Role == 1 || isAdminorNot.ID_Role == 2)
                 {
                     data = db.VW_T_APPROVALs.Where(a => a.FLAG == 0 && !excludedStatuses.Contains(a.ID_STATUS.Value)).OrderByDescending(a => a.APPROVAL_ID).FirstOrDefault();
                 }
@@ -642,7 +642,7 @@ namespace restApi.Controllers
                 DateTime startDateDateTime = DateTime.Parse(startDate);
                 DateTime endDateDateTime = DateTime.Parse(endDate);
 
-                if (isAdminorNot.ID_Role == 1)
+                if (isAdminorNot.ID_Role == 1 || isAdminorNot.ID_Role == 2)
                 {
                     data = db.VW_T_APPROVALs.Where(a => a.FLAG == 0 && !excludedStatuses.Contains(a.ID_STATUS.Value) && a.WAKTU_ABSEN >= startDateDateTime && a.WAKTU_ABSEN <= endDateDateTime).ToList();
                 }
@@ -677,7 +677,7 @@ namespace restApi.Controllers
                 DateTime startDateTime = DateTime.ParseExact(startDate, "yyyy-MM-dd HH:mm:ss.fff", CultureInfo.InvariantCulture);
                 DateTime endDateTime = DateTime.ParseExact(endDate, "yyyy-MM-dd HH:mm:ss.fff", CultureInfo.InvariantCulture);
 
-                if (isAdminorNot.ID_Role == 1)
+                if (isAdminorNot.ID_Role == 1 || isAdminorNot.ID_Role == 2)
                 {
                     data = db.VW_T_APPROVALs
                         .Where(a => a.FLAG == 0 && !excludedStatuses.Contains(a.ID_STATUS.Value) && a.WAKTU_ABSEN >= startDateTime && a.WAKTU_ABSEN <= endDateTime)
@@ -721,7 +721,7 @@ namespace restApi.Controllers
                 var isAdminorNot = db.VW_Users.Where(c => c.POSITION_ID == posid).FirstOrDefault();
                 List<VW_T_APPROVAL> data = new List<VW_T_APPROVAL>();
 
-                if (isAdminorNot.ID_Role == 1 || isAdminorNot.ID_Role == 4)
+                if (isAdminorNot.ID_Role == 1 || isAdminorNot.ID_Role == 4 || isAdminorNot.ID_Role == 2)
                 {
                     data = db.VW_T_APPROVALs.Where(a => a.ID_STATUS == 5).ToList();
                 }
@@ -748,7 +748,7 @@ namespace restApi.Controllers
                 var isAdminorNot = db.VW_Users.Where(c => c.POSITION_ID == posid).FirstOrDefault();
                 VW_T_APPROVAL data = new VW_T_APPROVAL();
 
-                if (isAdminorNot.ID_Role == 1 || isAdminorNot.ID_Role == 4)
+                if (isAdminorNot.ID_Role == 1 || isAdminorNot.ID_Role == 4 || isAdminorNot.ID_Role == 2)
                 {
                     data = db.VW_T_APPROVALs.Where(a => a.ID_STATUS == 5).OrderByDescending(a => a.APPROVAL_ID).FirstOrDefault();
                 }
@@ -780,7 +780,7 @@ namespace restApi.Controllers
                 DateTime startDateDateTime = DateTime.Parse(startDate);
                 DateTime endDateDateTime = DateTime.Parse(endDate);
 
-                if (isAdminorNot.ID_Role == 1 || isAdminorNot.ID_Role == 4)
+                if (isAdminorNot.ID_Role == 1 || isAdminorNot.ID_Role == 4 || isAdminorNot.ID_Role == 2)
                 {
                     data = db.VW_T_APPROVALs.Where(a => a.ID_STATUS == 5 && a.WAKTU_ABSEN >= startDateDateTime && a.WAKTU_ABSEN <= endDateDateTime).ToList();
                 }
@@ -810,7 +810,7 @@ namespace restApi.Controllers
                 DateTime startDateTime = DateTime.ParseExact(startDate, "yyyy-MM-dd HH:mm:ss.fff", CultureInfo.InvariantCulture);
                 DateTime endDateTime = DateTime.ParseExact(endDate, "yyyy-MM-dd HH:mm:ss.fff", CultureInfo.InvariantCulture);
 
-                if (isAdminorNot.ID_Role == 1 || isAdminorNot.ID_Role == 4)
+                if (isAdminorNot.ID_Role == 1 || isAdminorNot.ID_Role == 4 || isAdminorNot.ID_Role == 2)
                 {
                     data = db.VW_T_APPROVALs
                         .Where(a => a.ID_STATUS == 5 && a.WAKTU_ABSEN >= startDateTime && a.WAKTU_ABSEN <= endDateTime)
@@ -847,7 +847,7 @@ namespace restApi.Controllers
                 var isAdminorNot = db.VW_Users.Where(c => c.POSITION_ID == posid).FirstOrDefault();
                 List<VW_T_APPROVAL> data = new List<VW_T_APPROVAL>();
 
-                if (isAdminorNot.ID_Role == 1 || isAdminorNot.ID_Role == 4)
+                if (isAdminorNot.ID_Role == 1 || isAdminorNot.ID_Role == 4 || isAdminorNot.ID_Role == 2)
                 {
                     data = db.VW_T_APPROVALs.Where(a => a.ID_STATUS == 7).ToList();
                 }
@@ -874,7 +874,7 @@ namespace restApi.Controllers
                 var isAdminorNot = db.VW_Users.Where(c => c.POSITION_ID == posid).FirstOrDefault();
                 VW_T_APPROVAL data = new VW_T_APPROVAL();
 
-                if (isAdminorNot.ID_Role == 1 || isAdminorNot.ID_Role == 4)
+                if (isAdminorNot.ID_Role == 1 || isAdminorNot.ID_Role == 4 || isAdminorNot.ID_Role == 2)
                 {
                     data = db.VW_T_APPROVALs.Where(a => a.ID_STATUS == 7).OrderByDescending(a => a.APPROVAL_ID).FirstOrDefault();
                 }
@@ -906,7 +906,7 @@ namespace restApi.Controllers
                 DateTime startDateDateTime = DateTime.Parse(startDate);
                 DateTime endDateDateTime = DateTime.Parse(endDate);
 
-                if (isAdminorNot.ID_Role == 1 || isAdminorNot.ID_Role == 4)
+                if (isAdminorNot.ID_Role == 1 || isAdminorNot.ID_Role == 4 || isAdminorNot.ID_Role == 2)
                 {
                     data = db.VW_T_APPROVALs.Where(a => a.ID_STATUS == 7 && a.WAKTU_ABSEN >= startDateDateTime && a.WAKTU_ABSEN <= endDateDateTime).ToList();
                 }
@@ -936,7 +936,7 @@ namespace restApi.Controllers
                 DateTime startDateTime = DateTime.ParseExact(startDate, "yyyy-MM-dd HH:mm:ss.fff", CultureInfo.InvariantCulture);
                 DateTime endDateTime = DateTime.ParseExact(endDate, "yyyy-MM-dd HH:mm:ss.fff", CultureInfo.InvariantCulture);
 
-                if (isAdminorNot.ID_Role == 1 || isAdminorNot.ID_Role == 4)
+                if (isAdminorNot.ID_Role == 1 || isAdminorNot.ID_Role == 4 || isAdminorNot.ID_Role == 2)
                 {
                     data = db.VW_T_APPROVALs
                         .Where(a => a.ID_STATUS == 7 && a.WAKTU_ABSEN >= startDateTime && a.WAKTU_ABSEN <= endDateTime)
@@ -971,7 +971,7 @@ namespace restApi.Controllers
             {
                 db.CommandTimeout = 120;
                 var checkRole = db.VW_Users.Where(a => a.POSITION_ID == posid).FirstOrDefault();
-                if (checkRole.ID_Role == 1 || checkRole.ID_Role == 4)
+                if (checkRole.ID_Role == 1 || checkRole.ID_Role == 4 || checkRole.ID_Role == 2)
                 {
                     var data = db.VW_R_CFM_MANAGEMENTs.FirstOrDefault(a => a.ID == 1);
 
@@ -1008,7 +1008,7 @@ namespace restApi.Controllers
             {
                 db.CommandTimeout = 120;
                 var checkRole = db.VW_Users.Where(a => a.POSITION_ID == posid).FirstOrDefault();
-                if (checkRole.ID_Role == 1 || checkRole.ID_Role == 4)
+                if (checkRole.ID_Role == 1 || checkRole.ID_Role == 4 || checkRole.ID_Role == 2)
                 {
                     VW_R_CFM_MANAGEMENT data = new VW_R_CFM_MANAGEMENT();
 
@@ -1052,7 +1052,7 @@ namespace restApi.Controllers
                 db.CommandTimeout = 120;
                 int? USDTDY = 0;
                 var checkRole = db.VW_Users.Where(a => a.POSITION_ID == posid).FirstOrDefault();
-                if (checkRole.ID_Role == 1 || checkRole.ID_Role == 4)
+                if (checkRole.ID_Role == 1 || checkRole.ID_Role == 4 || checkRole.ID_Role == 2)
                 {
                     List<cufn_filterCFMManagementResult> data = new List<cufn_filterCFMManagementResult>();
 
@@ -1107,7 +1107,7 @@ namespace restApi.Controllers
             {
                 db.CommandTimeout = 120;
                 var checkRole = db.VW_Users.Where(a => a.POSITION_ID == posid).FirstOrDefault();
-                if (checkRole.ID_Role == 1 || checkRole.ID_Role == 4)
+                if (checkRole.ID_Role == 1 || checkRole.ID_Role == 4 || checkRole.ID_Role == 2)
                 {
                     List<cufn_filterCFMManagementResult> data = new List<cufn_filterCFMManagementResult>();
 
@@ -1173,7 +1173,7 @@ namespace restApi.Controllers
             {
                 db.CommandTimeout = 120;
                 var checkRole = db.VW_Users.Where(a => a.POSITION_ID == posid).FirstOrDefault();
-                if (checkRole.ID_Role == 1 || checkRole.ID_Role == 4)
+                if (checkRole.ID_Role == 1 || checkRole.ID_Role == 4 || checkRole.ID_Role == 2)
                 {
                     var data = db.VW_R_CFM_MANAGEMENTs.FirstOrDefault(a => a.ID == 2);
 
@@ -1210,7 +1210,7 @@ namespace restApi.Controllers
             {
                 db.CommandTimeout = 120;
                 var checkRole = db.VW_Users.Where(a => a.POSITION_ID == posid).FirstOrDefault();
-                if (checkRole.ID_Role == 1 || checkRole.ID_Role == 4)
+                if (checkRole.ID_Role == 1 || checkRole.ID_Role == 4 || checkRole.ID_Role == 2)
                 {
                     VW_R_CFM_MANAGEMENT data = new VW_R_CFM_MANAGEMENT();
 
@@ -1254,7 +1254,7 @@ namespace restApi.Controllers
                 db.CommandTimeout = 120;
                 int? USDTDY = 0;
                 var checkRole = db.VW_Users.Where(a => a.POSITION_ID == posid).FirstOrDefault();
-                if (checkRole.ID_Role == 1 || checkRole.ID_Role == 4)
+                if (checkRole.ID_Role == 1 || checkRole.ID_Role == 4 || checkRole.ID_Role == 2)
                 {
                     List<cufn_filterCFMManagementResult> data = new List<cufn_filterCFMManagementResult>();
 
@@ -1309,7 +1309,7 @@ namespace restApi.Controllers
             {
                 db.CommandTimeout = 120;
                 var checkRole = db.VW_Users.Where(a => a.POSITION_ID == posid).FirstOrDefault();
-                if (checkRole.ID_Role == 1 || checkRole.ID_Role == 4)
+                if (checkRole.ID_Role == 1 || checkRole.ID_Role == 4 || checkRole.ID_Role == 2)
                 {
                     List<cufn_filterCFMManagementResult> data = new List<cufn_filterCFMManagementResult>();
 
@@ -1376,7 +1376,7 @@ namespace restApi.Controllers
             {
                 db.CommandTimeout = 120;
                 var checkRole = db.VW_Users.Where(a => a.POSITION_ID == posid).FirstOrDefault();
-                if (checkRole.ID_Role == 1 || checkRole.ID_Role == 4)
+                if (checkRole.ID_Role == 1 || checkRole.ID_Role == 4 || checkRole.ID_Role == 2)
                 {
                     var data = db.VW_R_CFM_MANAGEMENTs.FirstOrDefault(a => a.ID == 3);
 
@@ -1413,7 +1413,7 @@ namespace restApi.Controllers
             {
                 db.CommandTimeout = 120;
                 var checkRole = db.VW_Users.Where(a => a.POSITION_ID == posid).FirstOrDefault();
-                if (checkRole.ID_Role == 1 || checkRole.ID_Role == 4)
+                if (checkRole.ID_Role == 1 || checkRole.ID_Role == 4 || checkRole.ID_Role == 2)
                 {
                     VW_R_CFM_MANAGEMENT data = new VW_R_CFM_MANAGEMENT();
 
@@ -1456,7 +1456,7 @@ namespace restApi.Controllers
                 db.CommandTimeout = 120;
                 int? USDTDY = 0;
                 var checkRole = db.VW_Users.Where(a => a.POSITION_ID == posid).FirstOrDefault();
-                if (checkRole.ID_Role == 1 || checkRole.ID_Role == 4)
+                if (checkRole.ID_Role == 1 || checkRole.ID_Role == 4 || checkRole.ID_Role == 2)
                 {
                     List<cufn_filterCFMManagementResult> data = new List<cufn_filterCFMManagementResult>();
 
@@ -1511,7 +1511,7 @@ namespace restApi.Controllers
             {
                 db.CommandTimeout = 120;
                 var checkRole = db.VW_Users.Where(a => a.POSITION_ID == posid).FirstOrDefault();
-                if (checkRole.ID_Role == 1 || checkRole.ID_Role == 4)
+                if (checkRole.ID_Role == 1 || checkRole.ID_Role == 4 || checkRole.ID_Role == 2)
                 {
                     List<cufn_filterCFMManagementResult> data = new List<cufn_filterCFMManagementResult>();
 
@@ -1579,7 +1579,7 @@ namespace restApi.Controllers
             {
                 db.CommandTimeout = 120;
                 var checkRole = db.VW_Users.Where(a => a.POSITION_ID == posid).FirstOrDefault();
-                if (checkRole.ID_Role == 1 || checkRole.ID_Role == 4)
+                if (checkRole.ID_Role == 1 || checkRole.ID_Role == 4 || checkRole.ID_Role == 2)
                 {
                     var data = db.VW_R_CFM_MANAGEMENTs.FirstOrDefault(a => a.ID == 4);
 
@@ -1615,7 +1615,7 @@ namespace restApi.Controllers
             {
                 db.CommandTimeout = 120;
                 var checkRole = db.VW_Users.Where(a => a.POSITION_ID == posid).FirstOrDefault();
-                if (checkRole.ID_Role == 1 || checkRole.ID_Role == 4)
+                if (checkRole.ID_Role == 1 || checkRole.ID_Role == 4 || checkRole.ID_Role == 2)
                 {
                     VW_R_CFM_MANAGEMENT data = new VW_R_CFM_MANAGEMENT();
 
@@ -1658,7 +1658,7 @@ namespace restApi.Controllers
                 db.CommandTimeout = 120;
                 int? USDTDY = 0;
                 var checkRole = db.VW_Users.Where(a => a.POSITION_ID == posid).FirstOrDefault();
-                if (checkRole.ID_Role == 1 || checkRole.ID_Role == 4)
+                if (checkRole.ID_Role == 1 || checkRole.ID_Role == 4 || checkRole.ID_Role == 2)
                 {
                     List<cufn_filterCFMManagementResult> data = new List<cufn_filterCFMManagementResult>();
 
@@ -1713,7 +1713,7 @@ namespace restApi.Controllers
             {
                 db.CommandTimeout = 120;
                 var checkRole = db.VW_Users.Where(a => a.POSITION_ID == posid).FirstOrDefault();
-                if (checkRole.ID_Role == 1 || checkRole.ID_Role == 4)
+                if (checkRole.ID_Role == 1 || checkRole.ID_Role == 4 || checkRole.ID_Role == 2)
                 {
                     List<cufn_filterCFMManagementResult> data = new List<cufn_filterCFMManagementResult>();
 
