@@ -112,6 +112,20 @@ function updateDropdownVisibility() {
 
             approvalDropdown.appendChild(fitItem);
             approvalDropdown.appendChild(bbkerja);
+        } else if (txtStatus === "Temporary Unfit") {
+
+            var fitItem = document.createElement("a");
+            fitItem.setAttribute("class", "dropdown-item");
+            fitItem.setAttribute("onclick", "Unfits()");
+            fitItem.innerHTML = '<i class="fa fa-fw fa-copy opacity-50 me-1"></i>Unfit';
+
+            var istirahatItem = document.createElement("a");
+            istirahatItem.setAttribute("class", "dropdown-item");
+            istirahatItem.setAttribute("onclick", "Istirahat()");
+            istirahatItem.innerHTML = '<i class="fa fa-fw fa-person-booth opacity-50 me-1"></i>Istirahat';
+
+            approvalDropdown.appendChild(fitItem);
+            approvalDropdown.appendChild(istirahatItem);
         }
     } else {
         console.error("Element with ID 'approvalDropdown' not found.");

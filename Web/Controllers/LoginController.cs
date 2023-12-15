@@ -183,7 +183,8 @@ namespace Web.Controllers
                         Session["Counted"] = countss;
 
                         var lastCfc_Notif = db.VW_T_APPROVALs.Where(a => a.ID_STATUS == 4 && a.APPROVER_PARAMEDIC == null).OrderByDescending(u => u.DATETIME_FROM_CFC).FirstOrDefault();
-                        Session["LastCFC"] = GetTimeAgo(lastCfc_Notif?.DATETIME_FROM_CFC);
+                        //Session["LastCFC"] = GetTimeAgo(lastCfc_Notif?.DATETIME_FROM_CFC);
+                        Session["LastCFC"] = lastCfc_Notif.DATETIME_FROM_CFC.Value.ToString("d MMMM yyyy | HH:mm", new CultureInfo("id-ID"));
                     }
                     else
                     {
@@ -246,7 +247,9 @@ namespace Web.Controllers
                         TimeSpan timeDifference = currentTime - dateAdd;
                         timeAgo = FormatTimeAgo(timeDifference);
                     }
-                    Session["LastaddUserDate"] = timeAgo;
+                    //Session["LastaddUserDate"] = timeAgo;
+                    var zoltrak = lastAddedUser.DateAdd.Value.ToString("d MMMM yyyy | HH:mm", new CultureInfo("id-ID"));
+                    Session["LastaddUserDate"] = zoltrak;
 
                     if (dataRole.ID_Role == 1)
                     {
@@ -262,7 +265,8 @@ namespace Web.Controllers
                             TimeSpan timeDifference = currentTimes - dateAdds;
                             timeAgos = FormatTimeAgo(timeDifference);
                         }
-                        Session["LastCFC"] = timeAgos;
+                        //Session["LastCFC"] = timeAgos;
+                        Session["LastCFC"] = lastCfc_Notif.DATETIME_FROM_CFC.Value.ToString("d MMMM yyyy | HH:mm", new CultureInfo("id-ID"));
                     }
                     else if (dataRole.ID_Role == 2)
                     {
@@ -271,8 +275,9 @@ namespace Web.Controllers
                         Session["Counted"] = countss;
 
                         var lastCfc_Notif = db.VW_T_APPROVALs.Where(a => a.FLAG == 0 && !excludedStatuses.Contains(a.ID_STATUS.Value) && a.ATASAN == dataUser.POSITION_ID.Trim()).OrderByDescending(u => u.DATETIME_FROM_CFC).FirstOrDefault();
-                        Session["LastCFC"] = GetTimeAgo(lastCfc_Notif?.DATETIME_FROM_CFC);
-                        
+                        //Session["LastCFC"] = GetTimeAgo(lastCfc_Notif?.DATETIME_FROM_CFC);
+                        Session["LastCFC"] = lastCfc_Notif.DATETIME_FROM_CFC.Value.ToString("d MMMM yyyy | HH:mm", new CultureInfo("id-ID"));
+
                     }
                     else if (dataRole.ID_Role == 4)
                     {
@@ -281,7 +286,8 @@ namespace Web.Controllers
                         Session["Counted"] = countss;
 
                         var lastCfc_Notif = db.VW_T_APPROVALs.Where(a => a.FLAG == 0 && a.ID_STATUS == 4).OrderByDescending(u => u.DATETIME_FROM_CFC).FirstOrDefault();
-                        Session["LastCFC"] = GetTimeAgo(lastCfc_Notif?.DATETIME_FROM_CFC);
+                        //Session["LastCFC"] = GetTimeAgo(lastCfc_Notif?.DATETIME_FROM_CFC);
+                        Session["LastCFC"] = lastCfc_Notif.DATETIME_FROM_CFC.Value.ToString("d MMMM yyyy | HH:mm", new CultureInfo("id-ID"));
                     }
                     else
                     {
@@ -290,7 +296,8 @@ namespace Web.Controllers
                         Session["Counted"] = countss;
 
                         var lastCfc_Notif = db.VW_T_APPROVALs.Where(a => a.FLAG == 0 && !excludedStatuses.Contains(a.ID_STATUS.Value)).OrderByDescending(u => u.DATETIME_FROM_CFC).FirstOrDefault();
-                        Session["LastCFC"] = GetTimeAgo(lastCfc_Notif?.DATETIME_FROM_CFC);
+                        //Session["LastCFC"] = GetTimeAgo(lastCfc_Notif?.DATETIME_FROM_CFC);
+                        Session["LastCFC"] = lastCfc_Notif.DATETIME_FROM_CFC.Value.ToString("d MMMM yyyy | HH:mm", new CultureInfo("id-ID"));
                     }
                     #endregion
 

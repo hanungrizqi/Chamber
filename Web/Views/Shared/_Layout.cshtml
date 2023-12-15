@@ -195,6 +195,12 @@
                                     <span class="nav-main-link-name">Employee Record</span>
                                 </a>
                             </li>
+                            <li class="nav-main-item">
+                                <a class="nav-main-link" href="/Report/Index" id="report-mobiles">
+                                    <i class="nav-main-link-icon fa fa-envelope"></i>
+                                    <span class="nav-main-link-name">Report DCFC</span>
+                                </a>
+                            </li>
                         </ul>
                     </div>
                     <!-- END Side Main Navigation -->
@@ -213,7 +219,7 @@
                     <div class="col text-start">
                         <img src="~/Content/assets/media/photos/logo_dcfc.png" class="img-fluid" style="max-width:120px">
                     </div>
-                    <div class="col-5 text-center">
+                    <div class="col-6 text-center">
                         @Html.Action("Menu", "Menu")
                         <button type="button" class="btn btn-sm btn-alt-secondary d-lg-none" data-toggle="layout" data-action="sidebar_toggle">
                             <i class="fa fa-fw fa-bars"></i>
@@ -241,7 +247,7 @@
                                                 </div>
                                                 <div class="flex-grow-1 pe-2">
                                                     <p class="fw-medium mb-1">You’ve added @Session["LastaddUser"].ToString() account successfully!</p>
-                                                    @*<div class="text-muted">@Session["LastaddUserDate"].ToString()</div>*@
+                                                    <div class="text-muted">Added on @Session["LastaddUserDate"].ToString()</div>
                                                 </div>
                                             </a>
                                         </li>
@@ -252,6 +258,7 @@
                                                 </div>
                                                 <div class="flex-grow-1 pe-2">
                                                     <p class="fw-medium mb-1">@Session["Counted"].ToString() Approval from all site found. Check at Work Approval menu!</p>
+                                                    <div class="text-muted">New Approval at @Session["LastCFC"].ToString()</div>
                                                 </div>
                                             </a>
                                         </li>
@@ -265,6 +272,7 @@
                                                 </div>
                                                 <div class="flex-grow-1 pe-2">
                                                     <p class="fw-medium mb-1">@Session["Counted"].ToString() Approval from all site found. Check at Work Approval menu!</p>
+                                                    <div class="text-muted">New Approval at @Session["LastCFC"].ToString()</div>
                                                 </div>
                                             </a>
                                         </li>
@@ -278,6 +286,7 @@
                                                 </div>
                                                 <div class="flex-grow-1 pe-2">
                                                     <p class="fw-medium mb-1">@Session["Counted"].ToString() Approval from all site found. Check at Work Approval menu!</p>
+                                                    <div class="text-muted">New Approval at @Session["LastCFC"].ToString()</div>
                                                 </div>
                                             </a>
                                         </li>
@@ -464,6 +473,9 @@
             labelText = "Detail Approval";
         } else if (path.startsWith("/EmpRecord/Detail_ERecord")) {
             labelText = "Detail Employee Record";
+        } else if (path === "/Report/Index") {
+            labelText = "Report DCFC"
+            document.getElementById("report-mobiles").classList.add('active');
         }
 
         document.getElementById("alamat").textContent = labelText;

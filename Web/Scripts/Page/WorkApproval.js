@@ -119,7 +119,7 @@ var table = $("#tbl_approval").DataTable({
                             case 'diastolic':
                                 text += 'DIASTOLIC = ' + diasto;
                                 break;
-                            case 'temprature':
+                            case 'temperature':
                                 text += 'TEMPERATURE = ' + tempra;
                                 break;
                             case 'oxygen_saturation':
@@ -159,6 +159,8 @@ var table = $("#tbl_approval").DataTable({
                     text = `<span class="badge" style="background-color: #fff0de; color: #feb24f; font-size: 12px; font-family: Poppins; font-weight: 500; word-wrap: break-word;"><i class="fa fa-circle" style="font-size: 6px; vertical-align: middle; margin-top: -2px; margin-right: 4px;"></i>${data}</span>`;
                 } else if (data == "Berhenti Bekerja") {
                     text = `<span class="badge" style="background-color: #ff9999; color: #ff1c1c; font-size: 12px; font-family: Poppins; font-weight: 500; word-wrap: break-word;"><i class="fa fa-circle" style="font-size: 6px; vertical-align: middle; margin-top: -2px; margin-right: 4px;"></i>${data}</span>`;
+                } else if (data == "Temporary Unfit") {
+                    text = `<span class="badge" style="background-color: #fac6a5; color: #f78b1e; font-size: 12px; font-family: Poppins; font-weight: 500; word-wrap: break-word;"><i class="fa fa-circle" style="font-size: 6px; vertical-align: middle; margin-top: -2px; margin-right: 4px;"></i>${data}</span>`;
                 } else {
                     text = `<span class="badge bg-info">${data}</span>`;
                 }
@@ -206,6 +208,11 @@ var table = $("#tbl_approval").DataTable({
                     actions += '<ul class="dropdown-menu">';
                     actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Fit" href="#">Fit</a></li>';
                     actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="BerhentiBekerja" href="#">Berhenti Bekerja</a></li>';
+                    actions += '</ul>';
+                } else if (row.STATUS === 'Temporary Unfit') {
+                    actions += '<ul class="dropdown-menu">';
+                    actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Unfit" href="#">Unfit</a></li>';
+                    actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Istirahat" href="#">Istirahat</a></li>';
                     actions += '</ul>';
                 }
                 actions += '</div>';

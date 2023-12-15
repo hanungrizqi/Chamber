@@ -59,6 +59,7 @@ namespace restApi.Controllers
                 db.CommandTimeout = 120;
                 var isAdminorNot = db.VW_Users.Where(c => c.POSITION_ID == posid).FirstOrDefault();
                 var excludedStatuses = new[] { 1, 5, 6, 7 };
+                var excludedStatuses2 = new[] { 1, 4, 5, 6, 7 };
                 IQueryable<VW_T_APPROVAL> query = null;
 
                 if (isAdminorNot.ID_Role == 1)
@@ -71,7 +72,7 @@ namespace restApi.Controllers
                 }
                 else
                 {
-                    query = db.VW_T_APPROVALs.Where(a => a.FLAG == 0 && !excludedStatuses.Contains(a.ID_STATUS.Value) /*&& a.ATASAN == posid*/);
+                    query = db.VW_T_APPROVALs.Where(a => a.FLAG == 0 && !excludedStatuses2.Contains(a.ID_STATUS.Value) /*&& a.ATASAN == posid*/);
                 }
 
                 if (DateTime.TryParseExact(startDate, "yyyy-MM-dd HH:mm:ss.fff", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime parsedStartDate) && DateTime.TryParseExact(endDate, "yyyy-MM-dd HH:mm:ss.fff", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime parsedEndDate))

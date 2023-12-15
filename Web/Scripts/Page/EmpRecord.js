@@ -5,7 +5,7 @@ $("document").ready(function () {
     console.log($('#eD').val())
     console.log($('#stats').val())
     if ($('#sD').val()) {
-        debugger
+        //debugger
         table.ajax.url($("#web_link").val() + "/api/EmpRecord/Get_ListEmprecord_Daterange?posid=" + $("#hd_positid").val() + "&startDate=" + $('#sD').val() + "&endDate=" + $('#eD').val()).load();
         $("#example-flatpickr-range").flatpickr({
             mode: "range",
@@ -14,7 +14,7 @@ $("document").ready(function () {
         });
         initializeCustomFilter($('#stats').val())
     }
-    debugger
+    //debugger
     $("#example-flatpickr-range").flatpickr({
         mode: "range",
         onChange: function (selectedDates, dateStr, instance) {
@@ -38,7 +38,7 @@ $("document").ready(function () {
                     ('0' + currentTime.getMinutes()).slice(-2) + ':' +
                     ('0' + currentTime.getSeconds()).slice(-2) + '.' +
                     currentTime.getMilliseconds();
-                debugger
+                //debugger
                 if ($("#hd_idroles").val() == 3) {
                     table.ajax.url($("#web_link").val() + "/api/EmpRecord/Get_ListEmprecord_Daterange_Operator?nrp=" + $("#hd_nrp").val() + "&startDate=" + startDateFormatted + "&endDate=" + endDateFormatted).load();
                 }
@@ -71,6 +71,8 @@ $(document).on('click', '.action-link', function (e) {
         BerhentiBekerja(approvalId);
     } else if (action === 'Fit') {
         Fitt(approvalId);
+    } else if (action === 'Temporary Unfit') {
+        TempUnfit(approvalId);
     }
 });
 
@@ -180,6 +182,8 @@ var table = $("#tbl_empr").DataTable({
                     text = `<span class="badge" style="background-color: #fff0de; color: #feb24f; font-size: 12px; font-family: Poppins; font-weight: 500; word-wrap: break-word;"><i class="fa fa-circle" style="font-size: 6px; vertical-align: middle; margin-top: -2px; margin-right: 4px;"></i>${data}</span>`;
                 } else if (data == "Berhenti Bekerja") {
                     text = `<span class="badge" style="background-color: #ff9999; color: #ff1c1c; font-size: 12px; font-family: Poppins; font-weight: 500; word-wrap: break-word;"><i class="fa fa-circle" style="font-size: 6px; vertical-align: middle; margin-top: -2px; margin-right: 4px;"></i>${data}</span>`;
+                } else if (data == "Temporary Unfit") {
+                    text = `<span class="badge" style="background-color: #fac6a5; color: #f78b1e; font-size: 12px; font-family: Poppins; font-weight: 500; word-wrap: break-word;"><i class="fa fa-circle" style="font-size: 6px; vertical-align: middle; margin-top: -2px; margin-right: 4px;"></i>${data}</span>`;
                 } else {
                     text = `<span class="badge bg-info">${data}</span>`;
                 }
@@ -218,6 +222,7 @@ var table = $("#tbl_empr").DataTable({
                         actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Retest" href="#">Retest</a></li>';
                         actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Istirahat" href="#">Istirahat</a></li>';
                         actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Berhenti Bekerja" href="#">Berhenti Bekerja</a></li>';
+                        actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Temporary Unfit" href="#">Temporary Unfit</a></li>';
                         actions += '</ul>';
                     }
                     if (row.IS_LATEST == true && row.ID_STATUS != 5) {
@@ -229,6 +234,7 @@ var table = $("#tbl_empr").DataTable({
                         actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Retest" href="#">Retest</a></li>';
                         actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Istirahat" href="#">Istirahat</a></li>';
                         actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Berhenti Bekerja" href="#">Berhenti Bekerja</a></li>';
+                        actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Temporary Unfit" href="#">Temporary Unfit</a></li>';
                         actions += '</ul>';
                     }
                     if (row.IS_LATEST == false && row.ID_STATUS == 5 && row.JUMLAH_APPROVAL_PERHARI == 1) {
@@ -240,6 +246,7 @@ var table = $("#tbl_empr").DataTable({
                         actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Retest" href="#">Retest</a></li>';
                         actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Istirahat" href="#">Istirahat</a></li>';
                         actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Berhenti Bekerja" href="#">Berhenti Bekerja</a></li>';
+                        actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Temporary Unfit" href="#">Temporary Unfit</a></li>';
                         actions += '</ul>';
                     }
                     else if (row.IS_LATEST == false && row.ID_STATUS != 5) {
@@ -251,6 +258,7 @@ var table = $("#tbl_empr").DataTable({
                         actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Retest" href="#">Retest</a></li>';
                         actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Istirahat" href="#">Istirahat</a></li>';
                         actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Berhenti Bekerja" href="#">Berhenti Bekerja</a></li>';
+                        actions += '<li><a class="dropdown-item action-link" data-approvalid="' + data + '" data-action="Temporary Unfit" href="#">Temporary Unfit</a></li>';
                         actions += '</ul>';
                     }
                     else {
@@ -401,6 +409,54 @@ function Unfit(approvalId) {
     let dataCFM = new Object();
     dataCFM.APPROVAL_ID = approvalId;
     dataCFM.ID_STATUS = 2;
+    dataCFM.APPROVER = $("#hd_nrp").val();
+
+    $.ajax({
+        url: $("#web_link").val() + "/api/EmpRecord/QuickActions",
+        data: JSON.stringify(dataCFM),
+        dataType: "json",
+        type: "POST",
+        contentType: "application/json; charset=utf-8",
+        beforeSend: function () {
+            $("#overlay").show();
+        },
+        success: function (data) {
+            if (data.Remarks) {
+                Swal.fire({
+                    title: 'Saved',
+                    text: "Data has been Saved.",
+                    icon: 'success',
+                    confirmButtonColor: '#3085d6',
+                    confirmButtonText: 'OK',
+                    allowOutsideClick: false,
+                    allowEscapeKey: false
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = "/EmpRecord/Index";
+                    }
+                });
+            } else {
+                Swal.fire(
+                    'Error!',
+                    'Message: ' + data.Message,
+                    'error'
+                );
+            }
+        },
+        error: function (xhr) {
+            alert(xhr.responseText);
+            $("#overlay").hide();
+        }
+    });
+}
+
+function TempUnfit(approvalId) {
+    console.log('Temporary Unfit', approvalId);
+    debugger
+
+    let dataCFM = new Object();
+    dataCFM.APPROVAL_ID = approvalId;
+    dataCFM.ID_STATUS = 8;
     dataCFM.APPROVER = $("#hd_nrp").val();
 
     $.ajax({

@@ -177,9 +177,9 @@ namespace restApi.Controllers
                 }
                 
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                return BadRequest();
+                return Ok(new { Message = e });
             }
         }
 
