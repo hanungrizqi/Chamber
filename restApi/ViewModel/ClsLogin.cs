@@ -72,7 +72,7 @@ namespace restApi.ViewModel
             try
             {
                 var ldap = new LdapAuthentication("LDAP://KPPMINING.NET:389");
-                //stat = ldap.IsAuthenticated("KPPMINING.NET", Username, Password);
+                stat = ldap.IsAuthenticated("KPPMINING.NET", Username, Password);
                 stat = true;
             }
             catch (Exception)
