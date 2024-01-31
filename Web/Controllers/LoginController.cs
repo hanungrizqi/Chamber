@@ -274,7 +274,7 @@ namespace Web.Controllers
                         int countss = db.VW_T_APPROVALs.Where(a => a.FLAG == 0 && !excludedStatuses.Contains(a.ID_STATUS.Value) /*&& a.ATASAN == dataUser.POSITION_ID.Trim()*/).Count();
                         Session["Counted"] = countss;
 
-                        var lastCfc_Notif = db.VW_T_APPROVALs.Where(a => a.FLAG == 0 && !excludedStatuses.Contains(a.ID_STATUS.Value) && a.ATASAN == dataUser.POSITION_ID.Trim()).OrderByDescending(u => u.DATETIME_FROM_CFC).FirstOrDefault();
+                        var lastCfc_Notif = db.VW_T_APPROVALs.Where(a => a.FLAG == 0 && !excludedStatuses.Contains(a.ID_STATUS.Value) /*&& a.ATASAN == dataUser.POSITION_ID.Trim()*/).OrderByDescending(u => u.DATETIME_FROM_CFC).FirstOrDefault();
                         //Session["LastCFC"] = GetTimeAgo(lastCfc_Notif?.DATETIME_FROM_CFC);
                         Session["LastCFC"] = lastCfc_Notif.DATETIME_FROM_CFC.Value.ToString("d MMMM yyyy | HH:mm", new CultureInfo("id-ID"));
 

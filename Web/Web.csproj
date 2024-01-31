@@ -1226,6 +1226,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\CustomAuthorizeAttribute\" />
+    <Folder Include="Views\Default\" />
     <Folder Include="Views\Menu\" />
   </ItemGroup>
   <ItemGroup>
